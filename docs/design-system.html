@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-font="C">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traced AI: Design System v0.3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,600&family=League+Spartan:wght@400;500;600;700;800&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ═══ LIGHT THEME ═══ */
+:root {
+  --bg-0:#F7F7F5;
+  --bg-1:#FFFFFF;
+  --bg-2:#F0F0EE;
+  --bg-3:#E8E8E6;
+  --br-subtle:rgba(0,0,0,0.06);
+  --br-default:rgba(0,0,0,0.10);
+  --br-strong:rgba(0,0,0,0.18);
+  --br-accent:rgba(13,138,152,0.22);
+  --tx-0:#1C1C22;
+  --tx-1:#5C5C6A;
+  --tx-2:#9A9AA8;
+  /* Light mode teal: deep, rich, 40% lightness against white */
+  --ac:#0D8A98;
+  --ac-hover:#0C9EAE;
+  --ac-dim:rgba(13,138,152,0.07);
+  --ac-border:rgba(13,138,152,0.22);
+  --ac-text:#0D8A98;
+  --success-text:#15803D;
+  --success-bg:rgba(21,128,61,0.08);
+  --success-border:rgba(21,128,61,0.20);
+  --warning-text:#B45309;
+  --warning-bg:rgba(180,83,9,0.08);
+  --warning-border:rgba(180,83,9,0.20);
+  --danger-text:#B91C1C;
+  --danger-bg:rgba(185,28,28,0.08);
+  --danger-border:rgba(185,28,28,0.20);
+  --info-text:#1D4ED8;
+  --info-bg:rgba(29,78,216,0.07);
+  --info-border:rgba(29,78,216,0.18);
+  --deadline-text:#15803D;
+  --deadline-bg:rgba(21,128,61,0.08);
+  --deadline-border:rgba(21,128,61,0.20);
+  --shadow-card:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);
+  --f-display-A:'Cormorant',Georgia,serif;
+  --f-display-B:'Playfair Display',Georgia,serif;
+  --f-display-C:'League Spartan',system-ui,sans-serif;
+  --f-body-AB:'DM Sans',system-ui,sans-serif;
+  --f-body-C:'Montserrat',system-ui,sans-serif;
+  --f-sans:'DM Sans',system-ui,sans-serif;
+  --f-mono:'JetBrains Mono','Courier New',monospace;
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;
+  --sp-6:32px;--sp-7:48px;--sp-8:64px;
+  --r-sm:4px;--r-md:8px;--r-lg:12px;
+}
+
+/* ═══ DARK THEME ═══
+   Teal pulled to ~58% lightness against near-black.
+   Perceptually similar depth to light mode — present, not neon.
+*/
+[data-theme="dark"] {
+  --bg-0:#09090B;
+  --bg-1:#111115;
+  --bg-2:#1A1A20;
+  --bg-3:#24242C;
+  --br-subtle:rgba(255,255,255,0.05);
+  --br-default:rgba(255,255,255,0.09);
+  --br-strong:rgba(255,255,255,0.16);
+  --br-accent:rgba(74,181,196,0.24);
+  --tx-0:#F2F0EC;
+  --tx-1:#8B8B96;
+  --tx-2:#4C4C56;
+  /* Dark mode teal: softer, same hue, not neon */
+  --ac:#4AB5C4;
+  --ac-hover:#5CC6D5;
+  --ac-dim:rgba(74,181,196,0.09);
+  --ac-border:rgba(74,181,196,0.26);
+  --ac-text:#4AB5C4;
+  --success-text:#4ADE80;
+  --success-bg:rgba(74,222,128,0.08);
+  --success-border:rgba(74,222,128,0.22);
+  --warning-text:#FBB042;
+  --warning-bg:rgba(251,176,66,0.08);
+  --warning-border:rgba(251,176,66,0.22);
+  --danger-text:#F87171;
+  --danger-bg:rgba(248,113,113,0.08);
+  --danger-border:rgba(248,113,113,0.22);
+  --info-text:#7DB5F7;
+  --info-bg:rgba(125,181,247,0.07);
+  --info-border:rgba(125,181,247,0.20);
+  --deadline-text:#4ADE80;
+  --deadline-bg:rgba(74,222,128,0.08);
+  --deadline-border:rgba(74,222,128,0.22);
+  --shadow-card:none;
+}
+
+/* ═══ FONT SWITCHING ═══ */
+[data-font="A"] .f-display      { font-family: var(--f-display-A); }
+[data-font="A"] .f-body         { font-family: var(--f-body-AB); }
+[data-font="A"] .accent-quote   { font-style: italic; font-weight: 500; letter-spacing: 0; }
+[data-font="B"] .f-display      { font-family: var(--f-display-B); }
+[data-font="B"] .f-body         { font-family: var(--f-body-AB); }
+[data-font="B"] .accent-quote   { font-style: italic; font-weight: 500; letter-spacing: 0; }
+[data-font="C"] .f-display      { font-family: var(--f-display-C); letter-spacing: 0.08em; }
+[data-font="C"] .f-body         { font-family: var(--f-body-C); }
+/* Font C: light weight, airy tracking, italic restored for the quote */
+[data-font="C"] .accent-quote   { font-style: italic; font-weight: 300; letter-spacing: 0.06em; font-size: 0.95em; }
+[data-font="C"] .hero-headline  { font-weight: 400; letter-spacing: 0.06em; }
+[data-font="C"] .stat-value     { font-weight: 500; letter-spacing: 0.04em; }
+[data-font="C"] .card-headline  { font-weight: 500; letter-spacing: 0.03em; }
+[data-font="C"] body            { font-family: var(--f-body-C); }
+
+/* ═══ BASE ═══ */
+html { transition: background 0.2s ease, color 0.2s ease; }
+body {
+  background: var(--bg-0);
+  color: var(--tx-0);
+  font-family: var(--f-body-AB);
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 72px 32px 64px;
+  max-width: 1000px;
+  margin: 0 auto;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* ═══ CONTROLS BAR ═══ */
+.controls-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--br-default);
+  padding: 10px 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow-card);
+  transition: background 0.2s, border-color 0.2s;
+}
+.controls-logo {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: var(--tx-0);
+  margin-right: auto;
+  letter-spacing: 0.02em;
+}
+.ctrl-sep { width: 1px; height: 20px; background: var(--br-default); margin: 0 4px; }
+.ctrl-label { font-size: 10px; color: var(--tx-2); font-family: var(--f-mono); letter-spacing: 0.10em; text-transform: uppercase; }
+.ctrl-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 13px;
+  border: 1px solid var(--br-default);
+  border-radius: 100px;
+  background: transparent;
+  color: var(--tx-2);
+  font-family: var(--f-sans); font-size: 12px; font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.ctrl-btn:hover { border-color: var(--ac-border); color: var(--ac-text); }
+.ctrl-btn.active {
+  border-color: var(--ac-border);
+  color: var(--ac-text);
+  background: var(--ac-dim);
+}
+.ctrl-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ac); transition: background 0.2s; }
+
+/* ═══ LAYOUT ═══ */
+.section { margin-bottom: 64px; }
+.section-label {
+  font-family: var(--f-mono); font-size: 10px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--tx-2); margin-bottom: 24px;
+  padding-bottom: 12px; border-bottom: 1px solid var(--br-subtle);
+}
+.divider { height: 1px; background: var(--br-subtle); margin: 64px 0; }
+p.note { font-size: 14px; color: var(--tx-1); line-height: 1.75; margin-bottom: 20px; }
+strong.hl { color: var(--tx-0); }
+.group-label { font-size: 10px; color: var(--tx-2); font-family: var(--f-mono); margin-bottom: 12px; letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* ═══ DOC HEADER ═══ */
+.doc-header { margin-bottom: 56px; padding-top: 16px; }
+.doc-title { font-family: var(--f-mono); font-size: 12px; color: var(--tx-0); margin-bottom: 4px; letter-spacing: 0.04em; }
+.doc-sub { font-family: var(--f-mono); font-size: 11px; color: var(--tx-2); letter-spacing: 0.04em; }
+
+/* ═══ HERO PREVIEW ═══ */
+.hero-preview {
+  background: var(--bg-1);
+  border: 1px solid var(--br-default);
+  border-radius: var(--r-lg);
+  padding: 52px 56px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-card);
+  transition: background 0.2s, border-color 0.2s;
+}
+.deadline-pill {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 5px 13px;
+  background: var(--deadline-bg);
+  border: 1px solid var(--deadline-border);
+  border-radius: 100px;
+  font-family: var(--f-mono); font-size: 11px; font-weight: 500;
+  color: var(--deadline-text);
+  letter-spacing: 0.08em; margin-bottom: 28px;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+.deadline-dot {
+  width: 6px; height: 6px; background: var(--deadline-text);
+  border-radius: 50%; animation: pulse 2s ease-in-out infinite; transition: background 0.2s;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
+/* Hero headline: two clean lines, no extra breaks */
+.hero-headline {
+  font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  color: var(--tx-0);
+  margin-bottom: 22px;
+}
+/* Line 1 */
+.hl-line1 { display: block; }
+/* Line 2: inline, never wraps between strikethroughs and "get investigated" */
+.hl-line2 { display: block; overflow-wrap: break-word; }
+.through { text-decoration: line-through; color: var(--tx-2); }
+.hero-sub-wrap { margin-bottom: 22px; }
+.hero-sub {
+  font-size: 1.25rem;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--ac-text);
+  transition: color 0.2s;
+}
+.hero-body {
+  font-size: 1rem; color: var(--tx-1); max-width: 500px;
+  line-height: 1.75; margin-bottom: 28px;
+}
+
+/* ═══ BUTTONS ═══ */
+.btn-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 11px 22px;
+  border-radius: var(--r-md);
+  font-family: var(--f-sans); font-size: 14px; font-weight: 500;
+  cursor: pointer; transition: all 0.15s ease;
+  border: none; letter-spacing: 0.01em;
+}
+.btn-primary { background: var(--ac); color: #fff; }
+.btn-primary:hover { background: var(--ac-hover); }
+.btn-secondary { background: transparent; color: var(--tx-0); border: 1px solid var(--br-strong); }
+.btn-secondary:hover { background: var(--bg-2); }
+.btn-ghost { background: transparent; color: var(--ac-text); border: 1px solid var(--ac-border); }
+.btn-ghost:hover { background: var(--ac-dim); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+
+/* ═══ COLORS ═══ */
+.color-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(155px,1fr)); gap: 10px; margin-bottom: 16px; }
+.color-swatch { border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--br-subtle); }
+.swatch-block { height: 50px; width: 100%; }
+.swatch-info { background: var(--bg-1); padding: 8px 11px; }
+.swatch-name { font-size: 12px; font-weight: 500; display: block; color: var(--tx-0); }
+.swatch-hex { font-family: var(--f-mono); font-size: 10px; color: var(--tx-2); display: block; margin-top: 1px; }
+.swatch-usage { font-size: 10px; color: var(--tx-2); display: block; margin-top: 2px; }
+
+/* ═══ TYPE SAMPLES ═══ */
+.type-sample { border-left: 2px solid var(--br-default); padding-left: 20px; margin-bottom: 32px; }
+.type-meta { font-family: var(--f-mono); font-size: 10px; color: var(--tx-2); letter-spacing: 0.10em; text-transform: uppercase; display: block; margin-bottom: 10px; }
+.font-tag { display: inline-block; font-family: var(--f-mono); font-size: 9px; color: var(--ac-text); background: var(--ac-dim); border: 1px solid var(--ac-border); border-radius: 3px; padding: 2px 6px; margin-left: 8px; letter-spacing: 0.06em; vertical-align: middle; }
+
+/* ═══ BADGES ═══ */
+.badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 100px; font-size: 12px; font-weight: 500; letter-spacing: 0.01em; }
+.badge-teal { background: var(--ac-dim); color: var(--ac-text); border: 1px solid var(--ac-border); }
+.badge-green { background: var(--success-bg); color: var(--success-text); border: 1px solid var(--success-border); }
+.badge-red { background: var(--danger-bg); color: var(--danger-text); border: 1px solid var(--danger-border); }
+.badge-muted { background: var(--bg-2); color: var(--tx-1); border: 1px solid var(--br-default); }
+.badge-info { background: var(--info-bg); color: var(--info-text); border: 1px solid var(--info-border); }
+
+/* ═══ CARDS ═══ */
+.card {
+  background: var(--bg-1); border: 1px solid var(--br-default);
+  border-radius: var(--r-lg); padding: 20px 22px;
+  box-shadow: var(--shadow-card);
+  transition: background 0.2s, border-color 0.2s;
+}
+.card-accent { border-left: 2px solid var(--ac); }
+.two-col { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 14px; }
+.card-mono-label { font-size: 10px; font-family: var(--f-mono); color: var(--tx-2); margin-bottom: 10px; letter-spacing: 0.10em; text-transform: uppercase; }
+.card-headline { font-size: 1.1rem; font-weight: 500; color: var(--tx-0); margin-bottom: 8px; }
+.card-body { font-size: 13px; color: var(--tx-1); line-height: 1.68; margin-bottom: 16px; }
+
+/* ═══ STAT CARDS ═══ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(155px,1fr)); gap: 10px; margin-bottom: 20px; }
+.stat-card {
+  background: var(--bg-1); border: 1px solid var(--br-default);
+  border-radius: var(--r-md); padding: 18px;
+  box-shadow: var(--shadow-card);
+  transition: background 0.2s, border-color 0.2s;
+}
+.stat-value { font-size: 2rem; font-weight: 600; color: var(--tx-0); line-height: 1; margin-bottom: 6px; }
+.stat-label { font-size: 12px; color: var(--tx-2); line-height: 1.5; }
+
+/* ═══ AUDIT TRAIL ═══ */
+.audit-row { display: flex; align-items: flex-start; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--br-subtle); }
+.audit-row:last-child { border-bottom: none; }
+.audit-ts { font-family: var(--f-mono); font-size: 11px; color: var(--tx-2); white-space: nowrap; min-width: 140px; padding-top: 2px; }
+.audit-content { flex: 1; }
+.audit-event { font-size: 13px; font-weight: 500; color: var(--tx-0); margin-bottom: 3px; }
+.audit-hash { font-family: var(--f-mono); font-size: 10px; color: var(--tx-2); letter-spacing: 0.03em; }
+
+/* ═══ FORM ═══ */
+.form-group { margin-bottom: 16px; }
+.form-label { display: block; font-size: 13px; font-weight: 500; color: var(--tx-1); margin-bottom: 6px; }
+.form-input {
+  width: 100%; background: var(--bg-2);
+  border: 1px solid var(--br-default); border-radius: var(--r-md);
+  padding: 10px 14px; font-family: var(--f-sans); font-size: 14px;
+  color: var(--tx-0); outline: none;
+  transition: border-color 0.15s, background 0.2s, box-shadow 0.15s;
+}
+.form-input:focus { border-color: var(--ac-border); box-shadow: 0 0 0 3px var(--ac-dim); }
+.form-input::placeholder { color: var(--tx-2); }
+.form-textarea { min-height: 88px; resize: vertical; line-height: 1.6; }
+
+/* ═══ CODE BLOCK ═══ */
+.code-block {
+  background: var(--bg-2); border: 1px solid var(--br-default);
+  border-radius: var(--r-md); overflow: hidden; margin-bottom: 16px;
+  transition: background 0.2s, border-color 0.2s;
+}
+.code-bar {
+  padding: 8px 14px; border-bottom: 1px solid var(--br-subtle);
+  font-family: var(--f-mono); font-size: 11px; color: var(--tx-2);
+  display: flex; align-items: center; gap: 8px;
+}
+.code-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.code-body { padding: 16px 20px; font-family: var(--f-mono); font-size: 13px; line-height: 1.8; color: var(--tx-0); }
+.c-comment { color: var(--tx-2); }
+.c-keyword { color: #8B5CF6; }
+[data-theme="dark"] .c-keyword { color: #B4A0FF; }
+.c-string { color: #16A34A; }
+[data-theme="dark"] .c-string { color: #86EFAC; }
+.c-func { color: var(--ac-text); }
+
+/* ═══ HASH BLOCK ═══ */
+.hash-block {
+  background: var(--bg-2); border: 1px solid var(--br-subtle); border-radius: var(--r-sm);
+  padding: 12px 16px; font-family: var(--f-mono); font-size: 12px;
+  color: var(--ac-text); word-break: break-all; letter-spacing: 0.04em; line-height: 1.7;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* ═══ PRICING ═══ */
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(215px,1fr)); gap: 12px; margin-bottom: 16px; }
+.price-card {
+  background: var(--bg-1); border: 1px solid var(--br-default);
+  border-radius: var(--r-lg); padding: 22px; position: relative;
+  box-shadow: var(--shadow-card);
+  transition: background 0.2s, border-color 0.2s;
+}
+.price-card.featured { border-color: var(--ac-border); }
+.price-featured-tag {
+  position: absolute; top: -1px; right: 18px;
+  background: var(--ac-dim); color: var(--ac-text);
+  border: 1px solid var(--ac-border); border-top: none;
+  border-radius: 0 0 6px 6px;
+  font-family: var(--f-mono); font-size: 9px; font-weight: 500;
+  padding: 3px 10px; letter-spacing: 0.10em;
+}
+.price-tier { font-family: var(--f-mono); font-size: 10px; color: var(--tx-2); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+.price-amount { font-size: 1.9rem; font-weight: 600; color: var(--tx-0); line-height: 1; margin-bottom: 3px; }
+.price-cadence { font-size: 12px; color: var(--tx-2); margin-bottom: 14px; }
+.price-desc { font-size: 13px; color: var(--tx-1); line-height: 1.65; margin-bottom: 14px; }
+.price-features { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+.price-feature { font-size: 12px; color: var(--tx-1); display: flex; gap: 7px; align-items: flex-start; }
+.price-feature .plus { color: var(--success-text); font-weight: 600; flex-shrink: 0; }
+.price-feature .plus-ac { color: var(--ac-text); font-weight: 600; flex-shrink: 0; }
+
+/* ═══ SPACING ═══ */
+.spacing-row { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+.spacing-bar { background: var(--ac); height: 6px; border-radius: 2px; flex-shrink: 0; transition: background 0.2s; }
+.spacing-label { font-family: var(--f-mono); font-size: 11px; color: var(--tx-2); min-width: 90px; }
+
+/* ═══ RATIONALE ═══ */
+.rationale {
+  background: var(--bg-1); border: 1px solid var(--br-subtle);
+  border-left: 3px solid var(--ac); border-radius: var(--r-md);
+  padding: 16px 20px; font-size: 13px; color: var(--tx-1); line-height: 1.75;
+  margin-top: 16px;
+  transition: background 0.2s, border-color 0.2s;
+}
+.rationale p { margin-bottom: 12px; }
+.rationale p:last-child { margin-bottom: 0; }
+
+/* "get investigated" highlight + tooltip */
+.danger-highlight {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+  cursor: help;
+  position: relative;
+}
+.danger-highlight::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-1);
+  color: var(--tx-1);
+  border: 1px solid var(--br-default);
+  border-left: 3px solid var(--gh-text);
+  border-radius: var(--r-md);
+  padding: 8px 14px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  box-shadow: var(--shadow-elevated, 0 4px 12px rgba(0,0,0,0.10));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+  z-index: 10;
+}
+.danger-highlight:hover::after {
+  opacity: 1;
+}
+/* When Font C is active, the body font switches to Montserrat */
+[data-font="C"] body { font-family: 'Montserrat', system-ui, sans-serif; }
+[data-font="C"] .form-input { font-family: 'Montserrat', system-ui, sans-serif; }
+[data-font="C"] .btn { font-family: 'Montserrat', system-ui, sans-serif; }
+
+/* Global transitions */
+.card, .stat-card, .price-card, .hero-preview, .code-block, .hash-block, .form-input, .rationale {
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY CONTROLS -->
+<div class="controls-bar">
+  <span class="controls-logo">traced-ai · design-system · v0.3</span>
+
+  <span class="ctrl-label">Theme</span>
+  <button class="ctrl-btn active" id="btn-light" onclick="setTheme('light')">
+    <span class="ctrl-dot"></span> Light
+  </button>
+  <button class="ctrl-btn" id="btn-dark" onclick="setTheme('dark')">
+    <span class="ctrl-dot"></span> Dark
+  </button>
+
+  <div class="ctrl-sep"></div>
+
+  <span class="ctrl-label">Font</span>
+  <button class="ctrl-btn" id="btn-fontA" onclick="setFont('A')">A · Cormorant</button>
+  <button class="ctrl-btn" id="btn-fontB" onclick="setFont('B')">B · Playfair</button>
+  <button class="ctrl-btn active" id="btn-fontC" onclick="setFont('C')">C · Spartan</button>
+</div>
+
+<div class="doc-header">
+  <div class="doc-title">TRACED AI · DESIGN SYSTEM</div>
+  <div class="doc-sub">v0.3 · May 2026 · Toggle theme and font with the controls above · 3 font options</div>
+</div>
+
+<!-- ═══ HERO PREVIEW ═══ -->
+<div class="section">
+  <div class="section-label">Hero, Value Proposition</div>
+
+  <div class="hero-preview">
+    <div class="deadline-pill" id="deadline-badge"
+         onclick="window.open('https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act','_blank')">
+      <span class="deadline-dot" id="deadline-dot"></span>
+      <span id="deadline-text">Computing...</span>
+    </div>
+
+    <!--
+      Headline: two intentional lines.
+      Line 2 keeps both strikethroughs and "get investigated" on the same visual line.
+      No extra breaks anywhere.
+    -->
+    <div class="hero-headline f-display">
+      <span class="hl-line1">Move fast</span>
+      <span class="hl-line2">and <span class="through">break things</span> <span class="danger-highlight" data-tip="EU AI Act Art. 99 · fines up to €35M or 7% of global turnover">get investigated</span></span>
+    </div>
+
+    <div class="hero-sub-wrap">
+      <span class="hero-sub f-display accent-quote">"You can't do compliance work with vibes."</span>
+    </div>
+
+    <div class="hero-body">
+      August 2, 2026. The EU AI Act begins full enforcement. Every high-risk AI decision, a loan refused, a patient flagged, a candidate screened, must be logged, explainable, and defensible.
+      <br><br>
+      Most companies are not ready.
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary">Join the waitlist →</button>
+      <button class="btn btn-secondary">See how it works</button>
+    </div>
+    <div style="font-size:12px;color:var(--tx-2)">No card required. No enterprise sales process.</div>
+  </div>
+
+  <div class="rationale">
+    <p><strong class="hl">Headline.</strong> "and ~~break things~~ get investigated." One strikethrough on the phrase as a unit. The original aphorism crossed out, the truth left standing.</p>
+    <p><strong class="hl">Font C.</strong> League Spartan at 400 weight with 0.06em tracking. Italic is back in the quote across all three fonts. The lighter weight with positive letter-spacing gives it the airy seriousness the product needs.</p>
+    <p><strong class="hl">Deadline badge.</strong> Live JS. Green + animated dot while days remain. Flips to red with "ENFORCEMENT BEGAN N DAYS AGO" past August 2. Clicks through to the official EC enforcement timeline.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ COLOR SYSTEM ═══ -->
+<div class="section">
+  <div class="section-label">Color System</div>
+  <p class="note">Two things changed from v0.2. The dark mode teal dropped from #22D3EE (80% lightness, neon) to #4AB5C4 (58% lightness, controlled). Same hue, same perceptual depth as the light mode version against its background. The orange/amber accent is fully retired. One teal, two modes, consistent feel.</p>
+
+  <div class="group-label">Backgrounds (light / dark)</div>
+  <div class="color-grid" style="margin-bottom:20px">
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#F7F7F5;border-bottom:1px solid rgba(0,0,0,0.07)"></div>
+      <div class="swatch-info"><span class="swatch-name">Page (L)</span><span class="swatch-hex">#F7F7F5</span><span class="swatch-usage">--bg-0 light</span></div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#FFFFFF;border-bottom:1px solid rgba(0,0,0,0.07)"></div>
+      <div class="swatch-info"><span class="swatch-name">Surface (L)</span><span class="swatch-hex">#FFFFFF</span><span class="swatch-usage">--bg-1 light · cards</span></div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#09090B"></div>
+      <div class="swatch-info" style="background:#09090B"><span class="swatch-name" style="color:#F2F0EC">Page (D)</span><span class="swatch-hex" style="color:#4C4C56">#09090B</span><span class="swatch-usage" style="color:#4C4C56">--bg-0 dark</span></div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#111115"></div>
+      <div class="swatch-info" style="background:#111115"><span class="swatch-name" style="color:#F2F0EC">Surface (D)</span><span class="swatch-hex" style="color:#4C4C56">#111115</span><span class="swatch-usage" style="color:#4C4C56">--bg-1 dark · cards</span></div>
+    </div>
+  </div>
+
+  <div class="group-label">Teal accent, light vs dark</div>
+  <div class="color-grid" style="margin-bottom:20px">
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#0D8A98"></div>
+      <div class="swatch-info" style="background:#0D8A98"><span class="swatch-name" style="color:#fff">Light #0D8A98</span><span class="swatch-hex" style="color:rgba(255,255,255,0.55)">~40% lightness</span><span class="swatch-usage" style="color:rgba(255,255,255,0.4)">Rich, deep, controlled</span></div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#4AB5C4"></div>
+      <div class="swatch-info" style="background:#4AB5C4"><span class="swatch-name" style="color:#fff">Dark #4AB5C4</span><span class="swatch-hex" style="color:rgba(255,255,255,0.6)">~58% lightness</span><span class="swatch-usage" style="color:rgba(255,255,255,0.45)">Same depth, dark bg</span></div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#22D3EE"></div>
+      <div class="swatch-info"><span class="swatch-name" style="color:#0A3340">Retired #22D3EE</span><span class="swatch-hex" style="color:#555">~80% lightness</span><span class="swatch-usage" style="color:#888">Too neon in dark mode</span></div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:rgba(13,138,152,0.07);border:1px solid rgba(13,138,152,0.22)"></div>
+      <div class="swatch-info"><span class="swatch-name">Tint (both)</span><span class="swatch-hex">rgba accent, 7%</span><span class="swatch-usage">--ac-dim · badges, fills</span></div>
+    </div>
+  </div>
+
+  <div class="group-label">Semantic colors</div>
+  <div class="color-grid">
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#15803D"></div>
+      <div class="swatch-info" style="background:#15803D"><span class="swatch-name" style="color:#fff">Deadline active</span><span class="swatch-hex" style="color:rgba(255,255,255,0.55)">#15803D</span><span class="swatch-usage" style="color:rgba(255,255,255,0.4)">N days remaining</span></div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#B91C1C"></div>
+      <div class="swatch-info" style="background:#B91C1C"><span class="swatch-name" style="color:#fff">Deadline past</span><span class="swatch-hex" style="color:rgba(255,255,255,0.55)">#B91C1C</span><span class="swatch-usage" style="color:rgba(255,255,255,0.4)">Enforcement started</span></div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#B45309"></div>
+      <div class="swatch-info" style="background:#B45309"><span class="swatch-name" style="color:#fff">Warning</span><span class="swatch-hex" style="color:rgba(255,255,255,0.55)">#B45309</span><span class="swatch-usage" style="color:rgba(255,255,255,0.4)">Review required</span></div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#1D4ED8"></div>
+      <div class="swatch-info" style="background:#1D4ED8"><span class="swatch-name" style="color:#fff">Info</span><span class="swatch-hex" style="color:rgba(255,255,255,0.55)">#1D4ED8</span><span class="swatch-usage" style="color:rgba(255,255,255,0.4)">Pending review</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ TYPOGRAPHY ═══ -->
+<div class="section">
+  <div class="section-label">Typography, Three Combinations</div>
+  <p class="note">
+    <strong class="hl">A: Cormorant + DM Sans.</strong> Hairline serif. Legal brief written by engineers. Very editorial, delicate at small sizes, commanding at large ones.<br>
+    <strong class="hl">B: Playfair Display + DM Sans.</strong> Sturdier serif. Newspaper authority. More legible below 32px. Less fragile on mobile.<br>
+    <strong class="hl">C: League Spartan + Montserrat.</strong> Full geometric sans. No serifs, no italics. Bold, compressed, modern. Reads as a product company that takes compliance seriously, not a law firm. The accent quote becomes bold + tracked in this mode.
+  </p>
+
+  <div class="type-sample">
+    <span class="type-meta">Display 600 · ~60px · Hero <span class="font-tag" id="tag-hero">Cormorant</span></span>
+    <div class="f-display hero-headline" style="font-size:clamp(2.6rem,5.5vw,4.4rem);margin-bottom:0">Audit trail for every AI decision</div>
+  </div>
+
+  <div class="type-sample">
+    <span class="type-meta">Accent · 24px · Quote / Subheadline <span class="font-tag" id="tag-quote">Cormorant italic</span></span>
+    <div class="f-display hero-sub accent-quote" style="font-size:1.5rem;margin-bottom:0">"You can't do compliance work with vibes."</div>
+  </div>
+
+  <div class="type-sample">
+    <span class="type-meta">Display 500 · 30px · Section H2 <span class="font-tag" id="tag-h2">Cormorant</span></span>
+    <div class="f-display card-headline" style="font-size:1.875rem;margin-bottom:0">The decision your AI made last Tuesday</div>
+  </div>
+
+  <div class="type-sample">
+    <span class="type-meta">Display 500 · 20px · H3 Subsection <span class="font-tag" id="tag-h3">Cormorant</span></span>
+    <div class="f-display card-headline" style="font-size:1.25rem;margin-bottom:0">Built for regulated industries</div>
+  </div>
+
+  <div class="type-sample">
+    <span class="type-meta">Body 400 · 16px · DM Sans (A,B) or Montserrat (C)</span>
+    <div class="f-body" style="font-size:1rem;color:var(--tx-1);line-height:1.75;max-width:520px">Raw inputs and outputs stay on your infrastructure. We receive only SHA-256 hashes and human-readable rationale. Nothing sensitive ever crosses your perimeter.</div>
+  </div>
+
+  <div class="type-sample">
+    <span class="type-meta">JetBrains Mono · 12px · Hashes, Timestamps, Code</span>
+    <div style="font-family:var(--f-mono);font-size:0.75rem;color:var(--ac-text);letter-spacing:0.04em">sha256:a3f8c2d91e74b60527f9e4c1d8a2b35f</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ COMPONENTS ═══ -->
+<div class="section">
+  <div class="section-label">Components</div>
+
+  <div style="margin-bottom:28px">
+    <div class="group-label">Buttons</div>
+    <div class="btn-row">
+      <button class="btn btn-primary">Join the waitlist →</button>
+      <button class="btn btn-secondary">Learn more</button>
+      <button class="btn btn-ghost">View documentation</button>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary btn-sm">Get early access</button>
+      <button class="btn btn-secondary btn-sm">See pricing</button>
+      <button class="btn btn-ghost btn-sm">Book a demo</button>
+    </div>
+  </div>
+
+  <div style="margin-bottom:28px">
+    <div class="group-label">Badges</div>
+    <div class="btn-row">
+      <span class="badge badge-teal">EU AI Act aligned</span>
+      <span class="badge badge-green">Verified</span>
+      <span class="badge badge-red">Missing log</span>
+      <span class="badge badge-info">Review required</span>
+      <span class="badge badge-muted">Pending</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:28px">
+    <div class="group-label">Stat Cards</div>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-value f-display">€35M</div>
+        <div class="stat-label">Maximum fine under the AI Act (Art. 5 prohibited practices; €15M/3% for high-risk)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value f-display" style="font-size:1.5rem">Art. 14</div>
+        <div class="stat-label">Human oversight, demonstrable not just claimed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value f-display" style="color:var(--deadline-text)" id="stat-days">73</div>
+        <div class="stat-label">Days until full EU AI Act enforcement</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value f-display" style="font-size:1.5rem">Ann. III</div>
+        <div class="stat-label">Annex listing all high-risk use cases</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:28px">
+    <div class="group-label">Feature Cards</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-mono-label">Rule Registry Entry</div>
+        <div class="card-headline f-display">Arts. 12, 14, 72, 86 · Evidence Chain</div>
+        <div class="card-body">High-risk AI systems must technically allow automatic recording of events over the lifetime of the system (Art. 12). Human oversight must be demonstrable, not procedural (Art. 14). Traced AI covers the evidence layer; QMS and Annex IV documentation remain with you.</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="badge badge-teal">Logging required</span>
+          <span class="badge badge-muted">v3.1 · signed</span>
+        </div>
+      </div>
+      <div class="card card-accent">
+        <div class="card-mono-label">Audit Event</div>
+        <div class="card-headline f-display">Decision: Loan application #4821</div>
+        <div class="card-body">Model: DENY, confidence 0.87. Human review triggered. Override: APPROVED by analyst@bank.com. Rationale captured and hash-chained.</div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <span class="badge badge-green">Signed off</span>
+          <span style="font-family:var(--f-mono);font-size:10px;color:var(--tx-2)">2026-05-21T09:14:33Z</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:28px">
+    <div class="group-label">Audit Trail Rows</div>
+    <div class="card">
+      <div class="audit-row">
+        <div class="audit-ts">2026-05-21 09:14:33</div>
+        <div class="audit-content">
+          <div class="audit-event">Decision: DENY, credit score 0.23 below threshold 0.40</div>
+          <div class="audit-hash">sha256:a3f8c2d91e74b60527f9e4c1d8a2b35f6e7c9d04a1b8e...</div>
+        </div>
+        <span class="badge badge-info" style="flex-shrink:0">Pending review</span>
+      </div>
+      <div class="audit-row">
+        <div class="audit-ts">2026-05-21 09:15:01</div>
+        <div class="audit-content">
+          <div class="audit-event">Override by analyst@fintech.com: APPROVE</div>
+          <div class="audit-hash">sha256:9d2e4f1a8c7b30569e2f4a7d8c1e5b3a6f9d2c4e7b10...</div>
+        </div>
+        <span class="badge badge-green" style="flex-shrink:0">Signed</span>
+      </div>
+      <div class="audit-row">
+        <div class="audit-ts">2026-05-21 09:15:04</div>
+        <div class="audit-content">
+          <div class="audit-event">Rationale: "Prior history in good standing, score anomaly referred to risk team"</div>
+          <div class="audit-hash">sha256:f7a1d9e2c4b6f30827e4b1c9a2d5e8f3c7b0a4e2d9c...</div>
+        </div>
+        <span class="badge badge-green" style="flex-shrink:0">Verified</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:28px">
+    <div class="group-label">SDK Setup</div>
+    <div class="code-block">
+      <div class="code-bar">
+        <span class="code-dot" style="background:#EF4444"></span>
+        <span class="code-dot" style="background:#F59E0B"></span>
+        <span class="code-dot" style="background:#22C55E"></span>
+        <span style="margin-left:6px">traced_init.py</span>
+      </div>
+      <div class="code-body">
+        <span class="c-keyword">import</span> traced_ai<br><br>
+        traced_ai.<span class="c-func">init</span>(<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;api_key=<span class="c-string">"trc_live_..."</span>,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;rules=<span class="c-string">"eu-ai-act-annex-iii"</span><br>
+        )<br><br>
+        <span class="c-comment"># Every LLM call is now automatically traced.</span><br>
+        <span class="c-comment"># Raw I/O stays local. Hashes flow to the ledger.</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:28px">
+    <div class="group-label">Pricing Tiers</div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-tier">Free</div>
+        <div class="price-amount f-display">€0</div>
+        <div class="price-cadence">No account required</div>
+        <div class="price-desc">10k events, 7-day retention. API key from the dashboard, two lines of config, trace immediately.</div>
+        <div class="price-features">
+          <div class="price-feature"><span class="plus">+</span>Hosted dashboard</div>
+          <div class="price-feature"><span class="plus">+</span>Full SDK access</div>
+          <div class="price-feature"><span class="plus-ac">+</span>Self-host viewer (always free)</div>
+        </div>
+        <span class="badge badge-muted">Evaluate and integrate</span>
+      </div>
+      <div class="price-card featured">
+        <div class="price-featured-tag">MOST POPULAR</div>
+        <div class="price-tier">Startup</div>
+        <div class="price-amount f-display">€100<span style="font-size:1rem;font-weight:400;color:var(--tx-2)">/mo</span></div>
+        <div class="price-cadence">€1,000/year · 2 months free</div>
+        <div class="price-desc">250k events/month. Overages at €30 per 100k, on demand. No forced tier upgrade.</div>
+        <div class="price-features">
+          <div class="price-feature"><span class="plus">+</span>3-year event retention</div>
+          <div class="price-feature"><span class="plus">+</span>Rule registry (Arts. 9, 12, 13, 14)</div>
+          <div class="price-feature"><span class="plus">+</span>€30 per 100k overage packages</div>
+          <div class="price-feature"><span class="plus">+</span>Email support</div>
+          <div class="price-feature"><span class="plus-ac">+</span>Self-host viewer (always free)</div>
+        </div>
+        <span class="badge badge-teal">Series A ready</span>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Enterprise</div>
+        <div class="price-amount f-display" style="font-size:1.5rem">Custom</div>
+        <div class="price-cadence">Negotiated per contract</div>
+        <div class="price-desc">Higher limits, dedicated support, all compliance documentation. Indefinite retention.</div>
+        <div class="price-features">
+          <div class="price-feature"><span class="plus">+</span>Lifetime retention (Art. 12)</div>
+          <div class="price-feature"><span class="plus">+</span>GDPR DPA + HIPAA BAA</div>
+          <div class="price-feature"><span class="plus">+</span>EU AI Act cert package</div>
+          <div class="price-feature"><span class="plus">+</span>Uptime SLA</div>
+          <div class="price-feature"><span class="plus-ac">+</span>Self-host viewer (always free)</div>
+        </div>
+        <span class="badge badge-muted">Banks, hospitals, insurers</span>
+      </div>
+    </div>
+    <div class="rationale" style="margin-top:12px">
+      <strong class="hl">Self-hosted component:</strong> always free, every plan. Ships with the SDK. Reads local SQLite, joins with cloud events, renders the complete ledger on your machine. Raw data never reaches our servers.
+    </div>
+  </div>
+
+  <div style="margin-bottom:28px">
+    <div class="group-label">Waitlist Form</div>
+    <div style="max-width:460px">
+      <div class="form-group">
+        <label class="form-label">Business email</label>
+        <input type="email" class="form-input" placeholder="you@company.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Company name</label>
+        <input type="text" class="form-input" placeholder="Acme Financial GmbH">
+      </div>
+      <div class="form-group">
+        <label class="form-label" style="display:flex;align-items:flex-start;gap:8px">
+          <span>What AI decision can your team not explain to a regulator right now?</span>
+          <span style="font-size:9px;color:var(--ac-text);background:var(--ac-dim);padding:2px 7px;border-radius:3px;border:1px solid var(--ac-border);font-weight:600;flex-shrink:0;font-family:var(--f-mono);letter-spacing:0.06em;margin-top:2px">REQ</span>
+        </label>
+        <textarea class="form-input form-textarea" placeholder="Describe a real situation: a model output, a flagged case, a decision that triggered internal questions..."></textarea>
+        <div style="font-size:11px;color:var(--tx-2);margin-top:6px">We read every response. This shapes what we build first.</div>
+      </div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:13px 20px;font-size:15px">Join the waitlist →</button>
+      <div style="font-size:12px;color:var(--tx-2);text-align:center;margin-top:10px">No spam. A direct conversation about your audit situation.</div>
+    </div>
+  </div>
+
+  <div>
+    <div class="group-label">Hash Block</div>
+    <div class="hash-block">sha256:a3f8c2d91e74b60527f9e4c1d8a2b35f6e7c9d04a1b8e250c37f8d96e4b2a10f3e5d7c9b1a8f2e4d6c0b8a7e2d1c5b3</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ SPACING ═══ -->
+<div class="section">
+  <div class="section-label">Spacing Scale, 4px base</div>
+  <div>
+    <div class="spacing-row"><span class="spacing-label">sp-1 · 4px</span><div class="spacing-bar" style="width:4px"></div></div>
+    <div class="spacing-row"><span class="spacing-label">sp-2 · 8px</span><div class="spacing-bar" style="width:8px"></div></div>
+    <div class="spacing-row"><span class="spacing-label">sp-3 · 12px</span><div class="spacing-bar" style="width:12px"></div></div>
+    <div class="spacing-row"><span class="spacing-label">sp-4 · 16px</span><div class="spacing-bar" style="width:16px"></div></div>
+    <div class="spacing-row"><span class="spacing-label">sp-5 · 24px</span><div class="spacing-bar" style="width:24px"></div></div>
+    <div class="spacing-row"><span class="spacing-label">sp-6 · 32px</span><div class="spacing-bar" style="width:32px"></div></div>
+    <div class="spacing-row"><span class="spacing-label">sp-7 · 48px</span><div class="spacing-bar" style="width:48px"></div></div>
+    <div class="spacing-row"><span class="spacing-label">sp-8 · 64px</span><div class="spacing-bar" style="width:64px"></div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ RATIONALE ═══ -->
+<div class="section">
+  <div class="section-label">Design Rationale v0.3</div>
+  <div class="rationale">
+    <p><strong class="hl">Dark teal fix.</strong> The v0.2 dark mode teal (#22D3EE) was essentially browser-link cyan against near-black, which creates the same visual jar as unvisited links on a black page. The fix was not to "soften" in an abstract sense but to match the perceptual depth ratio: in light mode, the teal is roughly 40% lightness against a near-white background. The dark mode equivalent at that depth is around 58% lightness against near-black. That lands at #4AB5C4. Same hue, same authority, no neon.</p>
+    <p><strong class="hl">Font C: League Spartan + Montserrat.</strong> League Spartan is compressed, heavy, and geometric. It reads like a warning label or a product spec sheet, which is exactly right for a compliance infrastructure company. Montserrat as the body font keeps the same geometric family without the weight. The pairing says "we built a serious product and we know what we are doing." No serifs, no italics, no ornament. If A or B feel too refined or editorial, C is the alternative. If C feels too product-y and not enough institutional, A is the one to commit to.</p>
+    <p><strong class="hl">No italic in Font C.</strong> Italic is a serif convention. It reads as emphasis in documents and legal text, which fits A and B. In a geometric sans like League Spartan, italic is just slanted and loses the boldness that makes the font work. The accent quote in Font C mode renders as bold + slightly tracked instead. Still distinguished from body copy. More commanding than decorative.</p>
+    <p><strong class="hl">Headline structure.</strong> Line 1: "Move fast." Line 2: "and ~~break things~~ get investigated." Strikethrough covers the phrase as a unit. The original cliché crossed out, the truth remaining. Anyone who knows the original Zuckerberg aphorism reads the joke in one beat. Everyone else still lands on "get investigated" as the point.</p>
+  </div>
+</div>
+
+<script>
+function setTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  document.getElementById('btn-light').classList.toggle('active', t==='light');
+  document.getElementById('btn-dark').classList.toggle('active', t==='dark');
+}
+
+function setFont(f) {
+  document.documentElement.setAttribute('data-font', f);
+  ['A','B','C'].forEach(x => document.getElementById('btn-font'+x).classList.toggle('active', x===f));
+  const names = { A:'Cormorant', B:'Playfair', C:'Spartan' };
+  const quoteLabels = { A:'Cormorant italic', B:'Playfair italic', C:'Spartan bold tracked' };
+  const n = names[f];
+  document.getElementById('tag-hero').textContent = n;
+  document.getElementById('tag-h2').textContent = n;
+  document.getElementById('tag-h3').textContent = n;
+  document.getElementById('tag-quote').textContent = quoteLabels[f];
+}
+
+(function() {
+  const deadline = new Date('2026-08-02T00:00:00');
+  const now = new Date();
+  const diffMs = deadline - now;
+  const days = Math.ceil(diffMs / 86400000);
+  const badge = document.getElementById('deadline-badge');
+  const dot = document.getElementById('deadline-dot');
+  const text = document.getElementById('deadline-text');
+  const statDays = document.getElementById('stat-days');
+  if (days > 0) {
+    text.textContent = days + ' DAYS UNTIL FULL ENFORCEMENT';
+    if (statDays) statDays.textContent = days;
+  } else {
+    const p = Math.abs(days);
+    text.textContent = 'ENFORCEMENT BEGAN ' + p + ' DAYS AGO';
+    badge.style.cssText += ';color:var(--danger-text);background:var(--danger-bg);border-color:var(--danger-border)';
+    dot.style.background = 'var(--danger-text)';
+    if (statDays) { statDays.textContent = p; statDays.style.color = 'var(--danger-text)'; }
+  }
+})();
+</script>
+</body>
+</html>
