@@ -52,7 +52,9 @@ On August 2nd, "the AI decided" stops being an acceptable answer.
 | Aug 2, 2026 | Full application of high-risk system requirements per Article 113 | https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act |
 
 **Body:**
-The EU AI Act (Regulation EU 2024/1689) entered into force August 1, 2024. The high-risk provisions take full effect on August 2, 2026. If your AI system is involved in credit decisions, employment screening, biometric identification, or clinical decision support, Annex III most likely classifies it as high-risk. Not every AI system touching people is in scope, but the specific categories your legal team cares about almost certainly are.
+The high-risk provisions take full effect on August 2, 2026. If your AI system is involved in credit decisions, employment screening, biometric identification, or clinical decision support, Annex III most likely classifies it as high-risk. Not every AI system touching people is in scope, but the specific categories your legal team cares about almost certainly are.
+
+*(Removed from landing page body: "The EU AI Act (Regulation EU 2024/1689) entered into force August 1, 2024." — this is covered by the stat cards and deadline badge.)*
 
 The question your legal team will ask is not "were you compliant?" It is "can you prove it?"
 
@@ -85,7 +87,7 @@ Traced AI is the evidentiary and traceability layer for your AI decisions. It do
 Two lines of config. The SDK patches your LLM clients (OpenAI, Anthropic, and others) at import time. No manual instrumentation. No restructuring your pipeline.
 
 **Local-first architecture**
-Raw inputs and outputs are written to encrypted storage on your own infrastructure. No sensitive data crosses your perimeter. You hold the source of truth. The self-hosted viewer ships as part of the SDK and is always free, on every plan.
+Raw inputs and outputs are written to encrypted storage on your own infrastructure. No sensitive data crosses your perimeter. You hold the source of truth.
 
 **Tamper-evident ledger**
 SHA-256 hashes of every I/O pair, plus structured rationale, flow to an append-only chained ledger in the cloud. Cryptographically verifiable. Immutable by design. Designed to support the logging requirements of Articles 12 and 19 of the EU AI Act.
@@ -147,7 +149,9 @@ If your AI affects access to money, healthcare, or employment, traceability obli
 **Three cards:**
 
 **Fintech**
-Credit scoring, loan underwriting, fraud detection, AML flags. These use cases are explicitly high-risk under Annex III (creditworthiness and access to essential financial services). Banks have model-risk machinery but not AI-Act-ready, tamper-resistant decision logs tied to per-decision explanations. Traced AI plugs into existing governance without touching raw PII.
+Credit scoring, loan underwriting, fraud detection, AML flags. Banks have model-risk machinery but not AI-Act-ready, tamper-resistant decision logs tied to per-decision explanations. Traced AI plugs into existing governance without touching raw PII.
+
+*(Removed from landing page: "These use cases are explicitly high-risk under Annex III (creditworthiness and access to essential financial services)." — Annex III category label preserved here for reference: Annex III Section 5(b), creditworthiness assessment and access to essential private services.)*
 
 **Medtech**
 AI-enabled medical devices are currently certified under MDR/IVDR. Notified bodies expect traceable evidence of AI behavior and incident linkage. The EU AI Act's direct obligations for medical devices remain in active legislative revision as of 2026. Traced AI provides a neutral log layer that aligns with MDR/IVDR technical file and post-market surveillance requirements, and positions your evidence chain for whichever framework applies.
@@ -200,7 +204,7 @@ Includes everything in Free, plus:
 
 Best for Series A companies building the compliance baseline before August 2026.
 
-**Pricing note (muted, small):** 250k events covers approximately 8,000 LLM calls per day. Event limits will be revisited once real usage data confirms the cost model. If you are expecting higher volume before launch, reach out.
+**Pricing note (muted, small):** 250k events covers approximately 8,000 LLM calls per day. If you are expecting higher volume before launch, reach out.
 
 ---
 
@@ -223,7 +227,7 @@ Best for banks, hospitals, and insurers with existing compliance programs and ex
 
 **Self-hosted note (below all tiers):**
 
-The local viewer is always free and ships as part of the SDK. It reads your local encrypted store, joins it with cloud event records, and renders a complete tamper-evident ledger timeline on your own machine. Your raw AI inputs and outputs never leave your perimeter, on any plan.
+The local viewer is always free and ships as part of the SDK. Your raw AI inputs and outputs never leave your perimeter, on any plan.
 
 **Note on rationale fields:** Rationale text is stored as structured fields, not free-form strings. This protects against accidental capture of personal data, prompt leakage, or confidential reasoning chains. Field-level configuration lets you control exactly what enters the rationale record. Full documentation in the SDK guide.
 
@@ -257,7 +261,7 @@ Two minutes. Tell us what you're building and what you can't yet explain. We'll 
 **CTA button:** Join the waitlist →
 
 **Fine print below CTA (10px, muted):**
-Once you've joined, you'll have the option to book a 30-minute call to talk through your specific situation. That step is optional, not required.
+Once you've joined, you can book a 30-minute call. Optional, not required.
 
 **Post-submit behaviour:**
 Tally completion redirects to `/thank-you` on the same site.

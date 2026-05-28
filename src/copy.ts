@@ -50,7 +50,7 @@ export const stats: Stat[] = [
 export const regulatoryReality = {
   sectionLabel: 'THE DEADLINE IS REAL',
   headline: 'On August 2nd, “the AI decided” stops being an acceptable answer.',
-  body: 'The EU AI Act (Regulation EU 2024/1689) entered into force August 1, 2024. The high-risk provisions take full effect on August 2, 2026. If your AI system is involved in credit decisions, employment screening, biometric identification, or clinical decision support, Annex III most likely classifies it as high-risk. Not every AI system touching people is in scope, but the specific categories your legal team cares about almost certainly are.',
+  body: 'The high-risk provisions take full effect on August 2, 2026. If your AI system is involved in credit decisions, employment screening, biometric identification, or clinical decision support, Annex III most likely classifies it as high-risk. Not every AI system touching people is in scope, but the specific categories your legal team cares about almost certainly are.',
   question: 'The question your legal team will ask is not “were you compliant?” It is “can you prove it?”',
   procurement: {
     heading: 'Enterprise procurement note',
@@ -84,7 +84,7 @@ export const howItWorks = {
     },
     {
       title: 'Local-first architecture',
-      body: 'Raw inputs and outputs are written to encrypted storage on your own infrastructure. No sensitive data crosses your perimeter. You hold the source of truth. The self-hosted viewer ships as part of the SDK and is always free, on every plan.',
+      body: 'Raw inputs and outputs are written to encrypted storage on your own infrastructure. No sensitive data crosses your perimeter. You hold the source of truth.',
     },
     {
       title: 'Tamper-evident ledger',
@@ -148,7 +148,7 @@ export const builtFor = {
   cards: [
     {
       title: 'Fintech',
-      body: 'Credit scoring, loan underwriting, fraud detection, AML flags. These use cases are explicitly high-risk under Annex III (creditworthiness and access to essential financial services). Banks have model-risk machinery but not AI-Act-ready, tamper-resistant decision logs tied to per-decision explanations. Traced AI plugs into existing governance without touching raw PII.',
+      body: 'Credit scoring, loan underwriting, fraud detection, AML flags. Banks have model-risk machinery but not AI-Act-ready, tamper-resistant decision logs tied to per-decision explanations. Traced AI plugs into existing governance without touching raw PII.',
     },
     {
       title: 'Medtech',
@@ -239,11 +239,11 @@ export const pricing = {
     },
   ] as PricingTier[],
   selfHostedNote:
-    'The local viewer is always free and ships as part of the SDK. It reads your local encrypted store, joins it with cloud event records, and renders a complete tamper-evident ledger timeline on your own machine. Your raw AI inputs and outputs never leave your perimeter, on any plan.',
+    'The local viewer is always free and ships as part of the SDK. Your raw AI inputs and outputs never leave your perimeter, on any plan.',
   rationaleNote:
     'Rationale text is stored as structured fields, not free-form strings. This protects against accidental capture of personal data, prompt leakage, or confidential reasoning chains. Field-level configuration lets you control exactly what enters the rationale record. Full documentation in the SDK guide.',
   pricingNote:
-    '250k events covers approximately 8,000 LLM calls per day. Event limits will be revisited once real usage data confirms the cost model. If you are expecting higher volume before launch, reach out.',
+    '250k events covers approximately 8,000 LLM calls per day. If you are expecting higher volume before launch, reach out.',
 };
 
 export const waitlist = {
@@ -252,7 +252,7 @@ export const waitlist = {
   subheadline:
     'Two minutes. Tell us what you’re building and what you can’t yet explain. We’ll respond personally.',
   finePrint:
-    'Once you’ve joined, you’ll have the option to book a 30-minute call to talk through your specific situation. That step is optional, not required.',
+    "Once you’ve joined, you can book a 30-minute call. Optional, not required.",
 };
 
 export const thankYou = {
