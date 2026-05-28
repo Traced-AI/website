@@ -16,13 +16,13 @@
 Move fast
 and ~~break things~~ get investigated
 
-**Implementation note:** Single strikethrough on "break things" as a unit. "get investigated" follows with the dotted underline and hover tooltip (EU AI Act Art. 99, fines up to €15M/3% for high-risk violations or €35M/7% for prohibited practices). Same color as the rest of the line. The dots do the work.
+**Implementation note:** Single strikethrough on "break things" as a unit. "get investigated" follows with the dotted underline and hover tooltip: `EU AI Act Art. 99 · up to €15M / 3% for high-risk violations, €35M / 7% for prohibited practices`. Same color as the rest of the line. The dots do the work.
 
 **Subheadline (italic accent):**
 "You can't do compliance work with vibes."
 
 **Body:**
-August 2, 2026. The EU AI Act begins full enforcement. If your AI system affects credit decisions, employment screening, or medical outcomes, Annex III already classifies it as high-risk. Every decision must be logged, explainable, and defensible.
+August 2, 2026. The EU AI Act begins full enforcement. If your AI system affects credit decisions, employment screening, or functions as a medical device, Annex III already classifies it as high-risk. Decisions made by that system must be logged, explainable, and defensible.
 
 Most companies are not ready.
 
@@ -120,7 +120,7 @@ The hardest part of EU AI Act compliance is not building logging infrastructure.
 
 The Traced AI rule registry is a versioned, cryptographically-signed mapping from regulatory text to concrete logging requirements. When new guidance drops, the registry updates. Your evidence posture updates automatically.
 
-This reduces the repetitive interpretation work your legal and compliance teams otherwise spend on every model update, every new use case, every new guidance note.
+This reduces the repetitive interpretation work your legal and compliance teams otherwise spend on every model update, every new use case, every new guidance note, so they can focus on decisions that actually require their judgment.
 
 **Registry preview card:**
 
@@ -150,7 +150,7 @@ If your AI affects access to money, healthcare, or employment, traceability obli
 Credit scoring, loan underwriting, fraud detection, AML flags. These use cases are explicitly high-risk under Annex III (creditworthiness and access to essential financial services). Banks have model-risk machinery but not AI-Act-ready, tamper-resistant decision logs tied to per-decision explanations. Traced AI plugs into existing governance without touching raw PII.
 
 **Medtech**
-AI that functions as a medical device or as a safety component of one is automatically high-risk under both the EU AI Act and MDR/IVDR. Notified bodies will expect traceable evidence of AI behavior and incident linkage. Traced AI provides a neutral log layer that aligns with device technical files and post-market surveillance requirements.
+AI-enabled medical devices are currently certified under MDR/IVDR. Notified bodies expect traceable evidence of AI behavior and incident linkage. The EU AI Act's direct obligations for medical devices remain in active legislative revision as of 2026. Traced AI provides a neutral log layer that aligns with MDR/IVDR technical file and post-market surveillance requirements, and positions your evidence chain for whichever framework applies.
 
 **HR Automation**
 Recruitment, hiring scores, performance assessment, and workforce management AI are high-risk under Annex III. Most HR vendors do not yet have serious model governance. Traced AI gives you per-candidate decision trails plus structured audit views you can show to regulators, works councils, and litigators.
@@ -170,7 +170,7 @@ The self-hosted viewer is part of the SDK and free on every plan. Your raw data 
 ---
 
 **Free**
-Email account required.
+Email account required. No credit card.
 
 Generate an API key, add two lines of config, and start tracing. No card required.
 

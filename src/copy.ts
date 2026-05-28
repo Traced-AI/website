@@ -3,10 +3,10 @@ export const hero = {
   line2Before: 'and',
   line2Strike: 'break things',
   line2Highlight: 'get investigated',
-  tooltip: 'EU AI Act Art. 99 · fines up to €35M or 7% of global turnover',
+  tooltip: 'EU AI Act Art. 99 · up to €15M / 3% for high-risk violations, €35M / 7% for prohibited practices',
   subheadline: '“You can’t do compliance work with vibes.”',
   body1:
-    'August 2, 2026. The EU AI Act begins full enforcement. If your AI system affects credit decisions, employment screening, or medical outcomes, Annex III already classifies it as high-risk. Every decision must be logged, explainable, and defensible.',
+    'August 2, 2026. The EU AI Act begins full enforcement. If your AI system affects credit decisions, employment screening, or functions as a medical device, Annex III already classifies it as high-risk. Decisions made by that system must be logged, explainable, and defensible.',
   body2: 'Most companies are not ready.',
   ctaPrimary: 'Join the waitlist →',
   ctaSecondary: 'See how it works',
@@ -111,7 +111,7 @@ export const ruleRegistry = {
   body2:
     'The Traced AI rule registry is a versioned, cryptographically-signed mapping from regulatory text to concrete logging requirements. When new guidance drops, the registry updates. Your evidence posture updates automatically.',
   body3:
-    'This reduces the repetitive interpretation work your legal and compliance teams otherwise spend on every model update, every new use case, every new guidance note.',
+    'This reduces the repetitive interpretation work your legal and compliance teams otherwise spend on every model update, every new use case, every new guidance note, so they can focus on decisions that actually require their judgment.',
   rows: [
     {
       field: 'Article',
@@ -152,7 +152,7 @@ export const builtFor = {
     },
     {
       title: 'Medtech',
-      body: 'AI that functions as a medical device or as a safety component of one is automatically high-risk under both the EU AI Act and MDR/IVDR. Notified bodies will expect traceable evidence of AI behavior and incident linkage. Traced AI provides a neutral log layer that aligns with device technical files and post-market surveillance requirements.',
+      body: 'AI-enabled medical devices are currently certified under MDR/IVDR. Notified bodies expect traceable evidence of AI behavior and incident linkage. The EU AI Act’s direct obligations for medical devices remain in active legislative revision as of 2026. Traced AI provides a neutral log layer that aligns with MDR/IVDR technical file and post-market surveillance requirements, and positions your evidence chain for whichever framework applies.',
     },
     {
       title: 'HR Automation',
@@ -187,7 +187,7 @@ export const pricing = {
     {
       tier: 'Free',
       amount: '€0',
-      cadence: 'Email account required.',
+      cadence: 'Email account required. No credit card.',
       desc: 'Generate an API key, add two lines of config, and start tracing. No card required.',
       features: [
         { text: '10,000 events, 7-day retention' },
