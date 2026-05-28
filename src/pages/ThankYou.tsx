@@ -1,0 +1,90 @@
+import { Link } from 'react-router-dom'
+import { CAL_BOOKING_URL } from '../config'
+import { thankYou } from '../copy'
+
+export default function ThankYou() {
+  return (
+    <div style={{
+      minHeight: '100vh',
+      background: 'var(--bg-0)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '40px 24px',
+    }}>
+      <div style={{ maxWidth: '480px', width: '100%' }}>
+        <div style={{
+          fontFamily: 'var(--f-mono)',
+          fontSize: '10px',
+          letterSpacing: '0.16em',
+          textTransform: 'uppercase',
+          color: 'var(--tx-2)',
+          marginBottom: '24px',
+        }}>
+          TRACED AI
+        </div>
+
+        <h1 style={{
+          fontFamily: 'var(--f-display-C)',
+          fontSize: 'clamp(2rem, 4vw, 3rem)',
+          fontWeight: 400,
+          letterSpacing: '0.06em',
+          color: 'var(--tx-0)',
+          lineHeight: 1.1,
+          marginBottom: '16px',
+        }}>
+          {thankYou.headline}
+        </h1>
+
+        <p style={{ fontSize: '16px', color: 'var(--tx-1)', lineHeight: 1.75, marginBottom: '48px' }}>
+          {thankYou.body}
+        </p>
+
+        <div style={{
+          background: 'var(--bg-1)',
+          border: '1px solid var(--br-default)',
+          borderLeft: '3px solid var(--ac)',
+          borderRadius: 'var(--r-md)',
+          padding: '24px',
+          marginBottom: '32px',
+        }}>
+          <h2 style={{
+            fontFamily: 'var(--f-display-C)',
+            fontSize: '1rem',
+            fontWeight: 500,
+            letterSpacing: '0.03em',
+            color: 'var(--tx-0)',
+            marginBottom: '12px',
+          }}>
+            {thankYou.callBlock.heading}
+          </h2>
+          <p style={{ fontSize: '14px', color: 'var(--tx-1)', lineHeight: 1.75, marginBottom: '20px' }}>
+            {thankYou.callBlock.body}
+          </p>
+          {CAL_BOOKING_URL !== 'PLACEHOLDER' ? (
+            <a
+              href={CAL_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-ghost"
+            >
+              {thankYou.callBlock.cta}
+            </a>
+          ) : (
+            <span className="btn btn-ghost" style={{ opacity: 0.5, cursor: 'default' }}>
+              {thankYou.callBlock.cta}
+            </span>
+          )}
+        </div>
+
+        <p style={{ fontSize: '12px', color: 'var(--tx-2)', lineHeight: 1.7, marginBottom: '32px' }}>
+          {thankYou.finePrint}
+        </p>
+
+        <Link to="/" style={{ fontSize: '13px', color: 'var(--ac-text)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>
+          Back to home
+        </Link>
+      </div>
+    </div>
+  )
+}
