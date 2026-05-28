@@ -555,3 +555,35 @@ body {
 .card, .stat-card, .price-card, .code-block, .form-input {
   transition: background 0.2s ease, border-color 0.2s ease;
 }
+
+/* Legal page prose */
+.legal-body p    { font-size: 15px; color: var(--tx-1); line-height: 1.8; margin-bottom: 14px; }
+.legal-body ul   { font-size: 15px; color: var(--tx-1); line-height: 1.8; margin-bottom: 14px; padding-left: 24px; }
+.legal-body li   { margin-bottom: 6px; }
+.legal-body strong { color: var(--tx-0); }
+.legal-body a    { color: var(--ac-text); text-decoration: underline; text-underline-offset: 3px; }
+.legal-body a:hover { color: var(--ac-hover); }
+.legal-body code { font-family: var(--f-mono); font-size: 0.9em; background: var(--bg-2); padding: 1px 5px; border-radius: var(--r-sm); }
+.legal-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  color: var(--tx-1);
+  margin-bottom: 16px;
+}
+.legal-body th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--tx-0);
+  border-bottom: 1px solid var(--br-default);
+  padding: 8px 12px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.legal-body td {
+  border-bottom: 1px solid var(--br-subtle);
+  padding: 8px 12px;
+  vertical-align: top;
+}
