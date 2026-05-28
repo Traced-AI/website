@@ -19,9 +19,14 @@ export default function RegulatoryReality() {
           {regulatoryReality.body}
         </p>
 
-        <p style={{ fontSize: '15px', color: 'var(--tx-0)', lineHeight: 1.75, maxWidth: '720px', marginBottom: '32px', fontWeight: 500 }}>
-          {regulatoryReality.question}
-        </p>
+        <div style={{ maxWidth: '720px', marginBottom: '32px' }}>
+          <p style={{ fontSize: '15px', color: 'var(--tx-1)', lineHeight: 1.75, fontWeight: 400, marginBottom: '2px' }}>
+            {regulatoryReality.question}
+          </p>
+          <p style={{ fontSize: '15px', color: 'var(--tx-0)', lineHeight: 1.75, fontWeight: 600 }}>
+            {regulatoryReality.questionPunchline}
+          </p>
+        </div>
 
         <div className="callout" style={{ maxWidth: '720px', marginBottom: '32px' }}>
           <strong style={{ display: 'block', fontSize: '13px', color: 'var(--tx-0)', marginBottom: '8px' }}>

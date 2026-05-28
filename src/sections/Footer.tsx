@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { footer } from '../copy'
 
 export default function Footer() {
@@ -21,18 +22,33 @@ export default function Footer() {
             </p>
           </div>
 
-          <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
-            {footer.links.map((link, i) => (
-              <a
-                key={i}
-                href={link.href}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'flex-end' }}>
+            <div style={{ display: 'flex', gap: '20px' }}>
+              <Link
+                to="/privacy"
                 style={{ fontSize: '13px', color: 'var(--tx-2)', textDecoration: 'none' }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--ac-text)')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--tx-2)')}
               >
-                {link.label}
-              </a>
-            ))}
+                Privacy Policy
+              </Link>
+              <Link
+                to="/terms"
+                style={{ fontSize: '13px', color: 'var(--tx-2)', textDecoration: 'none' }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--ac-text)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--tx-2)')}
+              >
+                Terms
+              </Link>
+            </div>
+            <a
+              href="mailto:contact@traced-ai.com"
+              style={{ fontSize: '13px', color: 'var(--tx-2)', textDecoration: 'none' }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--ac-text)')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--tx-2)')}
+            >
+              contact@traced-ai.com
+            </a>
           </div>
         </div>
 

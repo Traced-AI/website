@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 function ThemeIcon({ theme }: { theme: string }) {
   if (theme === 'dark') {
@@ -24,10 +25,18 @@ function ThemeIcon({ theme }: { theme: string }) {
 }
 
 export default function NavBar() {
+  const location = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [theme, setTheme] = useState<string>(
     () => document.documentElement.getAttribute('data-theme') || 'light'
   )
+
+  function handleLogoClick(e: React.MouseEvent) {
+    if (location.pathname === '/') {
+      e.preventDefault()
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -45,9 +54,9 @@ export default function NavBar() {
   return (
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
       <div className="navbar-inner">
-        <a href="/" className="navbar-logo f-display">
+        <Link to="/" className="navbar-logo f-display" onClick={handleLogoClick}>
           Traced AI
-        </a>
+        </Link>
         <div className="navbar-actions">
           <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
             <ThemeIcon theme={theme} />

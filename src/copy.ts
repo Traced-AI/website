@@ -51,7 +51,8 @@ export const regulatoryReality = {
   sectionLabel: 'THE DEADLINE IS REAL',
   headline: 'On August 2nd, “the AI decided” stops being an acceptable answer.',
   body: 'The high-risk provisions take full effect on August 2, 2026. If your AI system is involved in credit decisions, employment screening, biometric identification, or clinical decision support, Annex III most likely classifies it as high-risk. Not every AI system touching people is in scope, but the specific categories your legal team cares about almost certainly are.',
-  question: 'The question your legal team will ask is not “were you compliant?” It is “can you prove it?”',
+  question: 'The question your legal team will ask is not “were you compliant?”',
+  questionPunchline: 'It is “can you prove it?”',
   procurement: {
     heading: 'Enterprise procurement note',
     body: 'Your enterprise customers are already sending AI governance questionnaires before regulators do. Procurement reviews from banks, insurers, and public-sector buyers now routinely ask: what models are used, how decisions are logged, whether AI outputs are reviewable, and what audit evidence exists. That pain is immediate. The regulatory deadline adds urgency, but the deal-blocker is today.',
