@@ -270,12 +270,12 @@ export const thankYou = {
 
 export const footer = {
   tagline: 'Evidentiary infrastructure for AI decisions.',
-  links: [
+  navLinks: [
     { label: 'Privacy', href: '/privacy' },
     { label: 'Terms', href: '/terms' },
     { label: 'DPA', href: '/dpa' },
-    { label: 'contact@traced-ai.com', href: 'mailto:contact@traced-ai.com' },
   ],
+  contactEmail: { label: 'contact@traced-ai.com', href: 'mailto:contact@traced-ai.com' },
   company: {
     name: 'DRIFTWARE DYNAMICS LTD',
     line1: 'Cyprus Ltd · Reg. No. HE 474529 · VAT: 60167558M',

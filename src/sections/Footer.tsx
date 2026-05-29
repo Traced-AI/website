@@ -1,3 +1,4 @@
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { footer } from '../copy'
 
@@ -24,8 +25,8 @@ export default function Footer() {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-end' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              {footer.links.filter(l => !l.href.startsWith('mailto:')).map((link, i, arr) => (
-                <span key={link.href} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              {footer.navLinks.map((link, i) => (
+                <React.Fragment key={link.href}>
                   <Link
                     to={link.href}
                     style={{ fontSize: '13px', color: 'var(--tx-2)', textDecoration: 'none' }}
@@ -34,23 +35,20 @@ export default function Footer() {
                   >
                     {link.label}
                   </Link>
-                  {i < arr.length - 1 && (
+                  {i < footer.navLinks.length - 1 && (
                     <span style={{ fontSize: '11px', color: 'var(--tx-2)', opacity: 0.4, userSelect: 'none' }}>·</span>
                   )}
-                </span>
+                </React.Fragment>
               ))}
             </div>
-            {footer.links.filter(l => l.href.startsWith('mailto:')).map(link => (
-              <a
-                key={link.href}
-                href={link.href}
-                style={{ fontSize: '12px', color: 'var(--tx-2)', textDecoration: 'none', opacity: 0.6 }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--ac-text)'; e.currentTarget.style.opacity = '1'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--tx-2)'; e.currentTarget.style.opacity = '0.6'; }}
-              >
-                {link.label}
-              </a>
-            ))}
+            <a
+              href={footer.contactEmail.href}
+              style={{ fontSize: '12px', color: 'var(--tx-2)', textDecoration: 'none', opacity: 0.6 }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--ac-text)'; e.currentTarget.style.opacity = '1'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--tx-2)'; e.currentTarget.style.opacity = '0.6'; }}
+            >
+              {footer.contactEmail.label}
+            </a>
           </div>
         </div>
 

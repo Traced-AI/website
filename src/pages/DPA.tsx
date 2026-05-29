@@ -1,5 +1,6 @@
 import NavBar from '../sections/NavBar'
 import Footer from '../sections/Footer'
+import { LegalSection, Note } from '../components/LegalComponents'
 
 export default function DPA() {
   return (
@@ -92,7 +93,7 @@ export default function DPA() {
             <p style={{ fontSize: '12px', color: 'var(--tx-2)' }}>Cyprus Ltd, Reg. No. HE 474529</p>
           </div>
 
-          <Annex id="I" title="Details of processing">
+          <LegalSection id="I" title="Details of processing" prefix="Annex ">
             <table>
               <tbody>
                 <tr>
@@ -134,9 +135,9 @@ export default function DPA() {
                 </tr>
               </tbody>
             </table>
-          </Annex>
+          </LegalSection>
 
-          <Annex id="II" title="Technical and organisational measures">
+          <LegalSection id="II" title="Technical and organisational measures" prefix="Annex ">
             <Note>Every line in this annex is a factual claim. Before the Service processes real customer data, confirm each measure is true of the system as it will operate. Remove or soften any measure not yet implemented rather than overstating it.</Note>
             <ul>
               <li><strong>Data minimisation by design.</strong> Raw Customer data stays in Customer's perimeter. Only hashes, rationale text, and metadata are transmitted to Traced AI.</li>
@@ -147,9 +148,9 @@ export default function DPA() {
               <li><strong>Availability.</strong> Backups and recovery objectives appropriate to the Service.</li>
               <li><strong>Sub-processor governance.</strong> Data-protection terms imposed on sub-processors; transfer mechanisms where required; security review before engagement.</li>
             </ul>
-          </Annex>
+          </LegalSection>
 
-          <Annex id="III" title="Sub-processors">
+          <LegalSection id="III" title="Sub-processors" prefix="Annex ">
             <table>
               <thead>
                 <tr>
@@ -169,7 +170,7 @@ export default function DPA() {
               </tbody>
             </table>
             <Note>The product backend sub-processors (Fly.io, Supabase, Upstash, Clerk, payment processor) will be added to this table before the Service is available to customers. Confirm each provider's region from your own dashboards, and name the actual transfer mechanism for each non-EEA processor before relying on the row.</Note>
-          </Annex>
+          </LegalSection>
 
         </div>
       </main>
@@ -178,65 +179,3 @@ export default function DPA() {
   )
 }
 
-function LegalSection({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
-  return (
-    <section style={{ marginBottom: '40px' }}>
-      <h2 style={{
-        fontFamily: 'var(--f-display-C)',
-        fontSize: '1.1rem',
-        fontWeight: 500,
-        letterSpacing: '0.04em',
-        color: 'var(--tx-0)',
-        marginBottom: '16px',
-        paddingBottom: '8px',
-        borderBottom: '1px solid var(--br-subtle)',
-      }}>
-        {id}. {title}
-      </h2>
-      <div className="legal-body">
-        {children}
-      </div>
-    </section>
-  )
-}
-
-function Annex({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
-  return (
-    <section style={{ marginBottom: '48px' }}>
-      <h2 style={{
-        fontFamily: 'var(--f-display-C)',
-        fontSize: '1.1rem',
-        fontWeight: 500,
-        letterSpacing: '0.04em',
-        color: 'var(--tx-0)',
-        marginBottom: '16px',
-        paddingBottom: '8px',
-        borderBottom: '1px solid var(--br-subtle)',
-      }}>
-        Annex {id}. {title}
-      </h2>
-      <div className="legal-body">
-        {children}
-      </div>
-    </section>
-  )
-}
-
-function Note({ children }: { children: React.ReactNode }) {
-  return (
-    <div style={{
-      background: 'var(--bg-2)',
-      border: '1px solid var(--br-default)',
-      borderLeft: '3px solid var(--warning)',
-      borderRadius: 'var(--r-md)',
-      padding: '12px 16px',
-      fontSize: '12px',
-      color: 'var(--tx-2)',
-      lineHeight: 1.7,
-      margin: '16px 0',
-    }}>
-      <strong style={{ color: 'var(--tx-1)', display: 'block', marginBottom: '4px' }}>To do before publishing</strong>
-      {children}
-    </div>
-  )
-}
