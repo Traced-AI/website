@@ -22,7 +22,7 @@ export default function Privacy() {
             Privacy Policy
           </h1>
           <p style={{ fontSize: '13px', color: 'var(--tx-2)', fontFamily: 'var(--f-mono)', marginBottom: '48px' }}>
-            Last updated: 27 May 2026
+            Last updated: 29 May 2026
           </p>
 
           <LegalSection id="1" title="About this policy">
@@ -39,7 +39,6 @@ export default function Privacy() {
           <LegalSection id="2" title="Who we are and how to reach us">
             <p>Driftware Dynamics Ltd, registered in Cyprus under company number HE 474529, VAT: 60167558M, with registered address Tefkrou Anthia 63, MEZARINA COURT A, Flat/Office 5, Agia Napa, Famagusta, Cyprus 5330.</p>
             <p>All privacy enquiries: <a href="mailto:contact@traced-ai.com">contact@traced-ai.com</a></p>
-            <Note>If the entity is established outside the EU and offers the service to people in the EU, an Article 27 GDPR representative is likely required. Confirm with counsel whether one needs to be appointed and named here.</Note>
           </LegalSection>
 
           <LegalSection id="3" title="The data we collect">
@@ -53,6 +52,7 @@ export default function Privacy() {
             </ul>
 
             <h3>3.2 Customers and product use</h3>
+            <p><em>The product is not yet generally available. This section describes how data is handled once it is.</em></p>
             <p>When your organisation uses Traced AI:</p>
             <ul>
               <li><strong>Account and billing data.</strong> Names and work emails of authorised users, plan, and payment details (handled by our payment processor; we do not store full card numbers).</li>
@@ -76,7 +76,7 @@ export default function Privacy() {
                 <tr><td>Bill you and keep financial records</td><td>Contract, and our legal obligation to keep accounting records</td></tr>
                 <tr><td>Send service and security notices</td><td>Contract, and our legitimate interest in keeping you informed</td></tr>
                 <tr><td>Send marketing emails</td><td>Your consent, or our legitimate interest in business-to-business outreach where permitted, with an opt-out in every message</td></tr>
-                <tr><td>Measure and improve the website</td><td>Your consent for non-essential analytics, our legitimate interest for essential measurement</td></tr>
+                <tr><td>Measure and improve the website</td><td>Legitimate interest (documented assessment held on file). Vercel Analytics is cookieless and does not collect personal data; no separate consent is required.</td></tr>
                 <tr><td>Detect and prevent abuse and fraud</td><td>Our legitimate interest in protecting the service</td></tr>
               </tbody>
             </table>
@@ -84,16 +84,13 @@ export default function Privacy() {
           </LegalSection>
 
           <LegalSection id="5" title="Cookies and analytics">
-            <p>We use a small number of cookies and similar technologies:</p>
-            <ul>
-              <li><strong>Essential cookies</strong> that make the site and your logged-in session work. These do not require consent.</li>
-              <li><strong>Analytics and preference cookies</strong> that help us understand how the site is used. These run only with your consent.</li>
-            </ul>
-            <p>You can accept or reject non-essential cookies through our cookie banner and change your choice at any time.</p>
-            <Note>A current cookie table listing each cookie, its purpose, and its lifespan is required for an accurate consent banner. Maintain and publish this separately.</Note>
+            <p><strong>Vercel Web Analytics</strong> is cookieless. It sets no cookies, collects no personally identifiable information, and identifies sessions by a request hash that is discarded after 24 hours. No consent banner is required for it.</p>
+            <p>The <strong>Tally</strong> waitlist form and <strong>Cal.com</strong> booking widget are third-party embeds. Each operates under its own privacy notice and may set cookies within its embed context: <a href="https://tally.so/privacy" target="_blank" rel="noopener noreferrer">Tally privacy policy</a> and <a href="https://cal.com/privacy" target="_blank" rel="noopener noreferrer">Cal.com privacy policy</a>.</p>
+            <p>When user authentication is added to the product, any session cookies introduced will be listed here with their purpose and lifespan.</p>
           </LegalSection>
 
           <LegalSection id="6" title="How the product keeps raw data out of our hands">
+            <p><em>This describes the architecture of the product. The product is not yet generally available to customers.</em></p>
             <p>This is the design principle the whole service is built on.</p>
             <ul>
               <li>The Traced AI SDK auto-patches your LLM clients and writes raw inputs and outputs to a <strong>local SQLite store inside your own infrastructure</strong>. That store never leaves your perimeter.</li>
@@ -105,36 +102,38 @@ export default function Privacy() {
           </LegalSection>
 
           <LegalSection id="7" title="Who we share data with">
-            <p>We do not sell personal data. We share it only with service providers who help us run the business, and only as far as needed. Our main sub-processors are:</p>
+            <p>We do not sell personal data. We share it only with service providers who help us run the business, and only as far as needed. Our current sub-processors are:</p>
             <table>
               <thead>
-                <tr><th>Provider</th><th>Role</th><th>Region</th></tr>
+                <tr><th>Provider</th><th>Role</th><th>Region</th><th>HQ</th></tr>
               </thead>
               <tbody>
-                <tr><td>Vercel</td><td>Website and dashboard hosting</td><td>[confirm region]</td></tr>
-                <tr><td>Fly.io</td><td>Backend hosting</td><td>[confirm region]</td></tr>
-                <tr><td>Supabase</td><td>Managed database (hashes and metadata)</td><td>[confirm region]</td></tr>
-                <tr><td>Upstash</td><td>Queue and cache</td><td>[confirm region]</td></tr>
-                <tr><td>Clerk</td><td>Authentication</td><td>[confirm region]</td></tr>
-                <tr><td>[Payment processor]</td><td>Billing and payments</td><td>[confirm region]</td></tr>
-                <tr><td>Vercel Analytics</td><td>Website analytics</td><td>[confirm region]</td></tr>
+                <tr><td>Vercel</td><td>Website hosting and cookieless analytics</td><td>EU Edge (fra1)</td><td>US</td></tr>
+                <tr><td>Tally</td><td>Waitlist form submissions</td><td>EU (Belgium)</td><td>EU</td></tr>
+                <tr><td>Cal.com (Cal.eu)</td><td>Demo call booking</td><td>EU</td><td>US</td></tr>
               </tbody>
             </table>
-            <Note>Confirm each provider's processing region. Prefer EU data residency where your customers require it contractually. A current sub-processor list is a standard procurement requirement for the regulated buyers you are targeting.</Note>
+            <p>Raw inputs and outputs from your AI systems never reach us or any sub-processor. See section 6. When the product backend is live, additional sub-processors will be added to this list.</p>
             <p>We may also disclose data where the law requires it, to enforce our agreements, or in connection with a merger or acquisition, in which case we will tell you.</p>
           </LegalSection>
 
           <LegalSection id="8" title="International transfers">
-            <p>Some of our providers process data outside the European Economic Area. Where that happens, we rely on an appropriate safeguard such as an EU adequacy decision or the European Commission's Standard Contractual Clauses, together with any additional measures needed. You can ask us for details of the safeguard used for a particular transfer at <a href="mailto:contact@traced-ai.com">contact@traced-ai.com</a>.</p>
-            <Note>Because raw customer data stays inside the customer perimeter, the transfer exposure for product data is limited to hashes, rationale text, and metadata. Confirm the residency position with counsel.</Note>
+            <p>The following describes the current transfer position for our live sub-processors:</p>
+            <ul>
+              <li><strong>Tally</strong> is incorporated in Belgium and processes form data in the EU. No transfer outside the EEA.</li>
+              <li><strong>Cal.com (Cal.eu)</strong> processes booking data in the EU. Cal.com Inc is US-headquartered. This transfer is covered by EU Standard Contractual Clauses.</li>
+              <li><strong>Vercel</strong> runs edge functions in EU regions (fra1) for this site. Vercel Inc is US-headquartered. This transfer is covered by EU Standard Contractual Clauses and the EU-US Data Privacy Framework.</li>
+            </ul>
+            <p>Raw customer decision data stays inside the customer's own perimeter and is not a transfer we make. When the product backend is live and additional sub-processors are added, this section will be updated to cover those transfers.</p>
+            <p>You can ask us for details of the safeguard used for a particular transfer at <a href="mailto:contact@traced-ai.com">contact@traced-ai.com</a>.</p>
           </LegalSection>
 
           <LegalSection id="9" title="How long we keep data">
             <ul>
-              <li><strong>Enquiry and form data:</strong> [confirm retention period, e.g. up to 24 months from last contact].</li>
+              <li><strong>Enquiry and form data:</strong> 2 years from the date of submission.</li>
               <li><strong>Account and billing data:</strong> for the life of the account, then as required for tax and accounting law.</li>
               <li><strong>Audit-trail data in the ledger:</strong> for the retention period set in your service agreement, which you choose to match your regulatory obligations. EU AI Act and sectoral rules generally expect logs to be retained for at least six months, and often longer for high-risk categories.</li>
-              <li><strong>Website analytics:</strong> [confirm retention period].</li>
+              <li><strong>Website analytics:</strong> Aggregated and anonymous. No individual session is retained beyond 24 hours.</li>
             </ul>
             <p>When a retention period ends, we delete or irreversibly anonymise the data.</p>
           </LegalSection>
@@ -172,6 +171,7 @@ export default function Privacy() {
 
           <LegalSection id="15" title="Complaints">
             <p>If you think we have mishandled your data, please contact us first at <a href="mailto:contact@traced-ai.com">contact@traced-ai.com</a> so we can put it right. You also have the right to complain to a data protection authority, in particular the one for the EU country where you live or work.</p>
+            <p>The lead supervisory authority for Traced AI is the Office of the Commissioner for Personal Data Protection, 1 Iasonos Street, 1082 Nicosia, Cyprus. Tel: +357 22 818 456. Email: <a href="mailto:commissioner@dataprotection.gov.cy">commissioner@dataprotection.gov.cy</a>. Website: <a href="https://www.dataprotection.gov.cy" target="_blank" rel="noopener noreferrer">dataprotection.gov.cy</a>.</p>
           </LegalSection>
 
         </div>

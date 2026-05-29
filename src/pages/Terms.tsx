@@ -22,7 +22,7 @@ export default function Terms() {
             Terms and Conditions
           </h1>
           <p style={{ fontSize: '13px', color: 'var(--tx-2)', fontFamily: 'var(--f-mono)', marginBottom: '24px' }}>
-            Last updated: 27 May 2026
+            Last updated: 29 May 2026
           </p>
           <p style={{ fontSize: '15px', color: 'var(--tx-1)', lineHeight: 1.75, marginBottom: '48px' }}>
             These terms govern your use of the Traced AI service. By creating an account, installing the SDK, or otherwise using the service, you agree to them. If you are agreeing on behalf of an organisation, you confirm that you have authority to bind it, and "you" means that organisation.
@@ -41,6 +41,7 @@ export default function Terms() {
           </LegalSection>
 
           <LegalSection id="2" title="What the service is, and what it is not">
+            <p><em>The product is not yet generally available. These terms apply from the moment you create an account or install the SDK.</em></p>
             <p>Traced AI is <strong>audit-trail and compliance infrastructure</strong>. It records evidence about decisions made by your AI systems: it hashes inputs and outputs, stores the rationale you attach, and chains those records so tampering becomes evident.</p>
             <p>Traced AI does <strong>not</strong> make decisions about individuals, does not score, rank, or evaluate people, and is not itself a high-risk AI system under the AI Act. It is a record-keeping tool that helps you meet obligations such as record-keeping (Article 12), transparency (Article 13), and post-market monitoring (Article 72) for the AI systems <strong>you</strong> operate.</p>
             <p>The service is provided as evidence and tooling. It does not certify your compliance, does not constitute legal advice, and using it does not by itself make you compliant with the AI Act, the GDPR, or any other law. Compliance depends on how you design, operate, and govern your own AI systems.</p>
@@ -88,7 +89,9 @@ export default function Terms() {
               <li><strong>What reaches us.</strong> Only hashes, rationale text, and metadata are sent to the Ledger. Connectivity is outbound only. The sole traffic from us to you is signed Rule Registry updates.</li>
               <li><strong>Rationale text is your responsibility.</strong> Rationale text reaches our Ledger in plain text. You are responsible for what you put in it, including keeping out any personal or sensitive data that does not need to be there.</li>
               <li><strong>We do not train on your data.</strong> We do not use Customer Data to train or fine-tune any model, and we do not share it except as set out in our Privacy Policy.</li>
-              <li><strong>Processing terms.</strong> Where we process personal data on your behalf, a Data Processing Agreement applies and forms part of these terms. Contact <a href="mailto:contact@traced-ai.com">contact@traced-ai.com</a> to request it.</li>
+              <li><strong>Processing terms.</strong> Where we process personal data on your behalf, a Data Processing Agreement applies and forms part of these terms. Contact <a href="mailto:contact@traced-ai.com">contact@traced-ai.com</a> to request it.
+                <Note>A Data Processing Agreement will be published at traced-ai.com/dpa before the product becomes generally available. Draft content is documented internally.</Note>
+              </li>
             </ul>
           </LegalSection>
 
@@ -98,7 +101,7 @@ export default function Terms() {
           </LegalSection>
 
           <LegalSection id="9" title="Fees and payment">
-            <p>You pay the fees for your chosen plan as set out at sign-up or in your order. Fees are exclusive of VAT and other applicable taxes, which you pay where applicable. We may change pricing for future terms with reasonable notice. Late payment may lead to suspension after notice.</p>
+            <p>You pay the fees for your chosen plan as set out at sign-up or in your order. Fees are billed via Stripe and are exclusive of VAT and other applicable taxes, which you pay where applicable. We may change pricing for future terms with reasonable notice. Late payment may lead to suspension after notice.</p>
           </LegalSection>
 
           <LegalSection id="10" title="Intellectual property">
@@ -141,8 +144,9 @@ export default function Terms() {
           </LegalSection>
 
           <LegalSection id="18" title="Governing law and disputes">
-            <p>These terms are governed by the law of [jurisdiction], and the courts of [jurisdiction] have exclusive jurisdiction, without prejudice to any mandatory consumer or data protection rights you have where you live.</p>
-            <Note>Set governing law and forum with counsel. Driftware Dynamics Ltd is incorporated in Cyprus. If you sell heavily into the EU, an EU member-state forum is typically expected by enterprise buyers.</Note>
+            <p><strong>Governing law.</strong> This Agreement and any dispute or claim (including non-contractual disputes or claims) arising out of or in connection with it, its subject matter, or its formation are governed by and construed in accordance with the laws of the Republic of Cyprus, excluding its conflict-of-laws rules.</p>
+            <p><strong>Jurisdiction.</strong> The courts of the Republic of Cyprus have non-exclusive jurisdiction to settle any dispute or claim (including non-contractual disputes or claims) arising out of or in connection with this Agreement, its subject matter, or its formation. Each party irrevocably submits to that jurisdiction.</p>
+            <p>Negotiated enterprise agreements may specify a different governing law and forum.</p>
           </LegalSection>
 
           <LegalSection id="19" title="General">
