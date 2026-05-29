@@ -58,11 +58,15 @@ export default function NavBar() {
           Traced AI
         </Link>
         <div className="navbar-actions">
+          <nav className="navbar-links" aria-label="Site navigation">
+            <Link to="/product" className="navbar-link">Product</Link>
+            <Link to="/pricing" className="navbar-link">Pricing</Link>
+          </nav>
           <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
             <ThemeIcon theme={theme} />
             {theme === 'dark' ? 'Light' : 'Dark'}
           </button>
-          <a href="#waitlist" className="btn btn-primary" style={{ padding: '7px 16px', fontSize: '13px' }}>
+          <a href="/#waitlist" className="btn btn-primary" style={{ padding: '7px 16px', fontSize: '13px' }}>
             Join waitlist
           </a>
         </div>

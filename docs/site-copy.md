@@ -1,4 +1,4 @@
-# Traced AI: Landing Page Copy
+# Traced AI: Site Copy
 
 ## Meta
 
@@ -9,14 +9,34 @@
 
 ---
 
-## Section 1: Hero
+## Page structure
+
+The site is three public-facing pages plus supporting legal routes:
+
+| Route | Page | Sections |
+|---|---|---|
+| `/` | Home | Hero, Regulatory Reality, Built For, Waitlist Form |
+| `/product` | Product | How It Works, Rule Registry |
+| `/pricing` | Pricing | Pricing tiers, CTA block |
+| `/thank-you` | Thank You | Confirmation + optional call booking |
+| `/privacy` | Privacy Policy | Legal |
+| `/terms` | Terms of Service | Legal |
+| `/dpa` | Data Processing Agreement | Legal |
+
+NavBar appears on every page: logo + Product link + Pricing link + theme toggle + "Join waitlist" button (links to `/#waitlist`).
+
+---
+
+## Home (`/`)
+
+### Section 1: Hero
 
 **Headline (display, two lines):**
 
 Move fast
 and ~~break things~~ get investigated
 
-**Implementation note:** Single strikethrough on "break things" as a unit. "get investigated" follows with the dotted underline and hover tooltip: `EU AI Act Art. 99 · up to €15M / 3% for high-risk violations, €35M / 7% for prohibited practices`. Same color as the rest of the line. The dots do the work.
+**Implementation note:** Single strikethrough on "break things" as a unit. "get investigated" follows with a dotted underline and hover tooltip: `EU AI Act Art. 99 · up to €15M / 3% for high-risk violations, €35M / 7% for prohibited practices`. Same color as the rest of the line. The dots do the work.
 
 **Subheadline (italic accent):**
 "You can't do compliance work with vibes."
@@ -24,20 +44,20 @@ and ~~break things~~ get investigated
 **Body:**
 August 2, 2026. The EU AI Act begins full enforcement. If your AI system affects credit decisions, employment screening, or functions as a medical device, Annex III already classifies it as high-risk. Decisions made by that system must be logged, explainable, and defensible.
 
-Most companies are not ready.
+That standard is harder to meet than most teams expect.
 
-**CTA primary:** Join the waitlist →
-**CTA secondary:** See how it works
+**CTA primary:** Join the waitlist → (links to `/#waitlist`)
+**CTA secondary:** See how it works (links to `/product`)
 **Below CTA (small):** No card required. No enterprise sales process.
 
 **Deadline badge (mono, auto-computed):**
-Spec: JavaScript computes days remaining from current date to August 2, 2026. Renders as "[N] DAYS UNTIL FULL ENFORCEMENT" in green text. If today is past August 2, 2026, renders as "ENFORCEMENT BEGAN [N] DAYS AGO" in red text. Badge links to the official EC timeline: https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act
+JavaScript computes days remaining from current date to August 2, 2026. Renders as "[N] DAYS UNTIL FULL ENFORCEMENT" in green text. If today is past August 2, 2026, renders as "ENFORCEMENT BEGAN [N] DAYS AGO" in red text. Badge links to the official EC timeline: https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act
 
 ---
 
-## Section 2: The Regulatory Reality
+### Section 2: Regulatory Reality
 
-**Section label (mono, uppercase):** THE DEADLINE IS REAL
+**Section label:** THE DEADLINE IS REAL
 
 **Headline:**
 On August 2nd, "the AI decided" stops being an acceptable answer.
@@ -52,94 +72,23 @@ On August 2nd, "the AI decided" stops being an acceptable answer.
 | Aug 2, 2026 | Full application of high-risk system requirements per Article 113 | https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act |
 
 **Body:**
-The high-risk provisions take full effect on August 2, 2026. If your AI system is involved in credit decisions, employment screening, biometric identification, or clinical decision support, Annex III most likely classifies it as high-risk. Not every AI system touching people is in scope, but the specific categories your legal team cares about almost certainly are.
+The high-risk provisions take full effect on August 2, 2026. If your system handles credit decisions, employment screening, biometric identification, or clinical decision support, Annex III classifies it as high-risk. Decisions made by that system must be logged, explainable, and defensible.
 
-*(Removed from landing page body: "The EU AI Act (Regulation EU 2024/1689) entered into force August 1, 2024." — this is covered by the stat cards and deadline badge.)*
+**Closing lines (two-line visual treatment, second line bold):**
+When enforcement comes, good intentions don't appear in audit logs.
+Documented evidence does.
 
-The question your legal team will ask is not "were you compliant?" It is "can you prove it?"
-
-**Enterprise procurement note (distinct callout, not footnote):**
-Your enterprise customers are already sending AI governance questionnaires before regulators do. Procurement reviews from banks, insurers, and public-sector buyers now routinely ask: what models are used, how decisions are logged, whether AI outputs are reviewable, and what audit evidence exists. That pain is immediate. The regulatory deadline adds urgency, but the deal-blocker is today.
-
-**Footnote (10px, muted, linked):**
-Note: As of May 2026, the EU Council and Parliament reached a provisional agreement under the "Digital Omnibus" package that may extend the deadline for high-risk AI embedded in regulated products. Until formally adopted, August 2, 2026 remains the legally binding date. Enterprise procurement requirements do not wait for regulators.
-Source: https://www.consilium.europa.eu/en/press/press-releases/2026/05/07/artificial-intelligence-council-and-parliament-agree-to-simplify-and-streamline-rules/
+**Enterprise procurement callout:**
+Your enterprise customers are already demanding AI governance evidence. Banks, insurers, and public-sector buyers ask what models you use, how decisions are logged, and what audit evidence exists. The deal-blocker is today.
 
 **Source attribution (12px, muted):**
 EU AI Act, Regulation EU 2024/1689, Articles 9, 12, 13, 14, 19, 26(6), Annex III. Official text: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689
 
----
-
-## Section 3: How It Works
-
-**Section label:** THE MECHANISM
-
-**Headline (two lines):**
-Your data never leaves your perimeter.
-Your compliance record does.
-
-**Body (short, above the feature list):**
-Traced AI is the evidentiary and traceability layer for your AI decisions. It does not replace your quality management system or legal counsel. It provides the tamper-evident evidence chain that both depend on.
-
-**Feature list (4 items):**
-
-**Auto-patching SDK**
-Two lines of config. The SDK patches your LLM clients (OpenAI, Anthropic, and others) at import time. No manual instrumentation. No restructuring your pipeline.
-
-**Local-first architecture**
-Raw inputs and outputs are written to encrypted storage on your own infrastructure. No sensitive data crosses your perimeter. You hold the source of truth.
-
-**Tamper-evident ledger**
-SHA-256 hashes of every I/O pair, plus structured rationale, flow to an append-only chained ledger in the cloud. Cryptographically verifiable. Immutable by design. Designed to support the logging requirements of Articles 12 and 19 of the EU AI Act.
-
-**Auditor-ready exports**
-Generate structured audit packs aligned to Articles 12, 17, 72, and 86. Formatted so your legal team and external auditors can work with them directly, without building a separate data procurement process.
-
-**Code snippet (for visual credibility):**
-```python
-import traced_ai
-
-traced_ai.init(
-    api_key="...",
-    rules="eu-ai-act-annex-iii"
-)
-
-# From here, every LLM call is automatically traced
-```
+**Reference note (not rendered on site):** As of May 2026, the EU Council and Parliament reached a provisional agreement under the "Digital Omnibus" package that may extend the deadline for high-risk AI embedded in regulated products. Until formally adopted, August 2, 2026 remains the legally binding date. Source: https://www.consilium.europa.eu/en/press/press-releases/2026/05/07/artificial-intelligence-council-and-parliament-agree-to-simplify-and-streamline-rules/
 
 ---
 
-## Section 4: The Rule Registry
-
-**Section label:** THE MOAT
-
-**Headline (two lines):**
-We don't just log.
-We know what to log, and why.
-
-**Body:**
-The hardest part of EU AI Act compliance is not building logging infrastructure. It is knowing exactly which Articles apply to your decision type, what evidence format satisfies an auditor, and how that changes with every guidance document Brussels publishes.
-
-The Traced AI rule registry is a versioned, cryptographically-signed mapping from regulatory text to concrete logging requirements. When new guidance drops, the registry updates. Your evidence posture updates automatically.
-
-This reduces the repetitive interpretation work your legal and compliance teams otherwise spend on every model update, every new use case, every new guidance note, so they can focus on decisions that actually require their judgment.
-
-**Registry preview card:**
-
-| Field | Value |
-|-------|-------|
-| Article | 14, Human Oversight (https://artificialintelligenceact.eu/article/14/) |
-| Also maps to | Article 12, Record-Keeping; Article 13, Transparency; Article 72, Post-Market Monitoring |
-| Risk tier | High-risk |
-| Applies to | Credit scoring, clinical decision support, employment screening |
-| Logging required | Decision input hash, output hash, structured rationale, reviewer ID, timestamp |
-| Last updated | 2026-05-18, v3.1, signed |
-
-**Badge row:** Versioned · Signed · Always current
-
----
-
-## Section 5: Built For
+### Section 3: Built For
 
 **Section label:** WHO IT'S FOR
 
@@ -149,93 +98,21 @@ If your AI affects access to money, healthcare, or employment, traceability obli
 **Three cards:**
 
 **Fintech**
-Credit scoring, loan underwriting, fraud detection, AML flags. Banks have model-risk machinery but not AI-Act-ready, tamper-resistant decision logs tied to per-decision explanations. Traced AI plugs into existing governance without touching raw PII.
+Credit scoring, loan underwriting, fraud detection, AML flags. Traced AI adds AI-Act-ready, tamper-resistant decision logs to existing model-risk governance, without touching raw PII.
 
-*(Removed from landing page: "These use cases are explicitly high-risk under Annex III (creditworthiness and access to essential financial services)." — Annex III category label preserved here for reference: Annex III Section 5(b), creditworthiness assessment and access to essential private services.)*
+*(Reference: Annex III Section 5(b) covers creditworthiness assessment and access to essential private services.)*
 
 **Medtech**
-AI-enabled medical devices are currently certified under MDR/IVDR. Notified bodies expect traceable evidence of AI behavior and incident linkage. The EU AI Act's direct obligations for medical devices remain in active legislative revision as of 2026. Traced AI provides a neutral log layer that aligns with MDR/IVDR technical file and post-market surveillance requirements, and positions your evidence chain for whichever framework applies.
+AI medical devices are certified under MDR/IVDR, and notified bodies expect traceable evidence of AI behavior. Traced AI provides the log layer that aligns with both frameworks and positions your evidence chain for incoming EU AI Act obligations.
 
 **HR Automation**
-Recruitment, hiring scores, performance assessment, and workforce management AI are high-risk under Annex III. Most HR vendors do not yet have serious model governance. Traced AI gives you per-candidate decision trails plus structured audit views you can show to regulators, works councils, and litigators.
+Recruitment, hiring, and workforce assessment AI are high-risk under Annex III. Traced AI gives you per-candidate decision trails and structured audit views for regulators, works councils, and litigators.
 
 ---
 
-## Section 6: Pricing
+### Section 4: Waitlist Form
 
-**Section label:** PLANS
-
-**Headline:**
-Start for free. Pay when you're ready.
-
-**Subheadline:**
-The self-hosted viewer is part of the SDK and free on every plan. Your raw data never reaches our servers.
-
----
-
-**Free**
-Email account required. No credit card.
-
-Generate an API key, add two lines of config, and start tracing. No card required.
-
-Includes:
-- 10,000 events, 7-day retention
-- Hosted dashboard at traced-ai.com
-- Full SDK access
-- Self-hosted local viewer (always free, all plans)
-
-Best for evaluating the integration before committing.
-
----
-
-**Startup: €100/month**
-Credit card required. Cancel any time.
-
-250,000 events included per month. Need more? Buy additional packages at €30 per 100k events rather than upgrading tiers.
-
-Annual option: €1,000/year (2 months free) with 3M events total.
-
-Includes everything in Free, plus:
-- 250k events/month (3M/year on annual plan)
-- 3-year event retention (above the Article 19 and 26(6) minimum of 6 months; covers most EU sector audit windows)
-- Standard rule registry (EU AI Act Articles 9, 12, 13, 14, 72, 86, Annex III)
-- Pay-as-you-go event packages: €30 per 100k
-- Email support
-
-Best for Series A companies building the compliance baseline before August 2026.
-
-**Pricing note (muted, small):** 250k events covers approximately 8,000 LLM calls per day. If you are expecting higher volume before launch, reach out.
-
----
-
-**Enterprise: custom pricing**
-Same mechanics as Startup, higher limits, dedicated support. Pricing negotiated per contract based on event volume and required compliance frameworks.
-
-Includes everything in Startup, plus:
-- Custom event limits
-- Event retention for the operational lifetime of the system (aligned with Articles 12, 18, and 19 obligations; longer sector-specific retention negotiated per contract)
-- Custom rule registry entries written alongside your legal team
-- Dedicated support with a named contact
-- GDPR Data Processing Agreement
-- HIPAA Business Associate Agreement (healthcare)
-- EU AI Act compliance documentation package
-- Uptime SLA
-
-Best for banks, hospitals, and insurers with existing compliance programs and external audit requirements.
-
----
-
-**Self-hosted note (below all tiers):**
-
-The local viewer is always free and ships as part of the SDK. Your raw AI inputs and outputs never leave your perimeter, on any plan.
-
-**Note on rationale fields:** Rationale text is stored as structured fields, not free-form strings. This protects against accidental capture of personal data, prompt leakage, or confidential reasoning chains. Field-level configuration lets you control exactly what enters the rationale record. Full documentation in the SDK guide.
-
----
-
-## Section 7: Waitlist Form
-
-**Section label (mono):** JOIN THE WAITLIST
+**Section label:** JOIN THE WAITLIST
 
 **Headline:**
 We're building for the companies who need this before August 2026.
@@ -263,12 +140,161 @@ Two minutes. Tell us what you're building and what you can't yet explain. We'll 
 **Fine print below CTA (10px, muted):**
 Once you've joined, you can book a 30-minute call. Optional, not required.
 
-**Post-submit behaviour:**
-Tally completion redirects to `/thank-you` on the same site.
+**Post-submit:** Tally completion redirects to `/thank-you`.
 
 ---
 
-## Section 7b: Thank You Page (/thank-you)
+## Product (`/product`)
+
+### Section 5: How It Works
+
+**Section label:** THE MECHANISM
+
+**Headline (two lines):**
+Your data never leaves your perimeter.
+Your compliance record does.
+
+**Intro:**
+Traced AI is the evidentiary and traceability layer for your AI decisions. It does not replace your quality management system or legal counsel. It provides the tamper-evident evidence chain that both depend on.
+
+**Feature list (4 items):**
+
+**Auto-patching SDK**
+Two lines of config. The SDK patches your LLM clients (OpenAI, Anthropic, and others) at import time. No manual instrumentation. No restructuring your pipeline.
+
+**Local-first architecture**
+Raw inputs and outputs are written to encrypted storage on your own infrastructure. No sensitive data crosses your perimeter. You hold the source of truth.
+
+**Tamper-evident ledger**
+SHA-256 hashes of every I/O pair, plus structured rationale, flow to an append-only chained ledger in the cloud. Designed to support the logging requirements of Articles 12 and 19 of the EU AI Act.
+
+**Auditor-ready exports**
+Generate structured audit packs aligned to Articles 12, 17, 72, and 86, formatted so your legal team and external auditors can work with them directly.
+
+**Code snippet (for visual credibility):**
+```python
+import traced_ai
+
+traced_ai.init(
+    api_key="...",
+    rules="eu-ai-act-annex-iii"
+)
+
+# From here, every LLM call is automatically traced
+```
+
+---
+
+### Section 6: Rule Registry
+
+**Section label:** THE MOAT
+
+**Headline (two lines):**
+We don't just log.
+We know what to log, and why.
+
+**Body:**
+The hard part of EU AI Act compliance is not logging infrastructure. It is knowing which Articles apply to your decision type, what format an auditor expects, and tracking every guidance update Brussels publishes.
+
+The Traced AI rule registry is a versioned, cryptographically-signed mapping from regulatory text to concrete logging requirements. When new guidance drops, the registry updates. Your evidence posture updates automatically.
+
+**Registry preview card:**
+
+| Field | Value |
+|-------|-------|
+| Article | 14, Human Oversight (https://artificialintelligenceact.eu/article/14/) |
+| Also maps to | Article 12, Record-Keeping; Article 13, Transparency; Article 72, Post-Market Monitoring |
+| Risk tier | High-risk |
+| Applies to | Credit scoring, clinical decision support, employment screening |
+| Logging required | Decision input hash, output hash, structured rationale, reviewer ID, timestamp |
+| Last updated | 2026-05-18, v3.1, signed |
+
+**Badge row:** Versioned · Signed · Always current
+
+---
+
+## Pricing (`/pricing`)
+
+### Section 7: Pricing Tiers
+
+**Section label:** PLANS
+
+**Headline:**
+Start for free. Pay when you're ready.
+
+**Subheadline:**
+The self-hosted viewer is part of the SDK and free on every plan. Your raw data never reaches our servers.
+
+---
+
+**Free**
+Email account required. No credit card.
+
+Generate an API key, add two lines of config, and start tracing. No card required.
+
+Includes:
+- 10,000 events, 7-day retention
+- Hosted dashboard at traced-ai.com
+- Full SDK access
+- Self-hosted local viewer (always free, all plans)
+
+Badge: Evaluate and integrate
+
+---
+
+**Startup: €100/month**
+€1,000/year · 2 months free
+
+250,000 events included per month. Need more? Buy additional packages at €30 per 100k events rather than upgrading tiers.
+
+Includes everything in Free, plus:
+- 250k events/month (3M/year on annual plan)
+- 3-year event retention (above the Article 19 and 26(6) minimum of 6 months)
+- Standard rule registry (EU AI Act Articles 9, 12, 13, 14, 72, 86, Annex III)
+- Pay-as-you-go event packages: €30 per 100k
+- Email support
+
+Badge: Series A ready
+
+---
+
+**Enterprise: custom pricing**
+Negotiated per contract.
+
+Same mechanics as Startup, higher limits, dedicated support. Pricing negotiated per contract based on event volume and required compliance frameworks.
+
+Includes everything in Startup, plus:
+- Custom event limits
+- Event retention for the operational lifetime of the system (aligned with Articles 12, 18, and 19 obligations)
+- Custom rule registry entries written alongside your legal team
+- Dedicated support with a named contact
+- GDPR Data Processing Agreement
+- HIPAA Business Associate Agreement (healthcare)
+- EU AI Act compliance documentation package
+- Uptime SLA
+
+Badge: Banks, hospitals, insurers
+
+---
+
+**Self-hosted note (below all tiers):**
+The local viewer ships with the SDK. Raw AI data never leaves your perimeter, on any plan.
+
+**Pricing note (muted, small):**
+250k events covers approximately 8,000 LLM calls per day. If you are expecting higher volume before launch, reach out.
+
+**Reference note (not rendered on site):** Rationale text is stored as structured fields, not free-form strings. This protects against accidental capture of personal data, prompt leakage, or confidential reasoning chains. Field-level configuration lets you control exactly what enters the rationale record. Full documentation in the SDK guide.
+
+### CTA block (below pricing tiers)
+
+**Heading:**
+Ready to start?
+
+**CTA:** Join the waitlist → (links to `/#waitlist`)
+
+---
+
+## Thank You Page (`/thank-you`)
 
 **Headline:**
 You're on the list.
@@ -276,9 +302,9 @@ You're on the list.
 **Body:**
 We'll respond personally within 48 hours.
 
-**Optional next step (visually distinct, below the confirmation):**
+**Optional next step (visually distinct):**
 
-**Want to talk through your situation before launch?**
+Want to talk through your situation before launch?
 
 You can book a 30-minute call directly. We'll ask you one question upfront about what you're most concerned with so we come prepared.
 
@@ -289,19 +315,19 @@ The call is for companies actively evaluating whether Traced AI fits their situa
 
 ---
 
-## Section 8: Footer
+## Footer (all pages)
 
-**Tagline:** Traced AI, evidentiary infrastructure for AI decisions.
+**Tagline:** Evidentiary infrastructure for AI decisions.
 
-**Links:** Privacy Policy · Terms · contact@traced-ai.com
+**Links:** Privacy · Terms · DPA · contact@traced-ai.com
 
-**Company block (full):**
+**Company block:**
 
 DRIFTWARE DYNAMICS LTD
 Cyprus Ltd · Reg. No. HE 474529 · VAT: 60167558M
 Tefkrou Anthia 63, MEZARINA COURT A, Flat/Office 5, Agia Napa, Famagusta, Cyprus 5330
 
-**Note on email:** The contact@traced-ai.com alias should forward to cmin764@gmail.com via traced-ai.com DNS. Replies come from the personal address for the early stage.
+**Note on email:** contact@traced-ai.com forwards to cmin764@gmail.com. Replies come from the personal address at this stage.
 
 **Legal note (10px, muted):**
 Traced AI does not provide legal advice. This product supports technical compliance documentation. It is not a substitute for a quality management system, legal counsel, or the full set of obligations under the EU AI Act. Consult qualified legal counsel for regulatory advice specific to your jurisdiction and use case.

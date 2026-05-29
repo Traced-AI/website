@@ -1,5 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Landing from './pages/Landing'
+import ProductPage from './pages/ProductPage'
+import PricingPage from './pages/PricingPage'
 import ThankYou from './pages/ThankYou'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
@@ -10,6 +12,8 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
+      <Route path="/product" element={<ProductPage />} />
+      <Route path="/pricing" element={<PricingPage />} />
       <Route path="/thank-you" element={<ThankYou />} />
       <Route path="/privacy" element={<Privacy />} />
       <Route path="/terms" element={<Terms />} />

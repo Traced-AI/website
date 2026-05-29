@@ -35,14 +35,6 @@ export default function RegulatoryReality() {
           {regulatoryReality.procurement.body}
         </div>
 
-        <p className="footnote" style={{ maxWidth: '720px', marginBottom: '12px' }}>
-          {regulatoryReality.footnote}{' '}
-          <a href={regulatoryReality.footnoteUrl} target="_blank" rel="noopener noreferrer"
-            style={{ color: 'var(--tx-2)', textDecoration: 'underline', textUnderlineOffset: '2px' }}>
-            Source
-          </a>
-        </p>
-
         <p className="source-attr" style={{ maxWidth: '720px' }}>
           {regulatoryReality.sourceAttr}{' '}
           <a href={regulatoryReality.sourceUrl} target="_blank" rel="noopener noreferrer"

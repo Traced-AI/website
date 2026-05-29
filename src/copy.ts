@@ -7,7 +7,7 @@ export const hero = {
   subheadline: '“You can’t do compliance work with vibes.”',
   body1:
     'August 2, 2026. The EU AI Act begins full enforcement. If your AI system affects credit decisions, employment screening, or functions as a medical device, Annex III already classifies it as high-risk. Decisions made by that system must be logged, explainable, and defensible.',
-  body2: 'Most companies are not ready.',
+  body2: 'That standard is harder to meet than most teams expect.',
   ctaPrimary: 'Join the waitlist →',
   ctaSecondary: 'See how it works',
   belowCta: 'No card required. No enterprise sales process.',
@@ -50,17 +50,13 @@ export const stats: Stat[] = [
 export const regulatoryReality = {
   sectionLabel: 'THE DEADLINE IS REAL',
   headline: 'On August 2nd, “the AI decided” stops being an acceptable answer.',
-  body: 'The high-risk provisions take full effect on August 2, 2026. If your AI system is involved in credit decisions, employment screening, biometric identification, or clinical decision support, Annex III most likely classifies it as high-risk. Not every AI system touching people is in scope, but the specific categories your legal team cares about almost certainly are.',
-  question: 'The question your legal team will ask is not “were you compliant?”',
-  questionPunchline: 'It is “can you prove it?”',
+  body: 'The high-risk provisions take full effect on August 2, 2026. If your system handles credit decisions, employment screening, biometric identification, or clinical decision support, Annex III classifies it as high-risk. Decisions made by that system must be logged, explainable, and defensible.',
+  question: 'When enforcement comes, good intentions don\'t appear in audit logs.',
+  questionPunchline: 'Documented evidence does.',
   procurement: {
     heading: 'Enterprise procurement note',
-    body: 'Your enterprise customers are already sending AI governance questionnaires before regulators do. Procurement reviews from banks, insurers, and public-sector buyers now routinely ask: what models are used, how decisions are logged, whether AI outputs are reviewable, and what audit evidence exists. That pain is immediate. The regulatory deadline adds urgency, but the deal-blocker is today.',
+    body: 'Your enterprise customers are already demanding AI governance evidence. Banks, insurers, and public-sector buyers ask what models you use, how decisions are logged, and what audit evidence exists. The deal-blocker is today.',
   },
-  footnote:
-    'Note: As of May 2026, the EU Council and Parliament reached a provisional agreement under the “Digital Omnibus” package that may extend the deadline for high-risk AI embedded in regulated products. Until formally adopted, August 2, 2026 remains the legally binding date. Enterprise procurement requirements do not wait for regulators.',
-  footnoteUrl:
-    'https://www.consilium.europa.eu/en/press/press-releases/2026/05/07/artificial-intelligence-council-and-parliament-agree-to-simplify-and-streamline-rules/',
   sourceAttr:
     'EU AI Act, Regulation EU 2024/1689, Articles 9, 12, 13, 14, 19, 26(6), Annex III. Official text:',
   sourceUrl:
@@ -89,11 +85,11 @@ export const howItWorks = {
     },
     {
       title: 'Tamper-evident ledger',
-      body: 'SHA-256 hashes of every I/O pair, plus structured rationale, flow to an append-only chained ledger in the cloud. Cryptographically verifiable. Immutable by design. Designed to support the logging requirements of Articles 12 and 19 of the EU AI Act.',
+      body: 'SHA-256 hashes of every I/O pair, plus structured rationale, flow to an append-only chained ledger in the cloud. Designed to support the logging requirements of Articles 12 and 19 of the EU AI Act.',
     },
     {
       title: 'Auditor-ready exports',
-      body: 'Generate structured audit packs aligned to Articles 12, 17, 72, and 86. Formatted so your legal team and external auditors can work with them directly, without building a separate data procurement process.',
+      body: 'Generate structured audit packs aligned to Articles 12, 17, 72, and 86, formatted so your legal team and external auditors can work with them directly.',
     },
   ] as Feature[],
 };
@@ -108,11 +104,9 @@ export const ruleRegistry = {
   sectionLabel: 'THE MOAT',
   headline1: 'We don’t just log.',
   headline2: 'We know what to log, and why.',
-  body: 'The hardest part of EU AI Act compliance is not building logging infrastructure. It is knowing exactly which Articles apply to your decision type, what evidence format satisfies an auditor, and how that changes with every guidance document Brussels publishes.',
+  body: 'The hard part of EU AI Act compliance is not logging infrastructure. It is knowing which Articles apply to your decision type, what format an auditor expects, and tracking every guidance update Brussels publishes.',
   body2:
     'The Traced AI rule registry is a versioned, cryptographically-signed mapping from regulatory text to concrete logging requirements. When new guidance drops, the registry updates. Your evidence posture updates automatically.',
-  body3:
-    'This reduces the repetitive interpretation work your legal and compliance teams otherwise spend on every model update, every new use case, every new guidance note, so they can focus on decisions that actually require their judgment.',
   rows: [
     {
       field: 'Article',
@@ -149,15 +143,15 @@ export const builtFor = {
   cards: [
     {
       title: 'Fintech',
-      body: 'Credit scoring, loan underwriting, fraud detection, AML flags. Banks have model-risk machinery but not AI-Act-ready, tamper-resistant decision logs tied to per-decision explanations. Traced AI plugs into existing governance without touching raw PII.',
+      body: 'Credit scoring, loan underwriting, fraud detection, AML flags. Traced AI adds AI-Act-ready, tamper-resistant decision logs to existing model-risk governance, without touching raw PII.',
     },
     {
       title: 'Medtech',
-      body: 'AI-enabled medical devices are currently certified under MDR/IVDR. Notified bodies expect traceable evidence of AI behavior and incident linkage. The EU AI Act’s direct obligations for medical devices remain in active legislative revision as of 2026. Traced AI provides a neutral log layer that aligns with MDR/IVDR technical file and post-market surveillance requirements, and positions your evidence chain for whichever framework applies.',
+      body: 'AI medical devices are certified under MDR/IVDR, and notified bodies expect traceable evidence of AI behavior. Traced AI provides the log layer that aligns with both frameworks and positions your evidence chain for incoming EU AI Act obligations.',
     },
     {
       title: 'HR Automation',
-      body: 'Recruitment, hiring scores, performance assessment, and workforce management AI are high-risk under Annex III. Most HR vendors do not yet have serious model governance. Traced AI gives you per-candidate decision trails plus structured audit views you can show to regulators, works councils, and litigators.',
+      body: 'Recruitment, hiring, and workforce assessment AI are high-risk under Annex III. Traced AI gives you per-candidate decision trails and structured audit views for regulators, works councils, and litigators.',
     },
   ] as IndustryCard[],
 };
@@ -240,9 +234,7 @@ export const pricing = {
     },
   ] as PricingTier[],
   selfHostedNote:
-    'The local viewer is always free and ships as part of the SDK. Your raw AI inputs and outputs never leave your perimeter, on any plan.',
-  rationaleNote:
-    'Rationale text is stored as structured fields, not free-form strings. This protects against accidental capture of personal data, prompt leakage, or confidential reasoning chains. Field-level configuration lets you control exactly what enters the rationale record. Full documentation in the SDK guide.',
+    'The local viewer ships with the SDK. Raw AI data never leaves your perimeter, on any plan.',
   pricingNote:
     '250k events covers approximately 8,000 LLM calls per day. If you are expecting higher volume before launch, reach out.',
 };

@@ -27,11 +27,6 @@ export default function Pricing() {
           {pricing.selfHostedNote}
         </div>
 
-        <p style={{ fontSize: '12px', color: 'var(--tx-2)', lineHeight: 1.7, marginBottom: '10px', maxWidth: '640px' }}>
-          <strong style={{ color: 'var(--tx-1)' }}>Note on rationale fields:</strong>{' '}
-          {pricing.rationaleNote}
-        </p>
-
         <p style={{ fontSize: '12px', color: 'var(--tx-2)', lineHeight: 1.7, maxWidth: '640px' }}>
           {pricing.pricingNote}
         </p>

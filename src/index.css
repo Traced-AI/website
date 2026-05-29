@@ -185,6 +185,18 @@ body {
   text-decoration: none;
 }
 .navbar-actions { display: flex; align-items: center; gap: 10px; }
+.navbar-links { display: flex; align-items: center; gap: 4px; margin-right: 4px; }
+.navbar-link {
+  font-family: var(--f-body-C);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--tx-1);
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: var(--r-sm);
+  transition: color 0.15s, background 0.15s;
+}
+.navbar-link:hover { color: var(--tx-0); background: var(--bg-2); }
 .theme-toggle {
   display: flex;
   align-items: center;

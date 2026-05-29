@@ -17,11 +17,8 @@ export default function RuleRegistry() {
         <p style={{ fontSize: '15px', color: 'var(--tx-1)', lineHeight: 1.75, maxWidth: '680px', marginBottom: '20px' }}>
           {ruleRegistry.body}
         </p>
-        <p style={{ fontSize: '15px', color: 'var(--tx-1)', lineHeight: 1.75, maxWidth: '680px', marginBottom: '20px' }}>
-          {ruleRegistry.body2}
-        </p>
         <p style={{ fontSize: '15px', color: 'var(--tx-1)', lineHeight: 1.75, maxWidth: '680px', marginBottom: '40px' }}>
-          {ruleRegistry.body3}
+          {ruleRegistry.body2}
         </p>
 
         <div className="card" style={{ maxWidth: '680px' }}>

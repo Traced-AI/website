@@ -27,8 +27,8 @@ export default function Hero() {
         </div>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', alignItems: 'center', marginBottom: '16px' }}>
-          <a href="#waitlist" className="btn btn-primary">{hero.ctaPrimary}</a>
-          <a href="#how-it-works" className="btn btn-secondary">{hero.ctaSecondary}</a>
+          <a href="/#waitlist" className="btn btn-primary">{hero.ctaPrimary}</a>
+          <a href="/product" className="btn btn-secondary">{hero.ctaSecondary}</a>
         </div>
 
         <div style={{ fontSize: '12px', color: 'var(--tx-2)' }}>{hero.belowCta}</div>
