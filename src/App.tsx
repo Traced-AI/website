@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import ScrollToTop from './components/ScrollToTop'
 import Landing from './pages/Landing'
 import ProductPage from './pages/ProductPage'
 import PricingPage from './pages/PricingPage'
@@ -10,7 +11,9 @@ import NotFound from './pages/NotFound'
 
 export default function App() {
   return (
-    <Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/product" element={<ProductPage />} />
       <Route path="/pricing" element={<PricingPage />} />
@@ -20,5 +23,6 @@ export default function App() {
       <Route path="/dpa" element={<DPA />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
+    </>
   )
 }

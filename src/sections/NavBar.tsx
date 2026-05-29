@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 
 function ThemeIcon({ theme }: { theme: string }) {
   if (theme === 'dark') {
@@ -59,16 +59,16 @@ export default function NavBar() {
         </Link>
         <div className="navbar-actions">
           <nav className="navbar-links" aria-label="Site navigation">
-            <Link to="/product" className="navbar-link">Product</Link>
-            <Link to="/pricing" className="navbar-link">Pricing</Link>
+            <NavLink to="/product" className={({ isActive }) => `navbar-link${isActive ? ' active' : ''}`}>Product</NavLink>
+            <NavLink to="/pricing" className={({ isActive }) => `navbar-link${isActive ? ' active' : ''}`}>Pricing</NavLink>
           </nav>
           <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
             <ThemeIcon theme={theme} />
             {theme === 'dark' ? 'Light' : 'Dark'}
           </button>
-          <a href="/#waitlist" className="btn btn-primary" style={{ padding: '7px 16px', fontSize: '13px' }}>
+          <Link to="/#waitlist" className="btn btn-primary" style={{ padding: '7px 16px', fontSize: '13px' }}>
             Join waitlist
-          </a>
+          </Link>
         </div>
       </div>
     </nav>

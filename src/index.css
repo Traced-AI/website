@@ -102,7 +102,7 @@
 [data-font="C"] .f-display      { font-family: var(--f-display-C); letter-spacing: 0.08em; }
 [data-font="C"] .f-body         { font-family: var(--f-body-C); }
 [data-font="C"] .accent-quote   { font-style: italic; font-weight: 300; letter-spacing: 0.06em; font-size: 0.95em; }
-[data-font="C"] .hero-headline  { font-weight: 400; letter-spacing: 0.06em; }
+[data-font="C"] .hero-headline  { font-weight: 700; letter-spacing: 0.06em; }
 [data-font="C"] .stat-value     { font-weight: 500; letter-spacing: 0.04em; }
 [data-font="C"] .card-headline  { font-weight: 500; letter-spacing: 0.03em; }
 [data-font="C"] body            { font-family: var(--f-body-C); }
@@ -197,6 +197,7 @@ body {
   transition: color 0.15s, background 0.15s;
 }
 .navbar-link:hover { color: var(--tx-0); background: var(--bg-2); }
+.navbar-link.active { color: var(--tx-0); background: var(--ac-dim); }
 .theme-toggle {
   display: flex;
   align-items: center;
