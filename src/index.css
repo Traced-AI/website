@@ -550,6 +550,21 @@ body {
   max-width: 1100px;
   margin: 0 auto;
 }
+.footer-nav-link {
+  font-size: 13px;
+  color: var(--tx-2);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.footer-nav-link:hover { color: var(--ac-text); }
+.footer-contact-link {
+  font-size: 12px;
+  color: var(--tx-2);
+  text-decoration: none;
+  opacity: 0.6;
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+.footer-contact-link:hover { color: var(--ac-text); opacity: 1; }
 
 /* Global transitions */
 .card, .stat-card, .price-card, .code-block, .form-input {

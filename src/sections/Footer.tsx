@@ -27,12 +27,7 @@ export default function Footer() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               {footer.navLinks.map((link, i) => (
                 <React.Fragment key={link.href}>
-                  <Link
-                    to={link.href}
-                    style={{ fontSize: '13px', color: 'var(--tx-2)', textDecoration: 'none' }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--ac-text)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--tx-2)')}
-                  >
+                  <Link to={link.href} className="footer-nav-link">
                     {link.label}
                   </Link>
                   {i < footer.navLinks.length - 1 && (
@@ -41,12 +36,7 @@ export default function Footer() {
                 </React.Fragment>
               ))}
             </div>
-            <a
-              href={footer.contactEmail.href}
-              style={{ fontSize: '12px', color: 'var(--tx-2)', textDecoration: 'none', opacity: 0.6 }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--ac-text)'; e.currentTarget.style.opacity = '1'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--tx-2)'; e.currentTarget.style.opacity = '0.6'; }}
-            >
+            <a href={footer.contactEmail.href} className="footer-contact-link">
               {footer.contactEmail.label}
             </a>
           </div>
