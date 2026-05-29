@@ -273,6 +273,7 @@ export const footer = {
   links: [
     { label: 'Privacy', href: '/privacy' },
     { label: 'Terms', href: '/terms' },
+    { label: 'DPA', href: '/dpa' },
     { label: 'contact@traced-ai.com', href: 'mailto:contact@traced-ai.com' },
   ],
   company: {

@@ -24,32 +24,33 @@ export default function Footer() {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-end' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Link
-                to="/privacy"
-                style={{ fontSize: '13px', color: 'var(--tx-2)', textDecoration: 'none' }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--ac-text)')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--tx-2)')}
-              >
-                Privacy
-              </Link>
-              <span style={{ fontSize: '11px', color: 'var(--tx-2)', opacity: 0.4, userSelect: 'none' }}>·</span>
-              <Link
-                to="/terms"
-                style={{ fontSize: '13px', color: 'var(--tx-2)', textDecoration: 'none' }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--ac-text)')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--tx-2)')}
-              >
-                Terms
-              </Link>
+              {footer.links.filter(l => !l.href.startsWith('mailto:')).map((link, i, arr) => (
+                <span key={link.href} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Link
+                    to={link.href}
+                    style={{ fontSize: '13px', color: 'var(--tx-2)', textDecoration: 'none' }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--ac-text)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--tx-2)')}
+                  >
+                    {link.label}
+                  </Link>
+                  {i < arr.length - 1 && (
+                    <span style={{ fontSize: '11px', color: 'var(--tx-2)', opacity: 0.4, userSelect: 'none' }}>·</span>
+                  )}
+                </span>
+              ))}
             </div>
-            <a
-              href="mailto:contact@traced-ai.com"
-              style={{ fontSize: '12px', color: 'var(--tx-2)', textDecoration: 'none', opacity: 0.6 }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--ac-text)'; e.currentTarget.style.opacity = '1'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--tx-2)'; e.currentTarget.style.opacity = '0.6'; }}
-            >
-              contact@traced-ai.com
-            </a>
+            {footer.links.filter(l => l.href.startsWith('mailto:')).map(link => (
+              <a
+                key={link.href}
+                href={link.href}
+                style={{ fontSize: '12px', color: 'var(--tx-2)', textDecoration: 'none', opacity: 0.6 }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--ac-text)'; e.currentTarget.style.opacity = '1'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--tx-2)'; e.currentTarget.style.opacity = '0.6'; }}
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
         </div>
 

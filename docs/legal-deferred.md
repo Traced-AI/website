@@ -1,18 +1,20 @@
 # Legal Pages: Deferred Content
 
-This file holds researched and decided content that was intentionally left out of the live Privacy Policy and Terms pages because the product is not yet generally available. When the product ships, pull from here rather than re-researching.
+This file holds content that was intentionally left out of the live legal pages. When triggers below fire, pull from here rather than re-researching.
 
 ---
 
-## Privacy Policy
+## When the product backend goes live
 
-### Section 3.2 / 3.3 / 6: Product data-flow framing
+### Privacy Policy s.3, s.6: Remove framing sentences
 
-When the product is live, remove the "not yet generally available" framing sentences added to sections 3, 6, and Terms section 2. The underlying content describing the SDK, local store, hash chain, and rationale text is correct and should stand as-is.
+Remove the italic "not yet generally available" sentences from sections 3.2 and 6. The underlying content is correct and should stand as-is.
 
-### Section 7: Full sub-processor table (product-live state)
+Do the same for the opening sentence in Terms clause 2.
 
-When the backend ships, add these rows to the sub-processor table. Confirm actual deployment regions in your provider dashboards before publishing.
+### Privacy Policy s.7: Add backend sub-processors
+
+Add these rows to the sub-processor table. Confirm actual regions in your provider dashboards before publishing.
 
 | Provider | Role | Region | HQ |
 |---|---|---|---|
@@ -20,79 +22,103 @@ When the backend ships, add these rows to the sub-processor table. Confirm actua
 | Supabase | Managed Postgres (hashes, rationale, metadata) | eu-central-1 or similar — confirm in dashboard | US |
 | Upstash | Queue and cache | Confirm region. If it holds only opaque hashes with no personal data, it may not need to appear here. | US |
 | Clerk | User authentication | US only (no EU residency option on standard plan) | US |
-| Stripe | Billing and payment processing | Add when billing goes live. Confirm entity: Stripe Payments Europe Ltd (Ireland) for EU billing, or Stripe Inc (US). | US/IE |
+| Stripe | Billing and payment processing | Add when billing goes live. Confirm entity: Stripe Payments Europe Ltd (Ireland) vs. Stripe Inc (US). | US/IE |
 
-### Section 8: International transfers (product-live additions)
+### Privacy Policy s.8: Add backend international transfers
 
-When Clerk and backend processors go live, add to the transfers section:
+When Clerk and backend processors go live, add:
 
-- **Clerk** stores authentication data (user names and emails for dashboard accounts) in the US. No EU residency option. Transfer covered by EU Standard Contractual Clauses.
-- **Supabase** processes hashes and metadata. Region to be confirmed; if EU region confirmed, no transfer. If US, covered by SCCs.
-- **Stripe** processes billing data. Entity and transfer mechanism depend on which Stripe entity is contracted (see sub-processor note above).
+- **Clerk** stores authentication data in the US. No EU residency option. Transfer covered by EU Standard Contractual Clauses.
+- **Supabase**: if EU region confirmed, no transfer. If US, covered by SCCs.
+- **Stripe**: entity and transfer mechanism depend on which Stripe entity is contracted.
 
-The raw-customer-data-stays-in-perimeter paragraph stays unchanged; it is always true regardless of product state.
+### Privacy Policy s.9: Audit-trail retention detail
 
-### Section 9: Audit-trail retention
-
-When the product is live, the retention bullet for "Audit-trail data in the ledger" should read:
+Expand the "Audit-trail data in the ledger" bullet to:
 
 "For the retention period set in your service agreement, which you choose to match your regulatory obligations. EU AI Act Articles 19 and 26(6) set a minimum of six months for most high-risk categories. Many customers in regulated sectors will need longer: typically 5-10 years for financial decisions, aligned to their own record-keeping obligations."
 
-### Cookie table (when auth is live)
+### DPA Annex III: Add backend sub-processors and remove Note
 
-When Clerk authentication is added, list the session cookie here:
+The Annex III Note in `/dpa` calls out that backend sub-processors will be added before the Service is live. Add these rows using the template below, then remove the `<Note>` block.
+
+Planned rows (fill in and confirm before publishing):
+
+| Sub-processor | Function | Country / region | Transfer mechanism |
+|---|---|---|---|
+| Fly.io | Backend hosting | [confirm from dashboard, expected fra] / US HQ | SCCs if non-EU; none if EU region confirmed |
+| Supabase | Managed database (hashes and metadata) | [confirm from dashboard, expected EU] / non-EU HQ | SCCs if non-EU; none if EU region confirmed |
+| Upstash | Queue and cache | [confirm from dashboard] / US HQ | SCCs, or omit row entirely if no personal data flows through it |
+| Clerk | Authentication | US (no EU residency option on standard plan) | SCCs and EU-US Data Privacy Framework |
+| [Payment processor] | Billing | [add when billing is live] | [add when billing is live] |
+
+Rationale already worked out:
+- Clerk is US-only by design on the standard plan. SCCs + DPF are the correct mechanism. No EU residency option to switch to.
+- Supabase and Fly.io: if both land in EU regions, no transfer mechanism is needed for either, which simplifies the table significantly. Confirm from dashboards.
+- Upstash: only include if it processes data that can be linked to an identifiable person. If it holds only opaque hashes with no customer references attached, it may fall outside the DPA scope entirely.
+- Payment processor: Stripe Payments Europe Ltd (Ireland) is preferred over Stripe Inc (US) for EU billing; affects whether the row needs a transfer mechanism.
+
+### DPA Annex II: Verify security claims
+
+Every bullet in Annex II is a factual claim a customer can hold you to. Before the service processes real customer data, walk through each measure and confirm it describes the built system, not just the intended architecture. Remove or qualify any measure that isn't real yet.
+
+---
+
+## When auth / login is added
+
+### Privacy Policy s.5: Cookie table
+
+Add the session cookie entry when Clerk authentication goes live:
 
 | Cookie | Purpose | Lifespan |
 |---|---|---|
-| `__session` (Clerk) | Maintains authenticated session in the dashboard | Session (expires on sign-out or browser close) |
+| `__session` (Clerk) | Authenticated session in the dashboard | Session (expires on sign-out or browser close) |
 | Clerk device token | Trusted device recognition for MFA | 30 days |
 
-Confirm exact cookie names and lifespans in Clerk's documentation at publish time.
+Confirm exact names and lifespans in Clerk's documentation at the time.
 
 ---
 
-## Both Pages: LIA Memo
+## When billing goes live
 
-The Privacy Policy (section 4) references a "documented assessment held on file" for the legitimate-interest basis used for website analytics. That LIA has not been written yet. Write it before the site goes to significant traffic or before any regulator inquiry. Key points to cover:
+### Terms s.9: Full VAT / reverse-charge language
 
-- Purpose: measuring aggregate website performance and content effectiveness
-- Data: Vercel's cookieless analytics (request hash, discarded after 24h; no PII)
-- Interest: legitimate business interest in improving the site
-- Necessity: cookieless analytics is the least privacy-intrusive option available
-- Balancing: minimal impact on individuals (no persistent identifier, no cross-site tracking, no consent required)
-- Outcome: legitimate interest is proportionate; no override by individual interests
-
-Store the signed memo at `docs/legal-lia-analytics.md` or equivalent internal location.
-
----
-
-## Terms and Conditions
-
-### Section 9: Full VAT / reverse-charge language
-
-When billing goes live, replace the current fees paragraph with language that explicitly covers EU B2B reverse charge:
+Replace the current fees paragraph with:
 
 "Fees are billed via Stripe and are exclusive of VAT and other applicable taxes. For EU customers registered for VAT, the reverse charge mechanism applies: you are responsible for self-assessing and accounting for VAT in your jurisdiction. We will issue invoices without VAT for eligible EU B2B transactions. Customers outside the EU are responsible for any applicable local taxes. We may change pricing for future terms with reasonable notice. Late payment may lead to suspension after notice."
 
-Confirm the Stripe entity before publishing (Stripe Inc vs. Stripe Payments Europe Ltd): this affects the invoice issuer and may affect whether the reverse-charge procedure formally applies.
-
-### Section 7: Data Processing Agreement
-
-An Article 28 GDPR controller-processor DPA is needed before any customer processes personal data through the product. Key characteristics:
-
-- This is an EU-to-EU agreement (Driftware Cyprus + EU customer). No transfer SCCs required within the DPA itself.
-- It is separate from the Terms; linked by reference in clause 7.
-- Standard content: subject matter, duration, nature and purpose of processing, type of personal data, categories of data subjects, controller obligations, processor obligations (Art. 28(3)), sub-processing rules, data subject rights, security, breach notification, deletion/return.
-- Publish at traced-ai.com/dpa and link from clause 7 once drafted.
-- The Note in Terms clause 7 flags this as a pre-launch TODO.
+Confirm the Stripe entity first (Stripe Payments Europe Ltd Ireland vs. Stripe Inc US): it affects the invoice issuer and whether reverse charge formally applies.
 
 ---
 
-## Governing Law Research Note
+## LIA memo (write before significant traffic)
 
-Cyprus non-exclusive jurisdiction was chosen (Terms clause 18) because:
-- Driftware Dynamics Ltd is incorporated in Cyprus
-- Non-exclusive jurisdiction preserves the ability to litigate where an asset or customer is located
-- Enterprise agreements can specify a different forum (this is stated explicitly in clause 18)
+The Privacy Policy section 4 references a "documented assessment held on file" for the legitimate-interest basis used for website analytics. Write this before the site goes to significant traffic or before any regulator enquiry. Key points:
 
-If you later target heavy B2B volume in Germany, France, or the Netherlands, enterprise contract templates may need to offer those forums as defaults. That is a sales and legal decision, not a website terms decision.
+- Purpose: measuring aggregate website performance and content effectiveness
+- Data: Vercel cookieless analytics (request hash, discarded after 24h, no PII)
+- Necessity: least privacy-intrusive option available
+- Balancing: minimal individual impact (no persistent identifier, no cross-site tracking)
+- Outcome: legitimate interest is proportionate
+
+Store at `docs/legal-lia-analytics.md`.
+
+---
+
+## Enterprise paper / custom DPA
+
+If an enterprise buyer presents their own DPA paper, the `/dpa` page is not the right instrument. That becomes a commercial negotiation. Key positions going in:
+
+- Sub-processor list is governed by the published Annex III; Controller gets notice + 14 days to object before changes
+- Audit rights satisfied by SOC 2 Type II report in lieu of site inspection (until one is available, reasonable-access language applies)
+- Governing law: Cyprus as default; can offer customer's jurisdiction for contracts above a revenue threshold
+- Liability cap: 12 months of fees paid (matches Terms clause 13); enterprise buyers will push for uncapped breach notification liability, which is reasonable to accept
+- SCC module 2 (controller-to-processor) applies for any EEA-to-US transfers, with your standard supplementary measures
+
+---
+
+## Governing law research note
+
+Cyprus non-exclusive jurisdiction (Terms clause 18) was chosen because Driftware is Cyprus-incorporated and non-exclusive jurisdiction preserves the ability to litigate where an asset or customer is located. Enterprise agreements can specify a different forum (stated in clause 18).
+
+If you later target heavy B2B volume in Germany, France, or the Netherlands, enterprise contract templates may need to offer those forums as defaults. That is a sales decision, not a website terms decision.
