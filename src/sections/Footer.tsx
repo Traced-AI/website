@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-inner">
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '32px', marginBottom: '40px' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '24px', marginBottom: '32px' }}>
           <div>
             <div style={{
               fontFamily: 'var(--f-display-C)',
@@ -17,21 +17,22 @@ export default function Footer() {
             }}>
               Traced AI
             </div>
-            <p style={{ fontSize: '13px', color: 'var(--tx-2)', maxWidth: '320px', lineHeight: 1.65 }}>
+            <p style={{ fontSize: '13px', color: 'var(--tx-2)', maxWidth: '360px', lineHeight: 1.65 }}>
               {footer.tagline}
             </p>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'flex-end' }}>
-            <div style={{ display: 'flex', gap: '20px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-end' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <Link
                 to="/privacy"
                 style={{ fontSize: '13px', color: 'var(--tx-2)', textDecoration: 'none' }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--ac-text)')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--tx-2)')}
               >
-                Privacy Policy
+                Privacy
               </Link>
+              <span style={{ fontSize: '11px', color: 'var(--tx-2)', opacity: 0.4, userSelect: 'none' }}>·</span>
               <Link
                 to="/terms"
                 style={{ fontSize: '13px', color: 'var(--tx-2)', textDecoration: 'none' }}
@@ -43,9 +44,9 @@ export default function Footer() {
             </div>
             <a
               href="mailto:contact@traced-ai.com"
-              style={{ fontSize: '13px', color: 'var(--tx-2)', textDecoration: 'none' }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--ac-text)')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--tx-2)')}
+              style={{ fontSize: '12px', color: 'var(--tx-2)', textDecoration: 'none', opacity: 0.6 }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--ac-text)'; e.currentTarget.style.opacity = '1'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--tx-2)'; e.currentTarget.style.opacity = '0.6'; }}
             >
               contact@traced-ai.com
             </a>

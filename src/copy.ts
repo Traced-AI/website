@@ -269,9 +269,9 @@ export const thankYou = {
 };
 
 export const footer = {
-  tagline: 'Traced AI, evidentiary infrastructure for AI decisions.',
+  tagline: 'Evidentiary infrastructure for AI decisions.',
   links: [
-    { label: 'Privacy Policy', href: '/privacy' },
+    { label: 'Privacy', href: '/privacy' },
     { label: 'Terms', href: '/terms' },
     { label: 'contact@traced-ai.com', href: 'mailto:contact@traced-ai.com' },
   ],
