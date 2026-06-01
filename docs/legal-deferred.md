@@ -122,3 +122,48 @@ If an enterprise buyer presents their own DPA paper, the `/dpa` page is not the 
 Cyprus non-exclusive jurisdiction (Terms clause 18) was chosen because Driftware is Cyprus-incorporated and non-exclusive jurisdiction preserves the ability to litigate where an asset or customer is located. Enterprise agreements can specify a different forum (stated in clause 18).
 
 If you later target heavy B2B volume in Germany, France, or the Netherlands, enterprise contract templates may need to offer those forums as defaults. That is a sales decision, not a website terms decision.
+
+---
+
+## Copy / positioning backlog (from external research, 2026)
+
+Not legal-page content. This section parks marketing and positioning angles surfaced by the
+enterprise/EU-law research brief that we chose not to put live yet, so they are not lost. Source:
+`~/Downloads/Enterprise-and-EU-law-on-AI-expectations.md`. The core corrections from that brief
+(medical-device classification, GDPR Article 30 hook, Article 11/Annex IV, Article 72 emphasis)
+are already live in `src/copy.ts`. What is below is the deferred remainder.
+
+### Standards as compass points: ISO 42001 + NIST AI RMF
+
+Both can be referenced as best-practice frameworks our customers align with. Hard caveat: cite as
+*alignment* only, never as certification, "compliant with," or a substitute for the AI Act. We hold
+neither certification.
+
+- **ISO/IEC 42001:2023** (AI Management System): first certifiable AI-management standard. Its monitoring/logging, drift-detection, and audit-trail requirements map closely to AI Act record-keeping (Art. 12) and post-market monitoring (Art. 72).
+- **NIST AI RMF** (Govern, Map, Measure, Manage): US-origin but increasingly referenced by EU banks and tech teams for internal governance; its monitoring function expects automated logging and anomaly reporting.
+
+Candidate homes when used: an Enterprise-tier line, or a future "standards we align with" trust strip. Do not add to Free/Startup copy.
+
+### Sectoral depth for the `builtFor` cards
+
+The three cards are accurate but shallow. Deepen later with the specific regime each buyer answers to:
+
+- **Fintech:** EBA work on machine learning in IRB models and model-risk management (model inventories, validation, ongoing monitoring), plus DORA (Regulation (EU) 2022/2554) ICT incident logging/reporting. Frames our logs as feeding model-risk committees and supervisory review.
+- **Medtech:** MDR **Article 83** post-market surveillance (continuous real-world performance data feeding risk assessment). Our decision-level context feeds PMS plans and clinical evaluations. Keep the existing "regulated-product route, not Annex III" framing (see fact below).
+- **HR:** Platform Work Directive on algorithmic management (transparency + human oversight for automated decisions that significantly affect workers). Frames our per-candidate trails as a defensible record of where human judgment intervened.
+
+### Article 15 angle (accuracy, robustness, cybersecurity)
+
+Possible future narrative pillar: Art. 15 high-risk obligations (resilience to errors, drift, adversarial manipulation over the lifecycle) presuppose detailed logs and change histories. You cannot show how a system behaved over time, or prove resilience, without them.
+
+### Standing copy guardrails (research §4.3)
+
+Apply to all future copy, in addition to the CLAUDE.md hard rules:
+
+- Never claim Traced AI "makes you compliant" with the AI Act / GDPR / MDR / DORA. Use "helps you implement" or "supports your ability to demonstrate."
+- Do not imply every customer use case is high-risk by default. Scope to the actual Annex III categories (and the Annex I regulated-product route where relevant).
+- Do not suggest audit trails alone solve bias, fairness, or explainability. They are necessary but complement, not replace, model design and governance.
+
+### Medical-device classification fact (do not re-litigate)
+
+Medical-device / clinical-decision-support AI is high-risk via the **regulated-product route: Article 6(1) / Annex I**, under MDR/IVDR, **not** Annex III (Art. 6(2)). Its obligations apply from **2 August 2027**, not 2 August 2026 (Art. 113). Annex III categories (credit scoring, employment screening, biometric identification) are the ones tied to the 2 August 2026 date. The hero and "deadline is real" copy were corrected to stop conflating the two; keep them that way.

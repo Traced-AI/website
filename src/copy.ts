@@ -6,7 +6,7 @@ export const hero = {
   tooltip: 'EU AI Act Art. 99 · up to €15M / 3% for high-risk violations, €35M / 7% for prohibited practices',
   subheadline: '“You can’t do compliance work with vibes.”',
   body1:
-    'August 2, 2026. The EU AI Act begins full enforcement. If your AI system affects credit decisions, employment screening, or functions as a medical device, Annex III already classifies it as high-risk. Decisions made by that system must be logged, explainable, and defensible.',
+    'August 2, 2026. The high-risk obligations of the EU AI Act start to apply. If your AI system affects credit decisions or employment screening, Annex III already classifies it as high-risk. Decisions made by that system must be logged, explainable, and defensible.',
   body2: 'That standard is harder to meet than most teams expect.',
   ctaPrimary: 'Join the waitlist →',
   ctaSecondary: 'See how it works',
@@ -50,7 +50,7 @@ export const stats: Stat[] = [
 export const regulatoryReality = {
   sectionLabel: 'THE DEADLINE IS REAL',
   headline: 'On August 2nd, “the AI decided” stops being an acceptable answer.',
-  body: 'The high-risk provisions take full effect on August 2, 2026. If your system handles credit decisions, employment screening, biometric identification, or clinical decision support, Annex III classifies it as high-risk. Decisions made by that system must be logged, explainable, and defensible.',
+  body: 'The high-risk provisions take full effect on August 2, 2026. If your system handles credit decisions, employment screening, or biometric identification, Annex III classifies it as high-risk. Decisions made by that system must be logged, explainable, and defensible.',
   question: 'When enforcement comes, good intentions don\'t appear in audit logs.',
   questionPunchline: 'Documented evidence does.',
   procurement: {
@@ -58,7 +58,7 @@ export const regulatoryReality = {
     body: 'Your enterprise customers are already demanding AI governance evidence. Banks, insurers, and public-sector buyers ask what models you use, how decisions are logged, and what audit evidence exists. The deal-blocker is today.',
   },
   sourceAttr:
-    'EU AI Act, Regulation EU 2024/1689, Articles 9, 12, 13, 14, 19, 26(6), Annex III. Official text:',
+    'EU AI Act, Regulation EU 2024/1689, Articles 9, 11, 12, 13, 14, 19, 26(6), Annex III, Annex IV. Official text:',
   sourceUrl:
     'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689',
 };
@@ -81,15 +81,15 @@ export const howItWorks = {
     },
     {
       title: 'Local-first architecture',
-      body: 'Raw inputs and outputs are written to encrypted storage on your own infrastructure. No sensitive data crosses your perimeter. You hold the source of truth.',
+      body: 'Raw inputs and outputs are written to encrypted storage on your own infrastructure. Only SHA-256 hashes and decision metadata leave your perimeter, never the underlying data, so GDPR data minimization is built in and the logs support your Article 30 records and DPIAs. You hold the source of truth.',
     },
     {
       title: 'Tamper-evident ledger',
-      body: 'SHA-256 hashes of every I/O pair, plus structured rationale, flow to an append-only chained ledger in the cloud. Designed to support the logging requirements of Articles 12 and 19 of the EU AI Act.',
+      body: 'SHA-256 hashes of every I/O pair, plus structured rationale, flow to an append-only chained ledger in the cloud. Designed to support the logging requirements of Articles 12 and 19, and to feed the post-market monitoring expected under Article 72 across the system’s lifetime.',
     },
     {
       title: 'Auditor-ready exports',
-      body: 'Generate structured audit packs aligned to Articles 12, 17, 72, and 86, formatted so your legal team and external auditors can work with them directly.',
+      body: 'Generate structured audit packs aligned to Articles 11, 12, 17, 72, and 86 and the Annex IV technical documentation, formatted so your legal team and external auditors can work with them directly.',
     },
   ] as Feature[],
 };
