@@ -35,6 +35,7 @@ export default function NavBar() {
     if (location.pathname === '/') {
       e.preventDefault()
       window.scrollTo({ top: 0, behavior: 'smooth' })
+      if (location.hash) window.history.replaceState(null, '', '/')
     }
   }
 
@@ -42,6 +43,7 @@ export default function NavBar() {
     if (location.pathname === '/' && location.hash === '#waitlist') {
       e.preventDefault()
       document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' })
+      window.history.replaceState(null, '', '/#waitlist')
     }
   }
 
