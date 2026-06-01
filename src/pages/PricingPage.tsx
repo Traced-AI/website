@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import NavBar from '../sections/NavBar'
 import Pricing from '../sections/Pricing'
 import Footer from '../sections/Footer'
@@ -13,9 +14,9 @@ export default function PricingPage() {
             <p style={{ fontFamily: 'var(--f-display-C)', fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)', fontWeight: 500, letterSpacing: '0.03em', color: 'var(--tx-0)', marginBottom: '20px' }}>
               Ready to start?
             </p>
-            <a href="/#waitlist" className="btn btn-primary">
+            <Link to="/#waitlist" className="btn btn-primary">
               Join the waitlist →
-            </a>
+            </Link>
           </div>
         </section>
       </main>

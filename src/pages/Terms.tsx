@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import NavBar from '../sections/NavBar'
 import Footer from '../sections/Footer'
 import { LegalSection, Note } from '../components/LegalComponents'
@@ -90,7 +91,7 @@ export default function Terms() {
               <li><strong>What reaches us.</strong> Only hashes, rationale text, and metadata are sent to the Ledger. Connectivity is outbound only. The sole traffic from us to you is signed Rule Registry updates.</li>
               <li><strong>Rationale text is your responsibility.</strong> Rationale text reaches our Ledger in plain text. You are responsible for what you put in it, including keeping out any personal or sensitive data that does not need to be there.</li>
               <li><strong>We do not train on your data.</strong> We do not use Customer Data to train or fine-tune any model, and we do not share it except as set out in our Privacy Policy.</li>
-              <li><strong>Processing terms.</strong> Where we process personal data on your behalf, the <a href="/dpa">Data Processing Agreement</a> at traced-ai.com/dpa applies and forms part of these terms. It is pre-signed by us and incorporated automatically; no separate signature is required.</li>
+              <li><strong>Processing terms.</strong> Where we process personal data on your behalf, the <Link to="/dpa">Data Processing Agreement</Link> at traced-ai.com/dpa applies and forms part of these terms. It is pre-signed by us and incorporated automatically; no separate signature is required.</li>
             </ul>
           </LegalSection>
 

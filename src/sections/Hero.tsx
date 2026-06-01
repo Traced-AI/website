@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import DeadlineBadge from '../components/DeadlineBadge'
 import DangerHighlight from '../components/DangerHighlight'
 import { hero } from '../copy'
@@ -27,8 +28,8 @@ export default function Hero() {
         </div>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', alignItems: 'center', marginBottom: '16px' }}>
-          <a href="/#waitlist" className="btn btn-primary">{hero.ctaPrimary}</a>
-          <a href="/product" className="btn btn-secondary">{hero.ctaSecondary}</a>
+          <Link to="/#waitlist" className="btn btn-primary">{hero.ctaPrimary}</Link>
+          <Link to="/product" className="btn btn-secondary">{hero.ctaSecondary}</Link>
         </div>
 
         <div style={{ fontSize: '12px', color: 'var(--tx-2)' }}>{hero.belowCta}</div>

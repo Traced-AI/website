@@ -44,3 +44,5 @@ These apply everywhere: copy, code, comments, commit messages, UI text.
 | `docs/build-plan.md` | GTM blueprint, pricing tiers, milestone definitions. |
 | `docs/legal-deferred.md` | Content intentionally left off live legal pages: sub-processor rows, transfer analysis, billing language. Check before editing legal pages. |
 | `docs/dev-guide.md` | Implementation details: routing rules, design tokens, copy.ts editing gotcha, legal page conventions. |
+
+@docs/dev-guide.md

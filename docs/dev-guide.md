@@ -20,7 +20,16 @@ Routes are in `src/App.tsx`. `<ScrollToTop />` (`src/components/ScrollToTop.tsx`
 
 ## Routing Rules
 
-Internal route links must use `<Link>` or `<NavLink>` from react-router-dom, never `<a href>`. Plain `<a>` is only for external URLs and `mailto:` links. Using `<a>` for internal routes causes full page reloads in this SPA.
+Internal links must use `<Link>` or `<NavLink>` from react-router-dom, never `<a href>`. Plain `<a>` is only for external URLs and `mailto:` links. Using `<a>` for internal routes causes full page reloads.
+
+| Target | Correct |
+|--------|---------|
+| Internal page | `<Link to="/product">` |
+| Fragment on home page | `<Link to="/#waitlist">` |
+| External URL | `<a href="https://...">` |
+| Email | `<a href="mailto:...">` |
+
+Fragment scrolling is handled globally by `src/components/ScrollToTop.tsx`. When the URL hash changes it calls `scrollIntoView` on the matching element — no per-component scroll logic needed. The effect watches `[pathname, hash]`, so it fires both when navigating cross-route to a hash and when the hash changes on the same page.
 
 NavBar items that reflect current page:
 ```tsx

@@ -38,6 +38,13 @@ export default function NavBar() {
     }
   }
 
+  function handleWaitlistClick(e: React.MouseEvent) {
+    if (location.pathname === '/' && location.hash === '#waitlist') {
+      e.preventDefault()
+      document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -66,7 +73,7 @@ export default function NavBar() {
             <ThemeIcon theme={theme} />
             {theme === 'dark' ? 'Light' : 'Dark'}
           </button>
-          <Link to="/#waitlist" className="btn btn-primary" style={{ padding: '7px 16px', fontSize: '13px' }}>
+          <Link to="/#waitlist" className="btn btn-primary" style={{ padding: '7px 16px', fontSize: '13px' }} onClick={handleWaitlistClick}>
             Join waitlist
           </Link>
         </div>
