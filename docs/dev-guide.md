@@ -18,18 +18,24 @@ Routes are in `src/App.tsx`. `<ScrollToTop />` (`src/components/ScrollToTop.tsx`
 
 **NavBar** (every page): logo links to `/` (smooth-scrolls to top if already there), Product and Pricing use `<NavLink>`, theme toggle, "Join waitlist" links to `/#waitlist`.
 
+Build each navigation destination as its own page file from the start. Starting with a monolithic page and splitting later (as happened with the initial `Landing.tsx`) is avoidable churn.
+
 ## Routing Rules
 
-Internal links must use `<Link>` or `<NavLink>` from react-router-dom, never `<a href>`. Plain `<a>` is only for external URLs and `mailto:` links. Using `<a>` for internal routes causes full page reloads.
+Internal links must use `<Link>` or `<NavLink>` from react-router-dom, never `<a href>`. Plain `<a>` is only for external URLs and `mailto:` links. Using `<a>` for internal routes causes full page reloads. This mistake recurred across Hero, PricingPage, NavBar, and Terms during the initial build — treat it as a high-priority review target.
 
 | Target | Correct |
 |--------|---------|
 | Internal page | `<Link to="/product">` |
 | Fragment on home page | `<Link to="/#waitlist">` |
-| External URL | `<a href="https://...">` |
+| External URL | `<a href="https://..." target="_blank" rel="noopener noreferrer">` |
 | Email | `<a href="mailto:...">` |
 
+External links always need both `target="_blank"` and `rel="noopener noreferrer"`. Missing `rel` is a security issue (reverse tabnapping).
+
 Fragment scrolling is handled globally by `src/components/ScrollToTop.tsx`. When the URL hash changes it calls `scrollIntoView` on the matching element — no per-component scroll logic needed. The effect watches `[pathname, hash]`, so it fires both when navigating cross-route to a hash and when the hash changes on the same page.
+
+**Same-URL hash edge case:** `<Link to="/#section">` is a no-op when the current URL is already `/#section`, so `ScrollToTop`'s effect does not re-run. Any CTA that jumps to a hash anchor on the current page needs a click handler that calls `scrollIntoView` directly and keeps the URL in sync via `window.history.replaceState`. See `NavBar.handleWaitlistClick` as the reference implementation.
 
 NavBar items that reflect current page:
 ```tsx
@@ -45,7 +51,39 @@ Font pairing is locked to **C: League Spartan (display) + Montserrat (body) + Je
 
 Token reference: all CSS custom properties (`--bg-*`, `--tx-*`, `--ac*`, `--br-*`, spacing, radii) are defined in `src/index.css`. Dark mode is driven by `[data-theme="dark"]` on `<html>`.
 
-Hover states: use CSS classes with `:hover` pseudo-class and `transition`, not JS `onMouseEnter`/`onMouseLeave` handlers.
+Theme default is `prefers-color-scheme` (system), applied before React mounts to prevent flash of wrong theme. Do not change the initialization order or override the default with a hardcoded value.
+
+Hover states: CSS classes with `:hover` pseudo-class and `transition` only, never `onMouseEnter`/`onMouseLeave` handlers. Inline style mutations on hover were introduced in the initial footer and required a dedicated cleanup commit (`f12b5dc`).
+
+Mobile-first: default Tailwind classes target small screens; `md:` and `lg:` prefixes widen layouts for larger breakpoints.
+
+Never hardcode color values (`white`, `gray-700`, etc.) when a CSS token exists — hardcoded values break dark mode.
+
+For conditional or composed class strings, prefer `clsx` over manual string concatenation. String concatenation silently drops a class when two utilities target the same CSS property.
+
+## TypeScript
+
+- No `any`. Use `unknown` with narrowing if the type is genuinely unknown.
+- No `React.FC` or `React.FunctionComponent`. Write plain function declarations with typed params.
+- Use `import type` for type-only imports.
+- `interface` for component props; `type` for data shapes and unions.
+
+## Accessibility
+
+- Every `<img>` needs `alt`. Use `alt=""` for decorative images.
+- Icon-only interactive elements (theme toggle, icon buttons) need `aria-label`.
+- One `<h1>` per page. Heading levels must not skip (h1 → h2 → h3).
+- All interactive elements need a visible focus style. Never `outline: none` without a replacement.
+- CSS animations need a `@media (prefers-reduced-motion: reduce)` fallback in `src/index.css`.
+- Semantic landmarks on every page: `<header>`, `<nav>`, `<main>`, `<footer>`.
+
+## Component Rules
+
+- Navigation links, footer items, and other repeated content data belong in `src/copy.ts`, not hardcoded in the component. Adding a new link should require touching only `copy.ts`.
+- Static data (card arrays, table rows) must be defined outside component functions — defining inside causes object re-creation on every render.
+- No `console.log`, `console.warn`, or `console.error` in production code paths.
+- No commented-out code. Use `// TODO:` for intentionally deferred work.
+- A component over ~300 lines is a signal to extract named sub-components.
 
 ## Editing `src/copy.ts`
 
@@ -58,6 +96,8 @@ content = content.replace('old text', 'new text')
 open('src/copy.ts', 'w').write(content)
 "
 ```
+
+After any edit to `copy.ts` (additions, changes, or cuts), update `docs/site-copy.md` to match. When cutting copy, preserve the removed text as an inline note in `docs/site-copy.md` rather than deleting it — it gives future copy reviews the full context of what was tried and why it was cut. Two separate build commits called this out explicitly; it is a real discipline, not an edge case.
 
 ## Legal Pages
 
