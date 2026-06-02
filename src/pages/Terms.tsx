@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import NavBar from '../sections/NavBar'
 import Footer from '../sections/Footer'
-import { LegalSection, Note } from '../components/LegalComponents'
+import { LegalSection } from '../components/LegalComponents'
 
 export default function Terms() {
   return (
