@@ -135,17 +135,17 @@ These are project-specific and legally load-bearing. A copy error here is a 🔴
 
 ## 9. Third-party Embeds & Integrations (E)
 
-Forward-looking: Tally (live in `WaitlistForm`), Cal.com (live in `ThankYou`), and Stripe (planned) all run client-side on this static site.
+Forward-looking: Tally (live in `WaitlistForm`), Cal.eu (live in `ThankYou`), and Stripe (planned) all run client-side on this static site.
 
 **E1**: Every embed `<iframe>` has a `title`. If a vendor library injects the iframe without one, set it via a `ref` plus `useEffect`.
 
-**E2**: Heavy embeds load only on the route that uses them. Do not bundle or eagerly load Cal.com or Stripe on routes that do not render them; lazy-load or dynamic-import where possible.
+**E2**: Heavy embeds load only on the route that uses them. Do not bundle or eagerly load Cal.eu or Stripe on routes that do not render them; lazy-load or dynamic-import where possible.
 
-**E3**: Only publishable/public keys appear in client code. Stripe secret keys, API secrets, and webhook signing secrets never ship to the browser; they live in server/Vercel env. Tally form IDs and the Cal.com URL are public config, not secrets.
+**E3**: Only publishable/public keys appear in client code. Stripe secret keys, API secrets, and webhook signing secrets never ship to the browser; they live in server/Vercel env. Tally form IDs and the Cal.eu URL are public config, not secrets.
 
-**E4**: `vercel.json` CSP (`frame-src` / `connect-src`) must allow the embed origins (tally.so, cal.com, stripe.com) when a CSP is added. Flag a new embed whose origin is not covered.
+**E4**: `vercel.json` CSP (`frame-src` / `connect-src`) must allow the embed origins (tally.so, cal.eu, stripe.com) when a CSP is added. Flag a new embed whose origin is not covered.
 
-**E5**: Embeds that set cookies (Cal.com, Stripe) must be reflected in the privacy policy. A new tracking or cookie-setting embed is a legal-page update trigger (ties to L1).
+**E5**: Embeds that set cookies (Cal.eu, Stripe) must be reflected in the privacy policy. A new tracking or cookie-setting embed is a legal-page update trigger (ties to L1).
 
 ---
 
@@ -167,7 +167,7 @@ Forward-looking: Tally (live in `WaitlistForm`), Cal.com (live in `ThankYou`), a
 
 **SEC2**: No `dangerouslySetInnerHTML` in source. In a static marketing site with hardcoded copy it should never appear. Flag immediately if found.
 
-**SEC3**: No secrets, API keys, or tokens in `src/`. Tally form ID, Cal.com URL, and contact email are public config, not secrets; do not false-flag them. Real secret material is a 🔴.
+**SEC3**: No secrets, API keys, or tokens in `src/`. Tally form ID, Cal.eu URL, and contact email are public config, not secrets; do not false-flag them. Real secret material is a 🔴.
 
 **SEC4**: `vercel.json` should set security response headers for all routes: `X-Frame-Options: DENY` (or CSP `frame-ancestors`), `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, and a CSP. Vercel does not add these automatically. Note in full audits; not a per-PR blocker unless a change weakens existing headers.
 

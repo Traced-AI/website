@@ -308,7 +308,7 @@ Want to talk through your situation before launch?
 
 You can book a 30-minute call directly. We'll ask you one question upfront about what you're most concerned with so we come prepared.
 
-**CTA:** Book a call → (links to Cal.com)
+**CTA:** Book a call → (links to Cal.eu)
 
 **Fine print (muted):**
 The call is for companies actively evaluating whether Traced AI fits their situation. If you're still exploring, the waitlist email is the right next step.

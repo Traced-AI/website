@@ -46,8 +46,8 @@ A waitlist landing page needs no SSR, no API routes, and no server runtime. Vite
 | Styling | Tailwind CSS v4 (CSS-first `@theme inline` tokens in `src/index.css`) | Design tokens as CSS variables, no JS config, no shadcn dependency |
 | Fonts | League Spartan (display) + Montserrat (body) + JetBrains Mono (mono) | Locked pairing; loaded with `font-display: swap` |
 | Waitlist form | Tally.so embedded | Stores responses, triggers Google Sheets export, no backend |
-| Thank-you page | `/thank-you` route on the same Vite SPA | Full control over copy and Cal.com embed |
-| Call booking | Cal.com embedded on `/thank-you` | Optional post-waitlist step, with framing question |
+| Thank-you page | `/thank-you` route on the same Vite SPA | Full control over copy and Cal.eu embed |
+| Call booking | Cal.eu embedded on `/thank-you` | Optional post-waitlist step, with framing question |
 | Payments | Stripe | Subscriptions, pay-as-you-go packages, invoicing, EU VAT handling |
 | Analytics | Vercel Analytics | Privacy-respecting, zero setup, free on Hobby |
 | Deploy | Vercel, auto-deploy from `main` | 30 seconds from push to live |
@@ -187,7 +187,7 @@ HR automation is a reasonable secondary wedge after fintech. The obligations are
 
 ## Phase 1: Waitlist Landing Page
 
-**Goal:** page live, Tally form collecting, Cal.com call booking wired, Tally to Google Sheets pipeline active.
+**Goal:** page live, Tally form collecting, Cal.eu call booking wired, Tally to Google Sheets pipeline active.
 
 **Timeline:** 3 to 5 working days.
 
@@ -232,7 +232,7 @@ const days = Math.ceil((deadline - today) / (1000 * 60 * 60 * 24));
 // Badge links to: https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act
 ```
 
-### Day 4: Tally + Thank-You Page + Cal.com
+### Day 4: Tally + Thank-You Page + Cal.eu
 
 **Tally setup:**
 1. Create form at tally.so with 4 fields (email, company, role, burning need question)
@@ -242,7 +242,7 @@ const days = Math.ceil((deadline - today) / (1000 * 60 * 60 * 24));
 5. Test end-to-end: submit a response, confirm redirect and Sheet entry
 
 **Thank-you page (`/thank-you`):**
-Separate Next.js route with full control over copy and Cal.com embed. The Cal.com booking form should include one question before the time slot:
+Separate Next.js route with full control over copy and Cal.eu embed. The Cal.eu booking form should include one question before the time slot:
 
 > "What concerns you most about your current AI systems?"
 > - Regulatory risk (EU AI Act deadlines, audit requirements, compliance evidence)
@@ -433,7 +433,7 @@ Apply with a lawyer who specializes in EU tech grants. Do not DIY it.
 | # | What | Done When |
 |---|------|-----------|
 | 0 | Design system + content artifacts | This session |
-| 1 | Landing page live, Tally + Cal.com collecting | First real submission in Sheets |
+| 1 | Landing page live, Tally + Cal.eu collecting | First real submission in Sheets |
 | 2 | 10 qualified signups | 3+ with a specific real incident described |
 | 3 | First demo call | 1 CTO says yes to the €500 intent test |
 | 4 | SDK MVP | Recorded full round-trip demo, fintech credit scoring, synthetic data |

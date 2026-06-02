@@ -12,7 +12,7 @@ Routes are in `src/App.tsx`. `<ScrollToTop />` (`src/components/ScrollToTop.tsx`
 - `/pricing` (PricingPage): Pricing, CTA block linking to `/#waitlist`, Footer
 
 **Utility pages:**
-- `/thank-you`: confirmation + optional Cal.com booking embed
+- `/thank-you`: confirmation + optional Cal.eu booking embed
 - `/privacy`, `/terms`, `/dpa`: legal pages
 - `*` (NotFound): 404
 
@@ -107,13 +107,13 @@ Known gaps to close when SEO work happens:
 
 ## Third-party Embeds & Integrations
 
-The site is static and client-only, so every integration runs in the browser: Tally (waitlist form), Cal.com (booking on `/thank-you`), and Stripe (planned for pricing/checkout).
+The site is static and client-only, so every integration runs in the browser: Tally (waitlist form), Cal.eu (booking on `/thank-you`), and Stripe (planned for pricing/checkout).
 
 - Every embed `<iframe>` needs a `title`. If a vendor library injects the iframe without one, set it via a `ref` + `useEffect`.
-- Heavy embeds load only on the route that renders them. Do not eagerly bundle Cal.com or Stripe on routes that do not use them; lazy-load or dynamic-import.
-- Only publishable/public keys appear in client code. Stripe secret keys, API secrets, and webhook signing secrets never ship to the browser. Tally form IDs and the Cal.com URL are public config (`src/config.ts`), not secrets.
-- When a Content-Security-Policy is added to `vercel.json`, `frame-src` / `connect-src` must allow the embed origins (tally.so, cal.com, stripe.com).
-- Embeds that set cookies (Cal.com, Stripe) must be reflected in the privacy policy. Adding such an embed is a legal-page update trigger.
+- Heavy embeds load only on the route that renders them. Do not eagerly bundle Cal.eu or Stripe on routes that do not use them; lazy-load or dynamic-import.
+- Only publishable/public keys appear in client code. Stripe secret keys, API secrets, and webhook signing secrets never ship to the browser. Tally form IDs and the Cal.eu URL are public config (`src/config.ts`), not secrets.
+- When a Content-Security-Policy is added to `vercel.json`, `frame-src` / `connect-src` must allow the embed origins (tally.so, cal.eu, stripe.com).
+- Embeds that set cookies (Cal.eu, Stripe) must be reflected in the privacy policy. Adding such an embed is a legal-page update trigger.
 
 ## Editing `src/copy.ts`
 
