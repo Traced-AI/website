@@ -4,7 +4,7 @@ import { pricing } from '../copy'
 
 export default function Pricing() {
   return (
-    <section style={{ background: 'var(--bg-0)' }}>
+    <section style={{ background: 'var(--bg-1)', borderTop: '1px solid var(--br-subtle)' }}>
       <div className="page-section">
         <div className="section-label">{pricing.sectionLabel}</div>
 

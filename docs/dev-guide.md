@@ -65,6 +65,25 @@ Never hardcode color values (`white`, `gray-700`, etc.) when a CSS token exists.
 
 For conditional or composed class strings, prefer `clsx` over manual string concatenation. String concatenation silently drops a class when two utilities target the same CSS property.
 
+### Section background rhythm
+
+Sections on each page alternate between `--bg-1` (white card surface) and `--bg-0` (warm off-white page base). The footer always uses `--bg-1`. Two rules follow from this:
+
+1. The last content section before the footer must use `--bg-0`, so the footer reads as a distinct zone rather than a continuation.
+2. Consecutive sections must never share the same background. If a new section lands on the same bg as its neighbor, flip it.
+
+Each section also carries `borderTop: '1px solid var(--br-subtle)'` to sharpen the boundary, even between contrasting backgrounds.
+
+Current section map (use this as a reference when adding sections):
+
+| Page | Section sequence |
+|------|-----------------|
+| Landing (`/`) | Hero(`bg-1`) → RegulatoryReality(`bg-0`) → BuiltFor(`bg-1`) → WaitlistForm(`bg-0`) → Footer(`bg-1`) |
+| Product (`/product`) | HowItWorks(`bg-1`) → RuleRegistry(`bg-0`) → Footer(`bg-1`) |
+| Pricing (`/pricing`) | Pricing(`bg-1`) → CTA(`bg-0`) → Footer(`bg-1`) |
+
+When adding a new page: start the first section with `bg-1` (it follows the NavBar, which is also `bg-1` with a border-bottom, and the borderTop on the section provides the visual break). Then alternate from there, ensuring the last section is `bg-0`.
+
 ## TypeScript
 
 - No `any`. Use `unknown` with narrowing if the type is genuinely unknown.

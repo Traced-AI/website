@@ -56,7 +56,7 @@ function TallyEmbed() {
 
 export default function WaitlistForm() {
   return (
-    <section id="waitlist" style={{ background: 'var(--bg-1)', borderTop: '1px solid var(--br-subtle)' }}>
+    <section id="waitlist" style={{ background: 'var(--bg-0)', borderTop: '1px solid var(--br-subtle)' }}>
       <div className="page-section">
         <div className="section-label">{waitlist.sectionLabel}</div>
 
