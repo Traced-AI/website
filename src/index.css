@@ -618,24 +618,18 @@ body {
 
 /* ─── ACCESSIBILITY ─── */
 
-/* Keyboard users need to see where they are. A consistent accent ring on every
-   interactive element is more reliable than the browser default, which can wash
-   out against the custom backgrounds. The solid accent keeps it above 3:1 in
-   both themes; form inputs additionally retain their own focus styling. */
+/* Consistent 3:1 accent ring; form inputs keep their own :focus box-shadow. */
 :focus-visible {
   outline: 2px solid var(--ac);
   outline-offset: 2px;
 }
 
-/* Respect a stated preference for less motion: stop the looping pulse and collapse
-   transitions so nothing animates for users who opted out. */
+/* Stop all motion for users who opted out. */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
+  html { scroll-behavior: auto !important; }
 }
