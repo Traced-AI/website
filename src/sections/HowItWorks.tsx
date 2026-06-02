@@ -24,7 +24,7 @@ function CodeBlock() {
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" style={{ background: 'var(--bg-1)', borderTop: '1px solid var(--br-subtle)', borderBottom: '1px solid var(--br-subtle)' }}>
+    <section style={{ background: 'var(--bg-1)', borderTop: '1px solid var(--br-subtle)', borderBottom: '1px solid var(--br-subtle)' }}>
       <div className="page-section">
         <div className="section-label">{howItWorks.sectionLabel}</div>
 

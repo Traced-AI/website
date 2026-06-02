@@ -6,7 +6,7 @@ import Footer from '../sections/Footer'
 export default function ProductPage() {
   return (
     <>
-      <title>How Traced AI works · Tamper-evident audit infrastructure</title>
+      <title>Product · Traced AI</title>
       <meta name="description" content="Local-first SDK, cryptographic ledger, and auditor-ready exports for EU AI Act compliance." />
       <NavBar />
       <main>
