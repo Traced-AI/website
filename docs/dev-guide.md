@@ -7,14 +7,14 @@ Technical reference for the Traced AI marketing site. Consult this when adding r
 Routes are in `src/App.tsx`. `<ScrollToTop />` (`src/components/ScrollToTop.tsx`) mounts above `<Routes>` and scrolls to top on route change, skipping hash navigations.
 
 **Main pages:**
-- `/` (Landing) — Hero, RegulatoryReality, BuiltFor, WaitlistForm, Footer
-- `/product` (ProductPage) — HowItWorks, RuleRegistry, Footer
-- `/pricing` (PricingPage) — Pricing, CTA block linking to `/#waitlist`, Footer
+- `/` (Landing): Hero, RegulatoryReality, BuiltFor, WaitlistForm, Footer
+- `/product` (ProductPage): HowItWorks, RuleRegistry, Footer
+- `/pricing` (PricingPage): Pricing, CTA block linking to `/#waitlist`, Footer
 
 **Utility pages:**
-- `/thank-you` — confirmation + optional Cal.com booking embed
-- `/privacy`, `/terms`, `/dpa` — legal pages
-- `*` (NotFound) — 404
+- `/thank-you`: confirmation + optional Cal.com booking embed
+- `/privacy`, `/terms`, `/dpa`: legal pages
+- `*` (NotFound): 404
 
 **NavBar** (every page): logo links to `/` (smooth-scrolls to top if already there), Product and Pricing use `<NavLink>`, theme toggle, "Join waitlist" links to `/#waitlist`.
 
@@ -22,7 +22,7 @@ Build each navigation destination as its own page file from the start. Starting 
 
 ## Routing Rules
 
-Internal links must use `<Link>` or `<NavLink>` from react-router-dom, never `<a href>`. Plain `<a>` is only for external URLs and `mailto:` links. Using `<a>` for internal routes causes full page reloads. This mistake recurred across Hero, PricingPage, NavBar, and Terms during the initial build — treat it as a high-priority review target.
+Internal links must use `<Link>` or `<NavLink>` from react-router-dom, never `<a href>`. Plain `<a>` is only for external URLs and `mailto:` links. Using `<a>` for internal routes causes full page reloads. This mistake recurred across Hero, PricingPage, NavBar, and Terms during the initial build, so treat it as a high-priority review target.
 
 | Target | Correct |
 |--------|---------|
@@ -33,7 +33,7 @@ Internal links must use `<Link>` or `<NavLink>` from react-router-dom, never `<a
 
 External links always need both `target="_blank"` and `rel="noopener noreferrer"`. Missing `rel` is a security issue (reverse tabnapping).
 
-Fragment scrolling is handled globally by `src/components/ScrollToTop.tsx`. When the URL hash changes it calls `scrollIntoView` on the matching element — no per-component scroll logic needed. The effect watches `[pathname, hash]`, so it fires both when navigating cross-route to a hash and when the hash changes on the same page.
+Fragment scrolling is handled globally by `src/components/ScrollToTop.tsx`. When the URL hash changes it calls `scrollIntoView` on the matching element, with no per-component scroll logic needed. The effect watches `[pathname, hash]`, so it fires both when navigating cross-route to a hash and when the hash changes on the same page.
 
 **Same-URL hash edge case:** `<Link to="/#section">` is a no-op when the current URL is already `/#section`, so `ScrollToTop`'s effect does not re-run. Any CTA that jumps to a hash anchor on the current page needs a click handler that calls `scrollIntoView` directly and keeps the URL in sync via `window.history.replaceState`. See `NavBar.handleWaitlistClick` as the reference implementation.
 
@@ -47,7 +47,7 @@ React Router 7 runs in declarative SPA mode here (`<Routes>` / `<Route>` in `src
 
 ## Design System
 
-Full visual reference: `docs/design-system.html` — open in browser, use the controls bar to toggle theme and font. This is the canonical source for tokens, spacing, radii, and component patterns.
+Full visual reference: `docs/design-system.html`. Open in browser, use the controls bar to toggle theme and font. This is the canonical source for tokens, spacing, radii, and component patterns.
 
 Font pairing is locked to **C: League Spartan (display) + Montserrat (body) + JetBrains Mono (mono)**. Do not switch.
 
@@ -61,7 +61,7 @@ Hover states: CSS classes with `:hover` pseudo-class and `transition` only, neve
 
 Mobile-first: default Tailwind classes target small screens; `md:` and `lg:` prefixes widen layouts for larger breakpoints.
 
-Never hardcode color values (`white`, `gray-700`, etc.) when a CSS token exists — hardcoded values break dark mode.
+Never hardcode color values (`white`, `gray-700`, etc.) when a CSS token exists. Hardcoded values break dark mode.
 
 For conditional or composed class strings, prefer `clsx` over manual string concatenation. String concatenation silently drops a class when two utilities target the same CSS property.
 
@@ -91,7 +91,7 @@ WCAG 2.2 additions that matter for this layout:
 ## Component Rules
 
 - Navigation links, footer items, and other repeated content data belong in `src/copy.ts`, not hardcoded in the component. Adding a new link should require touching only `copy.ts`.
-- Static data (card arrays, table rows) must be defined outside component functions — defining inside causes object re-creation on every render.
+- Static data (card arrays, table rows) must be defined outside component functions. Defining inside causes object re-creation on every render.
 - No `console.log`, `console.warn`, or `console.error` in production code paths.
 - No commented-out code. Use `// TODO:` for intentionally deferred work.
 - A component over ~300 lines is a signal to extract named sub-components.
@@ -127,13 +127,13 @@ open('src/copy.ts', 'w').write(content)
 "
 ```
 
-After any edit to `copy.ts` (additions, changes, or cuts), update `docs/site-copy.md` to match. When cutting copy, preserve the removed text as an inline note in `docs/site-copy.md` rather than deleting it — it gives future copy reviews the full context of what was tried and why it was cut. Two separate build commits called this out explicitly; it is a real discipline, not an edge case.
+After any edit to `copy.ts` (additions, changes, or cuts), update `docs/site-copy.md` to match. When cutting copy, preserve the removed text as an inline note in `docs/site-copy.md` rather than deleting it. It gives future copy reviews the full context of what was tried and why it was cut. Two separate build commits called this out explicitly; it is a real discipline, not an edge case.
 
 ## Legal Pages
 
 Pages: `/privacy`, `/terms`, `/dpa`. Shared components in `src/components/LegalComponents.tsx`:
-- `LegalSection` — numbered section wrapper. Use `prefix="Annex "` for annex-style IDs. Do not redefine locally in page files.
-- `Note` — orange-bordered callout for pre-publish reminders. Appears on the live page; remove only when the product is live and the described content is confirmed.
+- `LegalSection`: numbered section wrapper. Use `prefix="Annex "` for annex-style IDs. Do not redefine locally in page files.
+- `Note`: orange-bordered callout for pre-publish reminders. Appears on the live page; remove only when the product is live and the described content is confirmed.
 
 **Current reality principle:** legal pages describe only what is live today (marketing site + waitlist). Product-forward content belongs in `docs/legal-deferred.md`, not on the live page. Before editing legal pages, check that file first: it has planned sub-processor rows, backend transfer analysis, Stripe billing language, and LIA memo guidance ready to fill in when the product ships.
 
