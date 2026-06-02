@@ -44,5 +44,6 @@ These apply everywhere: copy, code, comments, commit messages, UI text.
 | `docs/build-plan.md` | GTM blueprint, pricing tiers, milestone definitions. |
 | `docs/legal-deferred.md` | Content intentionally left off live legal pages (sub-processor rows, transfer analysis, billing language), plus a deferred copy/positioning backlog from external research. Check before editing legal pages or reworking section copy. |
 | `docs/dev-guide.md` | Implementation details: routing rules, design tokens, copy.ts editing gotcha, legal page conventions. |
+| `.claude/skills/frontend-review/` | `/frontend-review` self-review skill. Run before merging a branch; `/frontend-review full` audits the whole codebase. Encodes the dev-guide rules plus the EU AI Act copy checks. |
 
 @docs/dev-guide.md

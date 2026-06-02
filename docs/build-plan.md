@@ -30,20 +30,23 @@ That question has an immediate yes/no answer. Run both outreach variants (regula
 
 ## Tech Stack
 
-### Why Next.js over Vite + React
+> Stack note: the original plan called for Next.js 15 + shadcn/ui. The marketing site actually shipped on a static Vite + React SPA (no Next.js, no shadcn). The table below reflects the shipped reality; the GTM, pricing, and milestone content elsewhere in this doc is unaffected.
 
-Next.js 15 with `output: 'export'` gives a fully static site (no server, no cold starts, no infra cost) while keeping the door open for server features later. The shadcn/ui ecosystem is built around Next.js, which means no integration friction when the dashboard eventually becomes a route in the same codebase.
+### Why Vite + React over Next.js
+
+A waitlist landing page needs no SSR, no API routes, and no server runtime. Vite builds a fully static SPA that deploys to Vercel with zero infra cost and the fastest possible dev loop. Tailwind v4's CSS-first tokens removed the main reason to lean on shadcn/Next.js. If the product dashboard later needs server features, it can be a separate app rather than forcing the marketing site onto a heavier framework now.
 
 ### Full Stack for Milestone 1
 
 | Concern | Choice | Why |
 |---------|--------|-----|
-| Framework | Next.js 15, App Router, `output: 'export'` | Static export, no server cost, shadcn-native |
+| Framework | Vite 6 + React 19 + TypeScript (static SPA) | No server cost, fastest dev loop, no SSR needed for a landing page |
+| Routing | react-router-dom 7 (declarative SPA mode) | Client-side routing for the handful of marketing + legal routes |
 | Package manager | Bun | Speed, already in workflow |
-| Styling | Tailwind CSS v4 + shadcn/ui | Design tokens map cleanly to CSS variables |
-| Fonts | Cormorant + DM Sans + JetBrains Mono via `next/font/google` | Zero layout shift, tree-shaken |
+| Styling | Tailwind CSS v4 (CSS-first `@theme inline` tokens in `src/index.css`) | Design tokens as CSS variables, no JS config, no shadcn dependency |
+| Fonts | League Spartan (display) + Montserrat (body) + JetBrains Mono (mono) | Locked pairing; loaded with `font-display: swap` |
 | Waitlist form | Tally.so embedded | Stores responses, triggers Google Sheets export, no backend |
-| Thank-you page | `/thank-you` route on same Next.js site | Full control over copy and Cal.com embed |
+| Thank-you page | `/thank-you` route on the same Vite SPA | Full control over copy and Cal.com embed |
 | Call booking | Cal.com embedded on `/thank-you` | Optional post-waitlist step, with framing question |
 | Payments | Stripe | Subscriptions, pay-as-you-go packages, invoicing, EU VAT handling |
 | Analytics | Vercel Analytics | Privacy-respecting, zero setup, free on Hobby |
@@ -64,23 +67,25 @@ Set up Stripe before the first paid customer, not after. The integration on the 
 
 ### Tailwind Design Tokens
 
-```js
-// tailwind.config.ts
-colors: {
-  bg: {
-    0: '#F7F7F5',  // page root (light)
-    1: '#FFFFFF',  // cards, sections
-    2: '#F0F0EE',  // inputs, modals
-    3: '#E8E8E6',  // hover states
-  },
-  tx: {
-    0: '#1C1C22',  // primary text
-    1: '#5C5C6A',  // secondary text
-    2: '#9A9AA8',  // muted, meta
-  },
-  ac: '#0D8A98',          // teal accent (light mode)
-  'ac-dark': '#4AB5C4',   // teal accent (dark mode)
-  'ac-hover': '#0C9EAE',
+Tokens live in `src/index.css`, not a JS config. Tailwind v4 is CSS-first: raw values are declared in `:root`, dark-mode overrides in `[data-theme="dark"]`, and the tokens are exposed to utility classes via `@theme inline`. `src/index.css` is the authoritative source; the shape is:
+
+```css
+:root {
+  --bg-0: #F7F7F5;  /* page root (light) */
+  --bg-1: #FFFFFF;  /* cards, sections */
+  --tx-0: #1C1C22;  /* primary text */
+  --ac:   #0D8A98;  /* teal accent (light mode) */
+  /* ...full set in src/index.css... */
+}
+
+[data-theme="dark"] {
+  /* dark overrides, e.g. --ac maps to the lighter teal */
+}
+
+@theme inline {
+  --color-bg-0: var(--bg-0);
+  --color-ac:   var(--ac);
+  /* ...maps tokens to bg-*/text-*/border-* utilities... */
 }
 ```
 

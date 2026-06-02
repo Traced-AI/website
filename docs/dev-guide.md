@@ -43,6 +43,8 @@ NavBar items that reflect current page:
 ```
 Active style: `color: var(--tx-0); background: var(--ac-dim)`.
 
+React Router 7 runs in declarative SPA mode here (`<Routes>` / `<Route>` in `src/App.tsx`). The data-router and framework modes are not adopted; they are an option if data loading or nested route loaders are ever needed.
+
 ## Design System
 
 Full visual reference: `docs/design-system.html` — open in browser, use the controls bar to toggle theme and font. This is the canonical source for tokens, spacing, radii, and component patterns.
@@ -50,6 +52,8 @@ Full visual reference: `docs/design-system.html` — open in browser, use the co
 Font pairing is locked to **C: League Spartan (display) + Montserrat (body) + JetBrains Mono (mono)**. Do not switch.
 
 Token reference: all CSS custom properties (`--bg-*`, `--tx-*`, `--ac*`, `--br-*`, spacing, radii) are defined in `src/index.css`. Dark mode is driven by `[data-theme="dark"]` on `<html>`.
+
+Tailwind v4 token pattern (canonical, as used in `src/index.css`): raw values in `:root`, theme overrides in `[data-theme="dark"]`, exposed to utility classes via `@theme inline`. When adding a token, follow the same three-part shape. Use `@theme` / `@theme inline` only for values that should generate utility classes; use a plain `:root` var for values that should not. Prefer explicit CSS properties over `@apply` (Tailwind v4 guidance).
 
 Theme default is `prefers-color-scheme` (system), applied before React mounts to prevent flash of wrong theme. Do not change the initialization order or override the default with a hardcoded value.
 
@@ -70,12 +74,19 @@ For conditional or composed class strings, prefer `clsx` over manual string conc
 
 ## Accessibility
 
+Baseline is WCAG 2.2 AA.
+
 - Every `<img>` needs `alt`. Use `alt=""` for decorative images.
-- Icon-only interactive elements (theme toggle, icon buttons) need `aria-label`.
+- Icon-only interactive elements (theme toggle, icon buttons) need `aria-label`. Toggles that open/close also need `aria-expanded` tracking state.
 - One `<h1>` per page. Heading levels must not skip (h1 → h2 → h3).
-- All interactive elements need a visible focus style. Never `outline: none` without a replacement.
-- CSS animations need a `@media (prefers-reduced-motion: reduce)` fallback in `src/index.css`.
+- All interactive elements need a visible focus style. Never `outline: none` without a replacement. `src/index.css` currently scopes its box-shadow focus replacement to `.form-input` only, so any new interactive element must have its own visible focus style.
+- CSS animations need a `@media (prefers-reduced-motion: reduce)` fallback in `src/index.css`. This block is not present yet, so it must be added alongside the first animation that needs it.
 - Semantic landmarks on every page: `<header>`, `<nav>`, `<main>`, `<footer>`.
+
+WCAG 2.2 additions that matter for this layout:
+- **Target size (2.5.8):** pointer targets (icon buttons, nav links, theme toggle) are at least 24×24 CSS px, or spaced far enough apart.
+- **Focus appearance (2.4.13):** the focus indicator is at least a 2px-thick border-equivalent and contrasts ≥3:1 with adjacent colors, in both themes.
+- **Focus not obscured (2.4.11):** because the NavBar is sticky, a focused element reached by keyboard or hash navigation must not hide behind the header. Keep a `scroll-mt-*` offset on hash targets.
 
 ## Component Rules
 
@@ -84,6 +95,25 @@ For conditional or composed class strings, prefer `clsx` over manual string conc
 - No `console.log`, `console.warn`, or `console.error` in production code paths.
 - No commented-out code. Use `// TODO:` for intentionally deferred work.
 - A component over ~300 lines is a signal to extract named sub-components.
+
+## SEO & Metadata
+
+Per-route `<title>` and `<meta name="description">` use React 19 native document metadata: render the tags directly inside the route component and React hoists them to `<head>`. No `react-helmet` or external library. Today only `index.html` sets these globally, so every route shares one title and description; fixing that is the standing SEO task, done with native metadata.
+
+Known gaps to close when SEO work happens:
+- `<link rel="canonical">` is missing. The site is reachable on both the `.vercel.app` subdomain and the custom domain; a per-path canonical to `https://traced-ai.com/...` prevents duplicate-content indexing.
+- NotFound is served HTTP 200 (Vercel SPA fallback), so add `<meta name="robots" content="noindex">` for that route.
+- og:image is a TODO in `index.html`. LinkedIn previews are the primary outreach channel, so a compressed OG image (<200KB) is worth shipping.
+
+## Third-party Embeds & Integrations
+
+The site is static and client-only, so every integration runs in the browser: Tally (waitlist form), Cal.com (booking on `/thank-you`), and Stripe (planned for pricing/checkout).
+
+- Every embed `<iframe>` needs a `title`. If a vendor library injects the iframe without one, set it via a `ref` + `useEffect`.
+- Heavy embeds load only on the route that renders them. Do not eagerly bundle Cal.com or Stripe on routes that do not use them; lazy-load or dynamic-import.
+- Only publishable/public keys appear in client code. Stripe secret keys, API secrets, and webhook signing secrets never ship to the browser. Tally form IDs and the Cal.com URL are public config (`src/config.ts`), not secrets.
+- When a Content-Security-Policy is added to `vercel.json`, `frame-src` / `connect-src` must allow the embed origins (tally.so, cal.com, stripe.com).
+- Embeds that set cookies (Cal.com, Stripe) must be reflected in the privacy policy. Adding such an embed is a legal-page update trigger.
 
 ## Editing `src/copy.ts`
 
