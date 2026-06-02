@@ -58,7 +58,7 @@
 
 /* ═══ DARK THEME ═══
    Teal pulled to ~58% lightness against near-black.
-   Perceptually similar depth to light mode — present, not neon.
+   Perceptually similar depth to light mode: present, not neon.
 */
 [data-theme="dark"] {
   --bg-0:#09090B;
@@ -850,6 +850,46 @@ strong.hl { color: var(--tx-0); }
     <div class="spacing-row"><span class="spacing-label">sp-6 · 32px</span><div class="spacing-bar" style="width:32px"></div></div>
     <div class="spacing-row"><span class="spacing-label">sp-7 · 48px</span><div class="spacing-bar" style="width:48px"></div></div>
     <div class="spacing-row"><span class="spacing-label">sp-8 · 64px</span><div class="spacing-bar" style="width:64px"></div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ SECTION RHYTHM ═══ -->
+<div class="section">
+  <div class="section-label">Page Section Background Rhythm</div>
+  <p class="note">Sections alternate between <strong class="hl">--bg-1</strong> (white card surface) and <strong class="hl">--bg-0</strong> (warm off-white page base). The footer is always <strong class="hl">--bg-1</strong>. Two rules enforce visual cadence:</p>
+  <p class="note">1. The last content section before the footer must be <strong class="hl">--bg-0</strong>, so the footer reads as its own zone rather than a continuation of the page.</p>
+  <p class="note">2. Adjacent sections never share the same background. If a new section lands on the same bg as its neighbor, flip it.</p>
+  <p class="note">Each section also carries a <code style="font-family:var(--f-mono);font-size:12px;background:var(--bg-2);padding:2px 6px;border-radius:3px">borderTop: 1px solid var(--br-subtle)</code> to sharpen the boundary even when backgrounds already contrast.</p>
+
+  <div class="group-label" style="margin-top:24px">Landing page</div>
+  <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:24px">
+    <div style="background:var(--bg-1);border:1px solid var(--br-default);border-radius:var(--r-sm);padding:10px 14px;font-family:var(--f-mono);font-size:11px;color:var(--tx-1)">Hero · <strong style="color:var(--tx-0)">--bg-1</strong></div>
+    <div style="background:var(--bg-0);border:1px solid var(--br-default);border-radius:var(--r-sm);padding:10px 14px;font-family:var(--f-mono);font-size:11px;color:var(--tx-1)">RegulatoryReality · <strong style="color:var(--tx-0)">--bg-0</strong></div>
+    <div style="background:var(--bg-1);border:1px solid var(--br-default);border-radius:var(--r-sm);padding:10px 14px;font-family:var(--f-mono);font-size:11px;color:var(--tx-1)">BuiltFor · <strong style="color:var(--tx-0)">--bg-1</strong></div>
+    <div style="background:var(--bg-0);border:1px solid var(--br-default);border-radius:var(--r-sm);padding:10px 14px;font-family:var(--f-mono);font-size:11px;color:var(--tx-1)">WaitlistForm · <strong style="color:var(--tx-0)">--bg-0</strong> ← last section before footer</div>
+    <div style="background:var(--bg-1);border:1px solid var(--br-default);border-radius:var(--r-sm);padding:10px 14px;font-family:var(--f-mono);font-size:11px;color:var(--tx-2)">Footer · --bg-1 (always)</div>
+  </div>
+
+  <div class="group-label">Product page</div>
+  <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:24px">
+    <div style="background:var(--bg-1);border:1px solid var(--br-default);border-radius:var(--r-sm);padding:10px 14px;font-family:var(--f-mono);font-size:11px;color:var(--tx-1)">HowItWorks · <strong style="color:var(--tx-0)">--bg-1</strong></div>
+    <div style="background:var(--bg-0);border:1px solid var(--br-default);border-radius:var(--r-sm);padding:10px 14px;font-family:var(--f-mono);font-size:11px;color:var(--tx-1)">RuleRegistry · <strong style="color:var(--tx-0)">--bg-0</strong> ← last section before footer</div>
+    <div style="background:var(--bg-1);border:1px solid var(--br-default);border-radius:var(--r-sm);padding:10px 14px;font-family:var(--f-mono);font-size:11px;color:var(--tx-2)">Footer · --bg-1 (always)</div>
+  </div>
+
+  <div class="group-label">Pricing page</div>
+  <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:24px">
+    <div style="background:var(--bg-1);border:1px solid var(--br-default);border-radius:var(--r-sm);padding:10px 14px;font-family:var(--f-mono);font-size:11px;color:var(--tx-1)">Pricing (tiers + callout) · <strong style="color:var(--tx-0)">--bg-1</strong></div>
+    <div style="background:var(--bg-0);border:1px solid var(--br-default);border-radius:var(--r-sm);padding:10px 14px;font-family:var(--f-mono);font-size:11px;color:var(--tx-1)">CTA (Ready to start?) · <strong style="color:var(--tx-0)">--bg-0</strong> ← last section before footer</div>
+    <div style="background:var(--bg-1);border:1px solid var(--br-default);border-radius:var(--r-sm);padding:10px 14px;font-family:var(--f-mono);font-size:11px;color:var(--tx-2)">Footer · --bg-1 (always)</div>
+  </div>
+
+  <div class="rationale">
+    <p><strong class="hl">Why alternate and not a single background?</strong> A uniform page background makes long pages feel like one undifferentiated scroll. Alternating --bg-0 / --bg-1 creates natural section breaks without heavyweight dividers. The color shift is subtle enough to stay quiet but obvious enough to signal "this is a new topic."</p>
+    <p><strong class="hl">Why must the pre-footer section be --bg-0?</strong> The footer uses --bg-1 by definition (it holds the logo and nav links, which need the clean surface). If the last content section also uses --bg-1, they merge: the footer's border-top is the only separator, and the CTA copy visually floats in what reads as dead white space. --bg-0 before the footer means the footer arrives as a distinct plane.</p>
+    <p><strong class="hl">Why start with --bg-1?</strong> The NavBar is also --bg-1 with a border-bottom. Starting the first section with --bg-1 keeps the nav and the hero in the same visual register (same surface, just separated by a line). Starting with --bg-0 would make the hero feel like it's on a lower layer than the nav.</p>
   </div>
 </div>
 

@@ -18,8 +18,8 @@ Add these rows to the sub-processor table. Confirm actual regions in your provid
 
 | Provider | Role | Region | HQ |
 |---|---|---|---|
-| Fly.io | Backend API hosting | fra (Frankfurt) — confirm in dashboard | US (Delaware) |
-| Supabase | Managed Postgres (hashes, rationale, metadata) | eu-central-1 or similar — confirm in dashboard | US |
+| Fly.io | Backend API hosting | fra (Frankfurt), confirm in dashboard | US (Delaware) |
+| Supabase | Managed Postgres (hashes, rationale, metadata) | eu-central-1 or similar, confirm in dashboard | US |
 | Upstash | Queue and cache | Confirm region. If it holds only opaque hashes with no personal data, it may not need to appear here. | US |
 | Clerk | User authentication | US only (no EU residency option on standard plan) | US |
 | Stripe | Billing and payment processing | Add when billing goes live. Confirm entity: Stripe Payments Europe Ltd (Ireland) vs. Stripe Inc (US). | US/IE |

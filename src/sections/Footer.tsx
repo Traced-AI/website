@@ -1,4 +1,4 @@
-import React from 'react'
+import { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { footer } from '../copy'
 
@@ -26,14 +26,14 @@ export default function Footer() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-end' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               {footer.navLinks.map((link, i) => (
-                <React.Fragment key={link.href}>
+                <Fragment key={link.href}>
                   <Link to={link.href} className="footer-nav-link">
                     {link.label}
                   </Link>
                   {i < footer.navLinks.length - 1 && (
                     <span style={{ fontSize: '11px', color: 'var(--tx-2)', opacity: 0.4, userSelect: 'none' }}>·</span>
                   )}
-                </React.Fragment>
+                </Fragment>
               ))}
             </div>
             <a href={footer.contactEmail.href} className="footer-contact-link">

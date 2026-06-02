@@ -7,6 +7,9 @@
 # vite build output
 /dist
 
+# vite dev cache
+.vite
+
 # misc
 .DS_Store
 *.pem

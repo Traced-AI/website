@@ -24,13 +24,13 @@ function CodeBlock() {
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" style={{ background: 'var(--bg-1)', borderTop: '1px solid var(--br-subtle)', borderBottom: '1px solid var(--br-subtle)' }}>
+    <section style={{ background: 'var(--bg-1)', borderTop: '1px solid var(--br-subtle)', borderBottom: '1px solid var(--br-subtle)' }}>
       <div className="page-section">
         <div className="section-label">{howItWorks.sectionLabel}</div>
 
-        <h2 className="section-heading" style={{ marginBottom: '8px' }}>
+        <h1 className="section-heading" style={{ marginBottom: '8px' }}>
           {howItWorks.headline1}
-        </h2>
+        </h1>
         <h2 className="section-heading" style={{ marginBottom: '32px', color: 'var(--ac-text)' }}>
           {howItWorks.headline2}
         </h2>

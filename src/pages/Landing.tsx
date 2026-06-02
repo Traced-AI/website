@@ -8,6 +8,8 @@ import Footer from '../sections/Footer'
 export default function Landing() {
   return (
     <>
+      <title>Traced AI: EU AI Act audit trail for high-risk AI decisions</title>
+      <meta name="description" content="Traced AI builds the tamper-evident audit infrastructure regulated companies need before August 2026 enforcement. Your data stays local. Your compliance record does not." />
       <NavBar />
       <main>
         <Hero />

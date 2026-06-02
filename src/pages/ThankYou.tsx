@@ -4,7 +4,10 @@ import { thankYou } from '../copy'
 
 export default function ThankYou() {
   return (
-    <div style={{
+    <>
+      <title>You're on the list · Traced AI</title>
+      <meta name="description" content="We'll respond personally within 48 hours." />
+      <div style={{
       minHeight: '100vh',
       background: 'var(--bg-0)',
       display: 'flex',
@@ -86,5 +89,6 @@ export default function ThankYou() {
         </Link>
       </div>
     </div>
+    </>
   )
 }

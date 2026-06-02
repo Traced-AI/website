@@ -1,27 +1,19 @@
 import NavBar from '../sections/NavBar'
 import Footer from '../sections/Footer'
-import { LegalSection, Note } from '../components/LegalComponents'
+import { LegalSection } from '../components/LegalComponents'
 
 export default function Privacy() {
   return (
     <>
+      <title>Privacy Policy · Traced AI</title>
+      <meta name="description" content="How Driftware Dynamics Ltd handles personal data for traced-ai.com visitors and customers." />
       <NavBar />
       <main style={{ background: 'var(--bg-0)', minHeight: '100vh' }}>
         <div style={{ maxWidth: '720px', margin: '0 auto', padding: '80px 24px 96px' }}>
 
           <div className="section-label" style={{ marginBottom: '16px' }}>LEGAL</div>
 
-          <h1 style={{
-            fontFamily: 'var(--f-display-C)',
-            fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
-            fontWeight: 400,
-            letterSpacing: '0.06em',
-            color: 'var(--tx-0)',
-            lineHeight: 1.1,
-            marginBottom: '8px',
-          }}>
-            Privacy Policy
-          </h1>
+          <h1 className="legal-page-title">Privacy Policy</h1>
           <p style={{ fontSize: '13px', color: 'var(--tx-2)', fontFamily: 'var(--f-mono)', marginBottom: '48px' }}>
             Last updated: 29 May 2026
           </p>
@@ -86,7 +78,8 @@ export default function Privacy() {
 
           <LegalSection id="5" title="Cookies and analytics">
             <p><strong>Vercel Web Analytics</strong> is cookieless. It sets no cookies, collects no personally identifiable information, and identifies sessions by a request hash that is discarded after 24 hours. No consent banner is required for it.</p>
-            <p>The <strong>Tally</strong> waitlist form and <strong>Cal.com</strong> booking widget are third-party embeds. Each operates under its own privacy notice and may set cookies within its embed context: <a href="https://tally.so/privacy" target="_blank" rel="noopener noreferrer">Tally privacy policy</a> and <a href="https://cal.com/privacy" target="_blank" rel="noopener noreferrer">Cal.com privacy policy</a>.</p>
+            <p>The <strong>Tally</strong> waitlist form is a third-party embed. Tally does not use cookie tracking on forms; it operates under its own privacy notice: <a href="https://tally.so/privacy" target="_blank" rel="noopener noreferrer">Tally privacy policy</a>.</p>
+            <p>The <strong>Cal.eu</strong> booking widget is a third-party embed. It operates under its own privacy notice and may set cookies within its embed context: <a href="https://cal.com/privacy" target="_blank" rel="noopener noreferrer">Cal.eu privacy policy</a>.</p>
             <p>When user authentication is added to the product, any session cookies introduced will be listed here with their purpose and lifespan.</p>
           </LegalSection>
 

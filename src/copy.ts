@@ -235,6 +235,9 @@ export const pricing = {
   ] as PricingTier[],
   selfHostedNote:
     'The local viewer ships with the SDK. Raw AI data never leaves your perimeter, on any plan.',
+  selfHostedHeading: 'Self-hosted component',
+  readyHeadline: 'Ready to start?',
+  featuredTag: 'MOST POPULAR',
   pricingNote:
     '250k events covers approximately 8,000 LLM calls per day. If you are expecting higher volume before launch, reach out.',
 };

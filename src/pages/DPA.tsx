@@ -5,23 +5,15 @@ import { LegalSection, Note } from '../components/LegalComponents'
 export default function DPA() {
   return (
     <>
+      <title>Data Processing Agreement · Traced AI</title>
+      <meta name="description" content="GDPR Article 28 DPA between Driftware Dynamics Ltd and customers using the Traced AI service." />
       <NavBar />
       <main style={{ background: 'var(--bg-0)', minHeight: '100vh' }}>
         <div style={{ maxWidth: '720px', margin: '0 auto', padding: '80px 24px 96px' }}>
 
           <div className="section-label" style={{ marginBottom: '16px' }}>LEGAL</div>
 
-          <h1 style={{
-            fontFamily: 'var(--f-display-C)',
-            fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
-            fontWeight: 400,
-            letterSpacing: '0.06em',
-            color: 'var(--tx-0)',
-            lineHeight: 1.1,
-            marginBottom: '8px',
-          }}>
-            Data Processing Agreement
-          </h1>
+          <h1 className="legal-page-title">Data Processing Agreement</h1>
           <p style={{ fontSize: '13px', color: 'var(--tx-2)', fontFamily: 'var(--f-mono)', marginBottom: '8px' }}>
             Version 1.0. Last updated: 29 May 2026
           </p>

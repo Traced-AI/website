@@ -2,6 +2,9 @@
 
 /* ─── LIGHT THEME ─── */
 :root {
+  --color-on-accent: #ffffff;
+  --c-keyword: #8B5CF6;
+  --c-string: #16A34A;
   --bg-0: #F7F7F5;
   --bg-1: #FFFFFF;
   --bg-2: #F0F0EE;
@@ -44,6 +47,8 @@
 
 /* ─── DARK THEME ─── */
 [data-theme="dark"] {
+  --c-keyword: #B4A0FF;
+  --c-string: #86EFAC;
   --bg-0: #09090B;
   --bg-1: #111115;
   --bg-2: #1A1A20;
@@ -329,7 +334,7 @@ body {
   letter-spacing: 0.01em;
   text-decoration: none;
 }
-.btn-primary { background: var(--ac); color: #fff; }
+.btn-primary { background: var(--ac); color: var(--color-on-accent); }
 .btn-primary:hover { background: var(--ac-hover); }
 .btn-secondary { background: transparent; color: var(--tx-0); border: 1px solid var(--br-strong); }
 .btn-secondary:hover { background: var(--bg-2); }
@@ -443,10 +448,8 @@ body {
   color: var(--tx-0);
 }
 .c-comment { color: var(--tx-2); }
-.c-keyword  { color: #8B5CF6; }
-[data-theme="dark"] .c-keyword { color: #B4A0FF; }
-.c-string   { color: #16A34A; }
-[data-theme="dark"] .c-string  { color: #86EFAC; }
+.c-keyword  { color: var(--c-keyword); }
+.c-string   { color: var(--c-string); }
 .c-func     { color: var(--ac-text); }
 
 /* ─── REGISTRY TABLE ─── */
@@ -614,4 +617,36 @@ body {
   border-bottom: 1px solid var(--br-subtle);
   padding: 8px 12px;
   vertical-align: top;
+}
+
+/* ─── LEGAL PAGE ─── */
+.legal-page-title {
+  font-family: var(--f-display-C);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--tx-0);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+/* ─── ACCESSIBILITY ─── */
+
+/* All hash-targeted elements need clearance from the 56px sticky navbar. */
+[id] { scroll-margin-top: 72px; }
+
+/* Consistent 3:1 accent ring; form inputs keep their own :focus box-shadow. */
+:focus-visible {
+  outline: 2px solid var(--ac);
+  outline-offset: 2px;
+}
+
+/* Stop all motion for users who opted out. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto !important; }
 }
