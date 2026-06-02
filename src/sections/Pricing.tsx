@@ -1,15 +1,16 @@
 import PricingCard from '../components/PricingCard'
 import { pricing } from '../copy'
 
+
 export default function Pricing() {
   return (
     <section style={{ background: 'var(--bg-0)' }}>
       <div className="page-section">
         <div className="section-label">{pricing.sectionLabel}</div>
 
-        <h2 className="section-heading" style={{ marginBottom: '8px' }}>
+        <h1 className="section-heading" style={{ marginBottom: '8px' }}>
           {pricing.headline}
-        </h2>
+        </h1>
         <p style={{ fontSize: '15px', color: 'var(--tx-1)', marginBottom: '40px', maxWidth: '640px' }}>
           {pricing.subheadline}
         </p>
@@ -22,7 +23,7 @@ export default function Pricing() {
 
         <div className="callout" style={{ marginBottom: '16px', marginTop: '4px' }}>
           <strong style={{ display: 'block', fontSize: '13px', color: 'var(--tx-0)', marginBottom: '6px' }}>
-            Self-hosted component
+            {pricing.selfHostedHeading}
           </strong>
           {pricing.selfHostedNote}
         </div>

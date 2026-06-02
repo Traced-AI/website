@@ -1,6 +1,8 @@
+import type { ReactNode } from 'react'
+
 interface BadgeProps {
   variant?: 'teal' | 'green' | 'red' | 'muted' | 'info';
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export default function Badge({ variant = 'muted', children }: BadgeProps) {

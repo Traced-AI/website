@@ -28,9 +28,9 @@ export default function HowItWorks() {
       <div className="page-section">
         <div className="section-label">{howItWorks.sectionLabel}</div>
 
-        <h2 className="section-heading" style={{ marginBottom: '8px' }}>
+        <h1 className="section-heading" style={{ marginBottom: '8px' }}>
           {howItWorks.headline1}
-        </h2>
+        </h1>
         <h2 className="section-heading" style={{ marginBottom: '32px', color: 'var(--ac-text)' }}>
           {howItWorks.headline2}
         </h2>

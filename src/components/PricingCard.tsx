@@ -1,4 +1,5 @@
 import type { PricingTier } from '../copy'
+import { pricing } from '../copy'
 import Badge from './Badge'
 
 interface PricingCardProps {
@@ -8,7 +9,7 @@ interface PricingCardProps {
 export default function PricingCard({ tier }: PricingCardProps) {
   return (
     <div className={`price-card${tier.featured ? ' featured' : ''}`}>
-      {tier.featured && <div className="price-featured-tag">MOST POPULAR</div>}
+      {tier.featured && <div className="price-featured-tag">{pricing.featuredTag}</div>}
       <div className="price-tier">{tier.tier}</div>
       <div className="price-amount f-display">
         {tier.amount}

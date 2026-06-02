@@ -3,7 +3,7 @@
 Rules ordered by user-impact priority. IDs are used in review findings and cross-reference `docs/dev-guide.md`.
 Skip anything `tsc` + `eslint` already catch (unused vars, missing keys, hook rules). Step 1 runs those first and they take priority.
 
-Stack reality this checklist assumes: Vite 6 + React 19 + react-router-dom 7 + Tailwind v4 + TypeScript 5.7, Bun, static Vercel. No shadcn, no Next.js, no `@/` alias, `clsx` not installed.
+Stack reality this checklist assumes: Vite 8 + React 19 + react-router-dom 7 + Tailwind v4 + TypeScript 6, Bun, static Vercel. No shadcn, no Next.js, no `@/` alias, `clsx` not installed.
 
 ---
 

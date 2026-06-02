@@ -1,6 +1,8 @@
+import type { ReactNode } from 'react'
+
 interface DangerHighlightProps {
   tip: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export default function DangerHighlight({ tip, children }: DangerHighlightProps) {

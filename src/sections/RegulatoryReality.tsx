@@ -30,7 +30,7 @@ export default function RegulatoryReality() {
 
         <div className="callout" style={{ maxWidth: '720px', marginBottom: '32px' }}>
           <strong style={{ display: 'block', fontSize: '13px', color: 'var(--tx-0)', marginBottom: '8px' }}>
-            Enterprise procurement
+            {regulatoryReality.procurement.heading}
           </strong>
           {regulatoryReality.procurement.body}
         </div>

@@ -27,6 +27,10 @@ bun run dev
 | `bun run lint` | ESLint |
 | `bun run preview` | Preview the production build locally |
 
+## CI
+
+Every PR and push to `main` runs typecheck, lint, and build via GitHub Actions (`.github/workflows/ci.yml`). The check must pass before merging.
+
 ## Deployments
 
 Pushes to `main` deploy automatically to [traced-ai.com](https://traced-ai.com) via Vercel.

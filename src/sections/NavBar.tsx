@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import { useWaitlistClick } from '../hooks/useWaitlistClick'
 
 function ThemeIcon({ theme }: { theme: string }) {
   if (theme === 'dark') {
@@ -26,6 +27,7 @@ function ThemeIcon({ theme }: { theme: string }) {
 
 export default function NavBar() {
   const location = useLocation()
+  const handleWaitlistClick = useWaitlistClick()
   const [scrolled, setScrolled] = useState(false)
   const [theme, setTheme] = useState<string>(
     () => document.documentElement.getAttribute('data-theme') || 'light'
@@ -36,14 +38,6 @@ export default function NavBar() {
       e.preventDefault()
       window.scrollTo({ top: 0, behavior: 'smooth' })
       if (location.hash) window.history.replaceState(null, '', '/')
-    }
-  }
-
-  function handleWaitlistClick(e: React.MouseEvent) {
-    if (location.pathname === '/' && location.hash === '#waitlist') {
-      e.preventDefault()
-      document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' })
-      window.history.replaceState(null, '', '/#waitlist')
     }
   }
 
@@ -71,7 +65,7 @@ export default function NavBar() {
             <NavLink to="/product" className={({ isActive }) => `navbar-link${isActive ? ' active' : ''}`}>Product</NavLink>
             <NavLink to="/pricing" className={({ isActive }) => `navbar-link${isActive ? ' active' : ''}`}>Pricing</NavLink>
           </nav>
-          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme" aria-pressed={theme === 'dark'}>
             <ThemeIcon theme={theme} />
             {theme === 'dark' ? 'Light' : 'Dark'}
           </button>

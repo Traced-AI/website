@@ -2,7 +2,10 @@ import { Link } from 'react-router-dom'
 
 export default function NotFound() {
   return (
-    <div style={{
+    <>
+      <title>404 · Traced AI</title>
+      <meta name="robots" content="noindex" />
+      <div style={{
       minHeight: '100vh',
       background: 'var(--bg-0)',
       display: 'flex',
@@ -43,5 +46,6 @@ export default function NotFound() {
         </Link>
       </div>
     </div>
+    </>
   )
 }

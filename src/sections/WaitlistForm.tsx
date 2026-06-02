@@ -2,14 +2,16 @@ import { useEffect } from 'react'
 import { TALLY_FORM_ID } from '../config'
 import { waitlist } from '../copy'
 
+type TallyWindow = Window & { Tally?: { loadEmbeds: () => void } }
+
 function TallyEmbed() {
   useEffect(() => {
     if (TALLY_FORM_ID === 'PLACEHOLDER') return
 
     const existing = document.getElementById('tally-js')
     if (existing) {
-      if (typeof (window as Window & { Tally?: { loadEmbeds: () => void } }).Tally !== 'undefined') {
-        (window as Window & { Tally?: { loadEmbeds: () => void } }).Tally?.loadEmbeds()
+      if (typeof (window as TallyWindow).Tally !== 'undefined') {
+        (window as TallyWindow).Tally?.loadEmbeds()
       }
       return
     }
@@ -18,7 +20,7 @@ function TallyEmbed() {
     s.src = 'https://tally.so/widgets/embed.js'
     s.id = 'tally-js'
     s.onload = () => {
-      (window as Window & { Tally?: { loadEmbeds: () => void } }).Tally?.loadEmbeds()
+      (window as TallyWindow).Tally?.loadEmbeds()
     }
     document.body.appendChild(s)
   }, [])

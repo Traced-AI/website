@@ -35,7 +35,7 @@ External links always need both `target="_blank"` and `rel="noopener noreferrer"
 
 Fragment scrolling is handled globally by `src/components/ScrollToTop.tsx`. When the URL hash changes it calls `scrollIntoView` on the matching element, with no per-component scroll logic needed. The effect watches `[pathname, hash]`, so it fires both when navigating cross-route to a hash and when the hash changes on the same page.
 
-**Same-URL hash edge case:** `<Link to="/#section">` is a no-op when the current URL is already `/#section`, so `ScrollToTop`'s effect does not re-run. Any CTA that jumps to a hash anchor on the current page needs a click handler that calls `scrollIntoView` directly and keeps the URL in sync via `window.history.replaceState`. See `NavBar.handleWaitlistClick` as the reference implementation.
+**Same-URL hash edge case:** `<Link to="/#section">` is a no-op when the current URL is already `/#section`, so `ScrollToTop`'s effect does not re-run. Any CTA that jumps to a hash anchor on the current page needs a click handler that calls `scrollIntoView` directly and keeps the URL in sync via `window.history.replaceState`. The shared hook `src/hooks/useWaitlistClick.ts` implements this for `/#waitlist`; use it in any component that renders a waitlist CTA.
 
 NavBar items that reflect current page:
 ```tsx
