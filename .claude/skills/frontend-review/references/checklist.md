@@ -131,9 +131,9 @@ These are project-specific and legally load-bearing. A copy error here is a 🔴
 
 **S4**: `NotFound` renders `<meta name="robots" content="noindex">` (served HTTP 200 via Vercel SPA fallback). Verify it stays present; never apply noindex to real pages.
 
-**S5**: `og-image.png` is live at ~50KB. Stay under 200KB. Re-run `scripts/gen-assets.py` if source logos change.
+**S5**: `og-image.png` is live at ~50KB. Stay under 200KB. Re-run `scripts/gen-assets.py` if source logos change. `og:image:alt` is set globally in `index.html` (shared image across all routes).
 
-**S6**: Per-route OG metadata (`og:url`, route-specific `og:title`) belongs in the route component as native metadata, not in `index.html`. `index.html` is a global fallback only — any route-specific value set there will be wrong for every other route.
+**S6**: Per-route OG metadata (`og:url`, `og:title`, `og:description`) belongs in the route component as native metadata, not in `index.html`. `index.html` holds only truly global OG tags (`og:type`, `og:image`, `og:image:width`, `og:image:height`, `og:image:alt`, `twitter:card`, `twitter:image`). Any route-specific value in `index.html` is wrong for every other route.
 
 ---
 
