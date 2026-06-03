@@ -7,6 +7,7 @@ export default function DPA() {
     <>
       <title>Data Processing Agreement · Traced AI</title>
       <meta name="description" content="GDPR Article 28 DPA between Driftware Dynamics Ltd and customers using the Traced AI service." />
+      <link rel="canonical" href="https://traced-ai.com/dpa" />
       <NavBar />
       <main style={{ background: 'var(--bg-0)', minHeight: '100vh' }}>
         <div style={{ maxWidth: '720px', margin: '0 auto', padding: '80px 24px 96px' }}>

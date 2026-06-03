@@ -9,6 +9,7 @@ export default function PricingPage() {
     <>
       <title>Pricing · Traced AI</title>
       <meta name="description" content="Free tier to enterprise. Start tracing AI decisions in minutes." />
+      <link rel="canonical" href="https://traced-ai.com/pricing" />
       <NavBar />
       <main>
         <Pricing />

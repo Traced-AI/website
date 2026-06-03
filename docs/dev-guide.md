@@ -126,10 +126,7 @@ Per-route `<title>` and `<meta name="description">` use React 19 native document
 
 **NavBar logo:** The logo link in `src/sections/NavBar.tsx` uses `theme` state (initialized synchronously from `data-theme` before first render) to pick `logo-light.png` or `logo-dark.png`. No flash risk.
 
-Known gaps to close when SEO work happens:
-- `<link rel="canonical">` is missing. The site is reachable on both the `.vercel.app` subdomain and the custom domain; a per-path canonical to `https://traced-ai.com/...` prevents duplicate-content indexing.
-- NotFound is served HTTP 200 (Vercel SPA fallback), so add `<meta name="robots" content="noindex">` for that route.
-- Per-route `<title>` is still shared via `index.html`; use React 19 native metadata in each route component to add route-specific titles and descriptions.
+SEO baseline is now in place. Each route component renders its own `<title>`, `<meta name="description">`, and `<link rel="canonical" href="https://traced-ai.com/[path]">` via React 19 native document metadata. `NotFound` carries `<meta name="robots" content="noindex">`. The remaining gap is per-route `og:url`, which requires the same per-route approach but is deferred until the OG metadata audit.
 
 ## Third-party Embeds & Integrations
 

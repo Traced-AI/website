@@ -8,6 +8,7 @@ export default function Terms() {
     <>
       <title>Terms and Conditions · Traced AI</title>
       <meta name="description" content="Terms governing use of the Traced AI service." />
+      <link rel="canonical" href="https://traced-ai.com/terms" />
       <NavBar />
       <main style={{ background: 'var(--bg-0)', minHeight: '100vh' }}>
         <div style={{ maxWidth: '720px', margin: '0 auto', padding: '80px 24px 96px' }}>

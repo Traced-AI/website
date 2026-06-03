@@ -62,8 +62,8 @@ export default function NavBar() {
             src={theme === 'dark' ? '/logo-dark.png' : '/logo-light.png'}
             alt="Traced AI"
             className="navbar-logo-img"
-            width={123}
-            height={37}
+            width={492}
+            height={149}
           />
         </Link>
         <div className="navbar-actions">
