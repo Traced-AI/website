@@ -123,7 +123,7 @@ These are project-specific and legally load-bearing. A copy error here is a 🔴
 
 ## 8. SEO & Meta (S)
 
-**S1**: Per-route `<title>` and `<meta name="description">`. Every route component renders its own via React 19 native metadata (no `react-helmet`). Verify any new route includes both; missing ones silently fall back to the index.html global, making every page look identical to search engines.
+**S1**: Per-route `<title>` and `<meta name="description">`. Every route component renders its own via React 19 native metadata (no `react-helmet`). Verify any new route includes both; missing ones silently fall back to the index.html global. Title format: `Page Name · Traced AI` (short, symmetric). The `og:title` is separate — pull from the page's headline copy for something more descriptive; do not mirror the `<title>`.
 
 **S2**: `<html lang="en">` present in `index.html` (verify not removed).
 

@@ -259,7 +259,7 @@ Currently an outbound link. Intentional for Milestone 1: manual approval means t
 - [ ] All stat card fine labels are legally accurate (€35M = prohibited practices, not all high-risk)
 - [ ] "How it works" says "designed to support" not "satisfies" re: Articles 12 and 19
 - [ ] Lighthouse target: 90+ performance, 95+ accessibility
-- [ ] OG tags and meta description for LinkedIn previews
+- [x] OG tags and meta description for LinkedIn previews (og:image, og:url, og:title, og:description, og:image:alt per route; twitter:card global)
 - [ ] Point `traced-ai.com` DNS to Vercel
 - [ ] Set up contact@traced-ai.com email alias on traced-ai.com DNS, forwarding to cmin764@gmail.com
 
