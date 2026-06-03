@@ -13,8 +13,7 @@ export function LegalSection({
 }) {
   return (
     <section style={{ marginBottom: '40px' }}>
-      <h2 style={{
-        fontFamily: 'var(--f-display)',
+      <h2 className="f-display" style={{
         fontSize: '1.1rem',
         fontWeight: 500,
         letterSpacing: '0.04em',

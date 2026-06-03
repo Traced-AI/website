@@ -27,8 +27,7 @@ export default function ThankYou() {
           TRACED AI
         </div>
 
-        <h1 style={{
-          fontFamily: 'var(--f-display)',
+        <h1 className="f-display" style={{
           fontSize: 'clamp(2rem, 4vw, 3rem)',
           fontWeight: 400,
           letterSpacing: '0.06em',
@@ -51,8 +50,7 @@ export default function ThankYou() {
           padding: '24px',
           marginBottom: '32px',
         }}>
-          <h2 style={{
-            fontFamily: 'var(--f-display)',
+          <h2 className="f-display" style={{
             fontSize: '1rem',
             fontWeight: 500,
             letterSpacing: '0.03em',
@@ -64,7 +62,7 @@ export default function ThankYou() {
           <p style={{ fontSize: '14px', color: 'var(--tx-1)', lineHeight: 1.75, marginBottom: '20px' }}>
             {thankYou.callBlock.body}
           </p>
-          {CAL_BOOKING_URL !== 'PLACEHOLDER' ? (
+          {CAL_BOOKING_URL ? (
             <a
               href={CAL_BOOKING_URL}
               target="_blank"

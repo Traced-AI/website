@@ -8,8 +8,7 @@ export default function Footer() {
       <div className="footer-inner">
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '24px', marginBottom: '32px' }}>
           <div>
-            <div style={{
-              fontFamily: 'var(--f-display)',
+            <div className="f-display" style={{
               fontSize: '14px',
               fontWeight: 500,
               letterSpacing: '0.06em',

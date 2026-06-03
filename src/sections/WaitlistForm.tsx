@@ -6,7 +6,7 @@ type TallyWindow = Window & { Tally?: { loadEmbeds: () => void } }
 
 function TallyEmbed() {
   useEffect(() => {
-    if (TALLY_FORM_ID === 'PLACEHOLDER') return
+    if (!TALLY_FORM_ID) return
 
     const existing = document.getElementById('tally-js')
     if (existing) {
@@ -25,7 +25,7 @@ function TallyEmbed() {
     document.body.appendChild(s)
   }, [])
 
-  if (TALLY_FORM_ID === 'PLACEHOLDER') {
+  if (!TALLY_FORM_ID) {
     return (
       <div style={{
         border: '1px dashed var(--br-default)',
