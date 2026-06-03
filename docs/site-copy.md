@@ -325,7 +325,9 @@ You can book a 30-minute call directly. We'll ask you one question upfront about
 **CTA:** Book a call → (links to Cal.eu)
 
 **Fine print (muted):**
-The call is for companies actively evaluating whether Traced AI fits their situation. If you're still exploring, the waitlist email is the right next step.
+No pitch. If it's not relevant to your situation in the first 10 minutes, we stop.
+
+[cut: "The call is for companies actively evaluating whether Traced AI fits their situation. If you're still exploring, the waitlist email is the right next step." — gave people an exit ramp instead of removing their fear of a sales call.]
 
 ---
 
