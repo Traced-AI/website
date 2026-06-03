@@ -15,45 +15,26 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageChops, ImageDraw, ImageFont
 
 DEFAULT_SRC = Path("/Users/cmin/Projects/Traced AI/Media")
 
 REPO_ROOT = Path(__file__).parent.parent
 PUBLIC = REPO_ROOT / "public"
 
-parser = argparse.ArgumentParser(description="Generate Traced AI public/ assets from source logo files.")
-parser.add_argument(
-    "source",
-    nargs="?",
-    default=str(DEFAULT_SRC),
-    metavar="SOURCE_DIR",
-    help=f"Directory containing source logo PNGs (default: {DEFAULT_SRC})",
-)
-args = parser.parse_args()
-
-SRC = Path(args.source)
-if not SRC.is_dir():
-    sys.exit(f"Source directory not found: {SRC}")
-
-LOGO_TRANSPARENT = SRC / "Logo_TracedAI_Transparent.png"
-LOGO_BLACK = SRC / "Logo_TracedAI_Black.png"
-AI_ICON = SRC / "AI_Transparent.png"
-
-for f in (LOGO_TRANSPARENT, LOGO_BLACK, AI_ICON):
-    if not f.exists():
-        sys.exit(f"Required file missing: {f}")
-
 # Logo content bbox (pre-measured): x=435-1546, y=844-1096 in 2000x2000 canvas
 LOGO_X0, LOGO_X1 = 375, 1606   # +60px padding
 LOGO_Y0, LOGO_Y1 = 784, 1156   # +60px padding
 
 # Design tokens
-BG_DARK = (9, 9, 11)           # #09090B
+BG_DARK  = (9, 9, 11)          # #09090B
 TEAL_DARK = (74, 181, 196)     # #4AB5C4 (dark-mode accent)
-TEAL_LIGHT = (13, 138, 152)    # #0D8A98
 TEXT_MID = (180, 180, 185)     # #B4B4B9 (readable on dark bg)
-WHITE = (255, 255, 255)
+
+# Pixel thresholds
+ALPHA_THRESHOLD = 10   # pixels with alpha <= this are treated as transparent
+DARK_THRESHOLD  = 80   # logo: channels below this are considered black text
+BG_THRESHOLD    = 30   # OG source: channels below this are solid black background
 
 FONT_CACHE = Path(tempfile.gettempdir()) / "traced-ai-fonts"
 FONT_CACHE.mkdir(exist_ok=True)
@@ -68,14 +49,13 @@ def _fetch_ttf(gf_family: str, weight: int, label: str) -> Path:
     to pre-4.4 Android WebKit, which PIL/FreeType can load directly.
     """
     dest = FONT_CACHE / f"{label}.ttf"
-    # Bust any previously cached EOT files (wrong UA in older script versions).
     if dest.exists():
-        result = subprocess.run(["file", str(dest)], capture_output=True, text=True)
-        if "OpenType" in result.stdout or "EOT" in result.stdout:
+        try:
+            ImageFont.truetype(str(dest), 12)
+            return dest  # cached file loads cleanly
+        except OSError:
             dest.unlink()
-            print(f"  Replacing cached EOT with TTF for {label}...")
-        else:
-            return dest
+            print(f"  Re-downloading unreadable cached font: {label}...")
     css_url = f"https://fonts.googleapis.com/css?family={gf_family}:{weight}"
     # Old Android WebKit UA — Google Fonts serves TTF to pre-4.4 Android browsers.
     android_ua = (
@@ -103,6 +83,13 @@ def load_fonts():
     return spartan_bold, montserrat_reg, spartan_med
 
 
+def load_font(path: Path, size: int) -> ImageFont.FreeTypeFont:
+    try:
+        return ImageFont.truetype(str(path), size)
+    except OSError:
+        return ImageFont.load_default()
+
+
 # ── Logo helpers ─────────────────────────────────────────────────────────────
 
 def crop_logo(img: Image.Image) -> Image.Image:
@@ -114,18 +101,25 @@ def crop_logo(img: Image.Image) -> Image.Image:
 
 def make_logo_dark(light_crop: Image.Image) -> Image.Image:
     """Invert black/dark pixels to white; leave teal pixels untouched."""
-    img = light_crop.copy().convert("RGBA")
-    pixels = img.load()
-    w, h = img.size
-    for y in range(h):
-        for x in range(w):
-            r, g, b, a = pixels[x, y]
-            if a < 10:
-                continue
-            is_dark = r < 80 and g < 80 and b < 80
-            if is_dark:
-                pixels[x, y] = (255, 255, 255, a)
-    return img
+    r, g, b, a = light_crop.convert("RGBA").split()
+    vis = a.point(lambda v: 255 if v >= ALPHA_THRESHOLD else 0)
+    dark = ImageChops.multiply(
+        r.point(lambda v: 255 if v < DARK_THRESHOLD else 0),
+        ImageChops.multiply(
+            g.point(lambda v: 255 if v < DARK_THRESHOLD else 0),
+            ImageChops.multiply(
+                b.point(lambda v: 255 if v < DARK_THRESHOLD else 0),
+                vis,
+            ),
+        ),
+    )
+    white = Image.new("L", r.size, 255)
+    return Image.merge("RGBA", (
+        Image.composite(white, r, dark),
+        Image.composite(white, g, dark),
+        Image.composite(white, b, dark),
+        a,
+    ))
 
 
 # ── Favicon helpers ──────────────────────────────────────────────────────────
@@ -133,20 +127,14 @@ def make_logo_dark(light_crop: Image.Image) -> Image.Image:
 def crop_icon(img: Image.Image, padding: int = 40) -> Image.Image:
     """Tight crop of non-transparent content, expanded to square."""
     img = img.convert("RGBA")
-    px = img.load()
-    w, h = img.size
-    min_x, min_y, max_x, max_y = w, h, 0, 0
-    for y in range(h):
-        for x in range(w):
-            if px[x, y][3] > 10:
-                min_x = min(min_x, x)
-                min_y = min(min_y, y)
-                max_x = max(max_x, x)
-                max_y = max(max_y, y)
-    x0 = max(0, min_x - padding)
-    y0 = max(0, min_y - padding)
-    x1 = min(w, max_x + padding)
-    y1 = min(h, max_y + padding)
+    alpha = img.split()[3].point(lambda v: 255 if v > ALPHA_THRESHOLD else 0)
+    bbox = alpha.getbbox()
+    if bbox is None:
+        return img
+    x0 = max(0, bbox[0] - padding)
+    y0 = max(0, bbox[1] - padding)
+    x1 = min(img.width,  bbox[2] + padding)
+    y1 = min(img.height, bbox[3] + padding)
     cropped = img.crop((x0, y0, x1, y1))
     cw, ch = cropped.size
     side = max(cw, ch)
@@ -164,23 +152,20 @@ def draw_centered_text(draw, text, y, font, fill, canvas_w):
     return bbox[3] - bbox[1]  # text height
 
 
-def make_og(spartan_bold_path, montserrat_path, spartan_med_path) -> Image.Image:
+def make_og(logo_black: Path, spartan_bold_path, montserrat_path, spartan_med_path) -> Image.Image:
     W, H = 1200, 630
     img = Image.new("RGB", (W, H), BG_DARK)
     draw = ImageDraw.Draw(img)
 
     # Load white-text logo from Logo_TracedAI_Black.png (black bg, white Traced + teal icon)
-    src = Image.open(LOGO_BLACK).convert("RGB")
+    src = Image.open(logo_black).convert("RGB")
     logo_crop = src.crop((LOGO_X0, LOGO_Y0, LOGO_X1, LOGO_Y1))
-    # Make black bg transparent: convert black pixels to BG_DARK so they blend
-    logo_rgba = logo_crop.convert("RGBA")
-    px = logo_rgba.load()
-    lw, lh = logo_rgba.size
-    for y in range(lh):
-        for x in range(lw):
-            r, g, b, a = px[x, y]
-            if r < 30 and g < 30 and b < 30:
-                px[x, y] = (*BG_DARK, 255)
+    # Replace near-black background pixels with BG_DARK so they blend into the canvas
+    r, g, b = logo_crop.split()
+    r = r.point(lambda v: BG_DARK[0] if v < BG_THRESHOLD else v)
+    g = g.point(lambda v: BG_DARK[1] if v < BG_THRESHOLD else v)
+    b = b.point(lambda v: BG_DARK[2] if v < BG_THRESHOLD else v)
+    logo_rgba = Image.merge("RGB", (r, g, b)).convert("RGBA")
     logo_rgba = logo_rgba.resize((700, 212), Image.LANCZOS)
     logo_x = (W - 700) // 2
     logo_y = 72
@@ -192,21 +177,13 @@ def make_og(spartan_bold_path, montserrat_path, spartan_med_path) -> Image.Image
     rule_x = (W - rule_w) // 2
     draw.rectangle([rule_x, rule_y, rule_x + rule_w, rule_y + 4], fill=TEAL_DARK)
 
-    # Tagline — Montserrat
-    try:
-        font_tag = ImageFont.truetype(str(montserrat_path), 52)
-    except Exception:
-        font_tag = ImageFont.load_default()
     tag_y = rule_y + 26
-    draw_centered_text(draw, "EU AI Act audit trail for high-risk AI decisions", tag_y, font_tag, TEXT_MID, W)
+    draw_centered_text(draw, "EU AI Act audit trail for high-risk AI decisions",
+                       tag_y, load_font(montserrat_path, 52), TEXT_MID, W)
 
-    # URL — League Spartan medium
-    try:
-        font_url = ImageFont.truetype(str(spartan_med_path), 38)
-    except Exception:
-        font_url = ImageFont.load_default()
     url_y = H - 80
-    draw_centered_text(draw, "traced-ai.com", url_y, font_url, TEAL_DARK, W)
+    draw_centered_text(draw, "traced-ai.com",
+                       url_y, load_font(spartan_med_path, 38), TEAL_DARK, W)
 
     return img
 
@@ -214,26 +191,46 @@ def make_og(spartan_bold_path, montserrat_path, spartan_med_path) -> Image.Image
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
+    parser = argparse.ArgumentParser(
+        description="Generate Traced AI public/ assets from source logo files."
+    )
+    parser.add_argument(
+        "source",
+        nargs="?",
+        default=str(DEFAULT_SRC),
+        metavar="SOURCE_DIR",
+        help=f"Directory containing source logo PNGs (default: {DEFAULT_SRC})",
+    )
+    args = parser.parse_args()
+
+    src = Path(args.source)
+    if not src.is_dir():
+        sys.exit(f"Source directory not found: {src}")
+
+    logo_transparent = src / "Logo_TracedAI_Transparent.png"
+    logo_black       = src / "Logo_TracedAI_Black.png"
+    ai_icon          = src / "AI_Transparent.png"
+    for f in (logo_transparent, logo_black, ai_icon):
+        if not f.exists():
+            sys.exit(f"Required file missing: {f}")
+
     PUBLIC.mkdir(exist_ok=True)
-    print(f"Source: {SRC}")
+    print(f"Source: {src}")
     print("Downloading fonts...")
     spartan_bold, montserrat_reg, spartan_med = load_fonts()
 
     # ── Logo: light
     print("Generating logo-light.png...")
-    src_light = Image.open(LOGO_TRANSPARENT).convert("RGBA")
-    logo_light = crop_logo(src_light)
+    logo_light = crop_logo(Image.open(logo_transparent).convert("RGBA"))
     logo_light.save(PUBLIC / "logo-light.png", optimize=True)
 
     # ── Logo: dark
     print("Generating logo-dark.png...")
-    logo_dark = make_logo_dark(logo_light)
-    logo_dark.save(PUBLIC / "logo-dark.png", optimize=True)
+    make_logo_dark(logo_light).save(PUBLIC / "logo-dark.png", optimize=True)
 
     # ── Favicon sizes from AI_Transparent.png
     print("Generating favicon sizes...")
-    ai_src = Image.open(AI_ICON).convert("RGBA")
-    icon_sq = crop_icon(ai_src, padding=40)
+    icon_sq = crop_icon(Image.open(ai_icon).convert("RGBA"), padding=40)
 
     apple_touch = icon_sq.resize((180, 180), Image.LANCZOS)
     apple_touch.save(PUBLIC / "apple-touch-icon.png", optimize=True)
@@ -257,7 +254,7 @@ def main():
 
     # ── OG image
     print("Generating og-image.png...")
-    og = make_og(spartan_bold, montserrat_reg, spartan_med)
+    og = make_og(logo_black, spartan_bold, montserrat_reg, spartan_med)
     og.save(PUBLIC / "og-image.png", optimize=True)
     size_kb = (PUBLIC / "og-image.png").stat().st_size // 1024
     print(f"  og-image.png: {size_kb} KB")
