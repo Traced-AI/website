@@ -1,6 +1,6 @@
 export const hero = {
-  line1: 'Move fast',
-  line2Before: 'and',
+  line1: 'Move fast and',
+  line2Before: '',
   line2Strike: 'break things',
   line2Highlight: 'get investigated',
   tooltip: 'EU AI Act Art. 99 · up to €15M / 3% for high-risk violations, €35M / 7% for prohibited practices',
