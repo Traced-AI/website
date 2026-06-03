@@ -10,6 +10,9 @@ export default function PricingPage() {
       <title>Pricing · Traced AI</title>
       <meta name="description" content="Free tier to enterprise. Start tracing AI decisions in minutes." />
       <link rel="canonical" href="https://traced-ai.com/pricing" />
+      <meta property="og:url" content="https://traced-ai.com/pricing" />
+      <meta property="og:title" content="Pricing · Traced AI" />
+      <meta property="og:description" content="Free tier to enterprise. Start tracing AI decisions in minutes." />
       <NavBar />
       <main>
         <Pricing />

@@ -8,6 +8,9 @@ export default function ThankYou() {
       <title>You're on the list · Traced AI</title>
       <meta name="description" content="We'll respond personally within 48 hours." />
       <link rel="canonical" href="https://traced-ai.com/thank-you" />
+      <meta property="og:url" content="https://traced-ai.com/thank-you" />
+      <meta property="og:title" content="You're on the list · Traced AI" />
+      <meta property="og:description" content="We'll respond personally within 48 hours." />
       <div style={{
       minHeight: '100vh',
       background: 'var(--bg-0)',
