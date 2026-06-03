@@ -28,7 +28,7 @@ export default function ThankYou() {
         </div>
 
         <h1 style={{
-          fontFamily: 'var(--f-display-C)',
+          fontFamily: 'var(--f-display)',
           fontSize: 'clamp(2rem, 4vw, 3rem)',
           fontWeight: 400,
           letterSpacing: '0.06em',
@@ -52,7 +52,7 @@ export default function ThankYou() {
           marginBottom: '32px',
         }}>
           <h2 style={{
-            fontFamily: 'var(--f-display-C)',
+            fontFamily: 'var(--f-display)',
             fontSize: '1rem',
             fontWeight: 500,
             letterSpacing: '0.03em',

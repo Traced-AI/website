@@ -37,8 +37,8 @@
   --deadline-bg: rgba(21, 128, 61, 0.08);
   --deadline-border: rgba(21, 128, 61, 0.20);
   --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --f-display-C: 'League Spartan', system-ui, sans-serif;
-  --f-body-C: 'Montserrat', system-ui, sans-serif;
+  --f-display: 'League Spartan', system-ui, sans-serif;
+  --f-body: 'Montserrat', system-ui, sans-serif;
   --f-mono: 'JetBrains Mono', 'Courier New', monospace;
   --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px;
   --sp-6: 32px; --sp-7: 48px; --sp-8: 64px;
@@ -103,16 +103,13 @@
   --color-success: var(--success-text);
 }
 
-/* ─── FONT PAIRING C (locked) ─── */
-[data-font="C"] .f-display      { font-family: var(--f-display-C); letter-spacing: 0.08em; }
-[data-font="C"] .f-body         { font-family: var(--f-body-C); }
-[data-font="C"] .accent-quote   { font-style: italic; font-weight: 300; letter-spacing: 0.06em; font-size: 0.95em; }
-[data-font="C"] .hero-headline  { font-weight: 700; letter-spacing: 0.06em; }
-[data-font="C"] .stat-value     { font-weight: 500; letter-spacing: 0.04em; }
-[data-font="C"] .card-headline  { font-weight: 500; letter-spacing: 0.03em; }
-[data-font="C"] body            { font-family: var(--f-body-C); }
-[data-font="C"] .form-input     { font-family: var(--f-body-C); }
-[data-font="C"] .btn            { font-family: var(--f-body-C); }
+/* ─── TYPOGRAPHY CLASSES ─── */
+.f-display      { font-family: var(--f-display); letter-spacing: 0.08em; }
+.f-body         { font-family: var(--f-body); }
+.accent-quote   { font-style: italic; font-weight: 300; letter-spacing: 0.06em; font-size: 0.95em; }
+.hero-headline  { font-weight: 700; letter-spacing: 0.06em; }
+.stat-value     { font-weight: 500; letter-spacing: 0.04em; }
+.card-headline  { font-weight: 500; letter-spacing: 0.03em; }
 
 /* ─── BASE ─── */
 *,
@@ -124,7 +121,7 @@ html { transition: background 0.2s ease, color 0.2s ease; }
 body {
   background: var(--bg-0);
   color: var(--tx-0);
-  font-family: var(--f-body-C);
+  font-family: var(--f-body);
   font-size: 16px;
   line-height: 1.6;
   transition: background 0.2s ease, color 0.2s ease;
@@ -150,7 +147,7 @@ body {
 }
 
 .section-heading {
-  font-family: var(--f-display-C);
+  font-family: var(--f-display);
   font-size: clamp(1.6rem, 3vw, 2.4rem);
   font-weight: 500;
   color: var(--tx-0);
@@ -182,7 +179,7 @@ body {
   justify-content: space-between;
 }
 .navbar-logo {
-  font-family: var(--f-display-C);
+  font-family: var(--f-display);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.06em;
@@ -192,7 +189,7 @@ body {
 .navbar-actions { display: flex; align-items: center; gap: 10px; }
 .navbar-links { display: flex; align-items: center; gap: 4px; margin-right: 4px; }
 .navbar-link {
-  font-family: var(--f-body-C);
+  font-family: var(--f-body);
   font-size: 13px;
   font-weight: 500;
   color: var(--tx-1);
@@ -212,7 +209,7 @@ body {
   border-radius: 100px;
   background: transparent;
   color: var(--tx-2);
-  font-family: var(--f-body-C);
+  font-family: var(--f-body);
   font-size: 12px;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -325,7 +322,7 @@ body {
   gap: 6px;
   padding: 11px 22px;
   border-radius: var(--r-md);
-  font-family: var(--f-body-C);
+  font-family: var(--f-body);
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -384,7 +381,7 @@ body {
   color: var(--tx-0);
   line-height: 1;
   margin-bottom: 6px;
-  font-family: var(--f-display-C);
+  font-family: var(--f-display);
 }
 .stat-value.small { font-size: 1.5rem; }
 .stat-label { font-size: 12px; color: var(--tx-2); line-height: 1.5; }
@@ -541,7 +538,7 @@ body {
   border: 1px solid var(--br-default);
   border-radius: var(--r-md);
   padding: 10px 14px;
-  font-family: var(--f-body-C);
+  font-family: var(--f-body);
   font-size: 14px;
   color: var(--tx-0);
   outline: none;
@@ -621,7 +618,7 @@ body {
 
 /* ─── LEGAL PAGE ─── */
 .legal-page-title {
-  font-family: var(--f-display-C);
+  font-family: var(--f-display);
   font-size: clamp(1.75rem, 3vw, 2.5rem);
   font-weight: 400;
   letter-spacing: 0.06em;

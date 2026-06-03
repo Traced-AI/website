@@ -26,7 +26,7 @@ export default function NotFound() {
         </div>
 
         <h1 style={{
-          fontFamily: 'var(--f-display-C)',
+          fontFamily: 'var(--f-display)',
           fontSize: 'clamp(2rem, 4vw, 3rem)',
           fontWeight: 400,
           letterSpacing: '0.06em',

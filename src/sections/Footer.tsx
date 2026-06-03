@@ -9,7 +9,7 @@ export default function Footer() {
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '24px', marginBottom: '32px' }}>
           <div>
             <div style={{
-              fontFamily: 'var(--f-display-C)',
+              fontFamily: 'var(--f-display)',
               fontSize: '14px',
               fontWeight: 500,
               letterSpacing: '0.06em',
