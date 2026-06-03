@@ -127,7 +127,7 @@ Per-route `<title>`, `<meta name="description">`, and `<link rel="canonical">` a
 
 **NavBar logo:** The logo link in `src/sections/NavBar.tsx` uses `theme` state (initialized synchronously from `data-theme` before first render) to pick `logo-light.png` or `logo-dark.png`. No flash risk.
 
-SEO baseline is now in place. Each route component renders its own `<title>`, `<meta name="description">`, and `<link rel="canonical" href="https://traced-ai.com/[path]">` via React 19 native document metadata. `NotFound` carries `<meta name="robots" content="noindex">`. The remaining gap is per-route `og:url`, which requires the same per-route approach but is deferred until the OG metadata audit.
+SEO baseline is complete. Each route component renders its own `<title>`, `<meta name="description">`, `<link rel="canonical">`, `og:url`, `og:title`, and `og:description` via React 19 native document metadata. `NotFound` carries `<meta name="robots" content="noindex">`. Truly global OG tags (`og:type`, `og:image`, `og:image:alt`, `twitter:card`, `twitter:image`) stay in `index.html`.
 
 ## Third-party Embeds & Integrations
 
