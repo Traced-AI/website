@@ -10,6 +10,7 @@ Run from repo root:
 
 import argparse
 import base64
+import io
 import re
 import subprocess
 import sys
@@ -27,20 +28,16 @@ LOGO_X0, LOGO_X1 = 375, 1606   # +60px padding
 LOGO_Y0, LOGO_Y1 = 784, 1156   # +60px padding
 
 # Design tokens
-BG_DARK  = (9, 9, 11)          # #09090B
+BG_DARK   = (9, 9, 11)         # #09090B
 TEAL_DARK = (74, 181, 196)     # #4AB5C4 (dark-mode accent)
-TEXT_MID = (180, 180, 185)     # #B4B4B9 (readable on dark bg)
+TEXT_MID  = (180, 180, 185)    # #B4B4B9 (readable on dark bg)
 
 # Pixel thresholds
 ALPHA_THRESHOLD = 10   # pixels with alpha <= this are treated as transparent
 DARK_THRESHOLD  = 80   # logo: channels below this are considered black text
-BG_THRESHOLD    = 30   # OG source: channels below this are solid black background
-
-FONT_CACHE = Path(tempfile.gettempdir()) / "traced-ai-fonts"
-FONT_CACHE.mkdir(exist_ok=True)
 
 
-# ── Font helpers ────────────────────────────────────────────────────────────
+# ── Font helpers ─────────────────────────────────────────────────────────────
 
 def _fetch_ttf(gf_family: str, weight: int, label: str) -> Path:
     """Download a TTF from Google Fonts.
@@ -48,7 +45,9 @@ def _fetch_ttf(gf_family: str, weight: int, label: str) -> Path:
     Old-Android UA is the sweet spot: Google Fonts serves TTF (not WOFF2/EOT)
     to pre-4.4 Android WebKit, which PIL/FreeType can load directly.
     """
-    dest = FONT_CACHE / f"{label}.ttf"
+    font_cache = Path(tempfile.gettempdir()) / "traced-ai-fonts"
+    font_cache.mkdir(exist_ok=True)
+    dest = font_cache / f"{label}.ttf"
     if dest.exists():
         try:
             ImageFont.truetype(str(dest), 12)
@@ -77,20 +76,19 @@ def _fetch_ttf(gf_family: str, weight: int, label: str) -> Path:
 
 
 def load_fonts():
-    spartan_bold = _fetch_ttf("League+Spartan", 700, "league-spartan-700")
     montserrat_reg = _fetch_ttf("Montserrat", 400, "montserrat-400")
-    spartan_med = _fetch_ttf("League+Spartan", 500, "league-spartan-500")
-    return spartan_bold, montserrat_reg, spartan_med
+    spartan_med    = _fetch_ttf("League+Spartan", 500, "league-spartan-500")
+    return montserrat_reg, spartan_med
 
 
 def load_font(path: Path, size: int) -> ImageFont.FreeTypeFont:
     try:
         return ImageFont.truetype(str(path), size)
     except OSError:
-        return ImageFont.load_default()
+        return ImageFont.load_default(size=size)
 
 
-# ── Logo helpers ─────────────────────────────────────────────────────────────
+# ── Logo helpers ──────────────────────────────────────────────────────────────
 
 def crop_logo(img: Image.Image) -> Image.Image:
     """Crop to padded content bbox and resize for 3x retina at 32px display height."""
@@ -101,8 +99,8 @@ def crop_logo(img: Image.Image) -> Image.Image:
 
 def make_logo_dark(light_crop: Image.Image) -> Image.Image:
     """Invert black/dark pixels to white; leave teal pixels untouched."""
-    r, g, b, a = light_crop.convert("RGBA").split()
-    vis = a.point(lambda v: 255 if v >= ALPHA_THRESHOLD else 0)
+    r, g, b, a = light_crop.split()
+    vis = a.point(lambda v: 255 if v > ALPHA_THRESHOLD else 0)
     dark = ImageChops.multiply(
         r.point(lambda v: 255 if v < DARK_THRESHOLD else 0),
         ImageChops.multiply(
@@ -122,7 +120,7 @@ def make_logo_dark(light_crop: Image.Image) -> Image.Image:
     ))
 
 
-# ── Favicon helpers ──────────────────────────────────────────────────────────
+# ── Favicon helpers ───────────────────────────────────────────────────────────
 
 def crop_icon(img: Image.Image, padding: int = 40) -> Image.Image:
     """Tight crop of non-transparent content, expanded to square."""
@@ -143,7 +141,7 @@ def crop_icon(img: Image.Image, padding: int = 40) -> Image.Image:
     return square
 
 
-# ── OG image ─────────────────────────────────────────────────────────────────
+# ── OG image ──────────────────────────────────────────────────────────────────
 
 def draw_centered_text(draw, text, y, font, fill, canvas_w):
     bbox = draw.textbbox((0, 0), text, font=font)
@@ -152,21 +150,15 @@ def draw_centered_text(draw, text, y, font, fill, canvas_w):
     return bbox[3] - bbox[1]  # text height
 
 
-def make_og(logo_black: Path, spartan_bold_path, montserrat_path, spartan_med_path) -> Image.Image:
+def make_og(logo_transparent: Path, montserrat_path: Path, spartan_med_path: Path) -> Image.Image:
     W, H = 1200, 630
     img = Image.new("RGB", (W, H), BG_DARK)
     draw = ImageDraw.Draw(img)
 
-    # Load white-text logo from Logo_TracedAI_Black.png (black bg, white Traced + teal icon)
-    src = Image.open(logo_black).convert("RGB")
-    logo_crop = src.crop((LOGO_X0, LOGO_Y0, LOGO_X1, LOGO_Y1))
-    # Replace near-black background pixels with BG_DARK so they blend into the canvas
-    r, g, b = logo_crop.split()
-    r = r.point(lambda v: BG_DARK[0] if v < BG_THRESHOLD else v)
-    g = g.point(lambda v: BG_DARK[1] if v < BG_THRESHOLD else v)
-    b = b.point(lambda v: BG_DARK[2] if v < BG_THRESHOLD else v)
-    logo_rgba = Image.merge("RGB", (r, g, b)).convert("RGBA")
-    logo_rgba = logo_rgba.resize((700, 212), Image.LANCZOS)
+    # Use the transparent-bg source so alpha compositing preserves anti-aliased edges.
+    # make_logo_dark inverts black text to white and leaves teal pixels untouched.
+    light_crop = crop_logo(Image.open(logo_transparent).convert("RGBA"))
+    logo_rgba = make_logo_dark(light_crop).resize((700, 212), Image.LANCZOS)
     logo_x = (W - 700) // 2
     logo_y = 72
     img.paste(logo_rgba, (logo_x, logo_y), logo_rgba)
@@ -188,7 +180,7 @@ def make_og(logo_black: Path, spartan_bold_path, montserrat_path, spartan_med_pa
     return img
 
 
-# ── Main ─────────────────────────────────────────────────────────────────────
+# ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
     parser = argparse.ArgumentParser(
@@ -208,16 +200,15 @@ def main():
         sys.exit(f"Source directory not found: {src}")
 
     logo_transparent = src / "Logo_TracedAI_Transparent.png"
-    logo_black       = src / "Logo_TracedAI_Black.png"
     ai_icon          = src / "AI_Transparent.png"
-    for f in (logo_transparent, logo_black, ai_icon):
+    for f in (logo_transparent, ai_icon):
         if not f.exists():
             sys.exit(f"Required file missing: {f}")
 
     PUBLIC.mkdir(exist_ok=True)
     print(f"Source: {src}")
     print("Downloading fonts...")
-    spartan_bold, montserrat_reg, spartan_med = load_fonts()
+    montserrat_reg, spartan_med = load_fonts()
 
     # ── Logo: light
     print("Generating logo-light.png...")
@@ -230,7 +221,7 @@ def main():
 
     # ── Favicon sizes from AI_Transparent.png
     print("Generating favicon sizes...")
-    icon_sq = crop_icon(Image.open(ai_icon).convert("RGBA"), padding=40)
+    icon_sq = crop_icon(Image.open(ai_icon), padding=40)
 
     apple_touch = icon_sq.resize((180, 180), Image.LANCZOS)
     apple_touch.save(PUBLIC / "apple-touch-icon.png", optimize=True)
@@ -245,7 +236,9 @@ def main():
 
     # ── favicon.svg — base64-embedded PNG so it renders without external deps
     print("Writing favicon.svg...")
-    png_b64 = base64.b64encode((PUBLIC / "apple-touch-icon.png").read_bytes()).decode()
+    buf = io.BytesIO()
+    apple_touch.save(buf, format="PNG", optimize=True)
+    png_b64 = base64.b64encode(buf.getvalue()).decode()
     (PUBLIC / "favicon.svg").write_text(
         '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">\n'
         f'  <image href="data:image/png;base64,{png_b64}" width="180" height="180"/>\n'
@@ -254,7 +247,7 @@ def main():
 
     # ── OG image
     print("Generating og-image.png...")
-    og = make_og(logo_black, spartan_bold, montserrat_reg, spartan_med)
+    og = make_og(logo_transparent, montserrat_reg, spartan_med)
     og.save(PUBLIC / "og-image.png", optimize=True)
     size_kb = (PUBLIC / "og-image.png").stat().st_size // 1024
     print(f"  og-image.png: {size_kb} KB")

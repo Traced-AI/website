@@ -44,8 +44,8 @@ NavBar appears on every page: logo image (clickable, links to `/`) + Product lin
 
 **Headline (display, two lines):**
 
-Move fast
-and ~~break things~~ get investigated
+Move fast and
+~~break things~~ get investigated
 
 **Implementation note:** Single strikethrough on "break things" as a unit. "get investigated" follows with a dotted underline and hover tooltip: `EU AI Act Art. 99 · up to €15M / 3% for high-risk violations, €35M / 7% for prohibited practices`. Same color as the rest of the line. The dots do the work.
 
