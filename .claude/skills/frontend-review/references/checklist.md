@@ -97,6 +97,8 @@ These are project-specific and legally load-bearing. A copy error here is a 🔴
 
 **C5**: Legal pages use the shared `LegalSection` and `Note` from `src/components/LegalComponents.tsx`. Do not redefine them locally. A component over roughly 300 lines is a signal to extract named sub-components.
 
+**C6**: `<img>` `width` and `height` attributes must be the natural image dimensions (as stored on disk), not the CSS display size. Browsers use these for aspect-ratio computation before CSS applies; display-size attrs produce the wrong ratio and can cause a brief layout shift.
+
 ---
 
 ## 6. Legal Pages (L)
@@ -121,15 +123,17 @@ These are project-specific and legally load-bearing. A copy error here is a 🔴
 
 ## 8. SEO & Meta (S)
 
-**S1**: Per-route `<title>` and `<meta name="description">`. The idiomatic React 19 approach is rendering `<title>`/`<meta>` directly inside each route component; React 19 hoists them to `<head>`, no `react-helmet` needed. Today only `index.html` sets these globally, so every route shares one title. Flag as an SEO gap (🟡), and use native metadata when fixing.
+**S1**: Per-route `<title>` and `<meta name="description">`. Every route component renders its own via React 19 native metadata (no `react-helmet`). Verify any new route includes both; missing ones silently fall back to the index.html global. Title format: `Page Name · Traced AI` (short, symmetric). The `og:title` is separate — pull from the page's headline copy for something more descriptive; do not mirror the `<title>`.
 
 **S2**: `<html lang="en">` present in `index.html` (verify not removed).
 
-**S3**: `<link rel="canonical">` is currently missing. On Vercel the site is reachable on both `.vercel.app` and the custom domain; a canonical to `https://traced-ai.com/<path>` prevents duplicate-content indexing. Note in full audits.
+**S3**: Per-route `<link rel="canonical" href="https://traced-ai.com/[path]">` rendered in each route component. Verify new routes include one and the href matches the route path exactly. NotFound does not need a canonical (it has noindex).
 
-**S4**: NotFound is served HTTP 200 (Vercel SPA fallback). Add `<meta name="robots" content="noindex">` for that route so crawlers skip error pages.
+**S4**: `NotFound` renders `<meta name="robots" content="noindex">` (served HTTP 200 via Vercel SPA fallback). Verify it stays present; never apply noindex to real pages.
 
-**S5**: og:image is a TODO in `index.html`. A compressed OG image (under 200KB) improves LinkedIn and social previews, the primary outreach channel per the GTM plan.
+**S5**: `og-image.png` is live at ~50KB. Stay under 200KB. Re-run `scripts/gen-assets.py` if source logos change. `og:image:alt` is set globally in `index.html` (shared image across all routes).
+
+**S6**: Per-route OG metadata (`og:url`, `og:title`, `og:description`) belongs in the route component as native metadata, not in `index.html`. `index.html` holds only truly global OG tags (`og:type`, `og:image`, `og:image:width`, `og:image:height`, `og:image:alt`, `twitter:card`, `twitter:image`). Any route-specific value in `index.html` is wrong for every other route.
 
 ---
 

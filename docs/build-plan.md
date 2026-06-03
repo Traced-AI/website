@@ -211,7 +211,7 @@ bunx shadcn@latest init
 
 Single route: `/`. Sections in render order:
 
-1. `<NavBar />`: logo text "Traced AI" + "Join waitlist" button anchoring to `#waitlist`
+1. `<NavBar />`: logo image (logo-light.png / logo-dark.png, theme-reactive) + "Join waitlist" button anchoring to `#waitlist`. Favicon (teal AI icon), OG image (1200x630), and Twitter card tags shipped in feature/ui-logo-og-imags.
 2. `<Hero />`: VP tagline with strikethrough, italic subheadline, body, dual CTAs, auto-computed deadline pill
 3. `<Stats />`: 4-stat grid with links to official EU AI Act sources (corrected fine labels)
 4. `<HowItWorks />`: 4-feature list: SDK, local storage, tamper-evident ledger, auditor-ready exports
@@ -259,7 +259,7 @@ Currently an outbound link. Intentional for Milestone 1: manual approval means t
 - [ ] All stat card fine labels are legally accurate (€35M = prohibited practices, not all high-risk)
 - [ ] "How it works" says "designed to support" not "satisfies" re: Articles 12 and 19
 - [ ] Lighthouse target: 90+ performance, 95+ accessibility
-- [ ] OG tags and meta description for LinkedIn previews
+- [x] OG tags and meta description for LinkedIn previews (og:image, og:url, og:title, og:description, og:image:alt per route; twitter:card global)
 - [ ] Point `traced-ai.com` DNS to Vercel
 - [ ] Set up contact@traced-ai.com email alias on traced-ai.com DNS, forwarding to cmin764@gmail.com
 

@@ -57,8 +57,14 @@ export default function NavBar() {
   return (
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
       <div className="navbar-inner">
-        <Link to="/" className="navbar-logo f-display" onClick={handleLogoClick}>
-          Traced AI
+        <Link to="/" className="navbar-logo" onClick={handleLogoClick}>
+          <img
+            src={theme === 'dark' ? '/logo-dark.png' : '/logo-light.png'}
+            alt="Traced AI"
+            className="navbar-logo-img"
+            width={492}
+            height={149}
+          />
         </Link>
         <div className="navbar-actions">
           <nav className="navbar-links" aria-label="Site navigation">

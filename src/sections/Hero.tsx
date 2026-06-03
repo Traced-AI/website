@@ -15,7 +15,7 @@ export default function Hero() {
         <h1 className="hero-headline f-display">
           <span className="hl-line1">{hero.line1}</span>
           <span className="hl-line2">
-            {hero.line2Before}{' '}
+            {hero.line2Before && <>{hero.line2Before}{' '}</>}
             <span className="through">{hero.line2Strike}</span>{' '}
             <DangerHighlight tip={hero.tooltip}>{hero.line2Highlight}</DangerHighlight>
           </span>

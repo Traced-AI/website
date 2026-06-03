@@ -4,19 +4,20 @@
 
 Per-route `<title>` and `<meta name="description">` are rendered natively in each route component (React 19 hoists them). The index.html fallback title/description remain as the global default.
 
-| Route | Title | Description |
-|-------|-------|-------------|
-| `/` | Traced AI: EU AI Act audit trail for high-risk AI decisions | Traced AI builds the tamper-evident audit infrastructure regulated companies need before August 2026 enforcement. Your data stays local. Your compliance record does not. |
-| `/product` | How Traced AI works · Tamper-evident audit infrastructure | Local-first SDK, cryptographic ledger, and auditor-ready exports for EU AI Act compliance. |
-| `/pricing` | Pricing · Traced AI | Free tier to enterprise. Start tracing AI decisions in minutes. |
-| `/thank-you` | You're on the list · Traced AI | We'll respond personally within 48 hours. |
-| `/privacy` | Privacy Policy · Traced AI | How Driftware Dynamics Ltd handles personal data for traced-ai.com visitors and customers. |
-| `/terms` | Terms and Conditions · Traced AI | Terms governing use of the Traced AI service. |
-| `/dpa` | Data Processing Agreement · Traced AI | GDPR Article 28 DPA between Driftware Dynamics Ltd and customers using the Traced AI service. |
-| `*` (NotFound) | 404 · Traced AI | (noindex, no description needed) |
+Title convention: `Page Name · Traced AI` (short, symmetric). The `og:title` is separate and pulled from the page's own headline copy — more descriptive or punchy. Do not mirror `<title>` in `og:title`.
 
-- **OG Title:** Move fast and get investigated. Or use Traced AI.
-- **OG Image alt:** The VP tagline with "break things" struck through and "get investigated" following it with a dotted underline
+| Route | `<title>` | `og:title` | Description |
+|-------|-----------|-----------|-------------|
+| `/` | Home · Traced AI | Move fast and get investigated. Or use Traced AI. | Traced AI builds the tamper-evident audit infrastructure regulated companies need before August 2026 enforcement. Your data stays local. Your compliance record does not. |
+| `/product` | Product · Traced AI | Your data stays local. Your compliance record does not. | Local-first SDK, cryptographic ledger, and auditor-ready exports for EU AI Act compliance. |
+| `/pricing` | Pricing · Traced AI | Start for free. Pay when you're ready. | Free tier to enterprise. Start tracing AI decisions in minutes. |
+| `/thank-you` | Thank You · Traced AI | You're on the list. We'll respond personally. | We'll respond personally within 48 hours. |
+| `/privacy` | Privacy Policy · Traced AI | Privacy Policy · Traced AI | How Driftware Dynamics Ltd handles personal data for traced-ai.com visitors and customers. |
+| `/terms` | Terms and Conditions · Traced AI | Terms and Conditions · Traced AI | Terms governing use of the Traced AI service. |
+| `/dpa` | Data Processing Agreement · Traced AI | Data Processing Agreement · Traced AI | GDPR Article 28 DPA between Driftware Dynamics Ltd and customers using the Traced AI service. |
+| `*` (NotFound) | 404 · Traced AI | (noindex, no OG needed) | (noindex, no description needed) |
+
+- **OG Image:** `og-image.png` (1200x630, ~50 KB). `og:image:alt`: "Traced AI: EU AI Act audit trail for high-risk AI decisions"
 
 ---
 
@@ -34,7 +35,7 @@ The site is three public-facing pages plus supporting legal routes:
 | `/terms` | Terms of Service | Legal |
 | `/dpa` | Data Processing Agreement | Legal |
 
-NavBar appears on every page: logo + Product link + Pricing link + theme toggle + "Join waitlist" button (links to `/#waitlist`).
+NavBar appears on every page: logo image (clickable, links to `/`) + Product link + Pricing link + theme toggle + "Join waitlist" button (links to `/#waitlist`). The logo is an image (`logo-light.png` / `logo-dark.png`) rather than the text "Traced AI". No string in copy.ts covers the logo alt text ("Traced AI") since it is structural.
 
 ---
 
@@ -44,8 +45,8 @@ NavBar appears on every page: logo + Product link + Pricing link + theme toggle 
 
 **Headline (display, two lines):**
 
-Move fast
-and ~~break things~~ get investigated
+Move fast and
+~~break things~~ get investigated
 
 **Implementation note:** Single strikethrough on "break things" as a unit. "get investigated" follows with a dotted underline and hover tooltip: `EU AI Act Art. 99 · up to €15M / 3% for high-risk violations, €35M / 7% for prohibited practices`. Same color as the rest of the line. The dots do the work.
 

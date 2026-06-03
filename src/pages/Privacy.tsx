@@ -7,6 +7,10 @@ export default function Privacy() {
     <>
       <title>Privacy Policy · Traced AI</title>
       <meta name="description" content="How Driftware Dynamics Ltd handles personal data for traced-ai.com visitors and customers." />
+      <link rel="canonical" href="https://traced-ai.com/privacy" />
+      <meta property="og:url" content="https://traced-ai.com/privacy" />
+      <meta property="og:title" content="Privacy Policy · Traced AI" />
+      <meta property="og:description" content="How Driftware Dynamics Ltd handles personal data for traced-ai.com visitors and customers." />
       <NavBar />
       <main style={{ background: 'var(--bg-0)', minHeight: '100vh' }}>
         <div style={{ maxWidth: '720px', margin: '0 auto', padding: '80px 24px 96px' }}>
