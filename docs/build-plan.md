@@ -211,7 +211,7 @@ bunx shadcn@latest init
 
 Single route: `/`. Sections in render order:
 
-1. `<NavBar />`: logo text "Traced AI" + "Join waitlist" button anchoring to `#waitlist`
+1. `<NavBar />`: logo image (logo-light.png / logo-dark.png, theme-reactive) + "Join waitlist" button anchoring to `#waitlist`. Favicon (teal AI icon), OG image (1200x630), and Twitter card tags shipped in feature/ui-logo-og-imags.
 2. `<Hero />`: VP tagline with strikethrough, italic subheadline, body, dual CTAs, auto-computed deadline pill
 3. `<Stats />`: 4-stat grid with links to official EU AI Act sources (corrected fine labels)
 4. `<HowItWorks />`: 4-feature list: SDK, local storage, tamper-evident ledger, auditor-ready exports

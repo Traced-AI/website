@@ -34,7 +34,7 @@ The site is three public-facing pages plus supporting legal routes:
 | `/terms` | Terms of Service | Legal |
 | `/dpa` | Data Processing Agreement | Legal |
 
-NavBar appears on every page: logo + Product link + Pricing link + theme toggle + "Join waitlist" button (links to `/#waitlist`).
+NavBar appears on every page: logo image (clickable, links to `/`) + Product link + Pricing link + theme toggle + "Join waitlist" button (links to `/#waitlist`). The logo is an image (`logo-light.png` / `logo-dark.png`) rather than the text "Traced AI". No string in copy.ts covers the logo alt text ("Traced AI") since it is structural.
 
 ---
 
