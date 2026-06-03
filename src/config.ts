@@ -1,5 +1,5 @@
-export const TALLY_FORM_ID: string | null = 'xXvOJk';
-export const CAL_BOOKING_URL: string | null = 'https://www.cal.eu/traced-ai/discovery';
+export const TALLY_FORM_ID = 'xXvOJk';
+export const CAL_BOOKING_URL = 'https://www.cal.eu/traced-ai/discovery';
 export const ENFORCEMENT_DEADLINE = '2026-08-02';
 export const DOMAIN = 'https://traced-ai.com';
 export const CONTACT_EMAIL = 'contact@traced-ai.com';

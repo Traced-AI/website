@@ -62,20 +62,14 @@ export default function ThankYou() {
           <p style={{ fontSize: '14px', color: 'var(--tx-1)', lineHeight: 1.75, marginBottom: '20px' }}>
             {thankYou.callBlock.body}
           </p>
-          {CAL_BOOKING_URL ? (
-            <a
-              href={CAL_BOOKING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-ghost"
-            >
-              {thankYou.callBlock.cta}
-            </a>
-          ) : (
-            <span className="btn btn-ghost" style={{ opacity: 0.5, cursor: 'default' }}>
-              {thankYou.callBlock.cta}
-            </span>
-          )}
+          <a
+            href={CAL_BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-ghost"
+          >
+            {thankYou.callBlock.cta}
+          </a>
         </div>
 
         <p style={{ fontSize: '12px', color: 'var(--tx-2)', lineHeight: 1.7, marginBottom: '32px' }}>

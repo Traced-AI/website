@@ -6,8 +6,6 @@ type TallyWindow = Window & { Tally?: { loadEmbeds: () => void } }
 
 function TallyEmbed() {
   useEffect(() => {
-    if (!TALLY_FORM_ID) return
-
     const existing = document.getElementById('tally-js')
     if (existing) {
       if (typeof (window as TallyWindow).Tally !== 'undefined') {
@@ -24,23 +22,6 @@ function TallyEmbed() {
     }
     document.body.appendChild(s)
   }, [])
-
-  if (!TALLY_FORM_ID) {
-    return (
-      <div style={{
-        border: '1px dashed var(--br-default)',
-        borderRadius: 'var(--r-md)',
-        padding: '40px',
-        textAlign: 'center',
-        color: 'var(--tx-2)',
-        fontFamily: 'var(--f-mono)',
-        fontSize: '12px',
-        letterSpacing: '0.08em',
-      }}>
-        TALLY FORM EMBED: configure TALLY_FORM_ID in src/config.ts
-      </div>
-    )
-  }
 
   return (
     <iframe
