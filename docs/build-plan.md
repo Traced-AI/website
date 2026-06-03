@@ -249,6 +249,9 @@ Event type ID 318117, slug `discovery`, 30-min, Cal Video, manual approval (all 
 1. Required radio: "What concerns you most about your current AI systems?" (Regulatory risk / Internal accountability / Enterprise procurement). After ~15 calls, the distribution tells you which message to lead with everywhere.
 2. Optional text: "What AI systems are you running in production?" (placeholder: `e.g. OpenAI GPT-4o for credit decisions, ~50k calls/month`).
 
+**Deferred: inline Cal.eu embed on `/thank-you`**
+Currently an outbound link. Intentional for Milestone 1: manual approval means the bottleneck is review, not conversion, so one extra click costs nothing. Post-launch, when call volume is the priority, swap the link for a lazy-loaded `@calcom/embed` (on `/thank-you` only, per dev-guide embed rules). Prerequisite before shipping: update the privacy page with a Cal.eu cookie disclosure.
+
 ### Day 5: QA and Deploy
 
 - [ ] Mobile responsive
