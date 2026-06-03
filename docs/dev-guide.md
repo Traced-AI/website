@@ -134,6 +134,8 @@ The site is static and client-only, so every integration runs in the browser: Ta
 - When a Content-Security-Policy is added to `vercel.json`, `frame-src` / `connect-src` must allow the embed origins (tally.so, cal.eu, stripe.com).
 - Embeds that set cookies (Cal.eu, Stripe) must be reflected in the privacy policy. Adding such an embed is a legal-page update trigger.
 
+`CAL_BOOKING_URL` in `src/config.ts` points to `https://www.cal.eu/traced-ai/discovery`. The `/thank-you` booking CTA is an **outbound `<a>` link** that opens cal.eu in a new tab, not an on-page embed. This sets no cookies on our domain and does not trigger a privacy-policy update. Switching to an inline `@calcom/embed` later (lazy-loaded on `/thank-you` only) would set cookies and require a privacy-policy cookie disclosure update before shipping.
+
 ## Editing `src/copy.ts`
 
 All strings in `copy.ts` use Unicode curly quotes and apostrophes (`'`, `'`, `"`, `"`), not ASCII straight quotes. The Edit tool's `old_string` matching fails silently when these are present. Use a Python one-liner for any edit touching strings with apostrophes or quotation marks:

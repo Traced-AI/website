@@ -235,21 +235,19 @@ const days = Math.ceil((deadline - today) / (1000 * 60 * 60 * 24));
 ### Day 4: Tally + Thank-You Page + Cal.eu
 
 **Tally setup:**
-1. Create form at tally.so with 4 fields (email, company, role, burning need question)
-2. Connect Tally to Google Sheets via built-in integration (free tier)
-3. Set email notification to yourself on every submission
-4. In Tally completion settings, set redirect URL to `https://traced-ai.com/thank-you`
-5. Test end-to-end: submit a response, confirm redirect and Sheet entry
+1. [done] Form live at `https://tally.so/r/xXvOJk` (workspace Wandercode). 4 fields: work email, company, role (dropdown: CTO/VP Eng, Head of Compliance or Risk, Head of Engineering, Founder/CEO, Other), burning need (long text). All required. ID wired into `src/config.ts` as `TALLY_FORM_ID`.
+2. Connect Tally to Google Sheets via built-in integration (free tier). Manual UI step, not exposed via MCP. **This is the Milestone 1 success condition.**
+3. [done] Self-notification email on every submission enabled (defaults to account owner; custom recipient needs Tally Pro).
+4. [done] Completion redirect set to `https://traced-ai.com/thank-you`.
+5. Test end-to-end: submit a response, confirm redirect and Sheet entry.
 
-**Thank-you page (`/thank-you`):**
-Separate Next.js route with full control over copy and Cal.eu embed. The Cal.eu booking form should include one question before the time slot:
+**Thank-you page (`/thank-you`):** [done]
+Separate route at `/thank-you`. "Book a call" links out to `https://www.cal.eu/traced-ai/discovery` (opens in new tab, no on-page embed). `CAL_BOOKING_URL` is set in `src/config.ts`; the button activates automatically once the constant is non-placeholder.
 
-> "What concerns you most about your current AI systems?"
-> - Regulatory risk (EU AI Act deadlines, audit requirements, compliance evidence)
-> - Internal accountability (when something goes wrong, nobody can explain who decided what)
-> - Enterprise procurement (customers are asking about AI governance and we can't answer)
-
-Three options now, not two. The third captures the procurement wedge. After 15 booked calls, the distribution tells you which message to lead with everywhere.
+**Cal.eu event:** [done]
+Event type ID 318117, slug `discovery`, 30-min, Cal Video, manual approval (all bookings land as pending until confirmed). Custom fields:
+1. Required radio: "What concerns you most about your current AI systems?" (Regulatory risk / Internal accountability / Enterprise procurement). After ~15 calls, the distribution tells you which message to lead with everywhere.
+2. Optional text: "What AI systems are you running in production?" (placeholder: `e.g. OpenAI GPT-4o for credit decisions, ~50k calls/month`).
 
 ### Day 5: QA and Deploy
 

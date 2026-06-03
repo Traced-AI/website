@@ -1,5 +1,5 @@
-export const TALLY_FORM_ID = 'PLACEHOLDER';
-export const CAL_BOOKING_URL = 'PLACEHOLDER';
+export const TALLY_FORM_ID: string = 'xXvOJk';
+export const CAL_BOOKING_URL: string = 'https://www.cal.eu/traced-ai/discovery';
 export const ENFORCEMENT_DEADLINE = '2026-08-02';
 export const DOMAIN = 'https://traced-ai.com';
 export const CONTACT_EMAIL = 'contact@traced-ai.com';
