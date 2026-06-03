@@ -25,8 +25,7 @@ export default function NotFound() {
           404
         </div>
 
-        <h1 style={{
-          fontFamily: 'var(--f-display-C)',
+        <h1 className="f-display" style={{
           fontSize: 'clamp(2rem, 4vw, 3rem)',
           fontWeight: 400,
           letterSpacing: '0.06em',

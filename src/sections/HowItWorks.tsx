@@ -43,8 +43,7 @@ export default function HowItWorks() {
           <div>
             {howItWorks.features.map((f, i) => (
               <div key={i} style={{ marginBottom: '32px' }}>
-                <h3 style={{
-                  fontFamily: 'var(--f-display-C)',
+                <h3 className="f-display" style={{
                   fontSize: '1rem',
                   fontWeight: 600,
                   color: 'var(--tx-0)',

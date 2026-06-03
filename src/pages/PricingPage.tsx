@@ -14,7 +14,7 @@ export default function PricingPage() {
         <Pricing />
         <section style={{ background: 'var(--bg-0)', borderTop: '1px solid var(--br-subtle)' }}>
           <div className="page-section" style={{ textAlign: 'center', paddingTop: '48px', paddingBottom: '64px' }}>
-            <p style={{ fontFamily: 'var(--f-display-C)', fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)', fontWeight: 500, letterSpacing: '0.03em', color: 'var(--tx-0)', marginBottom: '20px' }}>
+            <p className="f-display" style={{ fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)', fontWeight: 500, letterSpacing: '0.03em', color: 'var(--tx-0)', marginBottom: '20px' }}>
               {pricing.readyHeadline}
             </p>
             <Link to="/#waitlist" className="btn btn-primary">

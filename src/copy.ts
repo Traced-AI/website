@@ -260,7 +260,7 @@ export const thankYou = {
     cta: 'Book a call →',
   },
   finePrint:
-    'The call is for companies actively evaluating whether Traced AI fits their situation. If you’re still exploring, the waitlist email is the right next step.',
+    'No pitch. If it’s not relevant to your situation in the first 10 minutes, we stop.',
 };
 
 export const footer = {
