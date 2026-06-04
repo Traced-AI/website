@@ -47,25 +47,25 @@ Stack reality this checklist assumes: Vite 8 + React 19 + react-router-dom 7 + T
 
 ## 3. Content & Copy: EU AI Act + project rules (D)
 
-These are project-specific and legally load-bearing. A copy error here is a 🔴, not a nit.
+The substantive copy rules are the **hard rules in `CLAUDE.md`** (canonical) plus the canonical copy in `src/copy.ts`. This section does not restate the values; it names what to check and where the authority lives. Load `CLAUDE.md` before reviewing copy. A copy error here is a 🔴, not a nit.
 
-**D1**: No em dashes anywhere in copy, UI text, comments, or these docs. Use commas, periods, colons, or parentheses.
+**D1**: No em dashes anywhere in copy, UI text, comments, or docs. Per the `CLAUDE.md` hard rule.
 
-**D2**: Never say Traced AI "satisfies" or "ensures compliance." Only "designed to support compliance with." Traced AI is the runtime evidence layer, not a compliance platform.
+**D2**: Compliance phrasing. Traced AI is the runtime evidence layer, not a compliance platform. Verify wording against the "designed to support compliance with" rule in `CLAUDE.md`; flag any "satisfies" / "ensures compliance" drift.
 
-**D3**: Fine tiers are never conflated. €35M is for **prohibited practices** (Article 5). High-risk violations are up to €15M / 3%. Verify any fine figure against the article it cites.
+**D3**: Fine tiers are never conflated. Verify any fine figure against the article it cites; the tier-to-article mapping is in `CLAUDE.md` hard rules.
 
-**D4**: Never "every AI decision must be logged." Logging is scoped to high-risk systems via two routes: Annex III use cases (Article 6(2), obligations from 2 Aug 2026) and the Annex I regulated-product route (Article 6(1), e.g. medical devices under MDR/IVDR, obligations from 2 Aug 2027). Do not classify medical-device or clinical-decision-support AI as Annex III, and do not pin it to the 2026 date.
+**D4**: Logging scope is not universal. Verify any logging-obligation claim against the Annex III / Annex I routing in `CLAUDE.md`; do not misclassify medical-device or clinical-decision-support AI, or pin it to the wrong date.
 
-**D5**: The deadline badge computes live from `new Date('2026-08-02')` in `DeadlineBadge.tsx`. It is never hardcoded. Flag any hardcoded day count or date string standing in for it.
+**D5**: The deadline badge computes live in `DeadlineBadge.tsx` and is never hardcoded. Flag any hardcoded day count or date string standing in for it. (Reference date lives in `CLAUDE.md`.)
 
-**D6**: Stat-card links (`StatCard.tsx`, sources in `config.ts`) point only to `artificialintelligenceact.eu` or the official EC AI Act service desk. No other sources.
+**D6**: Stat-card links (`StatCard.tsx`, sources in `config.ts`) point only to the source allowlist named in the `CLAUDE.md` hard rules. Flag any other domain.
 
-**D7**: Footer legal block exact: DRIFTWARE DYNAMICS LTD, Cyprus Ltd, Reg. No.: ΗΕ 474529, VAT: CY60167558M. These are verbatim from the incorporation docs (Greek ΗΕ, CY VAT prefix); do not "correct" them to Latin HE or strip the prefix. Contact: contact@traced-ai.com. Flag any drift in these strings.
+**D7**: Footer legal entity block. The canonical values are the legal block in `CLAUDE.md` hard rules; `src/copy.ts` `footer.company` is the render. Verify `footer.company` matches `CLAUDE.md` exactly: this is the only check keeping render and policy in sync. Flag drift in either direction.
 
 **D8**: No literal user-visible strings in JSX. All copy lives in `src/copy.ts`. Flag hardcoded text in components.
 
-**D9**: `copy.ts` uses Unicode curly quotes/apostrophes. Edits go through the Python one-liner (see dev-guide), and every change (add, edit, or cut) is backpropagated to `docs/site-copy.md`, with cuts preserved as inline notes rather than deleted. Flag any `copy.ts` change with no corresponding `site-copy.md` update.
+**D9**: `copy.ts` is the source of truth for rendered strings and uses Unicode curly quotes/apostrophes (edits go through the Python one-liner, see dev-guide). Every change is reflected in `docs/site-copy.md`'s structural summary (intent + copy.ts key references, not verbatim text), with cuts preserved as `[cut]` notes. Flag a `copy.ts` change with no corresponding `site-copy.md` update.
 
 ---
 

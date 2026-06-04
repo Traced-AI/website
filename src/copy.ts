@@ -309,6 +309,8 @@ export const mainNav: NavLinkItem[] = [
   { label: 'About', to: '/about' },
 ];
 
+// Legal entity values. Canonical authority is the footer legal block in CLAUDE.md
+// hard rules; keep these in sync with it. Verbatim from the incorporation docs.
 const company = {
   name: 'DRIFTWARE DYNAMICS LTD',
   regNumber: 'ΗΕ 474529',

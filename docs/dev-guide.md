@@ -6,17 +6,19 @@ Technical reference for the Traced AI marketing site. Consult this when adding r
 
 Routes are in `src/App.tsx`. `<ScrollToTop />` (`src/components/ScrollToTop.tsx`) mounts above `<Routes>` and scrolls to top on route change, skipping hash navigations.
 
-**Main pages:**
-- `/` (Landing): Hero, RegulatoryReality, BuiltFor, WaitlistForm, Footer
-- `/product` (ProductPage): HowItWorks, RuleRegistry, Footer
-- `/pricing` (PricingPage): Pricing, CTA block linking to `/#waitlist`, Footer
+| Route | Page component | Kind |
+|-------|----------------|------|
+| `/` | `Landing` | main |
+| `/product` | `ProductPage` | main |
+| `/pricing` | `PricingPage` | main |
+| `/about` | `AboutPage` | main |
+| `/thank-you` | `ThankYou` | utility (optional Cal.eu booking) |
+| `/privacy`, `/terms`, `/dpa` | legal pages | utility |
+| `*` | `NotFound` | 404 |
 
-**Utility pages:**
-- `/thank-you`: confirmation + optional Cal.eu booking embed
-- `/privacy`, `/terms`, `/dpa`: legal pages
-- `*` (NotFound): 404
+The section composition of each page and its background sequence live in `docs/site-copy.md` (Page structure). This guide stays decoupled from which sections render where.
 
-**NavBar** (every page): logo links to `/` (smooth-scrolls to top if already there), the primary links (Product, Pricing, About) use `<NavLink>`, theme toggle, "Join waitlist" links to `/#waitlist`. The primary links are data, not markup: they live as `mainNav` in `src/copy.ts` and both the desktop and mobile menus `.map()` over that single array, so adding a destination touches only `copy.ts`.
+**NavBar** (every page): logo links to `/` (smooth-scrolls to top if already there), the primary links use `<NavLink>`, then the theme toggle and a "Join waitlist" CTA to `/#waitlist`. Primary links are data, not markup: they live as `mainNav` in `src/copy.ts` and both the desktop and mobile menus `.map()` over that single array, so adding a destination touches only `copy.ts`.
 
 Build each navigation destination as its own page file from the start. Starting with a monolithic page and splitting later (as happened with the initial `Landing.tsx`) is avoidable churn.
 
@@ -88,18 +90,11 @@ Sections on each page alternate between `--bg-1` (white card surface) and `--bg-
 
 Each section also carries `borderTop: '1px solid var(--br-subtle)'` to sharpen the boundary, even between contrasting backgrounds.
 
-Current section map (use this as a reference when adding sections):
+When adding a new page: start the first section with `bg-1` (it follows the NavBar, which is also `bg-1` with a border-bottom, and the borderTop on the section provides the visual break). Then alternate from there, ending the last section on `bg-0`.
 
-| Page | Section sequence |
-|------|-----------------|
-| Landing (`/`) | Hero(`bg-1`) → RegulatoryReality(`bg-0`) → BuiltFor(`bg-1`) → WaitlistForm(`bg-0`) → Footer(`bg-1`) |
-| Product (`/product`) | HowItWorks(`bg-1`) → RuleRegistry(`bg-0`) → Footer(`bg-1`) |
-| Pricing (`/pricing`) | Pricing(`bg-1`) → CTA(`bg-0`) → Footer(`bg-1`) |
-| About (`/about`) | Vision(`bg-1`) → Mission(`bg-0`) → BuildWithMe(`bg-1`) → Footer(`bg-1`, separated by border) |
+**Odd-section exception:** with an odd number of content sections, strict alternation starting at `bg-1` ends on `bg-1` rather than `bg-0`. That is acceptable: the footer's `borderTop: 1px solid var(--br-subtle)` still provides the visual separation.
 
-When adding a new page: start the first section with `bg-1` (it follows the NavBar, which is also `bg-1` with a border-bottom, and the borderTop on the section provides the visual break). Then alternate from there, ensuring the last section is `bg-0`.
-
-**Odd-section exception:** When a page has an odd number of content sections, strict alternation starting at `bg-1` ends on `bg-1` rather than `bg-0`. The footer's `borderTop: 1px solid var(--br-subtle)` still provides the visual separation. About (`/about`) is the current example of this: three sections, ending on `bg-1`.
+The per-page section → background sequence is recorded in `docs/site-copy.md` (Page structure). Consult it when adding or reordering sections.
 
 ## TypeScript
 
@@ -172,7 +167,7 @@ open('src/copy.ts', 'w').write(content)
 "
 ```
 
-After any edit to `copy.ts` (additions, changes, or cuts), update `docs/site-copy.md` to match. When cutting copy, preserve the removed text as an inline note in `docs/site-copy.md` rather than deleting it. It gives future copy reviews the full context of what was tried and why it was cut. Two separate build commits called this out explicitly; it is a real discipline, not an edge case.
+`src/copy.ts` is the source of truth for rendered strings. After any edit (additions, changes, or cuts), update the matching structural entry in `docs/site-copy.md`: that file summarizes intent and structure and references copy.ts keys, it does not duplicate the exact wording. When cutting copy, preserve the removed text as an inline `[cut]` note in `docs/site-copy.md` rather than deleting it, so future reviews keep the context of what was tried and why. This is a real discipline, not an edge case.
 
 ## Legal Pages
 

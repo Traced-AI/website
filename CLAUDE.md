@@ -29,7 +29,7 @@ These apply everywhere: copy, code, comments, commit messages, UI text.
 - The deadline badge computes live from `new Date('2026-08-02')`. It is never hardcoded.
 - All stat card links go to `artificialintelligenceact.eu` or the official EC service desk. No other sources.
 - Never write "every AI decision must be logged." The Act scopes logging to high-risk systems via two routes: Annex III use cases (Article 6(2), obligations from 2 Aug 2026) and the Annex I regulated-product route (Article 6(1), e.g. medical devices under MDR/IVDR, obligations from 2 Aug 2027). Do not classify medical-device or clinical-decision-support AI as Annex III, and do not pin it to the 2026 date.
-- Footer legal block: DRIFTWARE DYNAMICS LTD, Cyprus Ltd, Reg. No.: ΗΕ 474529, VAT: CY60167558M. Values are verbatim from the incorporation docs (Greek ΗΕ, CY VAT prefix); do not "correct" them to Latin HE or strip the prefix.
+- Footer legal block (canonical source; `src/copy.ts` `footer.company` renders it, other docs reference this): DRIFTWARE DYNAMICS LTD, Cyprus Ltd, Reg. No.: ΗΕ 474529, VAT: CY60167558M. Values are verbatim from the incorporation docs (Greek ΗΕ, CY VAT prefix); do not "correct" them to Latin HE or strip the prefix.
 - Contact: contact@traced-ai.com.
 - Light theme is the default; dark mode is a toggle.
 - Font pairing is C: League Spartan (display) + Montserrat (body). Locked.
@@ -38,8 +38,8 @@ These apply everywhere: copy, code, comments, commit messages, UI text.
 
 | File | What it contains |
 |------|-----------------|
-| `src/copy.ts` | Every user-visible string. No literal strings in JSX. |
-| `docs/site-copy.md` | Source of truth for all section copy and headlines. |
+| `src/copy.ts` | Source of truth for every user-visible string. No literal strings in JSX. |
+| `docs/site-copy.md` | Structural and editorial summary of site copy (intent, page/section structure, implementation notes, `[cut]` history). Exact strings live in `src/copy.ts`. |
 | `docs/design-system.html` | Visual reference: open in browser to see tokens, fonts, colors, components. |
 | `docs/build-plan.md` | GTM blueprint, pricing tiers, milestone definitions. |
 | `docs/dev-guide.md` | Implementation details: routing rules, design tokens, copy.ts editing gotcha, legal page conventions. |
@@ -55,7 +55,7 @@ Every website change must be reflected back into the relevant docs file before t
 
 Update when: any user-visible string in `src/copy.ts` is added, changed, or removed.
 
-What sync means: every section of rendered content on the site has at least a seed entry in this file, and reading this file in full should let you reconstruct every headline, body paragraph, CTA, label, and legal disclaimer currently visible on the site. One-to-one fidelity is not required for boilerplate repetition (e.g. feature bullet points that follow an obvious pattern), but nothing should be absent. Cuts from copy.ts must be preserved as inline notes (marked `[cut]`) rather than deleted, so future copy reviews have context on what was tried.
+What sync means: `src/copy.ts` is the source of truth for exact wording; this file is its structural and editorial companion, not a verbatim mirror. Every rendered section has an entry that carries (a) its place in the page/section structure, (b) a one or two line summary of intent, (c) the `copy.ts` key(s) holding the actual text, and (d) any editorial context that is not in copy.ts: implementation notes (strikethrough/tooltip treatment, deadline-badge behavior, Tally field specs), "not rendered on site" reference notes, and `[cut]` history. Do not reproduce full body paragraphs here; reference the copy.ts key instead. Cuts from copy.ts must be preserved as inline `[cut]` notes rather than deleted, so future copy reviews keep the context of what was tried.
 
 ### `docs/design-system.html`
 
