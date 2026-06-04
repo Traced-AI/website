@@ -246,21 +246,21 @@ export const waitlist = {
   sectionLabel: 'JOIN THE WAITLIST',
   headline: 'We’re building for the companies who need this before August 2026.',
   subheadline:
-    'Two minutes. Tell us what you’re building and what you can’t yet explain. We’ll respond personally.',
+    'Two minutes. Tell us what you’re building and what you can’t yet explain. You’ll hear back from me personally.',
   finePrint:
     "Once you’ve joined, you can book a 30-minute call. Optional, not required.",
 };
 
 export const thankYou = {
   headline: 'You’re on the list.',
-  body: "We'll respond personally within 48 hours.",
+  body: "I'll respond personally within 48 hours.",
   callBlock: {
     heading: 'Want to talk through your situation before launch?',
-    body: 'You can book a 30-minute call directly. We’ll ask you one question upfront about what you’re most concerned with so we come prepared.',
+    body: 'You can book a 30-minute call directly. I’ll ask you one question upfront about what you’re most concerned with so I come prepared.',
     cta: 'Book a call →',
   },
   finePrint:
-    'No pitch. If it’s not relevant to your situation in the first 10 minutes, we stop.',
+    'No pitch. If it’s not relevant to your situation in the first 10 minutes, I’ll stop.',
 };
 
 

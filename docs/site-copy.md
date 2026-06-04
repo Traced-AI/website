@@ -13,7 +13,7 @@ Title convention: `Page Name · Traced AI` (short, symmetric). The `og:title` is
 | `/` | Home · Traced AI | Move fast and get investigated. Or use Traced AI. | Traced AI builds the tamper-evident audit infrastructure regulated companies need before August 2026 enforcement. Your data stays local. Your compliance record does not. |
 | `/product` | Product · Traced AI | Your data stays local. Your compliance record does not. | Local-first SDK, cryptographic ledger, and auditor-ready exports for EU AI Act compliance. |
 | `/pricing` | Pricing · Traced AI | Start for free. Pay when you're ready. | Free tier to enterprise. Start tracing AI decisions in minutes. |
-| `/thank-you` | Thank You · Traced AI | You're on the list. We'll respond personally. | We'll respond personally within 48 hours. |
+| `/thank-you` | Thank You · Traced AI | You're on the list. You'll hear back from me personally. | I'll respond personally within 48 hours. |
 | `/privacy` | Privacy Policy · Traced AI | Privacy Policy · Traced AI | How Driftware Dynamics Ltd handles personal data for traced-ai.com visitors and customers. |
 | `/terms` | Terms and Conditions · Traced AI | Terms and Conditions · Traced AI | Terms governing use of the Traced AI service. |
 | `/dpa` | Data Processing Agreement · Traced AI | Data Processing Agreement · Traced AI | GDPR Article 28 DPA between Driftware Dynamics Ltd and customers using the Traced AI service. |
@@ -73,6 +73,8 @@ Section label, headline, and three industry cards (Fintech, Medtech, HR Automati
 
 Section label, headline, subheadline, and fine print: `waitlist.*`.
 
+Voice: the headline stays company "we" ("We're building for the companies..."), but the reply promise in the subheadline is deliberately founder "I" ("You'll hear back from me personally") because the response is a personal act by the solo founder. Revert to "we" when the team grows. [cut: "We'll respond personally." — company-voice version of the reply promise, swapped to founder voice while solo.]
+
 **Tally embed (form fields are in the Tally config, not copy.ts):**
 1. Business email (required) — placeholder `you@company.com`
 2. Company name (required) — placeholder `Acme Financial GmbH`
@@ -124,6 +126,8 @@ Heading and CTA: `pricing.readyHeadline` + the "Join the waitlist →" button (l
 ## Thank You Page (`/thank-you`)
 
 Headline, body, optional call-booking block, and fine print: `thankYou.*` (`headline`, `body`, `callBlock.{heading,body,cta}`, `finePrint`). The "Book a call →" CTA links to Cal.eu.
+
+Voice: the reply and the 1:1 call are personal acts by the solo founder, so `body`, `callBlock.body`, and `finePrint` use founder "I" ("I'll respond", "I'll ask... so I come prepared", "I'll stop"). Revert to "we" when the team grows. [cut: company-voice versions — "We'll respond personally within 48 hours.", "We'll ask you one question upfront... so we come prepared.", "...the first 10 minutes, we stop."]
 
 [cut: "The call is for companies actively evaluating whether Traced AI fits their situation. If you're still exploring, the waitlist email is the right next step." — gave people an exit ramp instead of removing their fear of a sales call.]
 
