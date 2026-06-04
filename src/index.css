@@ -236,6 +236,8 @@ body {
   border-top: 1px solid var(--br-subtle);
   background: var(--bg-1);
 }
+/* `display: flex` above would override the `hidden` attribute; restore it. */
+.mobile-menu[hidden] { display: none; }
 .mobile-menu-cta { margin-top: 8px; text-align: center; }
 
 @media (max-width: 767px) {

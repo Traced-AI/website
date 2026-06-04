@@ -29,7 +29,7 @@ These apply everywhere: copy, code, comments, commit messages, UI text.
 - The deadline badge computes live from `new Date('2026-08-02')`. It is never hardcoded.
 - All stat card links go to `artificialintelligenceact.eu` or the official EC service desk. No other sources.
 - Never write "every AI decision must be logged." The Act scopes logging to high-risk systems via two routes: Annex III use cases (Article 6(2), obligations from 2 Aug 2026) and the Annex I regulated-product route (Article 6(1), e.g. medical devices under MDR/IVDR, obligations from 2 Aug 2027). Do not classify medical-device or clinical-decision-support AI as Annex III, and do not pin it to the 2026 date.
-- Footer legal block: DRIFTWARE DYNAMICS LTD, Cyprus Ltd, Reg. No. HE 474529, VAT: 60167558M.
+- Footer legal block: DRIFTWARE DYNAMICS LTD, Cyprus Ltd, Reg. No.: ΗΕ 474529, VAT: CY60167558M. Values are verbatim from the incorporation docs (Greek ΗΕ, CY VAT prefix); do not "correct" them to Latin HE or strip the prefix.
 - Contact: contact@traced-ai.com.
 - Light theme is the default; dark mode is a toggle.
 - Font pairing is C: League Spartan (display) + Montserrat (body). Locked.

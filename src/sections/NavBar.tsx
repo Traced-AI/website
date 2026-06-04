@@ -144,21 +144,19 @@ export default function NavBar() {
         </div>
       </div>
 
-      {/* Mobile dropdown */}
-      {menuOpen && (
-        <nav id="mobile-menu" className="mobile-menu" aria-label="Site navigation">
-          {mainNav.map((item) => (
-            <NavLink key={item.to} to={item.to} className={navLinkClass} onClick={() => setMenuOpen(false)}>{item.label}</NavLink>
-          ))}
-          <Link
-            to="/#waitlist"
-            className="btn btn-primary mobile-menu-cta"
-            onClick={(e) => { setMenuOpen(false); handleWaitlistClick(e) }}
-          >
-            Join waitlist
-          </Link>
-        </nav>
-      )}
+      {/* Mobile dropdown: always in the DOM so aria-controls resolves; hidden when closed */}
+      <nav id="mobile-menu" className="mobile-menu" aria-label="Mobile navigation" hidden={!menuOpen}>
+        {mainNav.map((item) => (
+          <NavLink key={item.to} to={item.to} className={navLinkClass} onClick={() => setMenuOpen(false)}>{item.label}</NavLink>
+        ))}
+        <Link
+          to="/#waitlist"
+          className="btn btn-primary mobile-menu-cta"
+          onClick={(e) => { setMenuOpen(false); handleWaitlistClick(e) }}
+        >
+          Join waitlist
+        </Link>
+      </nav>
     </header>
   )
 }
