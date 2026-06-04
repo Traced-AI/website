@@ -3,53 +3,26 @@ import Footer from '../sections/Footer'
 import { CONTACT_EMAIL } from '../config'
 import { about } from '../copy'
 
-function VisionSection() {
-  const { sectionLabel, heading, paragraphs } = about.vision
-  return (
-    <section id="vision" style={{ background: 'var(--bg-1)', borderTop: '1px solid var(--br-subtle)' }}>
-      <div className="page-section">
-        <div className="section-label">{sectionLabel}</div>
-        <h2 className="section-heading">{heading}</h2>
-        <div style={{ maxWidth: '680px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          {paragraphs.map((p, i) => (
-            <p
-              key={i}
-              style={{
-                fontSize: i === 0 ? '17px' : '15px',
-                fontWeight: i === 0 ? 500 : 400,
-                color: i === 0 ? 'var(--tx-0)' : 'var(--tx-1)',
-                lineHeight: 1.85,
-                margin: 0,
-              }}
-            >
-              {p}
-            </p>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
+interface TextSectionData {
+  sectionLabel: string
+  heading: string
+  paragraphs: string[]
 }
 
-function MissionSection() {
-  const { sectionLabel, heading, paragraphs } = about.mission
+function TextSection({ id, bg, data }: { id: string; bg: string; data: TextSectionData }) {
+  const { sectionLabel, heading, paragraphs } = data
+  const [first, ...rest] = paragraphs
   return (
-    <section id="mission" style={{ background: 'var(--bg-0)', borderTop: '1px solid var(--br-subtle)' }}>
+    <section id={id} style={{ background: bg, borderTop: '1px solid var(--br-subtle)' }}>
       <div className="page-section">
         <div className="section-label">{sectionLabel}</div>
         <h2 className="section-heading">{heading}</h2>
         <div style={{ maxWidth: '680px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          {paragraphs.map((p, i) => (
-            <p
-              key={i}
-              style={{
-                fontSize: i === 0 ? '17px' : '15px',
-                fontWeight: i === 0 ? 500 : 400,
-                color: i === 0 ? 'var(--tx-0)' : 'var(--tx-1)',
-                lineHeight: 1.85,
-                margin: 0,
-              }}
-            >
+          <p style={{ fontSize: '17px', fontWeight: 500, color: 'var(--tx-0)', lineHeight: 1.85, margin: 0 }}>
+            {first}
+          </p>
+          {rest.map((p, i) => (
+            <p key={i} style={{ fontSize: '15px', color: 'var(--tx-1)', lineHeight: 1.85, margin: 0 }}>
               {p}
             </p>
           ))}
@@ -80,10 +53,7 @@ function BuildWithMeSection() {
             {openingAfter}
           </p>
           {paragraphs.map((p, i) => (
-            <p
-              key={i}
-              style={{ fontSize: '15px', color: 'var(--tx-1)', lineHeight: 1.85, margin: 0 }}
-            >
+            <p key={i} style={{ fontSize: '15px', color: 'var(--tx-1)', lineHeight: 1.85, margin: 0 }}>
               {p}
             </p>
           ))}
@@ -111,8 +81,8 @@ export default function AboutPage() {
       <meta property="og:description" content="The vision, mission, and open invitation to co-build Traced AI." />
       <NavBar />
       <main>
-        <VisionSection />
-        <MissionSection />
+        <TextSection id="vision" bg="var(--bg-1)" data={about.vision} />
+        <TextSection id="mission" bg="var(--bg-0)" data={about.mission} />
         <BuildWithMeSection />
       </main>
       <Footer />

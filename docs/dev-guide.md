@@ -101,14 +101,14 @@ Baseline is WCAG 2.2 AA.
 - Every `<img>` needs `alt`. Use `alt=""` for decorative images.
 - Icon-only interactive elements (theme toggle, icon buttons) need `aria-label`. Toggles that open/close also need `aria-expanded` tracking state.
 - One `<h1>` per page. Heading levels must not skip (h1 → h2 → h3).
-- All interactive elements need a visible focus style. Never `outline: none` without a replacement. `src/index.css` currently scopes its box-shadow focus replacement to `.form-input` only, so any new interactive element must have its own visible focus style.
+- All interactive elements need a visible focus style. Never `outline: none` without a replacement. `src/index.css` has a global `:focus-visible { outline: 2px solid var(--ac); outline-offset: 2px }` rule that covers all focusable elements. The only exception is `.form-input`, which suppresses the outline and substitutes a custom box-shadow ring instead.
 - CSS animations need a `@media (prefers-reduced-motion: reduce)` fallback in `src/index.css`. This block is not present yet, so it must be added alongside the first animation that needs it.
 - Semantic landmarks on every page: `<header>`, `<nav>`, `<main>`, `<footer>`.
 
 WCAG 2.2 additions that matter for this layout:
 - **Target size (2.5.8):** pointer targets (icon buttons, nav links, theme toggle) are at least 24×24 CSS px, or spaced far enough apart.
 - **Focus appearance (2.4.13):** the focus indicator is at least a 2px-thick border-equivalent and contrasts ≥3:1 with adjacent colors, in both themes.
-- **Focus not obscured (2.4.11):** because the NavBar is sticky, a focused element reached by keyboard or hash navigation must not hide behind the header. Keep a `scroll-mt-*` offset on hash targets.
+- **Focus not obscured (2.4.11):** because the NavBar is sticky, a focused element reached by keyboard or hash navigation must not hide behind the header. `src/index.css` has a global `[id] { scroll-margin-top: 72px }` rule that covers all hash-anchor targets; no per-element `scroll-mt-*` override is needed.
 
 ## Component Rules
 
