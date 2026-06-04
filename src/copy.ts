@@ -255,8 +255,8 @@ export const thankYou = {
   headline: 'You’re on the list.',
   body: "I'll respond personally within 48 hours.",
   callBlock: {
-    heading: 'Want to talk through your situation before launch?',
-    body: 'You can book a 30-minute call directly. I’ll ask you one question upfront about what you’re most concerned with so I come prepared.',
+    heading: 'Bring your messiest AI decision.',
+    body: '30 minutes, you talk first. Tell me what’s actually broken: an incident, an audit you couldn’t answer, a procurement questionnaire that made your team scramble. I’ll map one EU AI Act logging requirement to your stack.',
     cta: 'Book a call →',
   },
   finePrint:
