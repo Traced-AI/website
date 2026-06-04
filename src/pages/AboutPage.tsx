@@ -37,8 +37,8 @@ function TextSection({ id, bg, data, top = false }: { id: string; bg: string; da
   )
 }
 
-function BuildWithMeSection() {
-  const { sectionLabel, heading, founderName, openingAfter, paragraphs, cta } = about.buildWithMe
+function TheBetSection() {
+  const { sectionLabel, heading, founderName, openingAfter, paragraphs, cta } = about.theBet
   return (
     <section id="the-bet" style={{ background: 'var(--bg-1)', borderTop: '1px solid var(--br-subtle)' }}>
       <div className="page-section">
@@ -86,7 +86,7 @@ export default function AboutPage() {
       <main>
         <TextSection id="vision" bg="var(--bg-1)" data={about.vision} top />
         <TextSection id="mission" bg="var(--bg-0)" data={about.mission} />
-        <BuildWithMeSection />
+        <TheBetSection />
       </main>
       <Footer />
     </>

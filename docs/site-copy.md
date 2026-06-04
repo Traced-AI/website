@@ -1,17 +1,19 @@
 # Traced AI: Site Copy
 
+**This file is a structural and editorial summary, not the copy itself.** `src/copy.ts` is the source of truth for every rendered string. Each section below records its place in the page, a short summary of intent, the `copy.ts` key(s) holding the exact text, and any editorial context that is not in copy.ts (implementation notes, `[cut]` history, and "not rendered on site" reference notes). To read or change the actual wording, go to the referenced key in `copy.ts`.
+
+Per-route `<title>`/`og:title`/description strings live in each route component (React 19 native metadata), not in copy.ts, so they are indexed in full below.
+
 ## Meta
 
-Per-route `<title>` and `<meta name="description">` are rendered natively in each route component (React 19 hoists them). The index.html fallback title/description remain as the global default.
-
-Title convention: `Page Name · Traced AI` (short, symmetric). The `og:title` is separate and pulled from the page's own headline copy — more descriptive or punchy. Do not mirror `<title>` in `og:title`.
+Title convention: `Page Name · Traced AI` (short, symmetric). The `og:title` is separate and pulled from the page's own headline copy, more descriptive or punchy. Do not mirror `<title>` in `og:title`.
 
 | Route | `<title>` | `og:title` | Description |
 |-------|-----------|-----------|-------------|
 | `/` | Home · Traced AI | Move fast and get investigated. Or use Traced AI. | Traced AI builds the tamper-evident audit infrastructure regulated companies need before August 2026 enforcement. Your data stays local. Your compliance record does not. |
 | `/product` | Product · Traced AI | Your data stays local. Your compliance record does not. | Local-first SDK, cryptographic ledger, and auditor-ready exports for EU AI Act compliance. |
 | `/pricing` | Pricing · Traced AI | Start for free. Pay when you're ready. | Free tier to enterprise. Start tracing AI decisions in minutes. |
-| `/thank-you` | Thank You · Traced AI | You're on the list. We'll respond personally. | We'll respond personally within 48 hours. |
+| `/thank-you` | Thank You · Traced AI | You're on the list. You'll hear back from me personally. | I'll respond personally within 48 hours. |
 | `/privacy` | Privacy Policy · Traced AI | Privacy Policy · Traced AI | How Driftware Dynamics Ltd handles personal data for traced-ai.com visitors and customers. |
 | `/terms` | Terms and Conditions · Traced AI | Terms and Conditions · Traced AI | Terms governing use of the Traced AI service. |
 | `/dpa` | Data Processing Agreement · Traced AI | Data Processing Agreement · Traced AI | GDPR Article 28 DPA between Driftware Dynamics Ltd and customers using the Traced AI service. |
@@ -24,169 +26,72 @@ Title convention: `Page Name · Traced AI` (short, symmetric). The `og:title` is
 
 ## Page structure
 
-The site is four public-facing pages plus supporting legal routes:
+This table is the canonical record of page → section → background sequence (the dev-guide references it for the bg-rhythm algorithm). `bg-1` is the white card surface, `bg-0` the warm off-white base.
 
-| Route | Page | Sections |
+| Route | Page | Section sequence (background) |
 |---|---|---|
-| `/` | Home | Hero, Regulatory Reality, Built For, Waitlist Form |
-| `/product` | Product | How It Works, Rule Registry |
-| `/pricing` | Pricing | Pricing tiers, CTA block |
-| `/about` | About | Vision, Mission, Build with me |
+| `/` | Home | Hero (`bg-1`) → Regulatory Reality (`bg-0`) → Built For (`bg-1`) → Waitlist Form (`bg-0`) → Footer (`bg-1`) |
+| `/product` | Product | How It Works (`bg-1`) → Rule Registry (`bg-0`) → Footer (`bg-1`) |
+| `/pricing` | Pricing | Pricing tiers (`bg-1`) → CTA block (`bg-0`) → Footer (`bg-1`) |
+| `/about` | About | Vision (`bg-1`) → Mission (`bg-0`) → The Bet (`bg-1`) → Footer (`bg-1`, separated by border) |
 | `/thank-you` | Thank You | Confirmation + optional call booking |
-| `/privacy` | Privacy Policy | Legal |
-| `/terms` | Terms of Service | Legal |
-| `/dpa` | Data Processing Agreement | Legal |
+| `/privacy` `/terms` `/dpa` | Legal | Single legal body per page |
 
-NavBar appears on every page: logo image (clickable, links to `/`) + Product link + Pricing link + About link + theme toggle + "Join waitlist" button (links to `/#waitlist`). The logo is an image (`logo-light.png` / `logo-dark.png`) rather than the text "Traced AI". No string in copy.ts covers the logo alt text ("Traced AI") since it is structural.
+About anchor IDs: `#vision`, `#mission`, `#the-bet`.
+
+NavBar appears on every page: logo image (clickable, links to `/`) + primary links (`mainNav` in copy.ts) + theme toggle + "Join waitlist" button (links to `/#waitlist`). The logo is an image (`logo-light.png` / `logo-dark.png`), not the text "Traced AI"; its alt text is structural and not in copy.ts.
 
 ---
 
 ## Home (`/`)
 
-### Section 1: Hero
+### Section 1: Hero (`hero`)
 
-**Headline (display, two lines):**
+Headline, subheadline, body, and CTAs: `hero.*` (`line1`, `line2Strike`, `line2Highlight`, `subheadline`, `body1`, `body2`, `ctaPrimary`, `ctaSecondary`, `belowCta`).
 
-Move fast and
-~~break things~~ get investigated
+**Implementation notes:**
+- Headline treats "break things" as a single strikethrough unit, then "get investigated" follows with a dotted underline and a hover tooltip (`hero.tooltip`), same color as the rest of the line. The dots do the work.
+- Subheadline is an italic accent line.
+- CTA primary links to `/#waitlist`, secondary to `/product`.
+- **Deadline badge** (mono, auto-computed, not in copy.ts): `DeadlineBadge.tsx` computes days remaining from the current date to August 2, 2026. Renders "[N] DAYS UNTIL FULL ENFORCEMENT" in green; past the date, "ENFORCEMENT BEGAN [N] DAYS AGO" in red. Links to the official EC timeline. Never hardcoded.
 
-**Implementation note:** Single strikethrough on "break things" as a unit. "get investigated" follows with a dotted underline and hover tooltip: `EU AI Act Art. 99 · up to €15M / 3% for high-risk violations, €35M / 7% for prohibited practices`. Same color as the rest of the line. The dots do the work.
+### Section 2: Regulatory Reality (`regulatoryReality`, `stats`)
 
-**Subheadline (italic accent):**
-"You can't do compliance work with vibes."
+Section label, headline, body, two-line closing, and enterprise procurement callout: `regulatoryReality.*`. Source attribution line: `regulatoryReality.sourceAttr` + `sourceUrl`.
 
-**Body:**
-August 2, 2026. The EU AI Act begins full enforcement. If your AI system affects credit decisions, employment screening, or functions as a medical device, Annex III already classifies it as high-risk. Decisions made by that system must be logged, explainable, and defensible.
-
-That standard is harder to meet than most teams expect.
-
-**CTA primary:** Join the waitlist → (links to `/#waitlist`)
-**CTA secondary:** See how it works (links to `/product`)
-**Below CTA (small):** No card required. No enterprise sales process.
-
-**Deadline badge (mono, auto-computed):**
-JavaScript computes days remaining from current date to August 2, 2026. Renders as "[N] DAYS UNTIL FULL ENFORCEMENT" in green text. If today is past August 2, 2026, renders as "ENFORCEMENT BEGAN [N] DAYS AGO" in red text. Badge links to the official EC timeline: https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act
-
----
-
-### Section 2: Regulatory Reality
-
-**Section label:** THE DEADLINE IS REAL
-
-**Headline:**
-On August 2nd, "the AI decided" stops being an acceptable answer.
-
-**Stats grid (4 stat cards, each linking to official source):**
-
-| Stat | Label | Source link |
-|------|-------|-------------|
-| €35M | Maximum fine under the EU AI Act (prohibited AI practices, Article 5; up to €15M/3% for high-risk violations) | https://artificialintelligenceact.eu/article/99/ |
-| Art. 14 | Requires demonstrable human oversight, not just claimed oversight | https://artificialintelligenceact.eu/article/14/ |
-| Annex III | Lists the AI use cases already classified high-risk by definition | https://artificialintelligenceact.eu/annex/3/ |
-| Aug 2, 2026 | Full application of high-risk system requirements per Article 113 | https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act |
-
-**Body:**
-The high-risk provisions take full effect on August 2, 2026. If your system handles credit decisions, employment screening, biometric identification, or clinical decision support, Annex III classifies it as high-risk. Decisions made by that system must be logged, explainable, and defensible.
-
-**Closing lines (two-line visual treatment, second line bold):**
-When enforcement comes, good intentions don't appear in audit logs.
-Documented evidence does.
-
-**Enterprise procurement callout** (`regulatoryReality.procurement.heading` + `.body`):
-Heading: Enterprise procurement
-Body: Your enterprise customers are already demanding AI governance evidence. Banks, insurers, and public-sector buyers ask what models you use, how decisions are logged, and what audit evidence exists. The deal-blocker is today.
-
-**Source attribution (12px, muted):**
-EU AI Act, Regulation EU 2024/1689, Articles 9, 12, 13, 14, 19, 26(6), Annex III. Official text: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689
+Four stat cards: `stats[]` (each has `value`, `label`, `url`). Sources are on the `CLAUDE.md` allowlist.
 
 **Reference note (not rendered on site):** As of May 2026, the EU Council and Parliament reached a provisional agreement under the "Digital Omnibus" package that may extend the deadline for high-risk AI embedded in regulated products. Until formally adopted, August 2, 2026 remains the legally binding date. Source: https://www.consilium.europa.eu/en/press/press-releases/2026/05/07/artificial-intelligence-council-and-parliament-agree-to-simplify-and-streamline-rules/
 
----
+### Section 3: Built For (`builtFor`)
 
-### Section 3: Built For
+Section label, headline, and three industry cards (Fintech, Medtech, HR Automation): `builtFor.*` (`headline`, `cards[]`).
 
-**Section label:** WHO IT'S FOR
+**Reference note:** Annex III Section 5(b) covers creditworthiness assessment and access to essential private services (backs the Fintech card).
 
-**Headline:**
-If your AI affects access to money, healthcare, or employment, traceability obligations are already unavoidable.
+### Section 4: Waitlist Form (`waitlist`)
 
-**Three cards:**
+Section label, headline, subheadline, and fine print: `waitlist.*`.
 
-**Fintech**
-Credit scoring, loan underwriting, fraud detection, AML flags. Traced AI adds AI-Act-ready, tamper-resistant decision logs to existing model-risk governance, without touching raw PII.
+Voice: the headline stays company "we" ("We're building for the companies..."), but the reply promise in the subheadline is deliberately founder "I" ("You'll hear back from me personally") because the response is a personal act by the solo founder. Revert to "we" when the team grows. [cut: "We'll respond personally." — company-voice version of the reply promise, swapped to founder voice while solo.]
 
-*(Reference: Annex III Section 5(b) covers creditworthiness assessment and access to essential private services.)*
+**Tally embed (form fields are in the Tally config, not copy.ts):**
+1. Business email (required) — placeholder `you@company.com`
+2. Company name (required) — placeholder `Acme Financial GmbH`
+3. Your role (required) — CTO / Head of Engineering / Head of Compliance / Founder / Legal Counsel / Other
+4. "What's the one AI decision your team made last quarter that you couldn't fully explain to a stakeholder?" (required, long text) — with muted help text: "We read every response. This shapes what we build first."
 
-**Medtech**
-AI medical devices are certified under MDR/IVDR, and notified bodies expect traceable evidence of AI behavior. Traced AI provides the log layer that aligns with both frameworks and positions your evidence chain for incoming EU AI Act obligations.
-
-**HR Automation**
-Recruitment, hiring, and workforce assessment AI are high-risk under Annex III. Traced AI gives you per-candidate decision trails and structured audit views for regulators, works councils, and litigators.
-
----
-
-### Section 4: Waitlist Form
-
-**Section label:** JOIN THE WAITLIST
-
-**Headline:**
-We're building for the companies who need this before August 2026.
-
-**Subheadline:**
-Two minutes. Tell us what you're building and what you can't yet explain. We'll respond personally.
-
-**Form fields (Tally embed):**
-
-1. **Business email** *(required)*
-   Placeholder: `you@company.com`
-
-2. **Company name** *(required)*
-   Placeholder: `Acme Financial GmbH`
-
-3. **Your role** *(required)*
-   Options: CTO / Head of Engineering / Head of Compliance / Founder / Legal Counsel / Other
-
-4. **What's the one AI decision your team made last quarter that you couldn't fully explain to a stakeholder?** *(required, long text)*
-   Placeholder: `Describe a real situation: a model output, a flagged case, a decision that triggered internal questions, or something you'd struggle to justify in a regulatory audit.`
-   Help text (below field, muted): We read every response. This shapes what we build first.
-
-**CTA button:** Join the waitlist →
-
-**Fine print below CTA (10px, muted):**
-Once you've joined, you can book a 30-minute call. Optional, not required.
-
-**Post-submit:** Tally completion redirects to `/thank-you`.
+Post-submit: Tally completion redirects to `/thank-you`.
 
 ---
 
 ## Product (`/product`)
 
-### Section 5: How It Works
+### Section 5: How It Works (`howItWorks`)
 
-**Section label:** THE MECHANISM
+Two-line headline, intro, and four-item feature list (Auto-patching SDK, Local-first architecture, Tamper-evident ledger, Auditor-ready exports): `howItWorks.*` (`headline1`, `headline2`, `intro`, `features[]`).
 
-**Headline (two lines):**
-Your data never leaves your perimeter.
-Your compliance record does.
-
-**Intro:**
-Traced AI is the evidentiary and traceability layer for your AI decisions. It does not replace your quality management system or legal counsel. It provides the tamper-evident evidence chain that both depend on.
-
-**Feature list (4 items):**
-
-**Auto-patching SDK**
-Two lines of config. The SDK patches your LLM clients (OpenAI, Anthropic, and others) at import time. No manual instrumentation. No restructuring your pipeline.
-
-**Local-first architecture**
-Raw inputs and outputs are written to encrypted storage on your own infrastructure. No sensitive data crosses your perimeter. You hold the source of truth.
-
-**Tamper-evident ledger**
-SHA-256 hashes of every I/O pair, plus structured rationale, flow to an append-only chained ledger in the cloud. Designed to support the logging requirements of Articles 12 and 19 of the EU AI Act.
-
-**Auditor-ready exports**
-Generate structured audit packs aligned to Articles 12, 17, 72, and 86, formatted so your legal team and external auditors can work with them directly.
-
-**Code snippet (for visual credibility):**
+**Implementation note:** a Python code snippet renders alongside for visual credibility (lives in the component, not copy.ts):
 ```python
 import traced_ai
 
@@ -198,137 +103,31 @@ traced_ai.init(
 # From here, every LLM call is automatically traced
 ```
 
----
+### Section 6: Rule Registry (`ruleRegistry`)
 
-### Section 6: Rule Registry
-
-**Section label:** THE MOAT
-
-**Headline (two lines):**
-We don't just log.
-We know what to log, and why.
-
-**Body:**
-The hard part of EU AI Act compliance is not logging infrastructure. It is knowing which Articles apply to your decision type, what format an auditor expects, and tracking every guidance update Brussels publishes.
-
-The Traced AI rule registry is a versioned, cryptographically-signed mapping from regulatory text to concrete logging requirements. When new guidance drops, the registry updates. Your evidence posture updates automatically.
-
-**Registry preview card:**
-
-| Field | Value |
-|-------|-------|
-| Article | 14, Human Oversight (https://artificialintelligenceact.eu/article/14/) |
-| Also maps to | Article 12, Record-Keeping; Article 13, Transparency; Article 72, Post-Market Monitoring |
-| Risk tier | High-risk |
-| Applies to | Credit scoring, clinical decision support, employment screening |
-| Logging required | Decision input hash, output hash, structured rationale, reviewer ID, timestamp |
-| Last updated | 2026-05-18, v3.1, signed |
-
-**Badge row:** Versioned · Signed · Always current
+Two-line headline, two body paragraphs, a registry preview card (field/value rows, one with a link), and a badge row: `ruleRegistry.*` (`headline1`, `headline2`, `body`, `body2`, `rows[]`, `badges[]`).
 
 ---
 
 ## Pricing (`/pricing`)
 
-### Section 7: Pricing Tiers
+### Section 7: Pricing Tiers (`pricing`)
 
-**Section label:** PLANS
+Section label, headline, subheadline, three tiers (Free, Startup, Enterprise) with their features and badges, the self-hosted callout, and the pricing note: `pricing.*` (`headline`, `subheadline`, `tiers[]`, `selfHostedHeading`, `selfHostedNote`, `pricingNote`, `featuredTag`).
 
-**Headline:**
-Start for free. Pay when you're ready.
+**Reference note (not rendered on site):** Rationale text is stored as structured fields, not free-form strings. This protects against accidental capture of personal data, prompt leakage, or confidential reasoning chains. Field-level configuration controls exactly what enters the rationale record. Full documentation in the SDK guide.
 
-**Subheadline:**
-The self-hosted viewer is part of the SDK and free on every plan. Your raw data never reaches our servers.
+### CTA block (below tiers)
 
----
-
-**Free**
-Email account required. No credit card.
-
-Generate an API key, add two lines of config, and start tracing. No card required.
-
-Includes:
-- 10,000 events, 7-day retention
-- Hosted dashboard at traced-ai.com
-- Full SDK access
-- Self-hosted local viewer (always free, all plans)
-
-Badge: Evaluate and integrate
-
----
-
-**Startup: €100/month**
-€1,000/year · 2 months free
-
-250,000 events included per month. Need more? Buy additional packages at €30 per 100k events rather than upgrading tiers.
-
-Includes everything in Free, plus:
-- 250k events/month (3M/year on annual plan)
-- 3-year event retention (above the Article 19 and 26(6) minimum of 6 months)
-- Standard rule registry (EU AI Act Articles 9, 12, 13, 14, 72, 86, Annex III)
-- Pay-as-you-go event packages: €30 per 100k
-- Email support
-
-Badge: Series A ready
-
----
-
-**Enterprise: custom pricing**
-Negotiated per contract.
-
-Same mechanics as Startup, higher limits, dedicated support. Pricing negotiated per contract based on event volume and required compliance frameworks.
-
-Includes everything in Startup, plus:
-- Custom event limits
-- Event retention for the operational lifetime of the system (aligned with Articles 12, 18, and 19 obligations)
-- Custom rule registry entries written alongside your legal team
-- Dedicated support with a named contact
-- GDPR Data Processing Agreement
-- HIPAA Business Associate Agreement (healthcare)
-- EU AI Act compliance documentation package
-- Uptime SLA
-
-Badge: Banks, hospitals, insurers
-
----
-
-**Self-hosted callout heading** (`pricing.selfHostedHeading`): Self-hosted component
-
-**Self-hosted note (below all tiers)** (`pricing.selfHostedNote`):
-The local viewer ships with the SDK. Raw AI data never leaves your perimeter, on any plan.
-
-**Pricing note (muted, small):**
-250k events covers approximately 8,000 LLM calls per day. If you are expecting higher volume before launch, reach out.
-
-**Reference note (not rendered on site):** Rationale text is stored as structured fields, not free-form strings. This protects against accidental capture of personal data, prompt leakage, or confidential reasoning chains. Field-level configuration lets you control exactly what enters the rationale record. Full documentation in the SDK guide.
-
-### CTA block (below pricing tiers)
-
-**Heading** (`pricing.readyHeadline`):
-Ready to start?
-
-**CTA:** Join the waitlist → (links to `/#waitlist`)
+Heading and CTA: `pricing.readyHeadline` + the "Join the waitlist →" button (links to `/#waitlist`).
 
 ---
 
 ## Thank You Page (`/thank-you`)
 
-**Headline:**
-You're on the list.
+Headline, body, optional call-booking block, and fine print: `thankYou.*` (`headline`, `body`, `callBlock.{heading,body,cta}`, `finePrint`). The "Book a call →" CTA links to Cal.eu.
 
-**Body:**
-We'll respond personally within 48 hours.
-
-**Optional next step (visually distinct):**
-
-Want to talk through your situation before launch?
-
-You can book a 30-minute call directly. We'll ask you one question upfront about what you're most concerned with so we come prepared.
-
-**CTA:** Book a call → (links to Cal.eu)
-
-**Fine print (muted):**
-No pitch. If it's not relevant to your situation in the first 10 minutes, we stop.
+Voice: the reply and the 1:1 call are personal acts by the solo founder, so `body`, `callBlock.body`, and `finePrint` use founder "I" ("I'll respond", "I'll ask... so I come prepared", "I'll stop"). Revert to "we" when the team grows. [cut: company-voice versions — "We'll respond personally within 48 hours.", "We'll ask you one question upfront... so we come prepared.", "...the first 10 minutes, we stop."]
 
 [cut: "The call is for companies actively evaluating whether Traced AI fits their situation. If you're still exploring, the waitlist email is the right next step." — gave people an exit ramp instead of removing their fear of a sales call.]
 
@@ -336,80 +135,26 @@ No pitch. If it's not relevant to your situation in the first 10 minutes, we sto
 
 ## Footer (all pages)
 
-**Tagline:** Evidentiary infrastructure for AI decisions.
+Tagline, legal nav links (Privacy · Terms · DPA), contact email, and the legal disclaimer: `footer.*` (`tagline`, `navLinks[]`, `contactEmail`, `legal`).
 
-**Links:** Privacy · Terms · DPA · contact@traced-ai.com
+**Company block** (`footer.company`): two-column layout. Left column is the entity name + registration line; right column is the three-line registered address, right-aligned. **Values are not duplicated here** — they live in `footer.company` (render) with the canonical legal block in `CLAUDE.md` hard rules.
 
-**Company block:**
-
-Left:
-DRIFTWARE DYNAMICS LTD
-Cyprus Ltd · Reg. No.: ΗΕ 474529 · VAT: CY60167558M
-
-Right:
-Tefkrou Anthia, 63
-MEZARINA COURT A, Flat/Office 5
-Agia Napa, 5330, Famagusta, Cyprus
-
-**Note on email:** contact@traced-ai.com forwards to cmin764@gmail.com. Replies come from the personal address at this stage.
-
-**Legal note (10px, muted):**
-Traced AI does not provide legal advice. This product supports technical compliance documentation. It is not a substitute for a quality management system, legal counsel, or the full set of obligations under the EU AI Act. Consult qualified legal counsel for regulatory advice specific to your jurisdiction and use case.
+**Note on email (not rendered):** contact@traced-ai.com forwards to cmin764@gmail.com. Replies come from the personal address at this stage.
 
 ---
 
 ## About (`/about`)
 
-Anchor IDs: `#vision`, `#mission`, `#the-bet`. Three sections, top to bottom.
+Three sections, top to bottom. Anchor IDs `#vision`, `#mission`, `#the-bet`. All text in `about.*`.
 
-### Section 1: Vision
+### Section 1: Vision (`about.vision`)
 
-**Section label:** VISION
+Label VISION. Heading "The layer the whole system trusts". Four paragraphs building from "no AI decision about a person's life is a black box" to the closing thesis that the layer everyone plugs into is Traced AI. Text: `about.vision.heading`, `about.vision.paragraphs`.
 
-**Heading:** The layer the whole system trusts
+### Section 2: Mission (`about.mission`)
 
-**Body (four paragraphs):**
+Label MISSION. Heading "The line I won't cross". Four paragraphs on the non-negotiable rule that a named human signs every life-affecting AI decision, and the refusal to betray that for money. Text: `about.mission.heading`, `about.mission.paragraphs`.
 
-A future where no AI decision about a person's life is a black box.
+### Section 3: The Bet (`about.theBet`)
 
-Where a regulator, an auditor, or the person who got rejected can pull up the record and see exactly what was decided, on what basis, and who stood behind it. Where "the algorithm did it" stops being an excuse, because the trail is there and it can't be rewritten after the fact.
-
-In that world, audit trails for AI are not a nice-to-have a few careful companies bolt on. They're the floor. Being able to prove your AI's reasoning is as ordinary as keeping financial books. And the place everyone plugs into to check that proof, the companies logging it and the auditors verifying it, is Traced AI.
-
-That's the destination. Not a tool a few teams use. The layer the whole system trusts.
-
----
-
-### Section 2: Mission
-
-**Section label:** MISSION
-
-**Heading:** The line I won't cross
-
-**Body (four paragraphs):**
-
-When an AI makes a call about a person's life, a human signs their name to it. No exceptions.
-
-This is the line I won't cross for any amount of money. Not a slogan about "responsible AI", a hard rule: if a model shapes someone's career, their loan, their treatment, their future, a named human reviewed it and is on the hook for it. The point isn't to slow AI down. It's to make sure that when it touches a human fate, a human is still answerable for it.
-
-Plenty of money will be made building AI that decides fast and explains nothing. I'm building the opposite. Every day, the work is the same: make the human accountable, make the decision provable, and never let "the system chose" become an answer nobody can challenge.
-
-That's what I'm fighting for. The vision is where it leads. This is what I refuse to betray to get there.
-
----
-
-### Section 3: Build with me
-
-**Section label:** THE BET
-
-**Heading:** Before it's obvious
-
-**Body (opening + two paragraphs):**
-
-I'm [Cosmin](https://www.wandercode.ltd/about), one person. There's no salary to offer yet, no equity, no options, and I'm not changing that to bring someone on.
-
-What I can offer is a cut. The company's profit gets split into fair shares between me and the right one helping build this, paid monthly against invoices, straight from the books. The books are open to you. Some months that share is real money. Some months it's zero, because the product isn't live and revenue is whatever it is. I won't pretend otherwise.
-
-So this is a bet, not a job. If you believe AI needs a witness and you want to help build it before it's obvious, talk to me. If you need a paycheck, this isn't it yet, and I'd rather tell you that now than waste your time.
-
-**CTA:** Talk to me (mailto:contact@traced-ai.com)
+Label THE BET. Heading "Before it's obvious". An open co-build invitation: profit-share rather than salary, full honesty about the risk, a bet not a job. The opening links the founder name to wandercode.ltd, and the section closes with a "Talk to me" mailto CTA. Text: `about.theBet.*` (`heading`, `founderName`, `openingAfter`, `paragraphs`, `cta`). The founder link and CTA target are wired in `AboutPage.tsx`.

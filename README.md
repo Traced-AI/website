@@ -43,7 +43,7 @@ Pull requests get a preview URL posted by the Vercel bot. Check the PR before me
 |------|----------|
 | `docs/dev-guide.md` | Routing rules, design tokens, component conventions, copy editing |
 | `docs/build-plan.md` | GTM blueprint, pricing tiers, milestone definitions |
-| `docs/site-copy.md` | Source of truth for all user-visible copy |
+| `docs/site-copy.md` | Structural and editorial summary of site copy; exact strings live in `src/copy.ts` |
 | `docs/design-system.html` | Visual reference for tokens, fonts, and components (open in browser) |
 | `docs/legal-deferred.md` | Copy and legal content deferred until product launch |
 | `CLAUDE.md` | AI assistant instructions for this repo |

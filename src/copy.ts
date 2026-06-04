@@ -246,21 +246,21 @@ export const waitlist = {
   sectionLabel: 'JOIN THE WAITLIST',
   headline: 'We’re building for the companies who need this before August 2026.',
   subheadline:
-    'Two minutes. Tell us what you’re building and what you can’t yet explain. We’ll respond personally.',
+    'Two minutes. Tell us what you’re building and what you can’t yet explain. You’ll hear back from me personally.',
   finePrint:
     "Once you’ve joined, you can book a 30-minute call. Optional, not required.",
 };
 
 export const thankYou = {
   headline: 'You’re on the list.',
-  body: "We'll respond personally within 48 hours.",
+  body: "I'll respond personally within 48 hours.",
   callBlock: {
-    heading: 'Want to talk through your situation before launch?',
-    body: 'You can book a 30-minute call directly. We’ll ask you one question upfront about what you’re most concerned with so we come prepared.',
+    heading: 'Bring your messiest AI decision.',
+    body: '30 minutes, you talk first. Tell me what’s actually broken: an incident, an audit you couldn’t answer, a procurement questionnaire that made your team scramble. I’ll map one EU AI Act logging requirement to your stack.',
     cta: 'Book a call →',
   },
   finePrint:
-    'No pitch. If it’s not relevant to your situation in the first 10 minutes, we stop.',
+    'No pitch. If it’s not relevant to your situation in the first 10 minutes, I’ll stop.',
 };
 
 
@@ -285,7 +285,7 @@ export const about = {
       'That’s what I’m fighting for. The vision is where it leads. This is what I refuse to betray to get there.',
     ],
   },
-  buildWithMe: {
+  theBet: {
     sectionLabel: 'THE BET',
     heading: 'Before it’s obvious',
     founderName: 'Cosmin',
@@ -309,6 +309,8 @@ export const mainNav: NavLinkItem[] = [
   { label: 'About', to: '/about' },
 ];
 
+// Legal entity values. Canonical authority is the footer legal block in CLAUDE.md
+// hard rules; keep these in sync with it. Verbatim from the incorporation docs.
 const company = {
   name: 'DRIFTWARE DYNAMICS LTD',
   regNumber: 'ΗΕ 474529',
