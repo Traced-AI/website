@@ -15,6 +15,7 @@ Title convention: `Page Name · Traced AI` (short, symmetric). The `og:title` is
 | `/privacy` | Privacy Policy · Traced AI | Privacy Policy · Traced AI | How Driftware Dynamics Ltd handles personal data for traced-ai.com visitors and customers. |
 | `/terms` | Terms and Conditions · Traced AI | Terms and Conditions · Traced AI | Terms governing use of the Traced AI service. |
 | `/dpa` | Data Processing Agreement · Traced AI | Data Processing Agreement · Traced AI | GDPR Article 28 DPA between Driftware Dynamics Ltd and customers using the Traced AI service. |
+| `/about` | About · Traced AI | About Traced AI | The vision, mission, and open invitation to co-build Traced AI. |
 | `*` (NotFound) | 404 · Traced AI | (noindex, no OG needed) | (noindex, no description needed) |
 
 - **OG Image:** `og-image.png` (1200x630, ~50 KB). `og:image:alt`: "Traced AI: EU AI Act audit trail for high-risk AI decisions"
@@ -23,19 +24,20 @@ Title convention: `Page Name · Traced AI` (short, symmetric). The `og:title` is
 
 ## Page structure
 
-The site is three public-facing pages plus supporting legal routes:
+The site is four public-facing pages plus supporting legal routes:
 
 | Route | Page | Sections |
 |---|---|---|
 | `/` | Home | Hero, Regulatory Reality, Built For, Waitlist Form |
 | `/product` | Product | How It Works, Rule Registry |
 | `/pricing` | Pricing | Pricing tiers, CTA block |
+| `/about` | About | Vision, Mission, Build with me |
 | `/thank-you` | Thank You | Confirmation + optional call booking |
 | `/privacy` | Privacy Policy | Legal |
 | `/terms` | Terms of Service | Legal |
 | `/dpa` | Data Processing Agreement | Legal |
 
-NavBar appears on every page: logo image (clickable, links to `/`) + Product link + Pricing link + theme toggle + "Join waitlist" button (links to `/#waitlist`). The logo is an image (`logo-light.png` / `logo-dark.png`) rather than the text "Traced AI". No string in copy.ts covers the logo alt text ("Traced AI") since it is structural.
+NavBar appears on every page: logo image (clickable, links to `/`) + Product link + Pricing link + About link + theme toggle + "Join waitlist" button (links to `/#waitlist`). The logo is an image (`logo-light.png` / `logo-dark.png`) rather than the text "Traced AI". No string in copy.ts covers the logo alt text ("Traced AI") since it is structural.
 
 ---
 
@@ -348,3 +350,61 @@ Tefkrou Anthia 63, MEZARINA COURT A, Flat/Office 5, Agia Napa, Famagusta, Cyprus
 
 **Legal note (10px, muted):**
 Traced AI does not provide legal advice. This product supports technical compliance documentation. It is not a substitute for a quality management system, legal counsel, or the full set of obligations under the EU AI Act. Consult qualified legal counsel for regulatory advice specific to your jurisdiction and use case.
+
+---
+
+## About (`/about`)
+
+Anchor IDs: `#vision`, `#mission`, `#build-with-me`. Three sections, top to bottom.
+
+### Section 1: Vision
+
+**Section label:** VISION
+
+**Heading:** The layer the whole system trusts
+
+**Body (four paragraphs):**
+
+A future where no AI decision about a person's life is a black box.
+
+Where a regulator, an auditor, or the person who got rejected can pull up the record and see exactly what was decided, on what basis, and who stood behind it. Where "the algorithm did it" stops being an excuse, because the trail is there and it can't be rewritten after the fact.
+
+In that world, audit trails for AI are not a nice-to-have a few careful companies bolt on. They're the floor. Being able to prove your AI's reasoning is as ordinary as keeping financial books. And the place everyone plugs into to check that proof, the companies logging it and the auditors verifying it, is Traced AI.
+
+That's the destination. Not a tool a few teams use. The layer the whole system trusts.
+
+---
+
+### Section 2: Mission
+
+**Section label:** MISSION
+
+**Heading:** The line I won't cross
+
+**Body (four paragraphs):**
+
+When an AI makes a call about a person's life, a human signs their name to it. No exceptions.
+
+This is the line I won't cross for any amount of money. Not a slogan about "responsible AI", a hard rule: if a model shapes someone's career, their loan, their treatment, their future, a named human reviewed it and is on the hook for it. The point isn't to slow AI down. It's to make sure that when it touches a human fate, a human is still answerable for it.
+
+Plenty of money will be made building AI that decides fast and explains nothing. I'm building the opposite. Every day, the work is the same: make the human accountable, make the decision provable, and never let "the system chose" become an answer nobody can challenge.
+
+That's what I'm fighting for. The vision is where it leads. This is what I refuse to betray to get there.
+
+---
+
+### Section 3: Build with me
+
+**Section label:** THE BET
+
+**Heading:** Before it's obvious
+
+**Body (opening + two paragraphs):**
+
+I'm [Cosmin](https://www.wandercode.ltd/about), one person. There's no salary to offer yet, no equity, no options, and I'm not changing that to bring someone on.
+
+What I can offer is a cut. The company's profit gets split into fair shares between me and the right one helping build this, paid monthly against invoices, straight from the books. The books are open to you. Some months that share is real money. Some months it's zero, because the product isn't live and revenue is whatever it is. I won't pretend otherwise.
+
+So this is a bet, not a job. If you believe AI needs a witness and you want to help build it before it's obvious, talk to me. If you need a paycheck, this isn't it yet, and I'd rather tell you that now than waste your time.
+
+**CTA:** Talk to me (mailto:contact@traced-ai.com)

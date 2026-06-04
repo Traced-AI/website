@@ -263,6 +263,41 @@ export const thankYou = {
     'No pitch. If it’s not relevant to your situation in the first 10 minutes, we stop.',
 };
 
+
+export const about = {
+  vision: {
+    sectionLabel: 'VISION',
+    heading: 'The layer the whole system trusts',
+    paragraphs: [
+      'A future where no AI decision about a person’s life is a black box.',
+      'Where a regulator, an auditor, or the person who got rejected can pull up the record and see exactly what was decided, on what basis, and who stood behind it. Where “the algorithm did it” stops being an excuse, because the trail is there and it can’t be rewritten after the fact.',
+      'In that world, audit trails for AI are not a nice-to-have a few careful companies bolt on. They’re the floor. Being able to prove your AI’s reasoning is as ordinary as keeping financial books. And the place everyone plugs into to check that proof, the companies logging it and the auditors verifying it, is Traced AI.',
+      'That’s the destination. Not a tool a few teams use. The layer the whole system trusts.',
+    ],
+  },
+  mission: {
+    sectionLabel: 'MISSION',
+    heading: 'The line I won’t cross',
+    paragraphs: [
+      'When an AI makes a call about a person’s life, a human signs their name to it. No exceptions.',
+      'This is the line I won’t cross for any amount of money. Not a slogan about “responsible AI”, a hard rule: if a model shapes someone’s career, their loan, their treatment, their future, a named human reviewed it and is on the hook for it. The point isn’t to slow AI down. It’s to make sure that when it touches a human fate, a human is still answerable for it.',
+      'Plenty of money will be made building AI that decides fast and explains nothing. I’m building the opposite. Every day, the work is the same: make the human accountable, make the decision provable, and never let “the system chose” become an answer nobody can challenge.',
+      'That’s what I’m fighting for. The vision is where it leads. This is what I refuse to betray to get there.',
+    ],
+  },
+  buildWithMe: {
+    sectionLabel: 'THE BET',
+    heading: 'Before it’s obvious',
+    founderName: 'Cosmin',
+    openingAfter: ', one person. There’s no salary to offer yet, no equity, no options, and I’m not changing that to bring someone on.',
+    paragraphs: [
+      'What I can offer is a cut. The company’s profit gets split into fair shares between me and the right one helping build this, paid monthly against invoices, straight from the books. The books are open to you. Some months that share is real money. Some months it’s zero, because the product isn’t live and revenue is whatever it is. I won’t pretend otherwise.',
+      'So this is a bet, not a job. If you believe AI needs a witness and you want to help build it before it’s obvious, talk to me. If you need a paycheck, this isn’t it yet, and I’d rather tell you that now than waste your time.',
+    ],
+    cta: 'Talk to me',
+  },
+};
+
 export const footer = {
   tagline: 'Evidentiary infrastructure for AI decisions.',
   navLinks: [

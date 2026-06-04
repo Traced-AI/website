@@ -81,8 +81,11 @@ Current section map (use this as a reference when adding sections):
 | Landing (`/`) | Hero(`bg-1`) → RegulatoryReality(`bg-0`) → BuiltFor(`bg-1`) → WaitlistForm(`bg-0`) → Footer(`bg-1`) |
 | Product (`/product`) | HowItWorks(`bg-1`) → RuleRegistry(`bg-0`) → Footer(`bg-1`) |
 | Pricing (`/pricing`) | Pricing(`bg-1`) → CTA(`bg-0`) → Footer(`bg-1`) |
+| About (`/about`) | Vision(`bg-1`) → Mission(`bg-0`) → BuildWithMe(`bg-1`) → Footer(`bg-1`, separated by border) |
 
 When adding a new page: start the first section with `bg-1` (it follows the NavBar, which is also `bg-1` with a border-bottom, and the borderTop on the section provides the visual break). Then alternate from there, ensuring the last section is `bg-0`.
+
+**Odd-section exception:** When a page has an odd number of content sections, strict alternation starting at `bg-1` ends on `bg-1` rather than `bg-0`. The footer's `borderTop: 1px solid var(--br-subtle)` still provides the visual separation. About (`/about`) is the current example of this: three sections, ending on `bg-1`.
 
 ## TypeScript
 

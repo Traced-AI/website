@@ -70,6 +70,7 @@ export default function NavBar() {
           <nav className="navbar-links" aria-label="Site navigation">
             <NavLink to="/product" className={({ isActive }) => `navbar-link${isActive ? ' active' : ''}`}>Product</NavLink>
             <NavLink to="/pricing" className={({ isActive }) => `navbar-link${isActive ? ' active' : ''}`}>Pricing</NavLink>
+            <NavLink to="/about" className={({ isActive }) => `navbar-link${isActive ? ' active' : ''}`}>About</NavLink>
           </nav>
           <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme" aria-pressed={theme === 'dark'}>
             <ThemeIcon theme={theme} />
