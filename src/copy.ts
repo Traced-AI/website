@@ -285,7 +285,7 @@ export const about = {
       'That’s what I’m fighting for. The vision is where it leads. This is what I refuse to betray to get there.',
     ],
   },
-  buildWithMe: {
+  theBet: {
     sectionLabel: 'THE BET',
     heading: 'Before it’s obvious',
     founderName: 'Cosmin',
