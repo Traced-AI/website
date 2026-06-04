@@ -360,7 +360,7 @@ Traced AI does not provide legal advice. This product supports technical complia
 
 ## About (`/about`)
 
-Anchor IDs: `#vision`, `#mission`, `#build-with-me`. Three sections, top to bottom.
+Anchor IDs: `#vision`, `#mission`, `#the-bet`. Three sections, top to bottom.
 
 ### Section 1: Vision
 

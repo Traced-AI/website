@@ -40,7 +40,7 @@ function TextSection({ id, bg, data, top = false }: { id: string; bg: string; da
 function BuildWithMeSection() {
   const { sectionLabel, heading, founderName, openingAfter, paragraphs, cta } = about.buildWithMe
   return (
-    <section id="build-with-me" style={{ background: 'var(--bg-1)', borderTop: '1px solid var(--br-subtle)' }}>
+    <section id="the-bet" style={{ background: 'var(--bg-1)', borderTop: '1px solid var(--br-subtle)' }}>
       <div className="page-section">
         <div className="section-label">{sectionLabel}</div>
         <h2 className="section-heading">{heading}</h2>
