@@ -25,13 +25,9 @@ function TextSection({ id, bg, data }: { id: string; bg: string; data: TextSecti
         <div className="section-label">{sectionLabel}</div>
         <h2 className="section-heading">{heading}</h2>
         <div style={PROSE_COLUMN}>
-          <p style={{ fontSize: '17px', fontWeight: 500, color: 'var(--tx-0)', lineHeight: 1.85, margin: 0 }}>
-            {first}
-          </p>
+          <p className="prose-lead">{first}</p>
           {rest.map((p, i) => (
-            <p key={i} style={{ fontSize: '15px', color: 'var(--tx-1)', lineHeight: 1.85, margin: 0 }}>
-              {p}
-            </p>
+            <p key={i} className="prose-body">{p}</p>
           ))}
         </div>
       </div>
@@ -47,22 +43,20 @@ function BuildWithMeSection() {
         <div className="section-label">{sectionLabel}</div>
         <h2 className="section-heading">{heading}</h2>
         <div style={PROSE_COLUMN}>
-          <p style={{ fontSize: '17px', fontWeight: 500, color: 'var(--tx-0)', lineHeight: 1.85, margin: 0 }}>
+          <p className="prose-lead">
             I&rsquo;m{' '}
             <a
               href="https://www.wandercode.ltd/about"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: 'var(--ac)', textDecoration: 'underline', textDecorationColor: 'var(--ac-border)' }}
+              className="prose-link"
             >
               {founderName}
             </a>
             {openingAfter}
           </p>
           {paragraphs.map((p, i) => (
-            <p key={i} style={{ fontSize: '15px', color: 'var(--tx-1)', lineHeight: 1.85, margin: 0 }}>
-              {p}
-            </p>
+            <p key={i} className="prose-body">{p}</p>
           ))}
         </div>
         <a

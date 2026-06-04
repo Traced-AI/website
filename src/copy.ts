@@ -298,6 +298,28 @@ export const about = {
   },
 };
 
+export interface NavLinkItem {
+  label: string;
+  to: string;
+}
+
+export const mainNav: NavLinkItem[] = [
+  { label: 'Product', to: '/product' },
+  { label: 'Pricing', to: '/pricing' },
+  { label: 'About', to: '/about' },
+];
+
+const company = {
+  name: 'DRIFTWARE DYNAMICS LTD',
+  regNumber: 'ΗΕ 474529',
+  vat: 'CY60167558M',
+  address: [
+    'Tefkrou Anthia, 63',
+    'MEZARINA COURT A, Flat/Office 5',
+    'Agia Napa, 5330, Famagusta, Cyprus',
+  ],
+};
+
 export const footer = {
   tagline: 'Evidentiary infrastructure for AI decisions.',
   navLinks: [
@@ -307,15 +329,8 @@ export const footer = {
   ],
   contactEmail: { label: 'contact@traced-ai.com', href: 'mailto:contact@traced-ai.com' },
   company: {
-    name: 'DRIFTWARE DYNAMICS LTD',
-    regNumber: 'ΗΕ 474529',
-    vat: 'CY60167558M',
-    registration: 'Cyprus Ltd · Reg. No.: ΗΕ 474529 · VAT: CY60167558M',
-    address: [
-      'Tefkrou Anthia, 63',
-      'MEZARINA COURT A, Flat/Office 5',
-      'Agia Napa, 5330, Famagusta, Cyprus',
-    ],
+    ...company,
+    registration: `Cyprus Ltd · Reg. No.: ${company.regNumber} · VAT: ${company.vat}`,
   },
   legal:
     'Traced AI does not provide legal advice. This product supports technical compliance documentation. It is not a substitute for a quality management system, legal counsel, or the full set of obligations under the EU AI Act. Consult qualified legal counsel for regulatory advice specific to your jurisdiction and use case.',

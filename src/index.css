@@ -155,6 +155,26 @@ body {
   letter-spacing: 0.03em;
 }
 
+/* Prose blocks: lead paragraph carries weight, body paragraphs follow muted. */
+.prose-lead {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--tx-0);
+  line-height: 1.85;
+  margin: 0;
+}
+.prose-body {
+  font-size: 15px;
+  color: var(--tx-1);
+  line-height: 1.85;
+  margin: 0;
+}
+.prose-link {
+  color: var(--ac);
+  text-decoration: underline;
+  text-decoration-color: var(--ac-border);
+}
+
 /* ─── NAVBAR ─── */
 .navbar {
   position: sticky;

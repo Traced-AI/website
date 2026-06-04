@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { useWaitlistClick } from '../hooks/useWaitlistClick'
+import { mainNav } from '../copy'
+
+const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+  `navbar-link${isActive ? ' active' : ''}`
 
 function ThemeIcon({ theme }: { theme: string }) {
   if (theme === 'dark') {
@@ -94,9 +98,6 @@ export default function NavBar() {
     setTheme(next)
   }
 
-  const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-    `navbar-link${isActive ? ' active' : ''}`
-
   return (
     <header className={`navbar${scrolled ? ' scrolled' : ''}`} ref={menuRef}>
       <div className="navbar-inner">
@@ -113,9 +114,9 @@ export default function NavBar() {
         {/* Desktop layout */}
         <div className="navbar-actions navbar-desktop">
           <nav className="navbar-links" aria-label="Site navigation">
-            <NavLink to="/product" className={navLinkClass}>Product</NavLink>
-            <NavLink to="/pricing" className={navLinkClass}>Pricing</NavLink>
-            <NavLink to="/about" className={navLinkClass}>About</NavLink>
+            {mainNav.map((item) => (
+              <NavLink key={item.to} to={item.to} className={navLinkClass}>{item.label}</NavLink>
+            ))}
           </nav>
           <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme" aria-pressed={theme === 'dark'}>
             <ThemeIcon theme={theme} />
@@ -146,9 +147,9 @@ export default function NavBar() {
       {/* Mobile dropdown */}
       {menuOpen && (
         <nav id="mobile-menu" className="mobile-menu" aria-label="Site navigation">
-          <NavLink to="/product" className={navLinkClass} onClick={() => setMenuOpen(false)}>Product</NavLink>
-          <NavLink to="/pricing" className={navLinkClass} onClick={() => setMenuOpen(false)}>Pricing</NavLink>
-          <NavLink to="/about" className={navLinkClass} onClick={() => setMenuOpen(false)}>About</NavLink>
+          {mainNav.map((item) => (
+            <NavLink key={item.to} to={item.to} className={navLinkClass} onClick={() => setMenuOpen(false)}>{item.label}</NavLink>
+          ))}
           <Link
             to="/#waitlist"
             className="btn btn-primary mobile-menu-cta"

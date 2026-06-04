@@ -183,6 +183,11 @@ p.note { font-size: 14px; color: var(--tx-1); line-height: 1.75; margin-bottom: 
 strong.hl { color: var(--tx-0); }
 .group-label { font-size: 10px; color: var(--tx-2); font-family: var(--f-mono); margin-bottom: 12px; letter-spacing: 0.12em; text-transform: uppercase; }
 
+/* Prose: lead paragraph carries weight, body follows muted (used on /about). */
+.prose-lead { font-size: 17px; font-weight: 500; color: var(--tx-0); line-height: 1.85; margin: 0; }
+.prose-body { font-size: 15px; color: var(--tx-1); line-height: 1.85; margin: 0; }
+.prose-link { color: var(--ac); text-decoration: underline; text-decoration-color: var(--ac-border); }
+
 /* ═══ DOC HEADER ═══ */
 .doc-header { margin-bottom: 56px; padding-top: 16px; }
 .doc-title { font-family: var(--f-mono); font-size: 12px; color: var(--tx-0); margin-bottom: 4px; letter-spacing: 0.04em; }
@@ -645,6 +650,14 @@ strong.hl { color: var(--tx-0); }
       <button class="btn btn-primary btn-sm">Get early access</button>
       <button class="btn btn-secondary btn-sm">See pricing</button>
       <button class="btn btn-ghost btn-sm">Book a demo</button>
+    </div>
+  </div>
+
+  <div style="margin-bottom:28px">
+    <div class="group-label">Prose</div>
+    <div style="max-width:680px;display:flex;flex-direction:column;gap:1.5rem">
+      <p class="prose-lead">Lead paragraph: the thesis line, slightly larger and full-strength text.</p>
+      <p class="prose-body">Body paragraph: muted color, same line height. Inline <a href="#" class="prose-link">accent link</a> for external references.</p>
     </div>
   </div>
 
