@@ -42,7 +42,7 @@ export default function Footer() {
         </div>
 
         <div style={{ borderTop: '1px solid var(--br-subtle)', paddingTop: '24px' }}>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginBottom: '20px' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '2rem', marginBottom: '20px' }}>
             <div>
               <p style={{ fontSize: '12px', color: 'var(--tx-2)', marginBottom: '4px', fontFamily: 'var(--f-mono)', letterSpacing: '0.04em' }}>
                 {footer.company.name}
@@ -51,7 +51,7 @@ export default function Footer() {
                 {footer.company.registration}
               </p>
             </div>
-            <div>
+            <div style={{ textAlign: 'right' }}>
               {footer.company.address.map((line, i) => (
                 <p key={i} style={{ fontSize: '11px', color: 'var(--tx-2)', margin: '0 0 2px' }}>
                   {line}
