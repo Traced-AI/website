@@ -565,6 +565,11 @@ body {
   max-width: 1100px;
   margin: 0 auto;
 }
+.footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 .footer-nav-link {
   font-size: 13px;
   color: var(--tx-2);

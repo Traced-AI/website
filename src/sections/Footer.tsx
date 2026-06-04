@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-inner">
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '24px', marginBottom: '32px' }}>
+        <div className="footer-row" style={{ gap: '24px', marginBottom: '32px' }}>
           <div>
             <div className="f-display" style={{
               fontSize: '14px',
@@ -42,7 +42,7 @@ export default function Footer() {
         </div>
 
         <div style={{ borderTop: '1px solid var(--br-subtle)', paddingTop: '24px' }}>
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '2rem', marginBottom: '20px' }}>
+          <div className="footer-row" style={{ gap: '2rem', marginBottom: '20px' }}>
             <div>
               <p style={{ fontSize: '12px', color: 'var(--tx-2)', marginBottom: '4px', fontFamily: 'var(--f-mono)', letterSpacing: '0.04em' }}>
                 {footer.company.name}

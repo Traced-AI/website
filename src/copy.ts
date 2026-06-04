@@ -308,6 +308,8 @@ export const footer = {
   contactEmail: { label: 'contact@traced-ai.com', href: 'mailto:contact@traced-ai.com' },
   company: {
     name: 'DRIFTWARE DYNAMICS LTD',
+    regNumber: 'ΗΕ 474529',
+    vat: 'CY60167558M',
     registration: 'Cyprus Ltd · Reg. No.: ΗΕ 474529 · VAT: CY60167558M',
     address: [
       'Tefkrou Anthia, 63',

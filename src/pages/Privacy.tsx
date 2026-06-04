@@ -1,6 +1,7 @@
 import NavBar from '../sections/NavBar'
 import Footer from '../sections/Footer'
 import { LegalSection } from '../components/LegalComponents'
+import { footer } from '../copy'
 
 export default function Privacy() {
   return (
@@ -34,7 +35,7 @@ export default function Privacy() {
           </LegalSection>
 
           <LegalSection id="2" title="Who we are and how to reach us">
-            <p>Driftware Dynamics Ltd, registered in Cyprus under company number ΗΕ 474529, VAT: CY60167558M, with registered address Tefkrou Anthia, 63, MEZARINA COURT A, Flat/Office 5, Agia Napa, 5330, Famagusta, Cyprus.</p>
+            <p>Driftware Dynamics Ltd, registered in Cyprus under company number {footer.company.regNumber}, VAT: {footer.company.vat}, with registered address {footer.company.address.join(', ')}.</p>
             <p>All privacy enquiries: <a href="mailto:contact@traced-ai.com">contact@traced-ai.com</a></p>
           </LegalSection>
 
