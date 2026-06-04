@@ -61,7 +61,7 @@ These are project-specific and legally load-bearing. A copy error here is a 🔴
 
 **D6**: Stat-card links (`StatCard.tsx`, sources in `config.ts`) point only to `artificialintelligenceact.eu` or the official EC AI Act service desk. No other sources.
 
-**D7**: Footer legal block exact: DRIFTWARE DYNAMICS LTD, Cyprus Ltd, Reg. No. HE 474529, VAT 60167558M. Contact: contact@traced-ai.com. Flag any drift in these strings.
+**D7**: Footer legal block exact: DRIFTWARE DYNAMICS LTD, Cyprus Ltd, Reg. No.: ΗΕ 474529, VAT: CY60167558M. These are verbatim from the incorporation docs (Greek ΗΕ, CY VAT prefix); do not "correct" them to Latin HE or strip the prefix. Contact: contact@traced-ai.com. Flag any drift in these strings.
 
 **D8**: No literal user-visible strings in JSX. All copy lives in `src/copy.ts`. Flag hardcoded text in components.
 

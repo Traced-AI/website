@@ -16,14 +16,16 @@ const PROSE_COLUMN = {
   gap: '1.5rem',
 }
 
-function TextSection({ id, bg, data }: { id: string; bg: string; data: TextSectionData }) {
+function TextSection({ id, bg, data, top = false }: { id: string; bg: string; data: TextSectionData; top?: boolean }) {
   const { sectionLabel, heading, paragraphs } = data
   const [first, ...rest] = paragraphs
+  // The page's single <h1> rides on the first section, matching HowItWorks and Pricing.
+  const Heading = top ? 'h1' : 'h2'
   return (
     <section id={id} style={{ background: bg, borderTop: '1px solid var(--br-subtle)' }}>
       <div className="page-section">
         <div className="section-label">{sectionLabel}</div>
-        <h2 className="section-heading">{heading}</h2>
+        <Heading className="section-heading">{heading}</Heading>
         <div style={PROSE_COLUMN}>
           <p className="prose-lead">{first}</p>
           {rest.map((p, i) => (
@@ -82,7 +84,7 @@ export default function AboutPage() {
       <meta property="og:description" content="The vision, mission, and open invitation to co-build Traced AI." />
       <NavBar />
       <main>
-        <TextSection id="vision" bg="var(--bg-1)" data={about.vision} />
+        <TextSection id="vision" bg="var(--bg-1)" data={about.vision} top />
         <TextSection id="mission" bg="var(--bg-0)" data={about.mission} />
         <BuildWithMeSection />
       </main>
