@@ -41,6 +41,8 @@ Stack reality this checklist assumes: Vite 8 + React 19 + react-router-dom 7 + T
 
 **RR5**: Hash targets (`/#waitlist`) need a matching `id` on the element. Global scroll is handled by `src/components/ScrollToTop.tsx` (effect on `[pathname, hash]`). **Same-URL hash edge case:** `<Link to="/#section">` is a no-op when the URL is already `/#section`, so the effect does not re-run. Any CTA jumping to a hash on the current page needs a click handler calling `scrollIntoView` directly plus `window.history.replaceState` to keep the URL in sync. Reference: `NavBar.handleWaitlistClick`.
 
+**RR6**: Primary nav links are data, not markup. They live as `mainNav` in `src/copy.ts`; desktop and mobile menus both `.map()` over it. A new destination should touch only `copy.ts`, never duplicate `<NavLink>` markup. The mobile `.mobile-menu` always renders and toggles via the `hidden` attribute (`hidden={!menuOpen}`), so `aria-controls="mobile-menu"` always resolves; it is never conditional JSX. The menu closes from explicit `onClick` handlers plus `pointerdown`/`popstate` listeners, never a `setMenuOpen` call inside a `location`-keyed `useEffect` (that trips the CI-blocking `react-hooks/set-state-in-effect` rule).
+
 ---
 
 ## 3. Content & Copy: EU AI Act + project rules (D)
@@ -59,7 +61,7 @@ These are project-specific and legally load-bearing. A copy error here is a 🔴
 
 **D6**: Stat-card links (`StatCard.tsx`, sources in `config.ts`) point only to `artificialintelligenceact.eu` or the official EC AI Act service desk. No other sources.
 
-**D7**: Footer legal block exact: DRIFTWARE DYNAMICS LTD, Cyprus Ltd, Reg. No. HE 474529, VAT 60167558M. Contact: contact@traced-ai.com. Flag any drift in these strings.
+**D7**: Footer legal block exact: DRIFTWARE DYNAMICS LTD, Cyprus Ltd, Reg. No.: ΗΕ 474529, VAT: CY60167558M. These are verbatim from the incorporation docs (Greek ΗΕ, CY VAT prefix); do not "correct" them to Latin HE or strip the prefix. Contact: contact@traced-ai.com. Flag any drift in these strings.
 
 **D8**: No literal user-visible strings in JSX. All copy lives in `src/copy.ts`. Flag hardcoded text in components.
 

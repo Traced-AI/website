@@ -434,7 +434,7 @@ Apply with a lawyer who specializes in EU tech grants. Do not DIY it.
 | # | What | Done When |
 |---|------|-----------|
 | 0 | Design system + content artifacts | This session |
-| 1 | Landing page live, Tally + Cal.eu collecting | First real submission in Sheets |
+| 1 | Landing page + About page live, Tally + Cal.eu collecting | First real submission in Sheets |
 | 2 | 10 qualified signups | 3+ with a specific real incident described |
 | 3 | First demo call | 1 CTO says yes to the €500 intent test |
 | 4 | SDK MVP | Recorded full round-trip demo, fintech credit scoring, synthetic data |

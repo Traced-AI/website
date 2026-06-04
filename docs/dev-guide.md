@@ -16,9 +16,23 @@ Routes are in `src/App.tsx`. `<ScrollToTop />` (`src/components/ScrollToTop.tsx`
 - `/privacy`, `/terms`, `/dpa`: legal pages
 - `*` (NotFound): 404
 
-**NavBar** (every page): logo links to `/` (smooth-scrolls to top if already there), Product and Pricing use `<NavLink>`, theme toggle, "Join waitlist" links to `/#waitlist`.
+**NavBar** (every page): logo links to `/` (smooth-scrolls to top if already there), the primary links (Product, Pricing, About) use `<NavLink>`, theme toggle, "Join waitlist" links to `/#waitlist`. The primary links are data, not markup: they live as `mainNav` in `src/copy.ts` and both the desktop and mobile menus `.map()` over that single array, so adding a destination touches only `copy.ts`.
 
 Build each navigation destination as its own page file from the start. Starting with a monolithic page and splitting later (as happened with the initial `Landing.tsx`) is avoidable churn.
+
+### NavBar responsive layout
+
+The root is a `<header>` containing a `.navbar-inner` row plus the mobile dropdown. Two layout blocks swap at the `767px` breakpoint, driven entirely by CSS (`src/index.css`):
+
+- `.navbar-desktop` holds the inline nav, theme toggle, and CTA. `display: none` below 768px.
+- `.navbar-mobile` holds an icon-only theme toggle and the `.hamburger` button. `display: none` at 768px and up.
+
+The hamburger toggles `menuOpen` state, which controls `.mobile-menu` (a second `<nav>` rendered after `.navbar-inner`).
+
+Conventions to preserve:
+- **The mobile menu always renders.** Visibility is toggled with the `hidden` attribute (`hidden={!menuOpen}`), never conditional JSX. This keeps the hamburger's `aria-controls="mobile-menu"` pointed at a live element and keeps its children out of the tab order when closed. Because `.mobile-menu` sets `display: flex`, the explicit `.mobile-menu[hidden] { display: none }` rule is required to let the attribute win.
+- **The menu closes from every exit path, not a route effect.** Each `NavLink`, the logo handler, and the waitlist CTA call `setMenuOpen(false)` on click; an outside `pointerdown` listener and a `popstate` listener cover taps-away and browser back/forward. Do not reintroduce a `useEffect` that calls `setMenuOpen` on `location` change: it trips the `react-hooks/set-state-in-effect` lint rule (CI-blocking).
+- The desktop and mobile nav landmarks carry distinct `aria-label`s ("Site navigation" vs "Mobile navigation") so they read as separate regions.
 
 ## Routing Rules
 
@@ -81,8 +95,11 @@ Current section map (use this as a reference when adding sections):
 | Landing (`/`) | Hero(`bg-1`) → RegulatoryReality(`bg-0`) → BuiltFor(`bg-1`) → WaitlistForm(`bg-0`) → Footer(`bg-1`) |
 | Product (`/product`) | HowItWorks(`bg-1`) → RuleRegistry(`bg-0`) → Footer(`bg-1`) |
 | Pricing (`/pricing`) | Pricing(`bg-1`) → CTA(`bg-0`) → Footer(`bg-1`) |
+| About (`/about`) | Vision(`bg-1`) → Mission(`bg-0`) → BuildWithMe(`bg-1`) → Footer(`bg-1`, separated by border) |
 
 When adding a new page: start the first section with `bg-1` (it follows the NavBar, which is also `bg-1` with a border-bottom, and the borderTop on the section provides the visual break). Then alternate from there, ensuring the last section is `bg-0`.
+
+**Odd-section exception:** When a page has an odd number of content sections, strict alternation starting at `bg-1` ends on `bg-1` rather than `bg-0`. The footer's `borderTop: 1px solid var(--br-subtle)` still provides the visual separation. About (`/about`) is the current example of this: three sections, ending on `bg-1`.
 
 ## TypeScript
 
@@ -98,14 +115,14 @@ Baseline is WCAG 2.2 AA.
 - Every `<img>` needs `alt`. Use `alt=""` for decorative images.
 - Icon-only interactive elements (theme toggle, icon buttons) need `aria-label`. Toggles that open/close also need `aria-expanded` tracking state.
 - One `<h1>` per page. Heading levels must not skip (h1 → h2 → h3).
-- All interactive elements need a visible focus style. Never `outline: none` without a replacement. `src/index.css` currently scopes its box-shadow focus replacement to `.form-input` only, so any new interactive element must have its own visible focus style.
+- All interactive elements need a visible focus style. Never `outline: none` without a replacement. `src/index.css` has a global `:focus-visible { outline: 2px solid var(--ac); outline-offset: 2px }` rule that covers all focusable elements. The only exception is `.form-input`, which suppresses the outline and substitutes a custom box-shadow ring instead.
 - CSS animations need a `@media (prefers-reduced-motion: reduce)` fallback in `src/index.css`. This block is not present yet, so it must be added alongside the first animation that needs it.
 - Semantic landmarks on every page: `<header>`, `<nav>`, `<main>`, `<footer>`.
 
 WCAG 2.2 additions that matter for this layout:
 - **Target size (2.5.8):** pointer targets (icon buttons, nav links, theme toggle) are at least 24×24 CSS px, or spaced far enough apart.
 - **Focus appearance (2.4.13):** the focus indicator is at least a 2px-thick border-equivalent and contrasts ≥3:1 with adjacent colors, in both themes.
-- **Focus not obscured (2.4.11):** because the NavBar is sticky, a focused element reached by keyboard or hash navigation must not hide behind the header. Keep a `scroll-mt-*` offset on hash targets.
+- **Focus not obscured (2.4.11):** because the NavBar is sticky, a focused element reached by keyboard or hash navigation must not hide behind the header. `src/index.css` has a global `[id] { scroll-margin-top: 72px }` rule that covers all hash-anchor targets; no per-element `scroll-mt-*` override is needed.
 
 ## Component Rules
 
