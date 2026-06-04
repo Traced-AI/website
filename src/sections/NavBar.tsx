@@ -80,8 +80,12 @@ export default function NavBar() {
     return () => document.removeEventListener('pointerdown', onPointerDown)
   }, [menuOpen])
 
-  // Close menu on route change
-  useEffect(() => { setMenuOpen(false) }, [location.pathname, location.hash])
+  // Close menu on browser back/forward navigation
+  useEffect(() => {
+    function onPopState() { setMenuOpen(false) }
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
+  }, [])
 
   function toggleTheme() {
     const next = theme === 'light' ? 'dark' : 'light'
