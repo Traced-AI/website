@@ -16,9 +16,23 @@ Routes are in `src/App.tsx`. `<ScrollToTop />` (`src/components/ScrollToTop.tsx`
 - `/privacy`, `/terms`, `/dpa`: legal pages
 - `*` (NotFound): 404
 
-**NavBar** (every page): logo links to `/` (smooth-scrolls to top if already there), Product and Pricing use `<NavLink>`, theme toggle, "Join waitlist" links to `/#waitlist`.
+**NavBar** (every page): logo links to `/` (smooth-scrolls to top if already there), the primary links (Product, Pricing, About) use `<NavLink>`, theme toggle, "Join waitlist" links to `/#waitlist`. The primary links are data, not markup: they live as `mainNav` in `src/copy.ts` and both the desktop and mobile menus `.map()` over that single array, so adding a destination touches only `copy.ts`.
 
 Build each navigation destination as its own page file from the start. Starting with a monolithic page and splitting later (as happened with the initial `Landing.tsx`) is avoidable churn.
+
+### NavBar responsive layout
+
+The root is a `<header>` containing a `.navbar-inner` row plus the mobile dropdown. Two layout blocks swap at the `767px` breakpoint, driven entirely by CSS (`src/index.css`):
+
+- `.navbar-desktop` holds the inline nav, theme toggle, and CTA. `display: none` below 768px.
+- `.navbar-mobile` holds an icon-only theme toggle and the `.hamburger` button. `display: none` at 768px and up.
+
+The hamburger toggles `menuOpen` state, which controls `.mobile-menu` (a second `<nav>` rendered after `.navbar-inner`).
+
+Conventions to preserve:
+- **The mobile menu always renders.** Visibility is toggled with the `hidden` attribute (`hidden={!menuOpen}`), never conditional JSX. This keeps the hamburger's `aria-controls="mobile-menu"` pointed at a live element and keeps its children out of the tab order when closed. Because `.mobile-menu` sets `display: flex`, the explicit `.mobile-menu[hidden] { display: none }` rule is required to let the attribute win.
+- **The menu closes from every exit path, not a route effect.** Each `NavLink`, the logo handler, and the waitlist CTA call `setMenuOpen(false)` on click; an outside `pointerdown` listener and a `popstate` listener cover taps-away and browser back/forward. Do not reintroduce a `useEffect` that calls `setMenuOpen` on `location` change: it trips the `react-hooks/set-state-in-effect` lint rule (CI-blocking).
+- The desktop and mobile nav landmarks carry distinct `aria-label`s ("Site navigation" vs "Mobile navigation") so they read as separate regions.
 
 ## Routing Rules
 
