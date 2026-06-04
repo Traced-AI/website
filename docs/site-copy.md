@@ -342,9 +342,14 @@ No pitch. If it's not relevant to your situation in the first 10 minutes, we sto
 
 **Company block:**
 
+Left:
 DRIFTWARE DYNAMICS LTD
-Cyprus Ltd · Reg. No. HE 474529 · VAT: 60167558M
-Tefkrou Anthia 63, MEZARINA COURT A, Flat/Office 5, Agia Napa, Famagusta, Cyprus 5330
+Cyprus Ltd · Reg. No.: ΗΕ 474529 · VAT: CY60167558M
+
+Right:
+Tefkrou Anthia, 63
+MEZARINA COURT A, Flat/Office 5
+Agia Napa, 5330, Famagusta, Cyprus
 
 **Note on email:** contact@traced-ai.com forwards to cmin764@gmail.com. Replies come from the personal address at this stage.
 

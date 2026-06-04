@@ -42,15 +42,23 @@ export default function Footer() {
         </div>
 
         <div style={{ borderTop: '1px solid var(--br-subtle)', paddingTop: '24px' }}>
-          <p style={{ fontSize: '12px', color: 'var(--tx-2)', marginBottom: '4px', fontFamily: 'var(--f-mono)', letterSpacing: '0.04em' }}>
-            {footer.company.name}
-          </p>
-          <p style={{ fontSize: '11px', color: 'var(--tx-2)', marginBottom: '2px' }}>
-            {footer.company.line1}
-          </p>
-          <p style={{ fontSize: '11px', color: 'var(--tx-2)', marginBottom: '20px' }}>
-            {footer.company.line2}
-          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginBottom: '20px' }}>
+            <div>
+              <p style={{ fontSize: '12px', color: 'var(--tx-2)', marginBottom: '4px', fontFamily: 'var(--f-mono)', letterSpacing: '0.04em' }}>
+                {footer.company.name}
+              </p>
+              <p style={{ fontSize: '11px', color: 'var(--tx-2)', margin: 0 }}>
+                {footer.company.registration}
+              </p>
+            </div>
+            <div>
+              {footer.company.address.map((line, i) => (
+                <p key={i} style={{ fontSize: '11px', color: 'var(--tx-2)', margin: '0 0 2px' }}>
+                  {line}
+                </p>
+              ))}
+            </div>
+          </div>
           <p className="footnote" style={{ maxWidth: '700px' }}>
             {footer.legal}
           </p>

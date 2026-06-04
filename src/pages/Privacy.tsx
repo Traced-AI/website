@@ -34,7 +34,7 @@ export default function Privacy() {
           </LegalSection>
 
           <LegalSection id="2" title="Who we are and how to reach us">
-            <p>Driftware Dynamics Ltd, registered in Cyprus under company number HE 474529, VAT: 60167558M, with registered address Tefkrou Anthia 63, MEZARINA COURT A, Flat/Office 5, Agia Napa, Famagusta, Cyprus 5330.</p>
+            <p>Driftware Dynamics Ltd, registered in Cyprus under company number ΗΕ 474529, VAT: CY60167558M, with registered address Tefkrou Anthia, 63, MEZARINA COURT A, Flat/Office 5, Agia Napa, 5330, Famagusta, Cyprus.</p>
             <p>All privacy enquiries: <a href="mailto:contact@traced-ai.com">contact@traced-ai.com</a></p>
           </LegalSection>
 

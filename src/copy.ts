@@ -308,8 +308,12 @@ export const footer = {
   contactEmail: { label: 'contact@traced-ai.com', href: 'mailto:contact@traced-ai.com' },
   company: {
     name: 'DRIFTWARE DYNAMICS LTD',
-    line1: 'Cyprus Ltd · Reg. No. HE 474529 · VAT: 60167558M',
-    line2: 'Tefkrou Anthia 63, MEZARINA COURT A, Flat/Office 5, Agia Napa, Famagusta, Cyprus 5330',
+    registration: 'Cyprus Ltd · Reg. No.: ΗΕ 474529 · VAT: CY60167558M',
+    address: [
+      'Tefkrou Anthia, 63',
+      'MEZARINA COURT A, Flat/Office 5',
+      'Agia Napa, 5330, Famagusta, Cyprus',
+    ],
   },
   legal:
     'Traced AI does not provide legal advice. This product supports technical compliance documentation. It is not a substitute for a quality management system, legal counsel, or the full set of obligations under the EU AI Act. Consult qualified legal counsel for regulatory advice specific to your jurisdiction and use case.',
