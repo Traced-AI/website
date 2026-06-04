@@ -1,6 +1,7 @@
 import NavBar from '../sections/NavBar'
 import Footer from '../sections/Footer'
 import { LegalSection, Note } from '../components/LegalComponents'
+import { footer } from '../copy'
 
 export default function DPA() {
   return (
@@ -86,7 +87,7 @@ export default function DPA() {
               PRE-SIGNED ON BEHALF OF PROCESSOR
             </p>
             <p style={{ fontSize: '13px', color: 'var(--tx-1)', marginBottom: '2px' }}>Driftware Dynamics Ltd (trading as Traced AI)</p>
-            <p style={{ fontSize: '12px', color: 'var(--tx-2)' }}>Cyprus Ltd · Reg. No.: ΗΕ 474529 · VAT: CY60167558M</p>
+            <p style={{ fontSize: '12px', color: 'var(--tx-2)' }}>{footer.company.registration}</p>
           </div>
 
           <LegalSection id="I" title="Details of processing" prefix="Annex ">

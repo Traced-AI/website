@@ -51,9 +51,9 @@ export default function Footer() {
                 {footer.company.registration}
               </p>
             </div>
-            <div style={{ textAlign: 'right' }}>
+            <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', gap: '2px' }}>
               {footer.company.address.map((line, i) => (
-                <p key={i} style={{ fontSize: '11px', color: 'var(--tx-2)', margin: '0 0 2px' }}>
+                <p key={i} style={{ fontSize: '11px', color: 'var(--tx-2)', margin: 0 }}>
                   {line}
                 </p>
               ))}

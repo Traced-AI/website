@@ -9,6 +9,13 @@ interface TextSectionData {
   paragraphs: string[]
 }
 
+const PROSE_COLUMN = {
+  maxWidth: '680px',
+  display: 'flex',
+  flexDirection: 'column' as const,
+  gap: '1.5rem',
+}
+
 function TextSection({ id, bg, data }: { id: string; bg: string; data: TextSectionData }) {
   const { sectionLabel, heading, paragraphs } = data
   const [first, ...rest] = paragraphs
@@ -17,7 +24,7 @@ function TextSection({ id, bg, data }: { id: string; bg: string; data: TextSecti
       <div className="page-section">
         <div className="section-label">{sectionLabel}</div>
         <h2 className="section-heading">{heading}</h2>
-        <div style={{ maxWidth: '680px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        <div style={PROSE_COLUMN}>
           <p style={{ fontSize: '17px', fontWeight: 500, color: 'var(--tx-0)', lineHeight: 1.85, margin: 0 }}>
             {first}
           </p>
@@ -39,7 +46,7 @@ function BuildWithMeSection() {
       <div className="page-section">
         <div className="section-label">{sectionLabel}</div>
         <h2 className="section-heading">{heading}</h2>
-        <div style={{ maxWidth: '680px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        <div style={PROSE_COLUMN}>
           <p style={{ fontSize: '17px', fontWeight: 500, color: 'var(--tx-0)', lineHeight: 1.85, margin: 0 }}>
             I&rsquo;m{' '}
             <a
