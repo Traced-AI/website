@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { useWaitlistClick } from '../hooks/useWaitlistClick'
 
@@ -25,13 +25,34 @@ function ThemeIcon({ theme }: { theme: string }) {
   )
 }
 
+function HamburgerIcon({ open }: { open: boolean }) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
+      {open ? (
+        <>
+          <line x1="4" y1="4" x2="16" y2="16" />
+          <line x1="16" y1="4" x2="4" y2="16" />
+        </>
+      ) : (
+        <>
+          <line x1="3" y1="6" x2="17" y2="6" />
+          <line x1="3" y1="10" x2="17" y2="10" />
+          <line x1="3" y1="14" x2="17" y2="14" />
+        </>
+      )}
+    </svg>
+  )
+}
+
 export default function NavBar() {
   const location = useLocation()
   const handleWaitlistClick = useWaitlistClick()
   const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const [theme, setTheme] = useState<string>(
     () => document.documentElement.getAttribute('data-theme') || 'light'
   )
+  const menuRef = useRef<HTMLDivElement>(null)
 
   function handleLogoClick(e: React.MouseEvent) {
     if (location.pathname === '/') {
@@ -39,6 +60,7 @@ export default function NavBar() {
       window.scrollTo({ top: 0, behavior: 'smooth' })
       if (location.hash) window.history.replaceState(null, '', '/')
     }
+    setMenuOpen(false)
   }
 
   useEffect(() => {
@@ -47,6 +69,20 @@ export default function NavBar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    if (!menuOpen) return
+    function onPointerDown(e: PointerEvent) {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMenuOpen(false)
+      }
+    }
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => document.removeEventListener('pointerdown', onPointerDown)
+  }, [menuOpen])
+
+  // Close menu on route change
+  useEffect(() => { setMenuOpen(false) }, [location.pathname, location.hash])
+
   function toggleTheme() {
     const next = theme === 'light' ? 'dark' : 'light'
     document.documentElement.setAttribute('data-theme', next)
@@ -54,8 +90,11 @@ export default function NavBar() {
     setTheme(next)
   }
 
+  const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+    `navbar-link${isActive ? ' active' : ''}`
+
   return (
-    <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
+    <header className={`navbar${scrolled ? ' scrolled' : ''}`} ref={menuRef}>
       <div className="navbar-inner">
         <Link to="/" className="navbar-logo" onClick={handleLogoClick}>
           <img
@@ -66,11 +105,13 @@ export default function NavBar() {
             height={149}
           />
         </Link>
-        <div className="navbar-actions">
+
+        {/* Desktop layout */}
+        <div className="navbar-actions navbar-desktop">
           <nav className="navbar-links" aria-label="Site navigation">
-            <NavLink to="/product" className={({ isActive }) => `navbar-link${isActive ? ' active' : ''}`}>Product</NavLink>
-            <NavLink to="/pricing" className={({ isActive }) => `navbar-link${isActive ? ' active' : ''}`}>Pricing</NavLink>
-            <NavLink to="/about" className={({ isActive }) => `navbar-link${isActive ? ' active' : ''}`}>About</NavLink>
+            <NavLink to="/product" className={navLinkClass}>Product</NavLink>
+            <NavLink to="/pricing" className={navLinkClass}>Pricing</NavLink>
+            <NavLink to="/about" className={navLinkClass}>About</NavLink>
           </nav>
           <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme" aria-pressed={theme === 'dark'}>
             <ThemeIcon theme={theme} />
@@ -80,7 +121,39 @@ export default function NavBar() {
             Join waitlist
           </Link>
         </div>
+
+        {/* Mobile: theme toggle + hamburger always visible */}
+        <div className="navbar-mobile">
+          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme" aria-pressed={theme === 'dark'}>
+            <ThemeIcon theme={theme} />
+          </button>
+          <button
+            className="hamburger"
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+          >
+            <HamburgerIcon open={menuOpen} />
+          </button>
+        </div>
       </div>
-    </nav>
+
+      {/* Mobile dropdown */}
+      {menuOpen && (
+        <nav id="mobile-menu" className="mobile-menu" aria-label="Site navigation">
+          <NavLink to="/product" className={navLinkClass} onClick={() => setMenuOpen(false)}>Product</NavLink>
+          <NavLink to="/pricing" className={navLinkClass} onClick={() => setMenuOpen(false)}>Pricing</NavLink>
+          <NavLink to="/about" className={navLinkClass} onClick={() => setMenuOpen(false)}>About</NavLink>
+          <Link
+            to="/#waitlist"
+            className="btn btn-primary mobile-menu-cta"
+            onClick={(e) => { setMenuOpen(false); handleWaitlistClick(e) }}
+          >
+            Join waitlist
+          </Link>
+        </nav>
+      )}
+    </header>
   )
 }
