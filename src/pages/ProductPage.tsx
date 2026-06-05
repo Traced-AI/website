@@ -1,5 +1,6 @@
 import NavBar from '../sections/NavBar'
 import HowItWorks from '../sections/HowItWorks'
+import Boundaries from '../sections/Boundaries'
 import RuleRegistry from '../sections/RuleRegistry'
 import Footer from '../sections/Footer'
 
@@ -15,6 +16,7 @@ export default function ProductPage() {
       <NavBar />
       <main>
         <HowItWorks />
+        <Boundaries />
         <RuleRegistry />
       </main>
       <Footer />

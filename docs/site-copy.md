@@ -31,7 +31,7 @@ This table is the canonical record of page → section → background sequence (
 | Route | Page | Section sequence (background) |
 |---|---|---|
 | `/` | Home | Hero (`bg-1`) → Regulatory Reality (`bg-0`) → Built For (`bg-1`) → Waitlist Form (`bg-0`) → Footer (`bg-1`) |
-| `/product` | Product | How It Works (`bg-1`) → Rule Registry (`bg-0`) → Footer (`bg-1`) |
+| `/product` | Product | How It Works (`bg-1`) → Boundaries (`bg-0`) → Rule Registry (`bg-1`) → Footer (`bg-1`) |
 | `/pricing` | Pricing | Pricing tiers (`bg-1`) → CTA block (`bg-0`) → Footer (`bg-1`) |
 | `/about` | About | Vision (`bg-1`) → Mission (`bg-0`) → The Bet (`bg-1`) → Footer (`bg-1`, separated by border) |
 | `/thank-you` | Thank You | Confirmation + optional call booking |
@@ -52,12 +52,15 @@ Headline, subheadline, body, and CTAs: `hero.*` (`line1`, `line2Strike`, `line2H
 **Implementation notes:**
 - Headline treats "break things" as a single strikethrough unit, then "get investigated" follows with a dotted underline and a hover tooltip (`hero.tooltip`), same color as the rest of the line. The dots do the work.
 - Subheadline is an italic accent line.
+- `body2` carries the witness one-liner (the why + the who behind each decision, tamper-evident, "whether you comply stays your call"). This is the one-breath product framing, deliberately placed in the hero. [cut: "That standard is harder to meet than most teams expect." — abstract difficulty line, replaced by the witness framing so a curious visitor learns what the product *is*, not just that the standard is hard.]
 - CTA primary links to `/#waitlist`, secondary to `/product`.
 - **Deadline badge** (mono, auto-computed, not in copy.ts): `DeadlineBadge.tsx` computes days remaining from the current date to August 2, 2026. Renders "[N] DAYS UNTIL FULL ENFORCEMENT" in green; past the date, "ENFORCEMENT BEGAN [N] DAYS AGO" in red. Links to the official EC timeline. Never hardcoded.
 
 ### Section 2: Regulatory Reality (`regulatoryReality`, `stats`)
 
 Section label, headline, body, two-line closing, and enterprise procurement callout: `regulatoryReality.*`. Source attribution line: `regulatoryReality.sourceAttr` + `sourceUrl`.
+
+**Procurement callout** (`regulatoryReality.procurement.body`) now answers the "this is for big companies, not startups" objection explicitly: you do not have to be the regulated party, you only have to sell into one, and the buyer's procurement gate is the deal-blocker today. [cut: closing was just "The deal-blocker is today." — expanded so the timing/buyer-gate rebuttal is explicit rather than implied.]
 
 Four stat cards: `stats[]` (each has `value`, `label`, `url`). Sources are on the `CLAUDE.md` allowlist.
 
@@ -91,6 +94,8 @@ Post-submit: Tally completion redirects to `/thank-you`.
 
 Two-line headline, intro, and four-item feature list (Auto-patching SDK, Local-first architecture, Tamper-evident ledger, Auditor-ready exports): `howItWorks.*` (`headline1`, `headline2`, `intro`, `features[]`).
 
+**Intro framing:** `howItWorks.intro` leads with the witness frame and the dash-cam analogy, kept with its rule-registry qualifier ("a dash-cam that knows which moments matter legally") so it never reads as commodity logging. It names the two things recorded: the **why** (rationale) and the **who** (the human who approved the decision). [cut: "Traced AI is the evidentiary and traceability layer for your AI decisions. It does not replace your quality management system or legal counsel. It provides the tamper-evident evidence chain that both depend on." — the QMS/counsel boundary moved to the Boundaries section to avoid repeating it; the intro now carries the positive frame.]
+
 **Implementation note:** a Python code snippet renders alongside for visual credibility (lives in the component, not copy.ts):
 ```python
 import traced_ai
@@ -102,6 +107,12 @@ traced_ai.init(
 
 # From here, every LLM call is automatically traced
 ```
+
+### Section 5b: Boundaries (`boundaries`)
+
+Renders between How It Works and Rule Registry. Section label "WHERE THE LINE IS", heading "What Traced AI is not", and three items stating the boundaries as features: `boundaries.*` (`sectionLabel`, `heading`, `items[]`).
+
+Intent: turn the limits into a self-qualification and a differentiator. The three items map to the competitive landscape (not named on site): **Not a compliance product** (the judgment stays with counsel/QMS; also the new home of the QMS/counsel boundary moved out of `howItWorks.intro`), **Not a guardrail** (it never intervenes in a decision, unlike a control plane), **Not an eval tool** (it does not grade quality, and the local-first/hashes-only architecture is framed as the structural reason: proving a decision needs only its hash and its signer, not the raw data). Component: `src/sections/Boundaries.tsx`, heading is an `<h2>` (Product's single `<h1>` is in How It Works).
 
 ### Section 6: Rule Registry (`ruleRegistry`)
 
