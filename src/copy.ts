@@ -7,7 +7,7 @@ export const hero = {
   subheadline: '“You can’t do compliance work with vibes.”',
   body1:
     'August 2, 2026. The high-risk obligations of the EU AI Act start to apply. If your AI system affects credit decisions or employment screening, Annex III already classifies it as high-risk. Decisions made by that system must be logged, explainable, and defensible.',
-  body2: 'That standard is harder to meet than most teams expect.',
+  body2: 'Traced AI is the witness to those decisions: it records the why behind each one and the human who signed off, tamper-evident, so you can prove what happened later. Whether you comply stays your call.',
   ctaPrimary: 'Join the waitlist →',
   ctaSecondary: 'See how it works',
   belowCta: 'No card required. No enterprise sales process.',
@@ -55,7 +55,7 @@ export const regulatoryReality = {
   questionPunchline: 'Documented evidence does.',
   procurement: {
     heading: 'Enterprise procurement note',
-    body: 'Your enterprise customers are already demanding AI governance evidence. Banks, insurers, and public-sector buyers ask what models you use, how decisions are logged, and what audit evidence exists. The deal-blocker is today.',
+    body: 'Your enterprise customers are already demanding AI governance evidence. Banks, insurers, and public-sector buyers ask what models you use, how decisions are logged, and what audit evidence exists. You do not have to be the regulated party to need this. If you sell into one, their procurement gate is the deal-blocker, and it is today.',
   },
   sourceAttr:
     'EU AI Act, Regulation EU 2024/1689, Articles 9, 11, 12, 13, 14, 19, 26(6), Annex III, Annex IV. Official text:',
@@ -73,7 +73,7 @@ export const howItWorks = {
   headline1: 'Your data never leaves your perimeter.',
   headline2: 'Your compliance record does.',
   intro:
-    'Traced AI is the evidentiary and traceability layer for your AI decisions. It does not replace your quality management system or legal counsel. It provides the tamper-evident evidence chain that both depend on.',
+    'Traced AI is the witness to your AI decisions. Think of it as a dash-cam that knows which moments matter legally: it records the why behind each decision and the name of the human who approved it, in a form nobody can edit after the fact. A lawyer-supervised rule registry decides what is worth recording under the EU AI Act, so the evidence holds up when an auditor or a procurement team asks.',
   features: [
     {
       title: 'Auto-patching SDK',
@@ -92,6 +92,30 @@ export const howItWorks = {
       body: 'Generate structured audit packs aligned to Articles 11, 12, 17, 72, and 86 and the Annex IV technical documentation, formatted so your legal team and external auditors can work with them directly.',
     },
   ] as Feature[],
+};
+
+export interface BoundaryItem {
+  title: string;
+  body: string;
+}
+
+export const boundaries = {
+  sectionLabel: 'WHERE THE LINE IS',
+  heading: 'What Traced AI is not',
+  items: [
+    {
+      title: 'Not a compliance product',
+      body: 'You decide whether you comply; your legal counsel and quality management system own that judgment. Traced AI makes what your AI actually did provable, which is the part nobody can produce after the fact.',
+    },
+    {
+      title: 'Not a guardrail',
+      body: 'It never blocks, changes, or approves a decision in flight. Your system runs exactly as it did before. Traced AI records the decision and the human who approved it, it does not intervene in either.',
+    },
+    {
+      title: 'Not an eval tool',
+      body: 'It does not score quality, accuracy, or sentiment. A witness reports what happened, it does not grade it. That is also why your raw prompts and outputs never leave your perimeter: proving a decision needs only its hash and its signer, not the underlying data.',
+    },
+  ] as BoundaryItem[],
 };
 
 export interface RegistryRow {
