@@ -3,14 +3,15 @@ import NavBar from '../sections/NavBar'
 import Pricing from '../sections/Pricing'
 import Footer from '../sections/Footer'
 import { pricing } from '../copy'
+import { DOMAIN } from '../config'
 
 export default function PricingPage() {
   return (
     <>
       <title>Pricing · Traced AI</title>
       <meta name="description" content="Free tier to enterprise. Start tracing AI decisions in minutes." />
-      <link rel="canonical" href="https://www.traced-ai.com/pricing" />
-      <meta property="og:url" content="https://www.traced-ai.com/pricing" />
+      <link rel="canonical" href={`${DOMAIN}/pricing`} />
+      <meta property="og:url" content={`${DOMAIN}/pricing`} />
       <meta property="og:title" content="Start for free. Pay when you're ready." />
       <meta property="og:description" content="Free tier to enterprise. Start tracing AI decisions in minutes." />
       <NavBar />
