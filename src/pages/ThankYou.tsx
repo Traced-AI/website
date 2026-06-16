@@ -6,6 +6,7 @@ export default function ThankYou() {
   return (
     <>
       <title>Thank You · Traced AI</title>
+      <meta name="robots" content="noindex" />
       <meta name="description" content="We'll respond personally within 48 hours." />
       <link rel="canonical" href="https://traced-ai.com/thank-you" />
       <meta property="og:url" content="https://traced-ai.com/thank-you" />
