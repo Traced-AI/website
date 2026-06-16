@@ -30,6 +30,8 @@ These apply everywhere: copy, code, comments, commit messages, UI text.
 - All stat card links go to `artificialintelligenceact.eu` or the official EC service desk. No other sources.
 - Never write "every AI decision must be logged." The Act scopes logging to high-risk systems via two routes: Annex III use cases (Article 6(2), obligations from 2 Aug 2026) and the Annex I regulated-product route (Article 6(1), e.g. medical devices under MDR/IVDR, obligations from 2 Aug 2027). Do not classify medical-device or clinical-decision-support AI as Annex III, and do not pin it to the 2026 date.
 - Footer legal block (canonical source; `src/copy.ts` `footer.company` renders it, other docs reference this): DRIFTWARE DYNAMICS LTD, Cyprus Ltd, Reg. No.: ΗΕ 474529, VAT: CY60167558M. Values are verbatim from the incorporation docs (Greek ΗΕ, CY VAT prefix); do not "correct" them to Latin HE or strip the prefix.
+- Footer copyright line: `© {new Date().getFullYear()} Traced AI. All rights reserved.` The year is computed live (same principle as the deadline badge) and is never hardcoded. Brand only: the full legal entity already appears in the block directly above. Static parts live in `footer.copyright` in `src/copy.ts`; composed with the live year in `Footer.tsx`.
+- `public/robots.txt` and `public/sitemap.xml` are static files copied to `/dist` on build. The sitemap lists only indexable routes (currently `/`, `/product`, `/pricing`, `/about`, `/privacy`, `/terms`, `/dpa`). When a new indexable route is added, add a row to the sitemap. `/thank-you` and `*` (404) are excluded.
 - Contact: contact@traced-ai.com.
 - Light theme is the default; dark mode is a toggle.
 - Font pairing is C: League Spartan (display) + Montserrat (body). Locked.
