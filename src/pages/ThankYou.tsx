@@ -8,8 +8,8 @@ export default function ThankYou() {
       <title>Thank You · Traced AI</title>
       <meta name="robots" content="noindex" />
       <meta name="description" content="We'll respond personally within 48 hours." />
-      <link rel="canonical" href="https://traced-ai.com/thank-you" />
-      <meta property="og:url" content="https://traced-ai.com/thank-you" />
+      <link rel="canonical" href="https://www.traced-ai.com/thank-you" />
+      <meta property="og:url" content="https://www.traced-ai.com/thank-you" />
       <meta property="og:title" content="You're on the list. We'll respond personally." />
       <meta property="og:description" content="We'll respond personally within 48 hours." />
       <div style={{

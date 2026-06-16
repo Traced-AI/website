@@ -8,8 +8,8 @@ export default function Privacy() {
     <>
       <title>Privacy Policy · Traced AI</title>
       <meta name="description" content="How Driftware Dynamics Ltd handles personal data for traced-ai.com visitors and customers." />
-      <link rel="canonical" href="https://traced-ai.com/privacy" />
-      <meta property="og:url" content="https://traced-ai.com/privacy" />
+      <link rel="canonical" href="https://www.traced-ai.com/privacy" />
+      <meta property="og:url" content="https://www.traced-ai.com/privacy" />
       <meta property="og:title" content="Privacy Policy · Traced AI" />
       <meta property="og:description" content="How Driftware Dynamics Ltd handles personal data for traced-ai.com visitors and customers." />
       <NavBar />

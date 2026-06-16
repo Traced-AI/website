@@ -78,8 +78,8 @@ export default function AboutPage() {
     <>
       <title>About · Traced AI</title>
       <meta name="description" content="The vision, mission, and open invitation to co-build Traced AI." />
-      <link rel="canonical" href="https://traced-ai.com/about" />
-      <meta property="og:url" content="https://traced-ai.com/about" />
+      <link rel="canonical" href="https://www.traced-ai.com/about" />
+      <meta property="og:url" content="https://www.traced-ai.com/about" />
       <meta property="og:title" content="About Traced AI" />
       <meta property="og:description" content="The vision, mission, and open invitation to co-build Traced AI." />
       <NavBar />

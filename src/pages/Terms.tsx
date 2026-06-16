@@ -8,8 +8,8 @@ export default function Terms() {
     <>
       <title>Terms and Conditions · Traced AI</title>
       <meta name="description" content="Terms governing use of the Traced AI service." />
-      <link rel="canonical" href="https://traced-ai.com/terms" />
-      <meta property="og:url" content="https://traced-ai.com/terms" />
+      <link rel="canonical" href="https://www.traced-ai.com/terms" />
+      <meta property="og:url" content="https://www.traced-ai.com/terms" />
       <meta property="og:title" content="Terms and Conditions · Traced AI" />
       <meta property="og:description" content="Terms governing use of the Traced AI service." />
       <NavBar />

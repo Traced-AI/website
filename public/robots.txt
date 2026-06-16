@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /thank-you
 
-Sitemap: https://traced-ai.com/sitemap.xml
+Sitemap: https://www.traced-ai.com/sitemap.xml
