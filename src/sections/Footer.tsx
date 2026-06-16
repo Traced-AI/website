@@ -62,6 +62,9 @@ export default function Footer() {
           <p className="footnote" style={{ maxWidth: '700px' }}>
             {footer.legal}
           </p>
+          <p className="footnote" style={{ marginTop: '8px', opacity: 0.6 }}>
+            {footer.regulatoryNote}
+          </p>
         </div>
       </div>
     </footer>

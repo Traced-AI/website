@@ -360,4 +360,6 @@ export const footer = {
   },
   legal:
     'Traced AI does not provide legal advice. This product supports technical compliance documentation. It is not a substitute for a quality management system, legal counsel, or the full set of obligations under the EU AI Act. Consult qualified legal counsel for regulatory advice specific to your jurisdiction and use case.',
+  regulatoryNote:
+    'Regulatory information on this site was last reviewed against Regulation (EU) 2024/1689 (EU AI Act) and the Digital Omnibus provisional agreement: 15 June 2026.',
 };
