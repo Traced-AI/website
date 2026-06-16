@@ -156,7 +156,11 @@ Tagline, legal nav links (Privacy · Terms · DPA), contact email, and the legal
 
 **Regulatory sync note** (`footer.regulatoryNote`): a secondary footnote (slightly dimmed) stating when the regulatory content on the site was last reviewed, and against which instruments (EU AI Act Regulation (EU) 2024/1689 + Digital Omnibus provisional agreement). Update the date in `copy.ts` any time law-related visible content changes. The CLAUDE.md hard rules define exactly which changes trigger an update.
 
+**Copyright line** (`footer.copyright`): rendered below `footer.regulatoryNote` using `.footnote` styling. Static parts (`brand: 'Traced AI'`, `rightsReserved: 'All rights reserved.'`) live in `copy.ts`; the year is computed live in `Footer.tsx` with `new Date().getFullYear()` and is never hardcoded.
+
 **Note on email (not rendered):** contact@traced-ai.com forwards to cmin764@gmail.com. Replies come from the personal address at this stage.
+
+**Legal-page sub-processor disclosure:** `/privacy` sections 7 and 8 and `/dpa` Annex III now disclose the planned product backend sub-processors (Fly.io, Supabase, Upstash, Clerk, Stripe) in clearly labeled tables ("active when the product backend launches"). Both QA `<Note>` placeholders from the DPA have been removed. These disclosures do not trigger a regulatory sync date update (no law content changed).
 
 ---
 
