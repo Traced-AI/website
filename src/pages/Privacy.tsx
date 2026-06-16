@@ -2,14 +2,15 @@ import NavBar from '../sections/NavBar'
 import Footer from '../sections/Footer'
 import { LegalSection } from '../components/LegalComponents'
 import { footer } from '../copy'
+import { DOMAIN } from '../config'
 
 export default function Privacy() {
   return (
     <>
       <title>Privacy Policy · Traced AI</title>
       <meta name="description" content="How Driftware Dynamics Ltd handles personal data for traced-ai.com visitors and customers." />
-      <link rel="canonical" href="https://www.traced-ai.com/privacy" />
-      <meta property="og:url" content="https://www.traced-ai.com/privacy" />
+      <link rel="canonical" href={`${DOMAIN}/privacy`} />
+      <meta property="og:url" content={`${DOMAIN}/privacy`} />
       <meta property="og:title" content="Privacy Policy · Traced AI" />
       <meta property="og:description" content="How Driftware Dynamics Ltd handles personal data for traced-ai.com visitors and customers." />
       <NavBar />
@@ -113,7 +114,7 @@ export default function Privacy() {
               </tbody>
             </table>
             <p>Raw inputs and outputs from your AI systems never reach us or any sub-processor. See section 6.</p>
-            <p style={{ fontSize: '13px', color: 'var(--tx-2)', marginTop: '20px', marginBottom: '8px', fontWeight: 500 }}>Product backend sub-processors, active when the product backend launches:</p>
+            <p className="legal-sub-label">Product backend sub-processors, active when the product backend launches:</p>
             <table>
               <thead>
                 <tr><th>Provider</th><th>Role</th><th>Region</th><th>HQ</th></tr>

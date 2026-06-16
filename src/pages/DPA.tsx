@@ -2,14 +2,15 @@ import NavBar from '../sections/NavBar'
 import Footer from '../sections/Footer'
 import { LegalSection } from '../components/LegalComponents'
 import { footer } from '../copy'
+import { DOMAIN } from '../config'
 
 export default function DPA() {
   return (
     <>
       <title>Data Processing Agreement · Traced AI</title>
       <meta name="description" content="GDPR Article 28 DPA between Driftware Dynamics Ltd and customers using the Traced AI service." />
-      <link rel="canonical" href="https://www.traced-ai.com/dpa" />
-      <meta property="og:url" content="https://www.traced-ai.com/dpa" />
+      <link rel="canonical" href={`${DOMAIN}/dpa`} />
+      <meta property="og:url" content={`${DOMAIN}/dpa`} />
       <meta property="og:title" content="Data Processing Agreement · Traced AI" />
       <meta property="og:description" content="GDPR Article 28 DPA between Driftware Dynamics Ltd and customers using the Traced AI service." />
       <NavBar />
@@ -165,7 +166,7 @@ export default function DPA() {
                 </tr>
               </tbody>
             </table>
-            <p style={{ fontSize: '13px', color: 'var(--tx-2)', marginTop: '20px', marginBottom: '8px', fontWeight: 500 }}>Product backend sub-processors, active when the product backend launches:</p>
+            <p className="legal-sub-label">Product backend sub-processors, active when the product backend launches:</p>
             <table>
               <thead>
                 <tr>
