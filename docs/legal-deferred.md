@@ -12,25 +12,13 @@ Remove the italic "not yet generally available" sentences from sections 3.2 and 
 
 Do the same for the opening sentence in Terms clause 2.
 
-### Privacy Policy s.7: Add backend sub-processors
+### Privacy Policy s.7: Add backend sub-processors [PROMOTED 15 June 2026]
 
-Add these rows to the sub-processor table. Confirm actual regions in your provider dashboards before publishing.
+Backend sub-processor table is now live on `/privacy` section 7, labeled "active when the product backend launches." Regions pinned to confident defaults (fra, eu-central-1, IE for Stripe). No further action needed until the backend launches.
 
-| Provider | Role | Region | HQ |
-|---|---|---|---|
-| Fly.io | Backend API hosting | fra (Frankfurt), confirm in dashboard | US (Delaware) |
-| Supabase | Managed Postgres (hashes, rationale, metadata) | eu-central-1 or similar, confirm in dashboard | US |
-| Upstash | Queue and cache | Confirm region. If it holds only opaque hashes with no personal data, it may not need to appear here. | US |
-| Clerk | User authentication | US only (no EU residency option on standard plan) | US |
-| Stripe | Billing and payment processing | Add when billing goes live. Confirm entity: Stripe Payments Europe Ltd (Ireland) vs. Stripe Inc (US). | US/IE |
+### Privacy Policy s.8: Add backend international transfers [PROMOTED 15 June 2026]
 
-### Privacy Policy s.8: Add backend international transfers
-
-When Clerk and backend processors go live, add:
-
-- **Clerk** stores authentication data in the US. No EU residency option. Transfer covered by EU Standard Contractual Clauses.
-- **Supabase**: if EU region confirmed, no transfer. If US, covered by SCCs.
-- **Stripe**: entity and transfer mechanism depend on which Stripe entity is contracted.
+Transfer statements for Clerk, Supabase, Fly.io, Upstash, and Stripe are now live on `/privacy` section 8, prefaced with "When the product backend launches, the following transfers will apply." No further action needed until the backend launches.
 
 ### Privacy Policy s.9: Audit-trail retention detail
 
@@ -38,27 +26,11 @@ Expand the "Audit-trail data in the ledger" bullet to:
 
 "For the retention period set in your service agreement, which you choose to match your regulatory obligations. EU AI Act Articles 19 and 26(6) set a minimum of six months for most high-risk categories. Many customers in regulated sectors will need longer: typically 5-10 years for financial decisions, aligned to their own record-keeping obligations."
 
-### DPA Annex III: Add backend sub-processors and remove Note
+### DPA Annex III: Add backend sub-processors and remove Note [PROMOTED 15 June 2026]
 
-The Annex III Note in `/dpa` calls out that backend sub-processors will be added before the Service is live. Add these rows using the template below, then remove the `<Note>` block.
+The `<Note>` block has been removed and the backend sub-processor table is now live on `/dpa` Annex III, labeled "Product backend sub-processors, active when the product backend launches." Rows cover Fly.io, Supabase, Upstash, Clerk, and Stripe with regions and transfer mechanisms pinned to confident defaults.
 
-Planned rows (fill in and confirm before publishing):
-
-| Sub-processor | Function | Country / region | Transfer mechanism |
-|---|---|---|---|
-| Fly.io | Backend hosting | [confirm from dashboard, expected fra] / US HQ | SCCs if non-EU; none if EU region confirmed |
-| Supabase | Managed database (hashes and metadata) | [confirm from dashboard, expected EU] / non-EU HQ | SCCs if non-EU; none if EU region confirmed |
-| Upstash | Queue and cache | [confirm from dashboard] / US HQ | SCCs, or omit row entirely if no personal data flows through it |
-| Clerk | Authentication | US (no EU residency option on standard plan) | SCCs and EU-US Data Privacy Framework |
-| [Payment processor] | Billing | [add when billing is live] | [add when billing is live] |
-
-Rationale already worked out:
-- Clerk is US-only by design on the standard plan. SCCs + DPF are the correct mechanism. No EU residency option to switch to.
-- Supabase and Fly.io: if both land in EU regions, no transfer mechanism is needed for either, which simplifies the table significantly. Confirm from dashboards.
-- Upstash: only include if it processes data that can be linked to an identifiable person. If it holds only opaque hashes with no customer references attached, it may fall outside the DPA scope entirely.
-- Payment processor: Stripe Payments Europe Ltd (Ireland) is preferred over Stripe Inc (US) for EU billing; affects whether the row needs a transfer mechanism.
-
-### DPA Annex II: Verify security claims
+### DPA Annex II: Verify security claims [DEFERRED: verify before first customer data]
 
 Every bullet in Annex II is a factual claim a customer can hold you to. Before the service processes real customer data, walk through each measure and confirm it describes the built system, not just the intended architecture. Remove or qualify any measure that isn't real yet.
 

@@ -63,6 +63,7 @@ export default function Footer() {
             <p className="footnote">{footer.legal}</p>
             <p className="footnote" style={{ marginTop: '8px' }}>{footer.regulatoryNote}</p>
           </div>
+          <p className="footnote" style={{ fontSize: '11px', marginTop: '16px', textAlign: 'center' }}>© {new Date().getFullYear()} {footer.copyright}</p>
         </div>
       </div>
     </footer>

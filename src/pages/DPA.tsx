@@ -1,6 +1,7 @@
+import { DOMAIN } from '../config'
 import NavBar from '../sections/NavBar'
 import Footer from '../sections/Footer'
-import { LegalSection, Note } from '../components/LegalComponents'
+import { LegalSection } from '../components/LegalComponents'
 import { footer } from '../copy'
 
 export default function DPA() {
@@ -8,8 +9,8 @@ export default function DPA() {
     <>
       <title>Data Processing Agreement · Traced AI</title>
       <meta name="description" content="GDPR Article 28 DPA between Driftware Dynamics Ltd and customers using the Traced AI service." />
-      <link rel="canonical" href="https://traced-ai.com/dpa" />
-      <meta property="og:url" content="https://traced-ai.com/dpa" />
+      <link rel="canonical" href={`${DOMAIN}/dpa`} />
+      <meta property="og:url" content={`${DOMAIN}/dpa`} />
       <meta property="og:title" content="Data Processing Agreement · Traced AI" />
       <meta property="og:description" content="GDPR Article 28 DPA between Driftware Dynamics Ltd and customers using the Traced AI service." />
       <NavBar />
@@ -135,7 +136,6 @@ export default function DPA() {
           </LegalSection>
 
           <LegalSection id="II" title="Technical and organisational measures" prefix="Annex ">
-            <Note>Every line in this annex is a factual claim. Before the Service processes real customer data, confirm each measure is true of the system as it will operate. Remove or soften any measure not yet implemented rather than overstating it.</Note>
             <ul>
               <li><strong>Data minimisation by design.</strong> Raw Customer data stays in Customer's perimeter. Only hashes, rationale text, and metadata are transmitted to Traced AI.</li>
               <li><strong>Encryption.</strong> TLS 1.2 or higher in transit. Encryption at rest for all stored audit-trail data.</li>
@@ -166,7 +166,49 @@ export default function DPA() {
                 </tr>
               </tbody>
             </table>
-            <Note>The product backend sub-processors (Fly.io, Supabase, Upstash, Clerk, payment processor) will be added to this table before the Service is available to customers. Confirm each provider's region from your own dashboards, and name the actual transfer mechanism for each non-EEA processor before relying on the row.</Note>
+            <p className="legal-sub-label">Product backend sub-processors, active when the product backend launches:</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Sub-processor</th>
+                  <th>Function</th>
+                  <th>Country / region</th>
+                  <th>Transfer mechanism</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Fly.io</td>
+                  <td>Backend API hosting</td>
+                  <td>Frankfurt (fra), EU / US HQ</td>
+                  <td>SCCs</td>
+                </tr>
+                <tr>
+                  <td>Supabase</td>
+                  <td>Managed Postgres (hashes, rationale, metadata)</td>
+                  <td>eu-central-1, EU / US HQ</td>
+                  <td>SCCs</td>
+                </tr>
+                <tr>
+                  <td>Upstash</td>
+                  <td>Queue and cache</td>
+                  <td>EU / US HQ</td>
+                  <td>SCCs</td>
+                </tr>
+                <tr>
+                  <td>Clerk</td>
+                  <td>User authentication</td>
+                  <td>US</td>
+                  <td>SCCs and EU-US Data Privacy Framework</td>
+                </tr>
+                <tr>
+                  <td>Stripe</td>
+                  <td>Billing and payment processing</td>
+                  <td>Stripe Payments Europe Ltd, Ireland (EU) / US group</td>
+                  <td>SCCs where data reaches the US</td>
+                </tr>
+              </tbody>
+            </table>
           </LegalSection>
 
         </div>

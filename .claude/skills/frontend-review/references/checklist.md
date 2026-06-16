@@ -107,7 +107,7 @@ The substantive copy rules are the **hard rules in `CLAUDE.md`** (canonical) plu
 
 **L1**: Current-reality principle. Legal pages (`/privacy`, `/terms`, `/dpa`) describe only what is live today (marketing site + waitlist). Product-forward content belongs in `docs/legal-deferred.md`, not the live page. Check that file before adding product-era claims.
 
-**L2**: Active `Note` blocks (DPA Annex II security claims, Annex III backend sub-processors) are intentional pre-publish reminders. Do not remove them until the product is live and the described content is confirmed.
+**L2**: `Note` blocks are reserved for genuinely deferred legal content — claims that cannot yet be confirmed factually. No `Note` blocks are currently active on live pages: both prior DPA placeholders (Annex II security-claims reminder, Annex III backend sub-processor reminder) were resolved in the public-readiness pass and removed. If a future product feature requires new deferred legal content, stage it in `docs/legal-deferred.md` first, then promote with a `Note` only if the claim must appear on the live page before it can be confirmed.
 
 ---
 

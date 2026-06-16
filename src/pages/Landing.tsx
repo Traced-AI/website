@@ -1,3 +1,4 @@
+import { DOMAIN } from '../config'
 import NavBar from '../sections/NavBar'
 import Hero from '../sections/Hero'
 import RegulatoryReality from '../sections/RegulatoryReality'
@@ -10,8 +11,8 @@ export default function Landing() {
     <>
       <title>Home · Traced AI</title>
       <meta name="description" content="Traced AI builds the tamper-evident audit infrastructure regulated companies need before August 2026 enforcement. Your data stays local. Your compliance record does not." />
-      <link rel="canonical" href="https://traced-ai.com/" />
-      <meta property="og:url" content="https://traced-ai.com/" />
+      <link rel="canonical" href={`${DOMAIN}/`} />
+      <meta property="og:url" content={`${DOMAIN}/`} />
       <meta property="og:title" content="Move fast and get investigated. Or use Traced AI." />
       <meta property="og:description" content="Traced AI builds the tamper-evident audit infrastructure regulated companies need before August 2026 enforcement. Your data stays local. Your compliance record does not." />
       <NavBar />

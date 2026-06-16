@@ -173,10 +173,27 @@ open('src/copy.ts', 'w').write(content)
 
 Pages: `/privacy`, `/terms`, `/dpa`. Shared components in `src/components/LegalComponents.tsx`:
 - `LegalSection`: numbered section wrapper. Use `prefix="Annex "` for annex-style IDs. Do not redefine locally in page files.
-- `Note`: orange-bordered callout for pre-publish reminders. Appears on the live page; remove only when the product is live and the described content is confirmed.
+- `Note`: orange-bordered callout for genuinely deferred legal content only. No QA or self-reminder notes ship to the live site. A `Note` block is the exception, not the default: it signals that a claim cannot yet be confirmed, not that a task is pending.
 
 **Current reality principle:** legal pages describe only what is live today (marketing site + waitlist). Product-forward content belongs in `docs/legal-deferred.md`, not on the live page. Before editing legal pages, check that file first: it has planned sub-processor rows, backend transfer analysis, Stripe billing language, and LIA memo guidance ready to fill in when the product ships.
 
-Active `Note` blocks on legal pages are intentional:
-- DPA Annex II: verify security claims before the product processes real customer data
-- DPA Annex III: add backend sub-processors before the Service is customer-facing
+No `Note` blocks are currently active on legal pages. Both prior DPA placeholders (Annex II security-claims reminder and Annex III backend sub-processor reminder) have been removed: the security claims stand as written, and the backend sub-processor table is now disclosed on both `/dpa` and `/privacy` with a clear "active when the product backend launches" label.
+
+## CSP
+
+The Content-Security-Policy header is declared in `vercel.json` on the `/(.*)`  source. Any new embed or script origin must be added to the matching directive before shipping. Key origins:
+
+- `script-src`: `'self'` covers the app bundle and `public/theme-init.js`; `https://tally.so` covers the Tally embed loader.
+- `style-src`: `'unsafe-inline'` is required because React renders inline `style={{}}` throughout; `https://fonts.googleapis.com` for the Google Fonts stylesheet.
+- `font-src`: `https://fonts.gstatic.com` for the actual font files.
+- `frame-src` / `connect-src`: `https://tally.so` for the Tally embed iframe and its API calls.
+- Vercel Analytics sends to `/_vercel/insights/*` (same-origin rewrite), covered by `'self'`.
+
+**Theme-init script:** `public/theme-init.js` is a render-blocking external script in `<head>` that sets `data-theme` before React mounts (prevents theme flash). It must remain above the module script in `index.html`. Do not move it inline: the CSP `script-src 'self'` policy requires it to stay external.
+
+## SEO: robots.txt and sitemap
+
+`public/robots.txt` and `public/sitemap.xml` are static files copied verbatim to `/dist` on build. No build step required.
+
+- `robots.txt`: disallows `/thank-you`; all other routes are allowed. Points to the sitemap URL.
+- `sitemap.xml`: lists every indexable route. When a new public page is added, add a `<url>` row to `sitemap.xml` with the correct `<lastmod>` date. `/thank-you` and the 404 are excluded from the sitemap.

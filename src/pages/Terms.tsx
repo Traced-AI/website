@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { DOMAIN } from '../config'
 import NavBar from '../sections/NavBar'
 import Footer from '../sections/Footer'
 import { LegalSection } from '../components/LegalComponents'
@@ -8,8 +9,8 @@ export default function Terms() {
     <>
       <title>Terms and Conditions · Traced AI</title>
       <meta name="description" content="Terms governing use of the Traced AI service." />
-      <link rel="canonical" href="https://traced-ai.com/terms" />
-      <meta property="og:url" content="https://traced-ai.com/terms" />
+      <link rel="canonical" href={`${DOMAIN}/terms`} />
+      <meta property="og:url" content={`${DOMAIN}/terms`} />
       <meta property="og:title" content="Terms and Conditions · Traced AI" />
       <meta property="og:description" content="Terms governing use of the Traced AI service." />
       <NavBar />

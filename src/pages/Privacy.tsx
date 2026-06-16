@@ -1,3 +1,4 @@
+import { DOMAIN } from '../config'
 import NavBar from '../sections/NavBar'
 import Footer from '../sections/Footer'
 import { LegalSection } from '../components/LegalComponents'
@@ -8,8 +9,8 @@ export default function Privacy() {
     <>
       <title>Privacy Policy · Traced AI</title>
       <meta name="description" content="How Driftware Dynamics Ltd handles personal data for traced-ai.com visitors and customers." />
-      <link rel="canonical" href="https://traced-ai.com/privacy" />
-      <meta property="og:url" content="https://traced-ai.com/privacy" />
+      <link rel="canonical" href={`${DOMAIN}/privacy`} />
+      <meta property="og:url" content={`${DOMAIN}/privacy`} />
       <meta property="og:title" content="Privacy Policy · Traced AI" />
       <meta property="og:description" content="How Driftware Dynamics Ltd handles personal data for traced-ai.com visitors and customers." />
       <NavBar />
@@ -112,7 +113,20 @@ export default function Privacy() {
                 <tr><td>Cal.com (Cal.eu)</td><td>Demo call booking</td><td>EU</td><td>US</td></tr>
               </tbody>
             </table>
-            <p>Raw inputs and outputs from your AI systems never reach us or any sub-processor. See section 6. When the product backend is live, additional sub-processors will be added to this list.</p>
+            <p>Raw inputs and outputs from your AI systems never reach us or any sub-processor. See section 6.</p>
+            <p className="legal-sub-label">Product backend sub-processors, active when the product backend launches:</p>
+            <table>
+              <thead>
+                <tr><th>Provider</th><th>Role</th><th>Region</th><th>HQ</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Fly.io</td><td>Backend API hosting</td><td>Frankfurt (fra), EU</td><td>US</td></tr>
+                <tr><td>Supabase</td><td>Managed Postgres (hashes, rationale, metadata)</td><td>eu-central-1, EU</td><td>US</td></tr>
+                <tr><td>Upstash</td><td>Queue and cache</td><td>EU</td><td>US</td></tr>
+                <tr><td>Clerk</td><td>User authentication</td><td>US</td><td>US</td></tr>
+                <tr><td>Stripe</td><td>Billing and payment processing</td><td>Ireland (EU) via Stripe Payments Europe Ltd</td><td>US (group)</td></tr>
+              </tbody>
+            </table>
             <p>We may also disclose data where the law requires it, to enforce our agreements, or in connection with a merger or acquisition, in which case we will tell you.</p>
           </LegalSection>
 
@@ -123,7 +137,15 @@ export default function Privacy() {
               <li><strong>Cal.com (Cal.eu)</strong> processes booking data in the EU. Cal.com Inc is US-headquartered. This transfer is covered by EU Standard Contractual Clauses.</li>
               <li><strong>Vercel</strong> runs edge functions in EU regions (fra1) for this site. Vercel Inc is US-headquartered. This transfer is covered by EU Standard Contractual Clauses and the EU-US Data Privacy Framework.</li>
             </ul>
-            <p>Raw customer decision data stays inside the customer's own perimeter and is not a transfer we make. When the product backend is live and additional sub-processors are added, this section will be updated to cover those transfers.</p>
+            <p>Raw customer decision data stays inside the customer's own perimeter and is not a transfer we make.</p>
+            <p>When the product backend launches, the following transfers will apply:</p>
+            <ul>
+              <li><strong>Clerk</strong> stores authentication data in the US. No EU residency option on the standard plan. Transfer covered by EU Standard Contractual Clauses and the EU-US Data Privacy Framework.</li>
+              <li><strong>Supabase</strong> stores managed database data in the EU (eu-central-1). No transfer outside the EEA for the EU region.</li>
+              <li><strong>Fly.io</strong> runs backend hosting in Frankfurt (fra), EU. No transfer outside the EEA for the EU region.</li>
+              <li><strong>Upstash</strong> runs queue and cache in the EU. No transfer outside the EEA for the EU region.</li>
+              <li><strong>Stripe</strong> billing is handled by Stripe Payments Europe Ltd, incorporated in Ireland. Stripe processes some data at the US group level, covered by EU Standard Contractual Clauses.</li>
+            </ul>
             <p>You can ask us for details of the safeguard used for a particular transfer at <a href="mailto:contact@traced-ai.com">contact@traced-ai.com</a>.</p>
           </LegalSection>
 
