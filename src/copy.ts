@@ -50,7 +50,7 @@ export const stats: Stat[] = [
 export const regulatoryReality = {
   sectionLabel: 'THE DEADLINE IS REAL',
   headline: 'On August 2nd, “the AI decided” stops being an acceptable answer.',
-  body: 'The high-risk provisions take full effect on August 2, 2026. If your system handles credit decisions, employment screening, or biometric identification, Annex III classifies it as high-risk. Decisions made by that system must be logged, explainable, and defensible.',
+  body: 'The high-risk provisions take full effect on August 2, 2026. If your system handles credit decisions, employment screening, or biometric identification, Annex III classifies it as high-risk. Decisions made by that system must be logged, explainable, and defensible. A provisional political agreement in May 2026 (Digital Omnibus) may defer standalone Annex III obligations to December 2027 once formally adopted. The obligations are unchanged; the date may move.',
   question: 'When enforcement comes, good intentions don\'t appear in audit logs.',
   questionPunchline: 'Documented evidence does.',
   procurement: {
@@ -175,7 +175,7 @@ export const builtFor = {
     },
     {
       title: 'HR Automation',
-      body: 'Recruitment, hiring, and workforce assessment AI are high-risk under Annex III. Traced AI gives you per-candidate decision trails and structured audit views for regulators, works councils, and litigators.',
+      body: 'Recruitment, hiring, and workforce assessment AI are high-risk under Annex III. Candidates have a right to know AI assessed them and to receive an explanation on request (Art. 26(11), Art. 86). Traced AI gives you the per-candidate decision trail that makes both answerable, plus structured audit views for regulators, works councils, and litigators.',
     },
   ] as IndustryCard[],
 };

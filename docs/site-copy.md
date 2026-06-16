@@ -60,6 +60,8 @@ Headline, subheadline, body, and CTAs: `hero.*` (`line1`, `line2Strike`, `line2H
 
 Section label, headline, body, two-line closing, and enterprise procurement callout: `regulatoryReality.*`. Source attribution line: `regulatoryReality.sourceAttr` + `sourceUrl`.
 
+**Omnibus note (in `regulatoryReality.body`):** A sentence appended to the body acknowledges the May 2026 Digital Omnibus provisional agreement, which may defer standalone Annex III obligations to December 2027 once formally adopted, while making clear the obligations are unchanged and the date may move. Keeps the section credible with knowledgeable prospects who are already aware of the agreement.
+
 **Procurement callout** (`regulatoryReality.procurement.body`) now answers the "this is for big companies, not startups" objection explicitly: you do not have to be the regulated party, you only have to sell into one, and the buyer's procurement gate is the deal-blocker today. [cut: closing was just "The deal-blocker is today." — expanded so the timing/buyer-gate rebuttal is explicit rather than implied.]
 
 Four stat cards: `stats[]` (each has `value`, `label`, `url`). Sources are on the `CLAUDE.md` allowlist.
@@ -71,6 +73,8 @@ Four stat cards: `stats[]` (each has `value`, `label`, `url`). Sources are on th
 Section label, headline, and three industry cards (Fintech, Medtech, HR Automation): `builtFor.*` (`headline`, `cards[]`).
 
 **Reference note:** Annex III Section 5(b) covers creditworthiness assessment and access to essential private services (backs the Fintech card).
+
+**HR Automation card:** Updated to surface the candidate notification duty (Art. 26(11)) and the right to explanation (Art. 86) — obligations deployers most often miss. The card now reads: candidates have a right to know AI assessed them and to receive an explanation on request; Traced AI provides the per-candidate trail that makes both answerable. Key: `builtFor.cards[2].body`.
 
 ### Section 4: Waitlist Form (`waitlist`)
 
