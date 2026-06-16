@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
+import { DOMAIN } from '../config'
 import NavBar from '../sections/NavBar'
 import Pricing from '../sections/Pricing'
 import Footer from '../sections/Footer'
 import { pricing } from '../copy'
-import { DOMAIN } from '../config'
 
 export default function PricingPage() {
   return (

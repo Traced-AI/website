@@ -1,10 +1,10 @@
+import { DOMAIN } from '../config'
 import NavBar from '../sections/NavBar'
 import Hero from '../sections/Hero'
 import RegulatoryReality from '../sections/RegulatoryReality'
 import BuiltFor from '../sections/BuiltFor'
 import WaitlistForm from '../sections/WaitlistForm'
 import Footer from '../sections/Footer'
-import { DOMAIN } from '../config'
 
 export default function Landing() {
   return (

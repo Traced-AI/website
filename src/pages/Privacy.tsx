@@ -1,8 +1,8 @@
+import { DOMAIN } from '../config'
 import NavBar from '../sections/NavBar'
 import Footer from '../sections/Footer'
 import { LegalSection } from '../components/LegalComponents'
 import { footer } from '../copy'
-import { DOMAIN } from '../config'
 
 export default function Privacy() {
   return (

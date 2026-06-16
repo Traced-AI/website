@@ -1,9 +1,9 @@
+import { DOMAIN } from '../config'
 import NavBar from '../sections/NavBar'
 import HowItWorks from '../sections/HowItWorks'
 import Boundaries from '../sections/Boundaries'
 import RuleRegistry from '../sections/RuleRegistry'
 import Footer from '../sections/Footer'
-import { DOMAIN } from '../config'
 
 export default function ProductPage() {
   return (

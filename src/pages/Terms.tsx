@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
+import { DOMAIN } from '../config'
 import NavBar from '../sections/NavBar'
 import Footer from '../sections/Footer'
 import { LegalSection } from '../components/LegalComponents'
-import { DOMAIN } from '../config'
 
 export default function Terms() {
   return (
