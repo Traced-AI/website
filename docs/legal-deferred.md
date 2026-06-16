@@ -152,6 +152,24 @@ The three cards are accurate but shallow. Deepen later with the specific regime 
 - **Medtech:** MDR **Article 83** post-market surveillance (continuous real-world performance data feeding risk assessment). Our decision-level context feeds PMS plans and clinical evaluations. Keep the existing "regulated-product route, not Annex III" framing (see fact below).
 - **HR:** Platform Work Directive on algorithmic management (transparency + human oversight for automated decisions that significantly affect workers). Frames our per-candidate trails as a defensible record of where human judgment intervened.
 
+  Deployer obligations most often missed (highest fine exposure in practice):
+  - **Article 26(7):** Inform workers and their representatives before a high-risk AI system is used in the workplace. A disclosure step, not a consent requirement, but skipping it draws complaints.
+  - **Article 26(11) + Recital 93:** Inform candidates and other affected persons that their evaluation involves a high-risk AI system, including its purpose and their right to an explanation. Most HR teams are unaware this obligation exists.
+  - **Article 86 (right to explanation):** Affected persons may obtain a clear and meaningful explanation of the AI system's role in the decision and the main elements behind it. The precise scope is still debated; build to provide the explanation rather than to argue its limits. This is where the per-candidate decision trail in Traced AI becomes directly citable.
+  - **Article 27 (FRIA) scoping note:** The Fundamental Rights Impact Assessment applies only to public bodies, private entities providing public services, and certain Annex III point 5 systems. It does not apply to a standard private-sector recruiter. Do not over-scope this obligation in sales conversations.
+
+  Source and full treatment: `docs/use-case-hrtech-recruitment.md`.
+
+### Vanta / ISO 42001 positioning contrast
+
+For sales conversations, especially with compliance-led buyers:
+
+| Vanta and similar | Traced AI |
+| --- | --- |
+| Attests that controls and processes exist (SOC 2, ISO 42001). Verifies the process is in place. | The evidence inside those controls: the actual per-decision record an auditor or a rejected candidate's lawyer asks to see. |
+
+One verifies the process is in place. The other is the proof the process produced. Use this framing when a prospect says "we already have ISO 42001" or "we use Vanta." It is not a competitor claim; it positions us as complementary and addresses a gap Vanta cannot fill. Source: `docs/use-case-hrtech-recruitment.md`.
+
 ### Article 15 angle (accuracy, robustness, cybersecurity)
 
 Possible future narrative pillar: Art. 15 high-risk obligations (resilience to errors, drift, adversarial manipulation over the lifecycle) presuppose detailed logs and change histories. You cannot show how a system behaved over time, or prove resilience, without them.

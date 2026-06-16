@@ -64,7 +64,7 @@ Section label, headline, body, two-line closing, and enterprise procurement call
 
 Four stat cards: `stats[]` (each has `value`, `label`, `url`). Sources are on the `CLAUDE.md` allowlist.
 
-**Reference note (not rendered on site):** As of May 2026, the EU Council and Parliament reached a provisional agreement under the "Digital Omnibus" package that may extend the deadline for high-risk AI embedded in regulated products. Until formally adopted, August 2, 2026 remains the legally binding date. Source: https://www.consilium.europa.eu/en/press/press-releases/2026/05/07/artificial-intelligence-council-and-parliament-agree-to-simplify-and-streamline-rules/
+**Reference note (not rendered on site):** As of May 2026, the EU Council and Parliament reached a provisional political agreement under the "Digital Omnibus" package. It defers standalone Annex III high-risk obligations (credit scoring, recruitment, biometric identification, etc.) to **2 December 2027**, and Annex I regulated-product obligations (medical devices under MDR/IVDR, etc.) to **2 August 2028**. The deferral takes legal effect only once the Omnibus is formally adopted and published in the Official Journal, expected before 2 August 2026. Until then, 2 August 2026 stands as written for all categories. The obligations themselves are unchanged; only the dates move. Source: https://www.consilium.europa.eu/en/press/press-releases/2026/05/07/artificial-intelligence-council-and-parliament-agree-to-simplify-and-streamline-rules/
 
 ### Section 3: Built For (`builtFor`)
 
