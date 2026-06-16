@@ -60,17 +60,21 @@ Headline, subheadline, body, and CTAs: `hero.*` (`line1`, `line2Strike`, `line2H
 
 Section label, headline, body, two-line closing, and enterprise procurement callout: `regulatoryReality.*`. Source attribution line: `regulatoryReality.sourceAttr` + `sourceUrl`.
 
+**Omnibus note (in `regulatoryReality.body`):** A sentence appended to the body acknowledges the May 2026 Digital Omnibus provisional agreement, which may defer standalone Annex III obligations to December 2027 once formally adopted, while making clear the obligations are unchanged and the date may move. Keeps the section credible with knowledgeable prospects who are already aware of the agreement.
+
 **Procurement callout** (`regulatoryReality.procurement.body`) now answers the "this is for big companies, not startups" objection explicitly: you do not have to be the regulated party, you only have to sell into one, and the buyer's procurement gate is the deal-blocker today. [cut: closing was just "The deal-blocker is today." — expanded so the timing/buyer-gate rebuttal is explicit rather than implied.]
 
 Four stat cards: `stats[]` (each has `value`, `label`, `url`). Sources are on the `CLAUDE.md` allowlist.
 
-**Reference note (not rendered on site):** As of May 2026, the EU Council and Parliament reached a provisional agreement under the "Digital Omnibus" package that may extend the deadline for high-risk AI embedded in regulated products. Until formally adopted, August 2, 2026 remains the legally binding date. Source: https://www.consilium.europa.eu/en/press/press-releases/2026/05/07/artificial-intelligence-council-and-parliament-agree-to-simplify-and-streamline-rules/
+**Reference note (not rendered on site):** As of May 2026, the EU Council and Parliament reached a provisional political agreement under the "Digital Omnibus" package. It defers standalone Annex III high-risk obligations (credit scoring, recruitment, biometric identification, etc.) to **2 December 2027**, and Annex I regulated-product obligations (medical devices under MDR/IVDR, etc.) to **2 August 2028**. The deferral takes legal effect only once the Omnibus is formally adopted and published in the Official Journal, expected before 2 August 2026. Until then, 2 August 2026 stands as written for all categories. The obligations themselves are unchanged; only the dates move. Source: https://www.consilium.europa.eu/en/press/press-releases/2026/05/07/artificial-intelligence-council-and-parliament-agree-to-simplify-and-streamline-rules/
 
 ### Section 3: Built For (`builtFor`)
 
 Section label, headline, and three industry cards (Fintech, Medtech, HR Automation): `builtFor.*` (`headline`, `cards[]`).
 
 **Reference note:** Annex III Section 5(b) covers creditworthiness assessment and access to essential private services (backs the Fintech card).
+
+**HR Automation card:** Updated to surface the candidate notification duty (Art. 26(11)) and the right to explanation (Art. 86) — obligations deployers most often miss. The card now reads: candidates have a right to know AI assessed them and to receive an explanation on request; Traced AI provides the per-candidate trail that makes both answerable. Key: `builtFor.cards[2].body`.
 
 ### Section 4: Waitlist Form (`waitlist`)
 
@@ -149,6 +153,8 @@ Voice: the reply and the 1:1 call are personal acts by the solo founder, so `bod
 Tagline, legal nav links (Privacy · Terms · DPA), contact email, and the legal disclaimer: `footer.*` (`tagline`, `navLinks[]`, `contactEmail`, `legal`).
 
 **Company block** (`footer.company`): two-column layout. Left column is the entity name + registration line; right column is the three-line registered address, right-aligned. **Values are not duplicated here** — they live in `footer.company` (render) with the canonical legal block in `CLAUDE.md` hard rules.
+
+**Regulatory sync note** (`footer.regulatoryNote`): a secondary footnote (slightly dimmed) stating when the regulatory content on the site was last reviewed, and against which instruments (EU AI Act Regulation (EU) 2024/1689 + Digital Omnibus provisional agreement). Update the date in `copy.ts` any time law-related visible content changes. The CLAUDE.md hard rules define exactly which changes trigger an update.
 
 **Note on email (not rendered):** contact@traced-ai.com forwards to cmin764@gmail.com. Replies come from the personal address at this stage.
 

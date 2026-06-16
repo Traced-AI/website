@@ -33,6 +33,7 @@ These apply everywhere: copy, code, comments, commit messages, UI text.
 - Contact: contact@traced-ai.com.
 - Light theme is the default; dark mode is a toggle.
 - Font pairing is C: League Spartan (display) + Montserrat (body). Locked.
+- **Regulatory sync date:** whenever any law-related visible content changes (article numbers, fine amounts, obligation language, deadline dates, or classification rules), update `footer.regulatoryNote` in `src/copy.ts` to reflect the current date. The format is "DD Month YYYY" (e.g., "15 June 2026"). This includes changes to `hero.body1`, `regulatoryReality.*`, `builtFor` cards, `ruleRegistry` rows, and any stat card that references regulatory text.
 
 ## Content and Documentation
 
