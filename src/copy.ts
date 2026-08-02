@@ -6,7 +6,7 @@ export const hero = {
   tooltip: 'EU AI Act Art. 99 · up to €15M / 3% for high-risk violations, €35M / 7% for prohibited practices',
   subheadline: '“You can’t do compliance work with vibes.”',
   body1:
-    'Enforcement of the EU AI Act began August 2, 2026. If your AI system affects credit decisions or employment screening, Annex III already classifies it as high-risk. Those obligations apply from December 2, 2027. Decisions made by that system must be logged, explainable, and defensible.',
+    'Enforcement of the EU AI Act began August 2, 2026. If your AI system affects credit decisions or employment screening, Annex III already classifies it as high-risk, with obligations applying from December 2, 2027. Decisions made by that system must be logged, explainable, and defensible.',
   body2: 'Traced AI is the witness to those decisions: it records the why behind each one and the human who signed off, tamper-evident, so you can prove what happened later. Whether you comply stays your call.',
   ctaPrimary: 'Join the waitlist →',
   ctaSecondary: 'See how it works',
@@ -55,7 +55,7 @@ export const regulatoryReality = {
   questionPunchline: 'Documented evidence does.',
   inForceNow: {
     heading: 'In force now',
-    body: 'Enforcement began August 2, 2026. Prohibited practices, general-purpose AI rules, transparency, and AI literacy are enforceable now, at national and EU level. If your system interacts with people or generates content, Article 50 disclosure duties apply now; content-marking requirements phase in through December 2, 2026 for systems already on the market. Your Annex III date is December 2, 2027, but evidence cannot be backfilled: logs only exist from the day you start writing them.',
+    body: 'Enforcement began August 2, 2026. Prohibited practices, general-purpose AI rules, transparency, and AI literacy are enforceable now, at national and EU level. If your system interacts with people or generates content, Article 50 disclosure duties apply now; content-marking requirements phase in through December 2, 2026 for systems already on the market. Evidence cannot be backfilled: logs only exist from the day you start writing them.',
   },
   procurement: {
     heading: 'Enterprise procurement note',
