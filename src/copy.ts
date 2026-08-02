@@ -55,7 +55,7 @@ export const regulatoryReality = {
   questionPunchline: 'Documented evidence does.',
   inForceNow: {
     heading: 'In force now',
-    body: 'Enforcement began August 2, 2026. Prohibited practices, general-purpose AI rules, transparency, and AI literacy are enforceable now, at national and EU level. If your system interacts with people or generates content, Article 50 transparency duties (disclosure, content marking) already apply. Your Annex III date is December 2, 2027, but evidence cannot be backfilled: logs only exist from the day you start writing them.',
+    body: 'Enforcement began August 2, 2026. Prohibited practices, general-purpose AI rules, transparency, and AI literacy are enforceable now, at national and EU level. If your system interacts with people or generates content, Article 50 disclosure duties apply now; content-marking requirements phase in through December 2, 2026 for systems already on the market. Your Annex III date is December 2, 2027, but evidence cannot be backfilled: logs only exist from the day you start writing them.',
   },
   procurement: {
     heading: 'Enterprise procurement note',
