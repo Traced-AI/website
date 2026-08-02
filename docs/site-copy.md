@@ -172,7 +172,9 @@ Three sections, top to bottom. Anchor IDs `#vision`, `#mission`, `#the-bet`. All
 
 ### Section 1: Vision (`about.vision`)
 
-Label VISION. Heading "The layer the whole system trusts". Four paragraphs building from "no AI decision about a person's life is a black box" to the closing thesis that the layer everyone plugs into is Traced AI. Text: `about.vision.heading`, `about.vision.paragraphs`.
+Label VISION. Heading "The layer the whole system trusts". Five paragraphs building from "no AI decision about a person's life is a black box" to the closing thesis that the layer everyone plugs into is Traced AI. Text: `about.vision.heading`, `about.vision.paragraphs`.
+
+**Long-term platform paragraph (4th, added):** States the founder's long-term (not near-term) vision explicitly: a two-sided platform where companies enroll to get audited and auditors enroll to request and run the audit, both through Traced AI, eventually backed by the EU's support, approval, and accreditation. Framed as years out ("not a feature I am shipping this quarter") to avoid reading as a current capability or an existing accreditation claim. Split out of what was previously the end of paragraph 3 (which only gestured at "the auditors verifying it" without the enrollment/marketplace framing).
 
 ### Section 2: Mission (`about.mission`)
 
