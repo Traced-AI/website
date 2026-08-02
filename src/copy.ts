@@ -295,7 +295,8 @@ export const about = {
     paragraphs: [
       'A future where no AI decision about a person’s life is a black box.',
       'Where a regulator, an auditor, or the person who got rejected can pull up the record and see exactly what was decided, on what basis, and who stood behind it. Where “the algorithm did it” stops being an excuse, because the trail is there and it can’t be rewritten after the fact.',
-      'In that world, audit trails for AI are not a nice-to-have a few careful companies bolt on. They’re the floor. Being able to prove your AI’s reasoning is as ordinary as keeping financial books. And the place everyone plugs into to check that proof, the companies logging it and the auditors verifying it, is Traced AI.',
+      'In that world, audit trails for AI are not a nice-to-have a few careful companies bolt on. They’re the floor. Being able to prove your AI’s reasoning is as ordinary as keeping financial books.',
+      'Long-term, that means one platform both sides plug into: companies enroll to get audited, auditors enroll to request and run the audit, and it all happens on the same rail that recorded the evidence in the first place. Not two companies emailing PDFs past each other. Enrollment on both sides, the audit itself running through Traced AI, and eventually the EU’s own support, approval, and accreditation behind it. That is years out, not a feature I am shipping this quarter. But it is where the mission points.',
       'That’s the destination. Not a tool a few teams use. The layer the whole system trusts.',
     ],
   },
