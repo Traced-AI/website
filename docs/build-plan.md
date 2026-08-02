@@ -16,9 +16,9 @@ That scope is exactly right. It is specific, defensible, and genuinely hard to b
 
 ## The Most Immediate GTM Wedge
 
-Regulatory enforcement on August 2, 2026 creates urgency. But the faster-burning pain right now is enterprise procurement.
+The EU AI Act's enforcement machinery went live on August 2, 2026 (prohibited practices, GPAI rules, transparency, AI literacy). Standalone Annex III high-risk obligations apply from December 2, 2027 (Digital Omnibus, Regulation (EU) 2026/1744). That date creates urgency, but the faster-burning pain right now is enterprise procurement.
 
-Large enterprises are already sending AI governance questionnaires to their vendors: what models are used, how decisions are logged, whether outputs are reviewable, whether humans can intervene, what audit evidence exists. This is happening before formal enforcement. A fintech that cannot answer these questions is losing deals today, not in 2026.
+Large enterprises are already sending AI governance questionnaires to their vendors: what models are used, how decisions are logged, whether outputs are reviewable, whether humans can intervene, what audit evidence exists. This is happening ahead of the Annex III deadline. A fintech that cannot answer these questions is losing deals today, not in 2027.
 
 That means your best opening line is not "prepare for the regulator." It is:
 
@@ -224,11 +224,11 @@ Single route: `/`. Sections in render order:
 The deadline badge JS logic:
 
 ```js
-const deadline = new Date('2026-08-02');
+const deadline = new Date('2027-12-02'); // ANNEX_III_APPLICATION_DATE in src/config.ts
 const today = new Date();
 const days = Math.ceil((deadline - today) / (1000 * 60 * 60 * 24));
-// days > 0: "[days] DAYS UNTIL FULL ENFORCEMENT" (green)
-// days <= 0: "ENFORCEMENT BEGAN [Math.abs(days)] DAYS AGO" (red)
+// days > 0: "[days] DAYS UNTIL HIGH-RISK OBLIGATIONS APPLY" (green)
+// days <= 0: "HIGH-RISK OBLIGATIONS IN EFFECT FOR [Math.abs(days)] DAYS" (red)
 // Badge links to: https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act
 ```
 
@@ -281,7 +281,7 @@ Currently an outbound link. Intentional for Milestone 1: manual approval means t
 ### Message Framing (three variants)
 
 **Variant A, Regulatory:**
-"Your AI pipeline has no audit story for August 2, 2026. I can show you what that looks like in 30 minutes. Worth a call?"
+"Your Annex III deadline moved to December 2027. Your audit evidence didn't get an extension: logs only exist from the day you start writing them. If your first entry is dated mid-2027, that's your whole story. Worth 30 minutes?"
 
 **Variant B, Liability:**
 "Your engineers are flagging AI risks. Leadership is approving them anyway. When something breaks, nobody can explain the decision chain. That is not a compliance problem yet. It is a liability problem right now. Worth 30 minutes?"

@@ -6,7 +6,7 @@ export const hero = {
   tooltip: 'EU AI Act Art. 99 · up to €15M / 3% for high-risk violations, €35M / 7% for prohibited practices',
   subheadline: '“You can’t do compliance work with vibes.”',
   body1:
-    'August 2, 2026. The high-risk obligations of the EU AI Act start to apply. If your AI system affects credit decisions or employment screening, Annex III already classifies it as high-risk. Decisions made by that system must be logged, explainable, and defensible.',
+    'Enforcement of the EU AI Act began August 2, 2026. If your AI system affects credit decisions or employment screening, Annex III already classifies it as high-risk. Those obligations apply from December 2, 2027. Decisions made by that system must be logged, explainable, and defensible.',
   body2: 'Traced AI is the witness to those decisions: it records the why behind each one and the human who signed off, tamper-evident, so you can prove what happened later. Whether you comply stays your call.',
   ctaPrimary: 'Join the waitlist →',
   ctaSecondary: 'See how it works',
@@ -40,8 +40,8 @@ export const stats: Stat[] = [
     smallValue: true,
   },
   {
-    value: 'Aug 2, 2026',
-    label: 'Full application of high-risk system requirements per Article 113',
+    value: 'Dec 2, 2027',
+    label: 'Standalone Annex III high-risk obligations apply, per Article 113 as amended by Regulation (EU) 2026/1744',
     url: 'https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act',
     smallValue: true,
   },
@@ -49,16 +49,20 @@ export const stats: Stat[] = [
 
 export const regulatoryReality = {
   sectionLabel: 'THE DEADLINE IS REAL',
-  headline: 'On August 2nd, “the AI decided” stops being an acceptable answer.',
-  body: 'The high-risk provisions take full effect on August 2, 2026. If your system handles credit decisions, employment screening, or biometric identification, Annex III classifies it as high-risk. Decisions made by that system must be logged, explainable, and defensible. A provisional political agreement in May 2026 (Digital Omnibus) may defer standalone Annex III obligations to December 2027 once formally adopted. The obligations are unchanged; the date may move.',
+  headline: 'The deadline moved. The obligations didn’t.',
+  body: 'If your system handles credit decisions, employment screening, or biometric identification, Annex III classifies it as high-risk. Decisions made by that system must be logged, explainable, and defensible. The Digital Omnibus (Regulation (EU) 2026/1744, in force since July 27, 2026) moved the standalone Annex III date to December 2, 2027: a fixed date, no conditions attached.',
   question: 'When enforcement comes, good intentions don\'t appear in audit logs.',
   questionPunchline: 'Documented evidence does.',
+  inForceNow: {
+    heading: 'In force now',
+    body: 'Enforcement began August 2, 2026. Prohibited practices, general-purpose AI rules, transparency, and AI literacy are enforceable now, at national and EU level. If your system interacts with people or generates content, Article 50 transparency duties (disclosure, content marking) already apply. Your Annex III date is December 2, 2027, but evidence cannot be backfilled: logs only exist from the day you start writing them.',
+  },
   procurement: {
     heading: 'Enterprise procurement note',
     body: 'Your enterprise customers are already demanding AI governance evidence. Banks, insurers, and public-sector buyers ask what models you use, how decisions are logged, and what audit evidence exists. You do not have to be the regulated party to need this. If you sell into one, their procurement gate is the deal-blocker, and it is today.',
   },
   sourceAttr:
-    'EU AI Act, Regulation EU 2024/1689, Articles 9, 11, 12, 13, 14, 19, 26(6), Annex III, Annex IV. Official text:',
+    'EU AI Act, Regulation EU 2024/1689, as amended by Regulation EU 2026/1744, Articles 9, 11, 12, 13, 14, 19, 26(6), Annex III, Annex IV. Official text:',
   sourceUrl:
     'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689',
 };
@@ -144,13 +148,13 @@ export const ruleRegistry = {
     { field: 'Risk tier', value: 'High-risk' },
     {
       field: 'Applies to',
-      value: 'Credit scoring, clinical decision support, employment screening',
+      value: 'Credit scoring, employment screening, biometric identification',
     },
     {
       field: 'Logging required',
       value: 'Decision input hash, output hash, structured rationale, reviewer ID, timestamp',
     },
-    { field: 'Last updated', value: '2026-05-18, v3.1, signed' },
+    { field: 'Last updated', value: '2026-07-28, v4.0, signed' },
   ] as RegistryRow[],
   badges: ['Versioned', 'Signed', 'Always current'],
 };
@@ -268,7 +272,7 @@ export const pricing = {
 
 export const waitlist = {
   sectionLabel: 'JOIN THE WAITLIST',
-  headline: 'We’re building for the companies who need this before August 2026.',
+  headline: 'We’re building for the companies who need this in place long before December 2027.',
   subheadline:
     'Two minutes. Tell us what you’re building and what you can’t yet explain. You’ll hear back from me personally.',
   finePrint:
@@ -361,6 +365,6 @@ export const footer = {
   legal:
     'Traced AI does not provide legal advice. This product supports technical compliance documentation. It is not a substitute for a quality management system, legal counsel, or the full set of obligations under the EU AI Act. Consult qualified legal counsel for regulatory advice specific to your jurisdiction and use case.',
   regulatoryNote:
-    'Regulatory information on this site was last reviewed against Regulation (EU) 2024/1689 (EU AI Act) and the Digital Omnibus provisional agreement: 15 June 2026.',
+    'Regulatory information on this site was last reviewed against Regulation (EU) 2024/1689 (EU AI Act) as amended by Regulation (EU) 2026/1744 (Digital Omnibus): 2 August 2026.',
   copyright: 'Traced AI. All rights reserved.',
 };
