@@ -1,8 +1,8 @@
 # Recruitment AI compliance brief
 
-**Use case:** HR automation — a Slack agent (or similar pipeline) that sources, assesses, ranks candidates, and schedules interviews.
+**Use case:** HR automation: a Slack agent (or similar pipeline) that sources, assesses, ranks candidates, and schedules interviews.
 **Prepared by:** Traced AI (https://www.traced-ai.com/)
-**Basis:** Regulation (EU) 2024/1689 (EU AI Act), as amended by the Digital Omnibus provisional agreement of 7 May 2026.
+**Basis:** Regulation (EU) 2024/1689 (EU AI Act), as amended by Regulation (EU) 2026/1744 (Digital Omnibus, published in the Official Journal 24 July 2026, in force 27 July 2026).
 **Status:** Informational summary, not legal advice.
 
 ---
@@ -22,9 +22,9 @@ The high-risk regime applies to the provider even if based outside the EU, as lo
 
 ## Timeline and exposure
 
-Under the AI Act as adopted, stand-alone Annex III high-risk obligations apply from **2 August 2026**. On 7 May 2026 the Council and Parliament reached a provisional political agreement on the Digital Omnibus that defers these obligations to **2 December 2027** (and AI embedded in regulated products under Annex I to 2 August 2028). The deferral takes legal effect only once the Omnibus is formally adopted and published in the Official Journal, expected before 2 August 2026.
+Under the AI Act as amended by the Digital Omnibus (Regulation (EU) 2026/1744, published in the Official Journal 24 July 2026, in force 27 July 2026), stand-alone Annex III high-risk obligations apply from **2 December 2027** (fixed date), and AI embedded in regulated products under Annex I from **2 August 2028**.
 
-Recruitment AI is a stand-alone Annex III system, so **2 December 2027 is the planning baseline once adopted**; until then, 2 August 2026 stands as written. Either way the obligations are unchanged, only the dates move.
+Recruitment AI is a stand-alone Annex III system, so **2 December 2027 is the planning baseline**. The obligations are unchanged; only the dates moved. Full baseline: `docs/site-copy.md`, "Canonical regulatory baseline" note.
 
 Fines for high-risk breaches reach **EUR 15M or 3% of worldwide annual turnover**, whichever is higher ([Article 99(4)](https://artificialintelligenceact.eu/article/99/)). The EUR 35M / 7% tier ([Article 99(3)](https://artificialintelligenceact.eu/article/99/)) applies only to prohibited practices under [Article 5](https://artificialintelligenceact.eu/article/5/), which does not apply here.
 

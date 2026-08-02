@@ -1,6 +1,17 @@
 import StatCard from '../components/StatCard'
 import { stats, regulatoryReality } from '../copy'
 
+function Callout({ heading, body }: { heading: string; body: string }) {
+  return (
+    <div className="callout" style={{ maxWidth: '720px', marginBottom: '32px' }}>
+      <strong style={{ display: 'block', fontSize: '13px', color: 'var(--tx-0)', marginBottom: '8px' }}>
+        {heading}
+      </strong>
+      {body}
+    </div>
+  )
+}
+
 export default function RegulatoryReality() {
   return (
     <section style={{ background: 'var(--bg-0)' }}>
@@ -28,12 +39,9 @@ export default function RegulatoryReality() {
           </p>
         </div>
 
-        <div className="callout" style={{ maxWidth: '720px', marginBottom: '32px' }}>
-          <strong style={{ display: 'block', fontSize: '13px', color: 'var(--tx-0)', marginBottom: '8px' }}>
-            {regulatoryReality.procurement.heading}
-          </strong>
-          {regulatoryReality.procurement.body}
-        </div>
+        <Callout heading={regulatoryReality.inForceNow.heading} body={regulatoryReality.inForceNow.body} />
+
+        <Callout heading={regulatoryReality.procurement.heading} body={regulatoryReality.procurement.body} />
 
         <p className="source-attr" style={{ maxWidth: '720px' }}>
           {regulatoryReality.sourceAttr}{' '}

@@ -496,7 +496,7 @@ strong.hl { color: var(--tx-0); }
     -->
     <div class="hero-headline f-display">
       <span class="hl-line1">Move fast</span>
-      <span class="hl-line2">and <span class="through">break things</span> <span class="danger-highlight" data-tip="EU AI Act Art. 99 · fines up to €35M or 7% of global turnover">get investigated</span></span>
+      <span class="hl-line2">and <span class="through">break things</span> <span class="danger-highlight" data-tip="EU AI Act Art. 99 · up to €15M / 3% for high-risk violations, €35M / 7% for prohibited practices">get investigated</span></span>
     </div>
 
     <div class="hero-sub-wrap">
@@ -504,7 +504,7 @@ strong.hl { color: var(--tx-0); }
     </div>
 
     <div class="hero-body">
-      August 2, 2026. The EU AI Act begins full enforcement. Every high-risk AI decision, a loan refused, a patient flagged, a candidate screened, must be logged, explainable, and defensible.
+      Enforcement of the EU AI Act began August 2, 2026. If your AI system affects credit decisions or employment screening, Annex III already classifies it as high-risk. Those obligations apply from December 2, 2027. Decisions made by that system must be logged, explainable, and defensible.
       <br><br>
       Most companies are not ready.
     </div>
@@ -519,7 +519,7 @@ strong.hl { color: var(--tx-0); }
   <div class="rationale">
     <p><strong class="hl">Headline.</strong> "and ~~break things~~ get investigated." One strikethrough on the phrase as a unit. The original aphorism crossed out, the truth left standing.</p>
     <p><strong class="hl">Font C.</strong> League Spartan at 400 weight with 0.06em tracking. Italic is back in the quote across all three fonts. The lighter weight with positive letter-spacing gives it the airy seriousness the product needs.</p>
-    <p><strong class="hl">Deadline badge.</strong> Live JS. Green + animated dot while days remain. Flips to red with "ENFORCEMENT BEGAN N DAYS AGO" past August 2. Clicks through to the official EC enforcement timeline.</p>
+    <p><strong class="hl">Deadline badge.</strong> Live JS. Green + animated dot while days remain. Flips to red with "HIGH-RISK OBLIGATIONS IN EFFECT FOR N DAYS" past December 2, 2027. Clicks through to the official EC enforcement timeline.</p>
   </div>
 </div>
 
@@ -685,7 +685,7 @@ strong.hl { color: var(--tx-0); }
       </div>
       <div class="stat-card">
         <div class="stat-value f-display" style="color:var(--deadline-text)" id="stat-days">73</div>
-        <div class="stat-label">Days until full EU AI Act enforcement</div>
+        <div class="stat-label">Days until Annex III high-risk obligations apply</div>
       </div>
       <div class="stat-card">
         <div class="stat-value f-display" style="font-size:1.5rem">Ann. III</div>
@@ -939,7 +939,7 @@ function setFont(f) {
 }
 
 (function() {
-  const deadline = new Date('2026-08-02T00:00:00');
+  const deadline = new Date('2027-12-02T00:00:00');
   const now = new Date();
   const diffMs = deadline - now;
   const days = Math.ceil(diffMs / 86400000);
@@ -948,11 +948,11 @@ function setFont(f) {
   const text = document.getElementById('deadline-text');
   const statDays = document.getElementById('stat-days');
   if (days > 0) {
-    text.textContent = days + ' DAYS UNTIL FULL ENFORCEMENT';
+    text.textContent = days + ' DAYS UNTIL HIGH-RISK OBLIGATIONS APPLY';
     if (statDays) statDays.textContent = days;
   } else {
     const p = Math.abs(days);
-    text.textContent = 'ENFORCEMENT BEGAN ' + p + ' DAYS AGO';
+    text.textContent = 'HIGH-RISK OBLIGATIONS IN EFFECT FOR ' + p + ' DAYS';
     badge.style.cssText += ';color:var(--danger-text);background:var(--danger-bg);border-color:var(--danger-border)';
     dot.style.background = 'var(--danger-text)';
     if (statDays) { statDays.textContent = p; statDays.style.color = 'var(--danger-text)'; }
