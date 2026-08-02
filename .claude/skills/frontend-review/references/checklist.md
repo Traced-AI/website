@@ -49,6 +49,8 @@ Stack reality this checklist assumes: Vite 8 + React 19 + react-router-dom 7 + T
 
 The substantive copy rules are the **hard rules in `CLAUDE.md`** (canonical) plus the canonical copy in `src/copy.ts`. This section does not restate the values; it names what to check and where the authority lives. Load `CLAUDE.md` before reviewing copy. A copy error here is a 🔴, not a nit.
 
+Also flag stale Omnibus status: the Digital Omnibus is adopted law (Regulation (EU) 2026/1744, in force 27 July 2026). Any "provisional agreement" phrasing, or a pre-Omnibus application date (2 August 2026 for Annex III, 2 August 2027 for Annex I), is a 🔴.
+
 **D1**: No em dashes anywhere in copy, UI text, comments, or docs. Per the `CLAUDE.md` hard rule.
 
 **D2**: Compliance phrasing. Traced AI is the runtime evidence layer, not a compliance platform. Verify wording against the "designed to support compliance with" rule in `CLAUDE.md`; flag any "satisfies" / "ensures compliance" drift.
@@ -107,7 +109,7 @@ The substantive copy rules are the **hard rules in `CLAUDE.md`** (canonical) plu
 
 **L1**: Current-reality principle. Legal pages (`/privacy`, `/terms`, `/dpa`) describe only what is live today (marketing site + waitlist). Product-forward content belongs in `docs/legal-deferred.md`, not the live page. Check that file before adding product-era claims.
 
-**L2**: `Note` blocks are reserved for genuinely deferred legal content — claims that cannot yet be confirmed factually. No `Note` blocks are currently active on live pages: both prior DPA placeholders (Annex II security-claims reminder, Annex III backend sub-processor reminder) were resolved in the public-readiness pass and removed. If a future product feature requires new deferred legal content, stage it in `docs/legal-deferred.md` first, then promote with a `Note` only if the claim must appear on the live page before it can be confirmed.
+**L2**: `Note` blocks are reserved for genuinely deferred legal content: claims that cannot yet be confirmed factually. No `Note` blocks are currently active on live pages: both prior DPA placeholders (Annex II security-claims reminder, Annex III backend sub-processor reminder) were resolved in the public-readiness pass and removed. If a future product feature requires new deferred legal content, stage it in `docs/legal-deferred.md` first, then promote with a `Note` only if the claim must appear on the live page before it can be confirmed.
 
 ---
 
@@ -125,7 +127,7 @@ The substantive copy rules are the **hard rules in `CLAUDE.md`** (canonical) plu
 
 ## 8. SEO & Meta (S)
 
-**S1**: Per-route `<title>` and `<meta name="description">`. Every route component renders its own via React 19 native metadata (no `react-helmet`). Verify any new route includes both; missing ones silently fall back to the index.html global. Title format: `Page Name · Traced AI` (short, symmetric). The `og:title` is separate — pull from the page's headline copy for something more descriptive; do not mirror the `<title>`.
+**S1**: Per-route `<title>` and `<meta name="description">`. Every route component renders its own via React 19 native metadata (no `react-helmet`). Verify any new route includes both; missing ones silently fall back to the index.html global. Title format: `Page Name · Traced AI` (short, symmetric). The `og:title` is separate: pull from the page's headline copy for something more descriptive; do not mirror the `<title>`.
 
 **S2**: `<html lang="en">` present in `index.html` (verify not removed).
 

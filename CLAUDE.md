@@ -26,16 +26,17 @@ These apply everywhere: copy, code, comments, commit messages, UI text.
 - No em dashes. Use commas, periods, colons, or parentheses instead.
 - Never say Traced AI "satisfies" or "ensures compliance." Use "designed to support compliance with."
 - The €35M fine is for **prohibited practices** (Article 5). High-risk violations are up to €15M / 3%. Never conflate the two.
-- The deadline badge computes live from `new Date('2026-08-02')`. It is never hardcoded.
+- The deadline badge computes live from `new Date('2027-12-02')`, the `ANNEX_III_APPLICATION_DATE` constant in `src/config.ts` (the date standalone Annex III high-risk obligations apply). It is never hardcoded in JSX. Badge wording says obligations "apply" or are "in effect", never "enforcement": enforcement of other provisions (GPAI, prohibitions, transparency, AI literacy) began 2 August 2026.
+- The Digital Omnibus is adopted law: Regulation (EU) 2026/1744, published in the Official Journal 24 July 2026, in force 27 July 2026, amending Regulation (EU) 2024/1689. Never call it a "provisional agreement" or describe its dates as pending adoption. The Omnibus moved application dates only; obligations, fine tiers, and record-keeping rules are unchanged.
 - All stat card links go to `artificialintelligenceact.eu` or the official EC service desk. No other sources.
-- Never write "every AI decision must be logged." The Act scopes logging to high-risk systems via two routes: Annex III use cases (Article 6(2), obligations from 2 Aug 2026) and the Annex I regulated-product route (Article 6(1), e.g. medical devices under MDR/IVDR, obligations from 2 Aug 2027). Do not classify medical-device or clinical-decision-support AI as Annex III, and do not pin it to the 2026 date.
+- Never write "every AI decision must be logged." The Act scopes logging to high-risk systems via two routes: Annex III use cases (Article 6(2), obligations from 2 December 2027) and the Annex I regulated-product route (Article 6(1), e.g. medical devices under MDR/IVDR, obligations from 2 August 2028; Machinery Regulation products are excluded from the high-risk regime entirely). Do not classify medical-device or clinical-decision-support AI as Annex III, and do not pin it to the December 2027 date.
 - Footer legal block (canonical source; `src/copy.ts` `footer.company` renders it, other docs reference this): DRIFTWARE DYNAMICS LTD, Cyprus Ltd, Reg. No.: ΗΕ 474529, VAT: CY60167558M. Values are verbatim from the incorporation docs (Greek ΗΕ, CY VAT prefix); do not "correct" them to Latin HE or strip the prefix.
 - Footer copyright line: `© {new Date().getFullYear()} Traced AI. All rights reserved.` The year is computed live (same principle as the deadline badge) and is never hardcoded. Brand only: the full legal entity already appears in the block directly above. Static parts live in `footer.copyright` in `src/copy.ts`; composed with the live year in `Footer.tsx`.
 - `public/robots.txt` and `public/sitemap.xml` are static files copied to `/dist` on build. The sitemap lists only indexable routes (currently `/`, `/product`, `/pricing`, `/about`, `/privacy`, `/terms`, `/dpa`). When a new indexable route is added, add a row to the sitemap. `/thank-you` and `*` (404) are excluded.
 - Contact: contact@traced-ai.com.
 - Light theme is the default; dark mode is a toggle.
 - Font pairing is C: League Spartan (display) + Montserrat (body). Locked.
-- **Regulatory sync date:** whenever any law-related visible content changes (article numbers, fine amounts, obligation language, deadline dates, or classification rules), update `footer.regulatoryNote` in `src/copy.ts` to reflect the current date. The format is "DD Month YYYY" (e.g., "15 June 2026"). This includes changes to `hero.body1`, `regulatoryReality.*`, `builtFor` cards, `ruleRegistry` rows, and any stat card that references regulatory text.
+- **Regulatory sync date:** whenever any law-related visible content changes (article numbers, fine amounts, obligation language, deadline dates, or classification rules), update `footer.regulatoryNote` in `src/copy.ts` to reflect the current date. The format is "DD Month YYYY" (e.g., "2 August 2026"). This includes changes to `hero.body1`, `regulatoryReality.*`, `builtFor` cards, `ruleRegistry` rows, and any stat card that references regulatory text.
 
 ## Content and Documentation
 
@@ -70,7 +71,7 @@ What sync means: opening the file in a browser gives an accurate live reference 
 
 Update when: a feature, section, page, integration, or milestone is shipped, partially completed, or descoped.
 
-What sync means: the file accurately reflects the current state of the build — what is live, what is in progress, what is next, and what has been cut or deferred. It is a working roadmap, not a historical changelog. Update the status of completed items; do not simply append.
+What sync means: the file accurately reflects the current state of the build: what is live, what is in progress, what is next, and what has been cut or deferred. It is a working roadmap, not a historical changelog. Update the status of completed items; do not simply append.
 
 ### `docs/dev-guide.md`
 
@@ -88,6 +89,6 @@ What sync means: anything that belongs on a legal page but cannot go there yet l
 
 Update when: the stack changes (dependency major versions, new tools added or removed), a new command is introduced or renamed, the CI setup changes, the deployment process changes, or the docs table falls out of step with what actually lives in `docs/`.
 
-What sync means: a new contributor can clone the repo, read the README, and have an accurate picture of the stack, how to run the project, what CI enforces, and where to find deeper documentation. The README stays lean — it is an entry point, not a guide. Anything beyond setup, commands, CI, deployments, and a docs index belongs in `docs/dev-guide.md` or another docs file, not here.
+What sync means: a new contributor can clone the repo, read the README, and have an accurate picture of the stack, how to run the project, what CI enforces, and where to find deeper documentation. The README stays lean: it is an entry point, not a guide. Anything beyond setup, commands, CI, deployments, and a docs index belongs in `docs/dev-guide.md` or another docs file, not here.
 
 @docs/dev-guide.md
