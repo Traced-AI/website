@@ -28,6 +28,13 @@ export default function Pricing() {
           {pricing.selfHostedNote}
         </div>
 
+        <div className="callout" style={{ marginBottom: '16px' }}>
+          <strong style={{ display: 'block', fontSize: '13px', color: 'var(--tx-0)', marginBottom: '6px' }}>
+            {pricing.exportHeading}
+          </strong>
+          {pricing.exportNote}
+        </div>
+
         <p style={{ fontSize: '12px', color: 'var(--tx-2)', lineHeight: 1.7, maxWidth: '640px' }}>
           {pricing.pricingNote}
         </p>

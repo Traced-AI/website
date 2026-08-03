@@ -18,6 +18,11 @@ export default function BuiltFor() {
             </div>
           ))}
         </div>
+
+        <div className="card card-accent" style={{ marginTop: '14px', padding: '14px 22px' }}>
+          <div className="card-mono-label">{builtFor.vendorNote.title}</div>
+          <p className="card-body" style={{ marginBottom: 0 }}>{builtFor.vendorNote.body}</p>
+        </div>
       </div>
     </section>
   )

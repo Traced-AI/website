@@ -157,3 +157,7 @@ Apply to all future copy, in addition to the CLAUDE.md hard rules:
 ### Medical-device classification fact (do not re-litigate)
 
 Medical-device / clinical-decision-support AI is high-risk via the **regulated-product route: Article 6(1) / Annex I**, under MDR/IVDR, **not** Annex III (Art. 6(2)). Post-Omnibus (Regulation (EU) 2026/1744, in force 27 July 2026), its obligations apply from **2 August 2028**, not 2 December 2027 (Art. 113 as amended). Annex III categories (credit scoring, employment screening, biometric identification) are the ones tied to the 2 December 2027 date. The hero and "deadline is real" copy were corrected to stop conflating the two; keep them that way. Full baseline: `docs/site-copy.md`, "Canonical regulatory baseline" note.
+
+### GDPR Article 22 / Schufa fact (do not re-litigate)
+
+The CJEU's Schufa ruling (Case C-634/21, 7 December 2023) held that a credit-scoring agency itself engages in "automated individual decision-making" under GDPR Article 22 when a third party relies heavily on its score to decide a contract. The holding extends Article 22 exposure to whoever produces a decisive score, not only whoever acts on it. Article 22 has applied since 25 May 2018, independent of any EU AI Act date. Cite the holding only; never claim Traced AI resolves Article 22 exposure, only that it produces the human-review evidence the Article 22 safeguard (human intervention, right to contest) depends on. Source brief: `~/Downloads/tavi-eu-ai-act-brief.md` (client-specific proposal, not published).
