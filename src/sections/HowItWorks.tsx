@@ -21,7 +21,7 @@ function CodeBlock() {
         <span className="c-comment"># Optional to call. If you do, feedback is required.</span><br />
         traced_ai.<span className="c-func">sign_off</span>(<br />
         &nbsp;&nbsp;&nbsp;&nbsp;response,<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;reviewer_id=<span className="c-string">"cosmin@company.com"</span>,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;reviewer_id=<span className="c-string">"reviewer@company.com"</span>,<br />
         &nbsp;&nbsp;&nbsp;&nbsp;feedback=<span className="c-string">"Confirmed, no red flags"</span><br />
         )
       </div>

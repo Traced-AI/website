@@ -124,7 +124,7 @@ response = client.chat.completions.create(...)
 # Optional, to attach a human sign-off to that response.
 traced_ai.sign_off(
     response,
-    reviewer_id="cosmin@company.com",
+    reviewer_id="reviewer@company.com",
     feedback="Confirmed, no red flags"
 )
 ```
