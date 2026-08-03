@@ -73,7 +73,7 @@ export const regulatoryReality = {
     },
   ] as RegulatoryCallout[],
   sourceAttr:
-    'EU AI Act, Regulation EU 2024/1689, as amended by Regulation EU 2026/1744, Articles 9, 11, 12, 13, 14, 19, 26(6), Annex III, Annex IV. Official text:',
+    'EU AI Act, Regulation EU 2024/1689, as amended by Regulation EU 2026/1744, Articles 9, 11, 12, 13, 14, 19, 26(6), Annex III, Annex IV, and GDPR Article 22 (Regulation (EU) 2016/679). Official text:',
   sourceUrl:
     'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689',
 };
@@ -163,7 +163,7 @@ export const ruleRegistry = {
     },
     {
       field: 'Logging required',
-      value: 'Decision input hash, output hash, structured rationale, reviewer ID, timestamp',
+      value: 'Decision input hash, output hash, structured rationale, timestamp; reviewer ID and feedback together, when a human signs off',
     },
     { field: 'Last updated', value: '2026-07-28, v4.0, signed' },
   ] as RegistryRow[],

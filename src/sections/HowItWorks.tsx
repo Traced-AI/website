@@ -18,7 +18,7 @@ function CodeBlock() {
         <span className="c-comment"># Your own call, already patched. No new LLM call, no new cost.</span><br />
         <span className="c-comment"># Its response now carries the rationale too, in the same shot.</span><br /><br />
         response = client.chat.completions.<span className="c-func">create</span>(...)<br /><br />
-        <span className="c-comment"># Optional, to attach a human sign-off to that response.</span><br />
+        <span className="c-comment"># Optional to call. If you do, feedback is required.</span><br />
         traced_ai.<span className="c-func">sign_off</span>(<br />
         &nbsp;&nbsp;&nbsp;&nbsp;response,<br />
         &nbsp;&nbsp;&nbsp;&nbsp;reviewer_id=<span className="c-string">"cosmin@company.com"</span>,<br />
