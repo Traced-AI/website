@@ -196,7 +196,7 @@ export const builtFor = {
   vendorNote: {
     title: 'If you sell the AI, not just use it',
     body: 'If your product scores, ranks, or screens people for other companies, the exposure may sit with you, not just your customer: the CJEU’s Schufa ruling put the score-producer on the hook under GDPR Article 22. Traced AI gives you an evidence layer to embed and resell, so your customers inherit audit-ready logs instead of building their own.',
-  } as IndustryCard,
+  },
 };
 
 export interface PricingFeature {
