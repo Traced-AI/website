@@ -39,11 +39,9 @@ export default function RegulatoryReality() {
           </p>
         </div>
 
-        <Callout heading={regulatoryReality.inForceNow.heading} body={regulatoryReality.inForceNow.body} />
-
-        <Callout heading={regulatoryReality.gdprUrgency.heading} body={regulatoryReality.gdprUrgency.body} />
-
-        <Callout heading={regulatoryReality.procurement.heading} body={regulatoryReality.procurement.body} />
+        {regulatoryReality.callouts.map((c, i) => (
+          <Callout key={i} heading={c.heading} body={c.body} />
+        ))}
 
         <p className="source-attr" style={{ maxWidth: '720px' }}>
           {regulatoryReality.sourceAttr}{' '}

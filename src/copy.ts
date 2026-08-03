@@ -47,24 +47,31 @@ export const stats: Stat[] = [
   },
 ];
 
+export interface RegulatoryCallout {
+  heading: string;
+  body: string;
+}
+
 export const regulatoryReality = {
   sectionLabel: 'THE DEADLINE IS REAL',
   headline: 'The deadline moved. The obligations didn’t.',
   body: 'If your system handles credit decisions, employment screening, or biometric identification, Annex III classifies it as high-risk. Decisions made by that system must be logged, explainable, and defensible. The Digital Omnibus (Regulation (EU) 2026/1744, in force since July 27, 2026) moved the standalone Annex III date to December 2, 2027: a fixed date, no conditions attached.',
   question: 'When enforcement comes, good intentions don\'t appear in audit logs.',
   questionPunchline: 'Documented evidence does.',
-  inForceNow: {
-    heading: 'In force now',
-    body: 'Enforcement began August 2, 2026. Prohibited practices, general-purpose AI rules, transparency, and AI literacy are enforceable now, at national and EU level. If your system interacts with people or generates content, Article 50 disclosure duties apply now; content-marking requirements phase in through December 2, 2026 for systems already on the market. Evidence cannot be backfilled: logs only exist from the day you start writing them.',
-  },
-  gdprUrgency: {
-    heading: 'This doesn’t wait for the AI Act',
-    body: 'GDPR Article 22 has granted a right to human intervention and to contest an automated decision since 2018, no AI Act clock attached. The CJEU’s Schufa ruling (Case C-634/21) held that whoever produces the decisive score can be the Article 22 party, not just whoever acts on it. If your AI scores, ranks, or screens people, that exposure may already sit with you, today.',
-  },
-  procurement: {
-    heading: 'Enterprise procurement note',
-    body: 'Your enterprise customers are already demanding AI governance evidence. Banks, insurers, and public-sector buyers ask what models you use, how decisions are logged, and what audit evidence exists. You do not have to be the regulated party to need this. If you sell into one, their procurement gate is the deal-blocker, and it is today.',
-  },
+  callouts: [
+    {
+      heading: 'In force now',
+      body: 'Enforcement began August 2, 2026. Prohibited practices, general-purpose AI rules, transparency, and AI literacy are enforceable now, at national and EU level. If your system interacts with people or generates content, Article 50 disclosure duties apply now; content-marking requirements phase in through December 2, 2026 for systems already on the market. Evidence cannot be backfilled: logs only exist from the day you start writing them.',
+    },
+    {
+      heading: 'This doesn’t wait for the AI Act',
+      body: 'GDPR Article 22 has granted a right to human intervention and to contest an automated decision since 2018, no AI Act clock attached. The CJEU’s Schufa ruling (Case C-634/21) held that whoever produces the decisive score can be the Article 22 party, not just whoever acts on it. If your AI scores, ranks, or screens people, that exposure may already sit with you, today.',
+    },
+    {
+      heading: 'Enterprise procurement note',
+      body: 'Your enterprise customers are already demanding AI governance evidence. Banks, insurers, and public-sector buyers ask what models you use, how decisions are logged, and what audit evidence exists. You do not have to be the regulated party to need this. If you sell into one, their procurement gate is the deal-blocker, and it is today.',
+    },
+  ] as RegulatoryCallout[],
   sourceAttr:
     'EU AI Act, Regulation EU 2024/1689, as amended by Regulation EU 2026/1744, Articles 9, 11, 12, 13, 14, 19, 26(6), Annex III, Annex IV. Official text:',
   sourceUrl:
@@ -121,7 +128,7 @@ export const boundaries = {
     },
     {
       title: 'Not an eval tool',
-      body: 'Bias and fairness tools tell you whether the model behaves, a different question from what it did in one specific case. Traced AI does not score quality, accuracy, or sentiment: a witness reports what happened, it does not grade it. Your raw prompts and outputs never leave your perimeter either way: proving a decision needs only its hash and its signer, not the underlying data.',
+      body: 'Bias and fairness tools tell you whether the model behaves. Traced AI does not score quality, accuracy, or sentiment, it reports what happened in one specific case. Your raw prompts and outputs never leave your perimeter either way: proving a decision needs only its hash and its signer, not the underlying data.',
     },
   ] as BoundaryItem[],
 };
