@@ -58,7 +58,7 @@ Headline, subheadline, body, and CTAs: `hero.*` (`line1`, `line2Strike`, `line2H
 
 ### Section 2: Regulatory Reality (`regulatoryReality`, `stats`)
 
-Section label, headline, body, two-line closing, and enterprise procurement callout: `regulatoryReality.*`. Source attribution line: `regulatoryReality.sourceAttr` + `sourceUrl`.
+Section label, headline, body, two-line closing, and three callouts (in force now, GDPR urgency, enterprise procurement): `regulatoryReality.*`. Source attribution line: `regulatoryReality.sourceAttr` + `sourceUrl`.
 
 **Post-Omnibus rewrite (`regulatoryReality.headline` + `body`):** The Digital Omnibus is now adopted law (Regulation (EU) 2026/1744, in force 27 July 2026), so the headline and body no longer hedge on adoption. Headline: "The deadline moved. The obligations didn’t." Body states the fixed December 2, 2027 Annex III date directly. [cut: headline "On August 2nd, “the AI decided” stops being an acceptable answer."] [cut: body sentence "A provisional political agreement in May 2026 (Digital Omnibus) may defer standalone Annex III obligations to December 2027 once formally adopted. The obligations are unchanged; the date may move."]
 
