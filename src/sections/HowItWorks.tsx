@@ -15,12 +15,12 @@ function CodeBlock() {
         &nbsp;&nbsp;&nbsp;&nbsp;api_key=<span className="c-string">"trc_live_..."</span>,<br />
         &nbsp;&nbsp;&nbsp;&nbsp;rules=<span className="c-string">"eu-ai-act-annex-iii"</span><br />
         )<br />
-        <span className="c-comment"># Every call now returns its own rationale, in the same response.</span><br />
-        <span className="c-comment"># Only hashes and the rationale text leave your infrastructure.</span><br /><br />
-        decision = client.chat.completions.<span className="c-func">create</span>(...)<br /><br />
-        <span className="c-comment"># Optional, for decisions that need a human sign-off.</span><br />
+        <span className="c-comment"># Your own call, already patched. No new LLM call, no new cost.</span><br />
+        <span className="c-comment"># Its response now carries the rationale too, in the same shot.</span><br /><br />
+        response = client.chat.completions.<span className="c-func">create</span>(...)<br /><br />
+        <span className="c-comment"># Optional, to attach a human sign-off to that response.</span><br />
         traced_ai.<span className="c-func">sign_off</span>(<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;decision,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;response,<br />
         &nbsp;&nbsp;&nbsp;&nbsp;reviewer_id=<span className="c-string">"cosmin@company.com"</span>,<br />
         &nbsp;&nbsp;&nbsp;&nbsp;feedback=<span className="c-string">"Confirmed, no red flags"</span><br />
         )

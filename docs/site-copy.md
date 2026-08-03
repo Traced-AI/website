@@ -114,19 +114,19 @@ traced_ai.init(
     api_key="trc_live_...",
     rules="eu-ai-act-annex-iii"
 )
-# Every call now returns its own rationale, in the same response.
-# Only hashes and the rationale text leave your infrastructure.
+# Your own call, already patched. No new LLM call, no new cost.
+# Its response now carries the rationale too, in the same shot.
 
-decision = client.chat.completions.create(...)
+response = client.chat.completions.create(...)
 
-# Optional, for decisions that need a human sign-off.
+# Optional, to attach a human sign-off to that response.
 traced_ai.sign_off(
-    decision,
+    response,
     reviewer_id="cosmin@company.com",
     feedback="Confirmed, no red flags"
 )
 ```
-Corrected the architecture the example implies. Traced AI does not run or bill for the customer's own LLM call; `init()` alters the customer's own prompt templates so the same call that produces the output also produces its rationale, parsed out of that single response, no second LLM call, no extra inference cost. Input and output stay on the customer's infrastructure (hashed before anything leaves); the rationale text itself, not just its hash, is what reaches the ledger, since it carries no raw customer data. `sign_off` is the one genuinely separate, optional call: a human confirming or adding feedback happens after the fact and cannot be folded into the original LLM call. Renamed the AI's own explanation `rationale` (matches existing site vocabulary in `ruleRegistry.rows` and `howItWorks.intro`) and the human's optional note `feedback`, keeping the two distinct. [cut: prior version had the developer manually pass a `rationale=` string into `sign_off`, implying a person writes the rationale and that capturing it costs a second explicit call; both were wrong. The rationale is AI-generated and automatic, in the same call as the output.]
+Corrected the architecture the example implies. Traced AI does not run or bill for the customer's own LLM call; `init()` alters the customer's own prompt templates so the same call that produces the output also produces its rationale, parsed out of that single response, no second LLM call, no extra inference cost. Input and output stay on the customer's infrastructure (hashed before anything leaves); the rationale text itself, not just its hash, is what reaches the ledger, since it carries no raw customer data. `sign_off` is the one genuinely separate, optional call: a human confirming or adding feedback happens after the fact and cannot be folded into the original LLM call. Renamed the AI's own explanation `rationale` (matches existing site vocabulary in `ruleRegistry.rows` and `howItWorks.intro`) and the human's optional note `feedback`, keeping the two distinct. [cut: prior version had the developer manually pass a `rationale=` string into `sign_off`, implying a person writes the rationale and that capturing it costs a second explicit call; both were wrong. The rationale is AI-generated and automatic, in the same call as the output.] [cut: variable was named `decision`, which read as if the LLM call were computing a new decision on Traced AI's behalf (a second, possibly billed, act of decision-making). Renamed to `response`: it is the return value of the client's own already-existing call, nothing new is computed or charged by Traced AI. `sign_off` attaches an optional human confirmation to that same response, it does not make or remake the decision.]
 
 ### Section 5b: Boundaries (`boundaries`)
 
