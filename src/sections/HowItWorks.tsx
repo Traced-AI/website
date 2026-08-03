@@ -14,9 +14,15 @@ function CodeBlock() {
         traced_ai.<span className="c-func">init</span>(<br />
         &nbsp;&nbsp;&nbsp;&nbsp;api_key=<span className="c-string">"trc_live_..."</span>,<br />
         &nbsp;&nbsp;&nbsp;&nbsp;rules=<span className="c-string">"eu-ai-act-annex-iii"</span><br />
-        )<br /><br />
-        <span className="c-comment"># Every LLM call is now automatically traced.</span><br />
-        <span className="c-comment"># Raw I/O stays local. Hashes flow to the ledger.</span>
+        )<br />
+        <span className="c-comment"># Auto-traced. Raw I/O stays local, hashes flow to the ledger.</span><br /><br />
+        decision = client.chat.completions.<span className="c-func">create</span>(...)<br /><br />
+        <span className="c-comment"># Rationale + reviewer, for decisions that need a signer.</span><br />
+        traced_ai.<span className="c-func">sign_off</span>(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;decision,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;rationale=<span className="c-string">"Score below threshold, no red flags"</span>,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;reviewer_id=<span className="c-string">"cosmin@company.com"</span><br />
+        )
       </div>
     </div>
   )

@@ -111,12 +111,21 @@ Two-line headline, intro, and four-item feature list (Auto-patching SDK, Local-f
 import traced_ai
 
 traced_ai.init(
-    api_key="...",
+    api_key="trc_live_...",
     rules="eu-ai-act-annex-iii"
 )
+# Auto-traced. Raw I/O stays local, hashes flow to the ledger.
 
-# From here, every LLM call is automatically traced
+decision = client.chat.completions.create(...)
+
+# Rationale + reviewer, for decisions that need a signer.
+traced_ai.sign_off(
+    decision,
+    rationale="Score below threshold, no red flags",
+    reviewer_id="cosmin@company.com"
+)
 ```
+Added the `sign_off` call so the example matches what the product actually claims to log elsewhere on this page (`ruleRegistry.rows`: "structured rationale, reviewer ID") and in `howItWorks.intro` ("the why... and the who"). `init()` auto-patches the LLM client and traces every call; capturing rationale and a reviewer for a decision-worthy call is a distinct, explicit second call, not folded into the two-line setup, since it is extra work only some calls need. [cut: prior snippet stopped at `init()` plus a single comment, implying rationale/reviewer capture was automatic; it is not.]
 
 ### Section 5b: Boundaries (`boundaries`)
 
