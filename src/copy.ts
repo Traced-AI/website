@@ -195,7 +195,7 @@ export const builtFor = {
   ] as IndustryCard[],
   vendorNote: {
     title: 'If you sell the AI, not just use it',
-    body: 'If your product scores, ranks, or screens people for other companies, the exposure may sit with you, not just your customer: the CJEU’s Schufa ruling put the score-producer on the hook under GDPR Article 22. Traced AI gives you an evidence layer to embed and resell, so your customers inherit audit-ready logs instead of building their own.',
+    body: 'If your product scores, ranks, or screens people for other companies, the exposure may sit with you, not just your customer: the CJEU’s Schufa ruling put the score-producer on the hook under GDPR Article 22. Traced AI gives you an evidence layer to embed: on any plan, you can export the logs it generates and hand them to your own customers on demand, so they inherit audit-ready evidence instead of building their own.',
   },
 };
 
@@ -279,6 +279,9 @@ export const pricing = {
   selfHostedNote:
     'The local viewer ships with the SDK. Raw AI data never leaves your perimeter, on any plan.',
   selfHostedHeading: 'Self-hosted component',
+  exportNote:
+    'If you embed Traced AI in your own product, exporting logs to your own customers on demand works on every plan, Free through Enterprise, not an Enterprise add-on.',
+  exportHeading: 'Exports for your own customers',
   readyHeadline: 'Ready to start?',
   featuredTag: 'MOST POPULAR',
   pricingNote:

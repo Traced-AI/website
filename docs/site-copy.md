@@ -80,7 +80,7 @@ Section label, headline, and three industry cards (Fintech, Medtech, HR Automati
 
 **HR Automation card:** Updated to surface the candidate notification duty (Art. 26(11)) and the right to explanation (Art. 86), obligations deployers most often miss. The card now reads: candidates have a right to know AI assessed them and to receive an explanation on request; Traced AI provides the per-candidate trail that makes both answerable. Key: `builtFor.cards[2].body`.
 
-**Vendor note (`builtFor.vendorNote`, new key):** Not a 4th card in the `cards[]` grid, the grid's `repeat(auto-fit, minmax(280px, 1fr))` at the 1100px `.page-section` width fits exactly 3 columns, so a 4th card would orphan onto its own row with empty space beside it. Instead renders as a full-width strip directly below the 3-card grid in `BuiltFor.tsx`, reusing the same `.card`/`.card-accent`/`card-mono-label`/`card-body` classes the three cards use, with slightly reduced vertical padding to read as visibly thinner. Reads as the horizontal layer the three industry verticals sit on: speaks to AI/SaaS vendors whose product *is* the scoring system (not a company merely using AI in-house), who can carry Article 22-style exposure directly per the Schufa fact above, and who can resell the evidence layer to their own downstream customers as a feature. Surfaced by the same client brief as the GDPR urgency callout.
+**Vendor note (`builtFor.vendorNote`, new key):** Not a 4th card in the `cards[]` grid, the grid's `repeat(auto-fit, minmax(280px, 1fr))` at the 1100px `.page-section` width fits exactly 3 columns, so a 4th card would orphan onto its own row with empty space beside it. Instead renders as a full-width strip directly below the 3-card grid in `BuiltFor.tsx`, reusing the same `.card`/`.card-accent`/`card-mono-label`/`card-body` classes the three cards use, with slightly reduced vertical padding to read as visibly thinner. Reads as the horizontal layer the three industry verticals sit on: speaks to AI/SaaS vendors whose product *is* the scoring system (not a company merely using AI in-house), who can carry Article 22-style exposure directly per the Schufa fact above, and who can export the evidence layer to their own downstream customers on demand, on any plan, not just Enterprise (see `pricing.exportNote`). Surfaced by the same client brief as the GDPR urgency callout. [cut: body previously said "embed and resell" without the any-plan/on-demand specifics; sharpened once the provider-to-deployer export guarantee was confirmed as plan-independent.]
 
 ### Section 4: Waitlist Form (`waitlist`)
 
@@ -114,18 +114,19 @@ traced_ai.init(
     api_key="trc_live_...",
     rules="eu-ai-act-annex-iii"
 )
-# Auto-traced. Raw I/O stays local, hashes flow to the ledger.
+# Every call now returns its own rationale, in the same response.
+# Only hashes and the rationale text leave your infrastructure.
 
 decision = client.chat.completions.create(...)
 
-# Rationale + reviewer, for decisions that need a signer.
+# Optional, for decisions that need a human sign-off.
 traced_ai.sign_off(
     decision,
-    rationale="Score below threshold, no red flags",
-    reviewer_id="cosmin@company.com"
+    reviewer_id="cosmin@company.com",
+    feedback="Confirmed, no red flags"
 )
 ```
-Added the `sign_off` call so the example matches what the product actually claims to log elsewhere on this page (`ruleRegistry.rows`: "structured rationale, reviewer ID") and in `howItWorks.intro` ("the why... and the who"). `init()` auto-patches the LLM client and traces every call; capturing rationale and a reviewer for a decision-worthy call is a distinct, explicit second call, not folded into the two-line setup, since it is extra work only some calls need. [cut: prior snippet stopped at `init()` plus a single comment, implying rationale/reviewer capture was automatic; it is not.]
+Corrected the architecture the example implies. Traced AI does not run or bill for the customer's own LLM call; `init()` alters the customer's own prompt templates so the same call that produces the output also produces its rationale, parsed out of that single response, no second LLM call, no extra inference cost. Input and output stay on the customer's infrastructure (hashed before anything leaves); the rationale text itself, not just its hash, is what reaches the ledger, since it carries no raw customer data. `sign_off` is the one genuinely separate, optional call: a human confirming or adding feedback happens after the fact and cannot be folded into the original LLM call. Renamed the AI's own explanation `rationale` (matches existing site vocabulary in `ruleRegistry.rows` and `howItWorks.intro`) and the human's optional note `feedback`, keeping the two distinct. [cut: prior version had the developer manually pass a `rationale=` string into `sign_off`, implying a person writes the rationale and that capturing it costs a second explicit call; both were wrong. The rationale is AI-generated and automatic, in the same call as the output.]
 
 ### Section 5b: Boundaries (`boundaries`)
 
@@ -145,7 +146,9 @@ Two-line headline, two body paragraphs, a registry preview card (field/value row
 
 ### Section 7: Pricing Tiers (`pricing`)
 
-Section label, headline, subheadline, three tiers (Free, Startup, Enterprise) with their features and badges, the self-hosted callout, and the pricing note: `pricing.*` (`headline`, `subheadline`, `tiers[]`, `selfHostedHeading`, `selfHostedNote`, `pricingNote`, `featuredTag`).
+Section label, headline, subheadline, three tiers (Free, Startup, Enterprise) with their features and badges, the self-hosted callout, the downstream-exports callout, and the pricing note: `pricing.*` (`headline`, `subheadline`, `tiers[]`, `selfHostedHeading`, `selfHostedNote`, `exportHeading`, `exportNote`, `pricingNote`, `featuredTag`).
+
+**Exports callout (`pricing.exportHeading` + `exportNote`, new keys):** Second `.callout` block in `Pricing.tsx`, directly below the self-hosted callout, same shape and styling. States that a provider embedding Traced AI can export logs and hand them to their own downstream customers (deployers) on demand, on every plan from Free through Enterprise, not gated to an Enterprise add-on. Answers the question a vendor prospect (like the one behind `builtFor.vendorNote`) would otherwise be left to guess at from the tier grid alone.
 
 **Reference note (not rendered on site):** Rationale text is stored as structured fields, not free-form strings. This protects against accidental capture of personal data, prompt leakage, or confidential reasoning chains. Field-level configuration controls exactly what enters the rationale record. Full documentation in the SDK guide.
 
