@@ -41,6 +41,8 @@ export default function RegulatoryReality() {
 
         <Callout heading={regulatoryReality.inForceNow.heading} body={regulatoryReality.inForceNow.body} />
 
+        <Callout heading={regulatoryReality.gdprUrgency.heading} body={regulatoryReality.gdprUrgency.body} />
+
         <Callout heading={regulatoryReality.procurement.heading} body={regulatoryReality.procurement.body} />
 
         <p className="source-attr" style={{ maxWidth: '720px' }}>

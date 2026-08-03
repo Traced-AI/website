@@ -57,6 +57,10 @@ export const regulatoryReality = {
     heading: 'In force now',
     body: 'Enforcement began August 2, 2026. Prohibited practices, general-purpose AI rules, transparency, and AI literacy are enforceable now, at national and EU level. If your system interacts with people or generates content, Article 50 disclosure duties apply now; content-marking requirements phase in through December 2, 2026 for systems already on the market. Evidence cannot be backfilled: logs only exist from the day you start writing them.',
   },
+  gdprUrgency: {
+    heading: 'This doesn’t wait for the AI Act',
+    body: 'GDPR Article 22 has granted a right to human intervention and to contest an automated decision since 2018, no AI Act clock attached. The CJEU’s Schufa ruling (Case C-634/21) held that whoever produces the decisive score can be the Article 22 party, not just whoever acts on it. If your AI scores, ranks, or screens people, that exposure may already sit with you, today.',
+  },
   procurement: {
     heading: 'Enterprise procurement note',
     body: 'Your enterprise customers are already demanding AI governance evidence. Banks, insurers, and public-sector buyers ask what models you use, how decisions are logged, and what audit evidence exists. You do not have to be the regulated party to need this. If you sell into one, their procurement gate is the deal-blocker, and it is today.',
@@ -109,7 +113,7 @@ export const boundaries = {
   items: [
     {
       title: 'Not a compliance product',
-      body: 'You decide whether you comply; your legal counsel and quality management system own that judgment. Traced AI makes what your AI actually did provable, which is the part nobody can produce after the fact.',
+      body: 'Attestation and quality-management tooling can prove a process exists. Traced AI proves what your AI actually did in one specific case, the part a process document cannot produce after the fact. You decide whether you comply; your legal counsel and quality management system own that judgment.',
     },
     {
       title: 'Not a guardrail',
@@ -117,7 +121,7 @@ export const boundaries = {
     },
     {
       title: 'Not an eval tool',
-      body: 'It does not score quality, accuracy, or sentiment. A witness reports what happened, it does not grade it. That is also why your raw prompts and outputs never leave your perimeter: proving a decision needs only its hash and its signer, not the underlying data.',
+      body: 'Bias and fairness tools tell you whether the model behaves, a different question from what it did in one specific case. Traced AI does not score quality, accuracy, or sentiment: a witness reports what happened, it does not grade it. Your raw prompts and outputs never leave your perimeter either way: proving a decision needs only its hash and its signer, not the underlying data.',
     },
   ] as BoundaryItem[],
 };
@@ -182,6 +186,10 @@ export const builtFor = {
       body: 'Recruitment, hiring, and workforce assessment AI are high-risk under Annex III. Candidates have a right to know AI assessed them and to receive an explanation on request (Art. 26(11), Art. 86). Traced AI gives you the per-candidate decision trail that makes both answerable, plus structured audit views for regulators, works councils, and litigators.',
     },
   ] as IndustryCard[],
+  vendorNote: {
+    title: 'If you sell the AI, not just use it',
+    body: 'If your product scores, ranks, or screens people for other companies, the exposure may sit with you, not just your customer: the CJEU’s Schufa ruling put the score-producer on the hook under GDPR Article 22. Traced AI gives you an evidence layer to embed and resell, so your customers inherit audit-ready logs instead of building their own.',
+  } as IndustryCard,
 };
 
 export interface PricingFeature {
