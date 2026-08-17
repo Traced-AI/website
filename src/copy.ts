@@ -360,7 +360,7 @@ export const mainNav: NavLinkItem[] = [
 // hard rules; keep these in sync with it. Verbatim from the incorporation docs.
 const company = {
   name: 'DRIFTWARE DYNAMICS LTD',
-  regNumber: 'ΗΕ 474529',
+  regNumber: 'HE 474529',
   vat: 'CY60167558M',
   address: [
     'Tefkrou Anthia, 63',
