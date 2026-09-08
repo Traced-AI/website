@@ -96,6 +96,9 @@
   --shadow-card:none;
 }
 
+.form-input-invalid { border-color: var(--danger-border); }
+.form-error { font-size: 12px; line-height: 1.6; color: var(--danger-text); margin-top: 6px; }
+
 /* ═══ FONT SWITCHING ═══ */
 [data-font="A"] .f-display      { font-family: var(--f-display-A); }
 [data-font="A"] .f-body         { font-family: var(--f-body-AB); }
@@ -846,6 +849,17 @@ strong.hl { color: var(--tx-0); }
   <div>
     <div class="group-label">Hash Block</div>
     <div class="hash-block">sha256:a3f8c2d91e74b60527f9e4c1d8a2b35f6e7c9d04a1b8e250c37f8d96e4b2a10f3e5d7c9b1a8f2e4d6c0b8a7e2d1c5b3</div>
+
+    <div class="group-label" style="margin-top:28px">Waitlist Form, field states</div>
+    <p class="note">The waitlist form is rendered natively and POSTed straight to Tally, so it themes with the rest of the site. It reuses <strong class="hl">.form-input</strong>, <strong class="hl">.form-textarea</strong> and <strong class="hl">.btn-primary</strong>; the only form-specific additions are the invalid state and the error message.</p>
+    <p class="note">An invalid field takes <strong class="hl">--danger-border</strong> and its focus ring flips to <strong class="hl">--danger-text</strong>, outranking the global <code style="font-family:var(--f-mono);font-size:12px">:focus-visible</code> accent ring so a focused invalid field still reads as invalid.</p>
+    <div style="max-width:420px">
+      <label class="form-label" style="display:block">Work email *</label>
+      <input class="form-input" placeholder="you@company.com" style="margin-bottom:16px">
+      <label class="form-label" style="display:block">Work email * (invalid)</label>
+      <input class="form-input form-input-invalid" value="not-an-email">
+      <p class="form-error">Enter a valid work email address.</p>
+    </div>
   </div>
 </div>
 

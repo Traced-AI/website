@@ -218,7 +218,7 @@ Single route: `/`. Sections in render order:
 5. `<RuleRegistry />`: the moat section with registry preview card
 6. `<BuiltFor />`: 3 industry cards: fintech, medtech, HR (fintech first)
 7. `<Pricing />`: Free / Startup / Enterprise tiers, self-host note
-8. `<WaitlistForm id="waitlist" />`: Tally form embed
+8. `<WaitlistForm id="waitlist" />`: native form, POSTed directly to Tally (the iframe embed was dropped: a cross-origin embed cannot follow the site theme)
 9. `<Footer />`: company info, legal note, Driftware Dynamics Ltd
 
 The deadline badge JS logic:

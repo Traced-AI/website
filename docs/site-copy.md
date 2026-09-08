@@ -90,7 +90,11 @@ Section label, headline, subheadline, and fine print: `waitlist.*`.
 
 Voice: the headline stays company "we" ("We're building for the companies..."), but the reply promise in the subheadline is deliberately founder "I" ("You'll hear back from me personally") because the response is a personal act by the solo founder. Revert to "we" when the team grows. [cut: "We'll respond personally." — company-voice version of the reply promise, swapped to founder voice while solo.]
 
-**Tally embed (form fields are in the Tally config, not copy.ts):**
+**Implementation note:** the form is rendered natively (`src/sections/WaitlistForm.tsx`) and POSTed straight to Tally; it is no longer an iframe embed. It therefore themes with the rest of the site in both light and dark. All field labels, placeholders, the submit label and every validation message are ours and live in `waitlist.form.*` in copy.ts. The role options are the exception: their labels live in `TALLY_ROLE_OPTIONS` in `src/config.ts`, because each label is paired with the Tally option UUID it submits.
+
+[cut: the Tally iframe embed, plus a `.tally-surface` light card that hosted it so it stayed readable in dark mode. The card was readable but never themed: a light form on a black page. Replaced once it was established that a cross-origin embed cannot follow the site theme by any route. See `docs/dev-guide.md`.]
+
+**Fields (mirrored from the Tally form definition; the UUID mapping is in `src/config.ts`):**
 1. Business email (required) — placeholder `you@company.com`
 2. Company name (required) — placeholder `Acme Financial GmbH`
 3. Your role (required) — CTO / Head of Engineering / Head of Compliance / Founder / Legal Counsel / Other

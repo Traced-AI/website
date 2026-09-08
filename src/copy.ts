@@ -295,6 +295,27 @@ export const waitlist = {
     'Two minutes. Tell us what you’re building and what you can’t yet explain. You’ll hear back from me personally.',
   finePrint:
     "Once you’ve joined, you can book a 30-minute call. Optional, not required.",
+  form: {
+    email: { label: 'Work email', placeholder: 'you@company.com' },
+    company: { label: 'Company', placeholder: 'Company name or link' },
+    role: { label: 'Role', placeholder: 'Select your role' },
+    useCase: {
+      label: 'What does your AI decide in production, and how would you evidence it to an auditor today?',
+      placeholder:
+        'e.g. We score loan applications with an LLM. We can explain the logic, but we have no structured, tamper-evident record per decision. If a regulator asked us to reconstruct a specific case from 3 months ago, we’d be pulling from CloudWatch for a week.',
+    },
+    submit: 'Join the waitlist →',
+    submitting: 'Joining…',
+    required: 'Required',
+    errors: {
+      email: 'Enter a valid work email address.',
+      company: 'Tell us which company you’re with.',
+      role: 'Select the option closest to your role.',
+      useCase: 'A sentence or two is plenty.',
+      submit:
+        'Something went wrong on our side and your details were not saved. Try again, or email us directly.',
+    },
+  },
 };
 
 export const thankYou = {
