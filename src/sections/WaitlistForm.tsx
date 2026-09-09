@@ -87,6 +87,8 @@ export default function WaitlistForm() {
           isCompleted: true,
           password: null,
         }),
+        // A hung request must not strand the button on "Joining…" forever.
+        signal: AbortSignal.timeout(15_000),
       })
       if (!response.ok) throw new Error(`Tally responded ${response.status}`)
       navigate('/thank-you')
