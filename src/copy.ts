@@ -314,6 +314,7 @@ export const waitlist = {
       useCase: 'A sentence or two is plenty.',
       submit:
         'Something went wrong on our side and your details were not saved. Try again, or email us directly.',
+      duplicate: 'Looks like you’re already on the waitlist with this email. We’ll be in touch.',
     },
   },
 };

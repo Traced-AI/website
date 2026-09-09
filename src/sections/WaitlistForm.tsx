@@ -90,7 +90,16 @@ export default function WaitlistForm() {
         // A hung request must not strand the button on "Joining…" forever.
         signal: AbortSignal.timeout(15_000),
       })
-      if (!response.ok) throw new Error(`Tally responded ${response.status}`)
+      if (!response.ok) {
+        // Tally rejects a repeat submission from the same respondent with this
+        // errorType. Say so plainly instead of the generic "went wrong" message.
+        const body = await response.json().catch(() => null)
+        setErrors({
+          submit: body?.errorType === 'FORM_UNIQUE_SUBMISSION_CONFLICT' ? f.errors.duplicate : f.errors.submit,
+        })
+        setSubmitting(false)
+        return
+      }
       navigate('/thank-you')
     } catch {
       // Never strand a submission silently: surface it and keep what they typed.
@@ -215,7 +224,13 @@ export default function WaitlistForm() {
             {/* role="alert" so a failed submission is announced, not only shown. */}
             {errors.submit && (
               <p className="form-error" role="alert" style={{ marginTop: '12px' }}>
-                {errors.submit} <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+                {errors.submit}
+                {errors.submit === f.errors.submit && (
+                  <>
+                    {' '}
+                    <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+                  </>
+                )}
               </p>
             )}
           </form>
