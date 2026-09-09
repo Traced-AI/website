@@ -94,13 +94,15 @@ Voice: the headline stays company "we" ("We're building for the companies..."), 
 
 [cut: the Tally iframe embed, plus a `.tally-surface` light card that hosted it so it stayed readable in dark mode. The card was readable but never themed: a light form on a black page. Replaced once it was established that a cross-origin embed cannot follow the site theme by any route. See `docs/dev-guide.md`.]
 
-**Fields (mirrored from the Tally form definition; the UUID mapping is in `src/config.ts`):**
-1. Business email (required) — placeholder `you@company.com`
-2. Company name (required) — placeholder `Acme Financial GmbH`
-3. Your role (required) — CTO / Head of Engineering / Head of Compliance / Founder / Legal Counsel / Other
-4. "What's the one AI decision your team made last quarter that you couldn't fully explain to a stakeholder?" (required, long text) — with muted help text: "We read every response. This shapes what we build first."
+**Fields (`waitlist.form.*` in copy.ts; role labels paired with UUIDs in `TALLY_ROLE_OPTIONS`):**
+1. Work email (required) — key `waitlist.form.email`, placeholder `you@company.com`
+2. Company (required) — key `waitlist.form.company`, placeholder `Company name or link`
+3. Role (required, dropdown) — key `waitlist.form.role`; three options in `TALLY_ROLE_OPTIONS` (Founder or C-suite / Engineering or Technical lead / Compliance, Risk, or Legal)
+4. Use case (required, long text) — key `waitlist.form.useCase`, asks what the visitor's AI decides in production and how they would evidence it to an auditor today
 
-Post-submit: Tally completion redirects to `/thank-you`.
+[cut: earlier field set — Business email, Company name, six-option role dropdown (CTO / Head of Engineering / Head of Compliance / Founder / Legal Counsel / Other), and a shorter use-case question. Replaced when the form was rebuilt as native markup; see the implementation note above.]
+
+Post-submit: client-side `navigate('/thank-you')` on a 2xx response (see `docs/dev-guide.md`), not a Tally redirect.
 
 ---
 
