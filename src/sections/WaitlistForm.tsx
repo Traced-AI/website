@@ -2,6 +2,7 @@ import { useId, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
+  CAL_BOOKING_URL,
   CONTACT_EMAIL,
   TALLY_FIELDS,
   TALLY_ROLE_OPTIONS,
@@ -229,6 +230,14 @@ export default function WaitlistForm() {
                   <>
                     {' '}
                     <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+                  </>
+                )}
+                {errors.submit === f.errors.duplicate && (
+                  <>
+                    {' '}
+                    <a href={CAL_BOOKING_URL} target="_blank" rel="noopener noreferrer">
+                      {f.errors.duplicateCta} →
+                    </a>
                   </>
                 )}
               </p>

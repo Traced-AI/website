@@ -104,7 +104,7 @@ Voice: the headline stays company "we" ("We're building for the companies..."), 
 
 Post-submit: client-side `navigate('/thank-you')` on a 2xx response (see `docs/dev-guide.md`), not a Tally redirect.
 
-**Duplicate submission:** Tally rejects a repeat submission from the same respondent with a 400 and `errorType: "FORM_UNIQUE_SUBMISSION_CONFLICT"`. The form checks for that errorType and shows `waitlist.form.errors.duplicate` ("Looks like you're already on the waitlist with this email. We'll be in touch.") instead of the generic `errors.submit` message, and omits the `mailto:` fallback since there's nothing to report.
+**Duplicate submission:** Tally rejects a repeat submission from the same respondent with a 400 and `errorType: "FORM_UNIQUE_SUBMISSION_CONFLICT"`. The form checks for that errorType and shows `waitlist.form.errors.duplicate` ("Looks like you're already on the waitlist with this email. We'll be in touch.") instead of the generic `errors.submit` message, and omits the `mailto:` fallback since there's nothing to report. Instead it links to `CAL_BOOKING_URL` (`waitlist.form.errors.duplicateCta`, "Book a call directly"), the same outbound `<a target="_blank" rel="noopener noreferrer">` pattern as the `/thank-you` booking CTA, in case the visitor skipped booking the first time.
 
 ---
 
