@@ -235,7 +235,12 @@ export default function WaitlistForm() {
                 {errors.submit === f.errors.duplicate && (
                   <>
                     {' '}
-                    <a href={CAL_BOOKING_URL} target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={CAL_BOOKING_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: 'var(--ac-text)', fontWeight: 600, textDecoration: 'underline' }}
+                    >
                       {f.errors.duplicateCta} →
                     </a>
                   </>
