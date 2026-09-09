@@ -155,6 +155,11 @@ Forward-looking: Tally (live in `WaitlistForm`), Cal.eu (live in `ThankYou`), an
 
 **E5**: Embeds that set cookies (Cal.eu, Stripe) must be reflected in the privacy policy. A new tracking or cookie-setting embed is a legal-page update trigger (ties to L1).
 
+**E6**: A cross-origin embed cannot be themed or driven from the parent page. Flag as ineffective any attempt to style inside a vendor iframe (injected `<style>`, `!important` targeting embed internals) or to drive one (writing to `contentDocument`, synthesizing clicks, sending `postMessage` commands a vendor does not document as inbound). If an embed must match the site theme, the answer is to own the markup, not to work around the boundary. See `docs/dev-guide.md`. Do not "fix" a vendor iframe with `filter: invert()`.
+
+**E7**: The waitlist form posts directly to `api.tally.so`. `TALLY_FIELDS` / `TALLY_ROLE_OPTIONS` in `src/config.ts` are Tally's internal block UUIDs and are the contract with Tally's columns. Flag any change to the form's fields that does not re-read them, and flag a dropdown answer sent as a label rather than an array containing the option UUID.
+
+**E8**: A submission must never fail silently. Any change to the submit path keeps a non-2xx or thrown request visible: preserve what the visitor typed, show the error, and keep the `mailto:` fallback. A lost signup is the one failure this page cannot absorb.
 ---
 
 ## 10. Performance (P)

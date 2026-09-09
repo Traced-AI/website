@@ -84,7 +84,7 @@ export default function Privacy() {
 
           <LegalSection id="5" title="Cookies and analytics">
             <p><strong>Vercel Web Analytics</strong> is cookieless. It sets no cookies, collects no personally identifiable information, and identifies sessions by a request hash that is discarded after 24 hours. No consent banner is required for it.</p>
-            <p>The <strong>Tally</strong> waitlist form is a third-party embed. Tally does not use cookie tracking on forms; it operates under its own privacy notice: <a href="https://tally.so/privacy" target="_blank" rel="noopener noreferrer">Tally privacy policy</a>.</p>
+            <p>The <strong>Tally</strong> waitlist form is not an embed: the form is served by this site and your answers are sent directly to Tally when you submit it. Nothing is loaded from Tally while you browse, and no Tally cookie or tracking script runs on this site. Tally processes the submission under its own privacy notice: <a href="https://tally.so/privacy" target="_blank" rel="noopener noreferrer">Tally privacy policy</a>.</p>
             <p>The <strong>Cal.eu</strong> booking widget is a third-party embed. It operates under its own privacy notice and may set cookies within its embed context: <a href="https://cal.com/privacy" target="_blank" rel="noopener noreferrer">Cal.eu privacy policy</a>.</p>
             <p>When user authentication is added to the product, any session cookies introduced will be listed here with their purpose and lifespan.</p>
           </LegalSection>

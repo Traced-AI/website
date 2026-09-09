@@ -45,7 +45,7 @@ A waitlist landing page needs no SSR, no API routes, and no server runtime. Vite
 | Package manager | Bun | Speed, already in workflow |
 | Styling | Tailwind CSS v4 (CSS-first `@theme inline` tokens in `src/index.css`) | Design tokens as CSS variables, no JS config, no shadcn dependency |
 | Fonts | League Spartan (display) + Montserrat (body) + JetBrains Mono (mono) | Locked pairing; loaded with `font-display: swap` |
-| Waitlist form | Tally.so embedded | Stores responses, triggers Google Sheets export, no backend |
+| Waitlist form | Native form, POSTed directly to `api.tally.so` (no iframe) | Stores responses, triggers Google Sheets export, no backend |
 | Thank-you page | `/thank-you` route on the same Vite SPA | Full control over copy and Cal.eu embed |
 | Call booking | Cal.eu embedded on `/thank-you` | Optional post-waitlist step, with framing question |
 | Payments | Stripe | Subscriptions, pay-as-you-go packages, invoicing, EU VAT handling |
@@ -218,7 +218,7 @@ Single route: `/`. Sections in render order:
 5. `<RuleRegistry />`: the moat section with registry preview card
 6. `<BuiltFor />`: 3 industry cards: fintech, medtech, HR (fintech first)
 7. `<Pricing />`: Free / Startup / Enterprise tiers, self-host note
-8. `<WaitlistForm id="waitlist" />`: Tally form embed
+8. `<WaitlistForm id="waitlist" />`: native form, POSTed directly to Tally (the iframe embed was dropped: a cross-origin embed cannot follow the site theme)
 9. `<Footer />`: company info, legal note, Driftware Dynamics Ltd
 
 The deadline badge JS logic:
@@ -235,7 +235,7 @@ const days = Math.ceil((deadline - today) / (1000 * 60 * 60 * 24));
 ### Day 4: Tally + Thank-You Page + Cal.eu
 
 **Tally setup:**
-1. [done] Form live at `https://tally.so/r/xXvOJk` (workspace Wandercode). 4 fields: work email, company, role (dropdown: CTO/VP Eng, Head of Compliance or Risk, Head of Engineering, Founder/CEO, Other), burning need (long text). All required. ID wired into `src/config.ts` as `TALLY_FORM_ID`.
+1. [done] Form live at `https://tally.so/r/xXvOJk` (workspace Wandercode). 4 fields: work email, company, role (dropdown: Founder or C-suite / Engineering or Technical lead / Compliance, Risk, or Legal), use case (long text). All required. ID wired into `src/config.ts` as `TALLY_FORM_ID`, field UUID mapping in `TALLY_FIELDS` / `TALLY_ROLE_OPTIONS`.
 2. Connect Tally to Google Sheets via built-in integration (free tier). Manual UI step, not exposed via MCP. **This is the Milestone 1 success condition.**
 3. [done] Self-notification email on every submission enabled (defaults to account owner; custom recipient needs Tally Pro).
 4. [done] Completion redirect set to `https://traced-ai.com/thank-you`.

@@ -43,6 +43,7 @@
   --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px;
   --sp-6: 32px; --sp-7: 48px; --sp-8: 64px;
   --r-sm: 4px; --r-md: 8px; --r-lg: 12px;
+  color-scheme: light;
 }
 
 /* ─── DARK THEME ─── */
@@ -81,6 +82,7 @@
   --deadline-bg: rgba(74, 222, 128, 0.08);
   --deadline-border: rgba(74, 222, 128, 0.22);
   --shadow-card: none;
+  color-scheme: dark;
 }
 
 /* ─── TAILWIND TOKEN MAPPING ─── */
@@ -603,6 +605,34 @@ body {
 .form-input:focus { border-color: var(--ac-border); box-shadow: 0 0 0 3px var(--ac-dim); }
 .form-input::placeholder { color: var(--tx-2); }
 .form-textarea { min-height: 88px; resize: vertical; line-height: 1.6; }
+
+/* A native <select> keeps the UA arrow, which follows :root color-scheme. */
+select.form-input { cursor: pointer; }
+
+.form-input-invalid { border-color: var(--danger-border); }
+.form-input-invalid:focus {
+  border-color: var(--danger-border);
+  box-shadow: 0 0 0 3px var(--danger-bg);
+}
+/* Outranks the global :focus-visible accent ring, so an invalid field reads as
+   invalid while focused instead of flipping back to the teal accent. */
+.form-input-invalid:focus-visible { outline-color: var(--danger-text); }
+.form-error {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--danger-text);
+  margin-top: 6px;
+}
+
+/* Spam trap: off-screen rather than display:none, which some bots skip. */
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
 
 /* ─── MUTED TEXT ─── */
 .footnote  { font-size: 10px; color: var(--tx-2); line-height: 1.7; }

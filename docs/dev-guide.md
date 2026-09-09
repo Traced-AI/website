@@ -153,6 +153,35 @@ The site is static and client-only, so every integration runs in the browser: Ta
 - When a Content-Security-Policy is added to `vercel.json`, `frame-src` / `connect-src` must allow the embed origins (tally.so, cal.eu, stripe.com).
 - Embeds that set cookies (Cal.eu, Stripe) must be reflected in the privacy policy. Adding such an embed is a legal-page update trigger.
 
+### A vendor iframe cannot be themed: render the form yourself
+
+The waitlist form is **not** an embed. It is our own markup in `src/sections/WaitlistForm.tsx`, POSTed straight to Tally. That is a deliberate decision, and this section records why, so nobody re-embeds the iframe to "simplify" things.
+
+A cross-origin iframe cannot be styled or driven from the parent page. Every route was tested against the live Tally embed, and all of them are closed:
+
+| Route | Result |
+|-------|--------|
+| CSS into the frame (`!important`, injected `<style>`, `::part()`) | Blocked by same-origin policy |
+| Drive it via `postMessage` | Tally's protocol is outbound-only: `FormLoaded`, `FormPageView`, `FormSubmitted`, `FormRedirect`, viewport height. No inbound command exists |
+| Synthesize clicks or typing into it | Cross-origin: cannot focus, dispatch events, or reach any element inside |
+| A theme or color URL parameter | None. The palette lives server-side in the form's `settings.styles` |
+| Tally's own custom CSS | A paid feature; this workspace is on `FREE` |
+| Propagate `color-scheme` so CSS inside could follow our toggle | Does not propagate. With the OS in light mode and `color-scheme: dark` on the iframe, `prefers-color-scheme` inside the frame still reports light. Tally's `embed.js` also force-sets `iframe.style.colorScheme = 'light'` whenever `transparentBackground=1` |
+
+The general rule: **if a third-party embed has to match your theme, you cannot use the embed.** Own the markup and talk to the vendor's endpoint directly.
+
+Do not reach for a `filter: invert()` hack. It inverts the accent color and semi-transparent input fills along with the text, and it breaks focus rings.
+
+### Posting to Tally directly
+
+`TALLY_SUBMIT_URL` in `src/config.ts` posts to `api.tally.so/forms/<id>/respond`. It takes no API key and its CORS headers reflect our origin, so the browser permits the cross-origin POST.
+
+- `TALLY_FIELDS` and `TALLY_ROLE_OPTIONS` hold Tally's internal block UUIDs. **They are the contract between our fields and Tally's columns.** If a field is added, removed, or reordered in the Tally dashboard, re-read them or answers land in the wrong column. `config.ts` documents exactly how.
+- The endpoint is undocumented, so treat a non-2xx as expected rather than exceptional. The form keeps everything the visitor typed, shows the error, and offers a `mailto:` fallback. Never let a submission fail silently: a lost signup is the one outcome this page cannot afford.
+- Dropdown answers are sent as an **array of the selected option's UUID**, not its label.
+- Success navigates to `/thank-you` with the router, so the visitor stays in the SPA. Tally's own `redirectOnCompletion` is an absolute production URL and is now bypassed entirely.
+- Spam is handled with an off-screen honeypot rather than a captcha, since the embed's own heuristics are gone. Escalate only if spam actually arrives.
+
 `CAL_BOOKING_URL` in `src/config.ts` points to `https://www.cal.eu/traced-ai/discovery`. The `/thank-you` booking CTA is an **outbound `<a>` link** that opens cal.eu in a new tab, not an on-page embed. This sets no cookies on our domain and does not trigger a privacy-policy update. Switching to an inline `@calcom/embed` later (lazy-loaded on `/thank-you` only) would set cookies and require a privacy-policy cookie disclosure update before shipping.
 
 ## Editing `src/copy.ts`

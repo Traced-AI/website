@@ -27,6 +27,18 @@ bun run dev
 | `bun run lint` | ESLint |
 | `bun run preview` | Preview the production build locally |
 
+### Docker (optional)
+
+Runs the same dev server in a container, so you need nothing but Docker installed. Serves on `localhost:5173` with hot reload.
+
+```bash
+docker compose up          # start (add -d to detach)
+docker compose down        # stop
+docker compose exec web bun run typecheck
+```
+
+`compose.yaml` uses the stock `oven/bun:1` image, no Dockerfile. Dependencies live in a named volume rather than the bind mount, so the host's `node_modules` and the container's stay independent: run `bun install` on the host too if you want editor type resolution. The `DOCKER=1` env var switches Vite's watcher to polling, because bind mounts do not propagate inotify events.
+
 ## CI
 
 Every PR and push to `main` runs typecheck, lint, and build via GitHub Actions (`.github/workflows/ci.yml`). The check must pass before merging.
