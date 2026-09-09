@@ -239,9 +239,15 @@ export default function WaitlistForm() {
                       href={CAL_BOOKING_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{ color: 'var(--ac-text)', fontWeight: 600, textDecoration: 'underline' }}
+                      style={{
+                        color: 'var(--ac-text)',
+                        fontWeight: 600,
+                        textDecoration: 'underline',
+                        whiteSpace: 'nowrap',
+                      }}
                     >
-                      {f.errors.duplicateCta} →
+                      {f.errors.duplicateCta}
+                      {' →'}
                     </a>
                   </>
                 )}
