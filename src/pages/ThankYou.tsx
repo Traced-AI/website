@@ -12,7 +12,7 @@ export default function ThankYou() {
       <meta property="og:url" content={`${DOMAIN}/thank-you`} />
       <meta property="og:title" content="You're on the list. We'll respond personally." />
       <meta property="og:description" content="We'll respond personally within 48 hours." />
-      <div style={{
+      <main id="main-content" style={{
       minHeight: '100vh',
       background: 'var(--bg-0)',
       display: 'flex',
@@ -85,7 +85,7 @@ export default function ThankYou() {
           Back to home
         </Link>
       </div>
-    </div>
+    </main>
     </>
   )
 }

@@ -5,7 +5,7 @@ export default function NotFound() {
     <>
       <title>404 · Traced AI</title>
       <meta name="robots" content="noindex" />
-      <div style={{
+      <main id="main-content" style={{
       minHeight: '100vh',
       background: 'var(--bg-0)',
       display: 'flex',
@@ -44,7 +44,7 @@ export default function NotFound() {
           Back to home
         </Link>
       </div>
-    </div>
+    </main>
     </>
   )
 }

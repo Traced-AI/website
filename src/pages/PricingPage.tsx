@@ -15,7 +15,7 @@ export default function PricingPage() {
       <meta property="og:title" content="Start for free. Pay when you're ready." />
       <meta property="og:description" content="Free tier to enterprise. Start tracing AI decisions in minutes." />
       <NavBar />
-      <main>
+      <main id="main-content">
         <Pricing />
         <section style={{ background: 'var(--bg-0)', borderTop: '1px solid var(--br-subtle)' }}>
           <div className="page-section" style={{ textAlign: 'center', paddingTop: '48px', paddingBottom: '64px' }}>

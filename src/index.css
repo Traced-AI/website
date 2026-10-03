@@ -15,12 +15,12 @@
   --br-accent: rgba(13, 138, 152, 0.22);
   --tx-0: #1C1C22;
   --tx-1: #5C5C6A;
-  --tx-2: #9A9AA8;
-  --ac: #0D8A98;
-  --ac-hover: #0C9EAE;
+  --tx-2: #6B6B78;
+  --ac: #0B7A87;
+  --ac-hover: #0A6F7B;
   --ac-dim: rgba(13, 138, 152, 0.07);
   --ac-border: rgba(13, 138, 152, 0.22);
-  --ac-text: #0D8A98;
+  --ac-text: #0A7482;
   --success-text: #15803D;
   --success-bg: rgba(21, 128, 61, 0.08);
   --success-border: rgba(21, 128, 61, 0.20);
@@ -48,6 +48,7 @@
 
 /* ─── DARK THEME ─── */
 [data-theme="dark"] {
+  --color-on-accent: #09090B;
   --c-keyword: #B4A0FF;
   --c-string: #86EFAC;
   --bg-0: #09090B;
@@ -60,7 +61,7 @@
   --br-accent: rgba(74, 181, 196, 0.24);
   --tx-0: #F2F0EC;
   --tx-1: #8B8B96;
-  --tx-2: #4C4C56;
+  --tx-2: #84848F;
   --ac: #4AB5C4;
   --ac-hover: #5CC6D5;
   --ac-dim: rgba(74, 181, 196, 0.09);
@@ -354,7 +355,8 @@ body {
   transition: opacity 0.18s ease;
   z-index: 10;
 }
-.danger-highlight:hover::after { opacity: 1; }
+.danger-highlight:hover::after,
+.danger-highlight:focus-visible::after { opacity: 1; }
 
 /* ─── HERO BODY ─── */
 .hero-sub {
@@ -666,10 +668,9 @@ select.form-input { cursor: pointer; }
   font-size: 12px;
   color: var(--tx-2);
   text-decoration: none;
-  opacity: 0.6;
-  transition: color 0.15s ease, opacity 0.15s ease;
+  transition: color 0.15s ease;
 }
-.footer-contact-link:hover { color: var(--ac-text); opacity: 1; }
+.footer-contact-link:hover { color: var(--ac-text); }
 
 /* Global transitions */
 .card, .stat-card, .price-card, .code-block, .form-input {

@@ -14,7 +14,7 @@ export default function Terms() {
       <meta property="og:title" content="Terms and Conditions · Traced AI" />
       <meta property="og:description" content="Terms governing use of the Traced AI service." />
       <NavBar />
-      <main style={{ background: 'var(--bg-0)', minHeight: '100vh' }}>
+      <main id="main-content" style={{ background: 'var(--bg-0)', minHeight: '100vh' }}>
         <div style={{ maxWidth: '720px', margin: '0 auto', padding: '80px 24px 96px' }}>
 
           <div className="section-label" style={{ marginBottom: '16px' }}>LEGAL</div>

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { useWaitlistClick } from '../hooks/useWaitlistClick'
 import { mainNav } from '../copy'
+import { scrollBehavior } from '../scrollBehavior'
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   `navbar-link${isActive ? ' active' : ''}`
@@ -61,7 +62,7 @@ export default function NavBar() {
   function handleLogoClick(e: React.MouseEvent) {
     if (location.pathname === '/') {
       e.preventDefault()
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      window.scrollTo({ top: 0, behavior: scrollBehavior() })
       if (location.hash) window.history.replaceState(null, '', '/')
     }
     setMenuOpen(false)
@@ -113,12 +114,12 @@ export default function NavBar() {
 
         {/* Desktop layout */}
         <div className="navbar-actions navbar-desktop">
-          <nav className="navbar-links" aria-label="Site navigation">
+          <nav className="navbar-links" aria-label="Primary">
             {mainNav.map((item) => (
               <NavLink key={item.to} to={item.to} className={navLinkClass}>{item.label}</NavLink>
             ))}
           </nav>
-          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme" aria-pressed={theme === 'dark'}>
+          <button className="theme-toggle" onClick={toggleTheme} aria-pressed={theme === 'dark'}>
             <ThemeIcon theme={theme} />
             {theme === 'dark' ? 'Light' : 'Dark'}
           </button>
@@ -145,7 +146,7 @@ export default function NavBar() {
       </div>
 
       {/* Mobile dropdown: always in the DOM so aria-controls resolves; hidden when closed */}
-      <nav id="mobile-menu" className="mobile-menu" aria-label="Mobile navigation" hidden={!menuOpen}>
+      <nav id="mobile-menu" className="mobile-menu" aria-label="Mobile" hidden={!menuOpen}>
         {mainNav.map((item) => (
           <NavLink key={item.to} to={item.to} className={navLinkClass} onClick={() => setMenuOpen(false)}>{item.label}</NavLink>
         ))}
