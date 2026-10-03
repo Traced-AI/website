@@ -16,7 +16,7 @@ export default function Landing() {
       <meta property="og:title" content="Move fast and get investigated. Or use Traced AI." />
       <meta property="og:description" content="Tamper-evident audit infrastructure for the EU AI Act's high-risk obligations. Your data stays local. Your compliance record does not." />
       <NavBar />
-      <main>
+      <main id="main-content">
         <Hero />
         <RegulatoryReality />
         <BuiltFor />

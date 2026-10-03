@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import SkipLink from './components/SkipLink'
 import ScrollToTop from './components/ScrollToTop'
 import Landing from './pages/Landing'
 import ProductPage from './pages/ProductPage'
@@ -13,6 +14,7 @@ import NotFound from './pages/NotFound'
 export default function App() {
   return (
     <>
+      <SkipLink />
       <ScrollToTop />
       <Routes>
       <Route path="/" element={<Landing />} />

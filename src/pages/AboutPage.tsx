@@ -83,7 +83,7 @@ export default function AboutPage() {
       <meta property="og:title" content="About Traced AI" />
       <meta property="og:description" content="The vision, mission, and open invitation to co-build Traced AI." />
       <NavBar />
-      <main>
+      <main id="main-content">
         <TextSection id="vision" bg="var(--bg-1)" data={about.vision} top />
         <TextSection id="mission" bg="var(--bg-0)" data={about.mission} />
         <TheBetSection />

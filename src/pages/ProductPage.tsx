@@ -15,7 +15,7 @@ export default function ProductPage() {
       <meta property="og:title" content="Your data stays local. Your compliance record does not." />
       <meta property="og:description" content="Local-first SDK, cryptographic ledger, and auditor-ready exports for EU AI Act compliance." />
       <NavBar />
-      <main>
+      <main id="main-content">
         <HowItWorks />
         <Boundaries />
         <RuleRegistry />

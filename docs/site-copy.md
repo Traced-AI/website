@@ -52,7 +52,7 @@ Headline, subheadline, body, and CTAs: `hero.*` (`line1`, `line2Strike`, `line2H
 **Implementation notes:**
 - Headline treats "break things" as a single strikethrough unit, then "get investigated" follows with a dotted underline and a hover tooltip (`hero.tooltip`), same color as the rest of the line. The dots do the work.
 - Subheadline is an italic accent line.
-- `body2` carries the witness one-liner (the why + the who behind each decision, tamper-evident, "whether you comply stays your call"). This is the one-breath product framing, deliberately placed in the hero. [cut: "That standard is harder to meet than most teams expect." — abstract difficulty line, replaced by the witness framing so a curious visitor learns what the product *is*, not just that the standard is hard.]
+- `body2` carries the witness one-liner (the why + the who behind each decision, tamper-evident, "whether you comply stays your call"). This is the one-breath product framing, deliberately placed in the hero. [cut: "That standard is harder to meet than most teams expect.", abstract difficulty line, replaced by the witness framing so a curious visitor learns what the product *is*, not just that the standard is hard.]
 - CTA primary links to `/#waitlist`, secondary to `/product`.
 - **Deadline badge** (mono, auto-computed, not in copy.ts): `DeadlineBadge.tsx` computes days remaining from the current date to December 2, 2027 (`ANNEX_III_APPLICATION_DATE` in `src/config.ts`), the date standalone Annex III high-risk obligations apply. Renders "[N] DAYS UNTIL HIGH-RISK OBLIGATIONS APPLY" in green; past the date, "HIGH-RISK OBLIGATIONS IN EFFECT FOR [N] DAYS" in red. Links to the official EC timeline. Never hardcoded. [cut: "[N] DAYS UNTIL FULL ENFORCEMENT" / "ENFORCEMENT BEGAN [N] DAYS AGO", pointed at 2026-08-02, pre-Omnibus labels.]
 
@@ -68,7 +68,7 @@ Section label, headline, body, two-line closing, and three callouts (in force no
 
 - **[0] In force now:** carries the dual-date framing’s other half: enforcement of GPAI rules, Article 5 prohibitions, Article 50 transparency, and AI literacy began August 2, 2026, plus the single approved contextual line on Article 50 (disclosure duties apply now, content-marking phases in through December 2, 2026 for pre-existing systems per the Art. 50(2) grace period), plus the evidence-cannot-be-backfilled runway argument. No new section, no product claim about Article 50. [cut: earlier draft said content marking "already apply" with no grace-period qualifier, corrected during frontend-review since it overstated the obligation for systems placed on market before 2 Aug 2026.] [cut: earlier draft repeated "Your Annex III date is December 2, 2027" a third time in this section (after regulatoryReality.body and stats[3]); trimmed during the /simplify pass since the date was already anchored twice above.]
 - **[1] This doesn't wait for the AI Act (GDPR urgency, new):** gives the section a second, date-independent urgency leg: GDPR Article 22 is unaffected by any AI Act deadline. Full fact and citation in `docs/legal-deferred.md`'s "GDPR Article 22 / Schufa fact" do-not-re-litigate block; surfaced by a client brief (`~/Downloads/tavi-eu-ai-act-brief.md`, not published) that showed the site's urgency case was entirely AI-Act-clock-dependent with no fallback leg.
-- **[2] Enterprise procurement note:** answers the "this is for big companies, not startups" objection explicitly: you do not have to be the regulated party, you only have to sell into one, and the buyer's procurement gate is the deal-blocker today. [cut: closing was just "The deal-blocker is today." — expanded so the timing/buyer-gate rebuttal is explicit rather than implied.]
+- **[2] Enterprise procurement note:** answers the "this is for big companies, not startups" objection explicitly: you do not have to be the regulated party, you only have to sell into one, and the buyer's procurement gate is the deal-blocker today. [cut: closing was just "The deal-blocker is today.", expanded so the timing/buyer-gate rebuttal is explicit rather than implied.]
 
 Four stat cards: `stats[]` (each has `value`, `label`, `url`). Sources are on the `CLAUDE.md` allowlist. [cut: stats[3] read value "Aug 2, 2026", label "Full application of high-risk system requirements per Article 113": replaced with the fixed December 2, 2027 date now that the Omnibus is adopted.]
 
@@ -88,19 +88,19 @@ Section label, headline, and three industry cards (Fintech, Medtech, HR Automati
 
 Section label, headline, subheadline, and fine print: `waitlist.*`.
 
-Voice: the headline stays company "we" ("We're building for the companies..."), but the reply promise in the subheadline is deliberately founder "I" ("You'll hear back from me personally") because the response is a personal act by the solo founder. Revert to "we" when the team grows. [cut: "We'll respond personally." — company-voice version of the reply promise, swapped to founder voice while solo.]
+Voice: the headline stays company "we" ("We're building for the companies..."), but the reply promise in the subheadline is deliberately founder "I" ("You'll hear back from me personally") because the response is a personal act by the solo founder. Revert to "we" when the team grows. [cut: "We'll respond personally.", company-voice version of the reply promise, swapped to founder voice while solo.]
 
 **Implementation note:** the form is rendered natively (`src/sections/WaitlistForm.tsx`) and POSTed straight to Tally; it is no longer an iframe embed. It therefore themes with the rest of the site in both light and dark. All field labels, placeholders, the submit label and every validation message are ours and live in `waitlist.form.*` in copy.ts. The role options are the exception: their labels live in `TALLY_ROLE_OPTIONS` in `src/config.ts`, because each label is paired with the Tally option UUID it submits.
 
 [cut: the Tally iframe embed, plus a `.tally-surface` light card that hosted it so it stayed readable in dark mode. The card was readable but never themed: a light form on a black page. Replaced once it was established that a cross-origin embed cannot follow the site theme by any route. See `docs/dev-guide.md`.]
 
 **Fields (`waitlist.form.*` in copy.ts; role labels paired with UUIDs in `TALLY_ROLE_OPTIONS`):**
-1. Work email (required) — key `waitlist.form.email`, placeholder `you@company.com`
-2. Company (required) — key `waitlist.form.company`, placeholder `Company name or link`
-3. Role (required, dropdown) — key `waitlist.form.role`; three options in `TALLY_ROLE_OPTIONS` (Founder or C-suite / Engineering or Technical lead / Compliance, Risk, or Legal)
-4. Use case (required, long text) — key `waitlist.form.useCase`, asks what the visitor's AI decides in production and how they would evidence it to an auditor today
+1. Work email (required): key `waitlist.form.email`, placeholder `you@company.com`
+2. Company (required): key `waitlist.form.company`, placeholder `Company name or link`
+3. Role (required, dropdown): key `waitlist.form.role`; three options in `TALLY_ROLE_OPTIONS` (Founder or C-suite / Engineering or Technical lead / Compliance, Risk, or Legal)
+4. Use case (required, long text): key `waitlist.form.useCase`, asks what the visitor's AI decides in production and how they would evidence it to an auditor today
 
-[cut: earlier field set — Business email, Company name, six-option role dropdown (CTO / Head of Engineering / Head of Compliance / Founder / Legal Counsel / Other), and a shorter use-case question. Replaced when the form was rebuilt as native markup; see the implementation note above.]
+[cut: earlier field set: Business email, Company name, six-option role dropdown (CTO / Head of Engineering / Head of Compliance / Founder / Legal Counsel / Other), and a shorter use-case question. Replaced when the form was rebuilt as native markup; see the implementation note above.]
 
 Post-submit: client-side `navigate('/thank-you')` on a 2xx response (see `docs/dev-guide.md`), not a Tally redirect.
 
@@ -114,7 +114,7 @@ Post-submit: client-side `navigate('/thank-you')` on a 2xx response (see `docs/d
 
 Two-line headline, intro, and four-item feature list (Auto-patching SDK, Local-first architecture, Tamper-evident ledger, Auditor-ready exports): `howItWorks.*` (`headline1`, `headline2`, `intro`, `features[]`).
 
-**Intro framing:** `howItWorks.intro` leads with the witness frame and the dash-cam analogy, kept with its rule-registry qualifier ("a dash-cam that knows which moments matter legally") so it never reads as commodity logging. It names the two things recorded: the **why** (rationale) and the **who** (the human who approved the decision). [cut: "Traced AI is the evidentiary and traceability layer for your AI decisions. It does not replace your quality management system or legal counsel. It provides the tamper-evident evidence chain that both depend on." — the QMS/counsel boundary moved to the Boundaries section to avoid repeating it; the intro now carries the positive frame.]
+**Intro framing:** `howItWorks.intro` leads with the witness frame and the dash-cam analogy, kept with its rule-registry qualifier ("a dash-cam that knows which moments matter legally") so it never reads as commodity logging. It names the two things recorded: the **why** (rationale) and the **who** (the human who approved the decision). [cut: "Traced AI is the evidentiary and traceability layer for your AI decisions. It does not replace your quality management system or legal counsel. It provides the tamper-evident evidence chain that both depend on.", the QMS/counsel boundary moved to the Boundaries section to avoid repeating it; the intro now carries the positive frame.]
 
 **Implementation note:** a Python code snippet renders alongside for visual credibility (lives in the component, not copy.ts):
 ```python
@@ -174,9 +174,9 @@ Heading and CTA: `pricing.readyHeadline` + the "Join the waitlist →" button (l
 
 Headline, body, optional call-booking block, and fine print: `thankYou.*` (`headline`, `body`, `callBlock.{heading,body,cta}`, `finePrint`). The "Book a call →" CTA links to Cal.eu.
 
-Voice: the reply and the 1:1 call are personal acts by the solo founder, so `body`, `callBlock.body`, and `finePrint` use founder "I" ("I'll respond", "I'll ask... so I come prepared", "I'll stop"). Revert to "we" when the team grows. [cut: company-voice versions — "We'll respond personally within 48 hours.", "We'll ask you one question upfront... so we come prepared.", "...the first 10 minutes, we stop."]
+Voice: the reply and the 1:1 call are personal acts by the solo founder, so `body`, `callBlock.body`, and `finePrint` use founder "I" ("I'll respond", "I'll ask... so I come prepared", "I'll stop"). Revert to "we" when the team grows. [cut: company-voice versions, "We'll respond personally within 48 hours.", "We'll ask you one question upfront... so we come prepared.", "...the first 10 minutes, we stop."]
 
-[cut: "The call is for companies actively evaluating whether Traced AI fits their situation. If you're still exploring, the waitlist email is the right next step." — gave people an exit ramp instead of removing their fear of a sales call.]
+[cut: "The call is for companies actively evaluating whether Traced AI fits their situation. If you're still exploring, the waitlist email is the right next step.", gave people an exit ramp instead of removing their fear of a sales call.]
 
 ---
 
@@ -184,7 +184,7 @@ Voice: the reply and the 1:1 call are personal acts by the solo founder, so `bod
 
 Tagline, legal nav links (Privacy · Terms · DPA), contact email, and the legal disclaimer: `footer.*` (`tagline`, `navLinks[]`, `contactEmail`, `legal`).
 
-**Company block** (`footer.company`): two-column layout. Left column is the entity name + registration line; right column is the three-line registered address, right-aligned. **Values are not duplicated here** — they live in `footer.company` (render) with the canonical legal block in `CLAUDE.md` hard rules.
+**Company block** (`footer.company`): two-column layout. Left column is the entity name + registration line; right column is the three-line registered address, right-aligned. **Values are not duplicated here**: they live in `footer.company` (render) with the canonical legal block in `CLAUDE.md` hard rules.
 
 **Regulatory sync note** (`footer.regulatoryNote`): a secondary footnote (slightly dimmed) stating when the regulatory content on the site was last reviewed, and against which instruments (EU AI Act Regulation (EU) 2024/1689, as amended by Regulation (EU) 2026/1744, the Digital Omnibus). Update the date in `copy.ts` any time law-related visible content changes. The CLAUDE.md hard rules define exactly which changes trigger an update.
 
