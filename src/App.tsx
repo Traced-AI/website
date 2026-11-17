@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router'
 import SkipLink from './components/SkipLink'
 import ScrollToTop from './components/ScrollToTop'
@@ -5,17 +6,19 @@ import Landing from './pages/Landing'
 import ProductPage from './pages/ProductPage'
 import PricingPage from './pages/PricingPage'
 import ThankYou from './pages/ThankYou'
-import Privacy from './pages/Privacy'
-import Terms from './pages/Terms'
-import DPA from './pages/DPA'
 import AboutPage from './pages/AboutPage'
 import NotFound from './pages/NotFound'
+
+const Privacy = lazy(() => import('./pages/Privacy'))
+const Terms = lazy(() => import('./pages/Terms'))
+const DPA = lazy(() => import('./pages/DPA'))
 
 export default function App() {
   return (
     <>
       <SkipLink />
       <ScrollToTop />
+      <Suspense fallback={null}>
       <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/product" element={<ProductPage />} />
@@ -27,6 +30,7 @@ export default function App() {
       <Route path="/dpa" element={<DPA />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
+      </Suspense>
     </>
   )
 }
