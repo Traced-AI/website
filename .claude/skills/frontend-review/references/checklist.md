@@ -193,3 +193,6 @@ Forward-looking: Tally (live in `WaitlistForm`), Cal.eu (live in `ThankYou`), an
 **Q2**: No `console.*` debug output in production paths (see P2).
 
 **Q3**: Imports ordered external-then-internal, no unused imports. `bun` is the only package manager; no `package-lock.json` or `yarn.lock` committed.
+
+**H-cache**: `vercel.json` sets `Cache-Control: public, max-age=31536000, immutable` on hashed `/assets/*`. Verify when touching headers.
+**A-heading**: Two-line headlines are one heading with a `<span>`, not two headings. `NotFound` and `ThankYou` render NavBar and Footer.

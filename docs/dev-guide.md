@@ -124,6 +124,10 @@ WCAG 2.2 additions that matter for this layout:
 
 ## Component Rules
 
+- Multi-line headlines render as one heading with the second line in a `<span>`, never two stacked headings (screen readers would announce a phantom outline entry).
+- `NotFound` and `ThankYou` render `<NavBar />` and `<Footer />` like every other page.
+- Browser storage (`localStorage`) access is wrapped in try/catch, in `public/theme-init.js` and in the theme toggle: it throws in blocked-storage and some private modes.
+- `vercel.json` sets long-lived `Cache-Control` for Vite's hashed `/assets/*` (immutable) and a 30-day one for `/fonts/*`.
 - Navigation links, footer items, and other repeated content data belong in `src/copy.ts`, not hardcoded in the component. Adding a new link should require touching only `copy.ts`.
 - Static data (card arrays, table rows) must be defined outside component functions. Defining inside causes object re-creation on every render.
 - No `console.log`, `console.warn`, or `console.error` in production code paths.

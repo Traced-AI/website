@@ -1,3 +1,4 @@
+import { meta } from '../copy'
 import { DOMAIN } from '../config'
 import NavBar from '../sections/NavBar'
 import HowItWorks from '../sections/HowItWorks'
@@ -8,12 +9,12 @@ import Footer from '../sections/Footer'
 export default function ProductPage() {
   return (
     <>
-      <title>Product · Traced AI</title>
-      <meta name="description" content="Local-first SDK, cryptographic ledger, and auditor-ready exports for EU AI Act compliance." />
+      <title>{meta.product.title}</title>
+      <meta name="description" content={meta.product.description} />
       <link rel="canonical" href={`${DOMAIN}/product`} />
       <meta property="og:url" content={`${DOMAIN}/product`} />
-      <meta property="og:title" content="Your data stays local. Your compliance record does not." />
-      <meta property="og:description" content="Local-first SDK, cryptographic ledger, and auditor-ready exports for EU AI Act compliance." />
+      <meta property="og:title" content={meta.product.ogTitle} />
+      <meta property="og:description" content={meta.product.ogDescription} />
       <NavBar />
       <main id="main-content">
         <HowItWorks />

@@ -3,17 +3,17 @@ import { DOMAIN } from '../config'
 import NavBar from '../sections/NavBar'
 import Pricing from '../sections/Pricing'
 import Footer from '../sections/Footer'
-import { pricing } from '../copy'
+import { pricing, meta, ui } from '../copy'
 
 export default function PricingPage() {
   return (
     <>
-      <title>Pricing · Traced AI</title>
-      <meta name="description" content="Free tier to enterprise. Start tracing AI decisions in minutes." />
+      <title>{meta.pricing.title}</title>
+      <meta name="description" content={meta.pricing.description} />
       <link rel="canonical" href={`${DOMAIN}/pricing`} />
       <meta property="og:url" content={`${DOMAIN}/pricing`} />
-      <meta property="og:title" content="Start for free. Pay when you're ready." />
-      <meta property="og:description" content="Free tier to enterprise. Start tracing AI decisions in minutes." />
+      <meta property="og:title" content={meta.pricing.ogTitle} />
+      <meta property="og:description" content={meta.pricing.ogDescription} />
       <NavBar />
       <main id="main-content">
         <Pricing />
@@ -23,7 +23,7 @@ export default function PricingPage() {
               {pricing.readyHeadline}
             </p>
             <Link to="/#waitlist" className="btn btn-primary">
-              Join the waitlist →
+              {ui.joinWaitlistLong}
             </Link>
           </div>
         </section>

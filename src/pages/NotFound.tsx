@@ -1,12 +1,16 @@
 import { Link } from 'react-router'
+import NavBar from '../sections/NavBar'
+import Footer from '../sections/Footer'
+import { meta, notFound, ui } from '../copy'
 
 export default function NotFound() {
   return (
     <>
-      <title>404 · Traced AI</title>
+      <title>{meta.notFound.title}</title>
       <meta name="robots" content="noindex" />
+      <NavBar />
       <main id="main-content" style={{
-      minHeight: '100vh',
+      minHeight: '70vh',
       background: 'var(--bg-0)',
       display: 'flex',
       alignItems: 'center',
@@ -22,7 +26,7 @@ export default function NotFound() {
           color: 'var(--tx-2)',
           marginBottom: '24px',
         }}>
-          404
+          {notFound.code}
         </div>
 
         <h1 className="f-display" style={{
@@ -33,18 +37,19 @@ export default function NotFound() {
           lineHeight: 1.1,
           marginBottom: '16px',
         }}>
-          Page not found.
+          {notFound.headline}
         </h1>
 
         <p style={{ fontSize: '16px', color: 'var(--tx-1)', lineHeight: 1.75, marginBottom: '40px' }}>
-          This page doesn't exist.
+          {notFound.body}
         </p>
 
         <Link to="/" className="btn btn-primary">
-          Back to home
+          {ui.backToHome}
         </Link>
       </div>
     </main>
+      <Footer />
     </>
   )
 }

@@ -1,19 +1,21 @@
 import { Link } from 'react-router'
 import { DOMAIN, CAL_BOOKING_URL } from '../config'
-import { thankYou } from '../copy'
+import NavBar from '../sections/NavBar'
+import Footer from '../sections/Footer'
+import { thankYou, meta, ui } from '../copy'
 
 export default function ThankYou() {
   return (
     <>
-      <title>Thank You · Traced AI</title>
+      <title>{meta.thankYou.title}</title>
       <meta name="robots" content="noindex" />
-      <meta name="description" content="We'll respond personally within 48 hours." />
-      <link rel="canonical" href={`${DOMAIN}/thank-you`} />
+      <meta name="description" content={meta.thankYou.description} />
       <meta property="og:url" content={`${DOMAIN}/thank-you`} />
-      <meta property="og:title" content="You're on the list. We'll respond personally." />
-      <meta property="og:description" content="We'll respond personally within 48 hours." />
+      <meta property="og:title" content={meta.thankYou.ogTitle} />
+      <meta property="og:description" content={meta.thankYou.ogDescription} />
+      <NavBar />
       <main id="main-content" style={{
-      minHeight: '100vh',
+      minHeight: '70vh',
       background: 'var(--bg-0)',
       display: 'flex',
       alignItems: 'center',
@@ -29,7 +31,7 @@ export default function ThankYou() {
           color: 'var(--tx-2)',
           marginBottom: '24px',
         }}>
-          TRACED AI
+          {ui.brand}
         </div>
 
         <h1 className="f-display" style={{
@@ -82,10 +84,11 @@ export default function ThankYou() {
         </p>
 
         <Link to="/" style={{ fontSize: '13px', color: 'var(--ac-text)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>
-          Back to home
+          {ui.backToHome}
         </Link>
       </div>
     </main>
+      <Footer />
     </>
   )
 }

@@ -1,3 +1,4 @@
+import { meta } from '../copy'
 import { DOMAIN } from '../config'
 import NavBar from '../sections/NavBar'
 import Hero from '../sections/Hero'
@@ -9,12 +10,12 @@ import Footer from '../sections/Footer'
 export default function Landing() {
   return (
     <>
-      <title>Home · Traced AI</title>
-      <meta name="description" content="Tamper-evident audit infrastructure for the EU AI Act's high-risk obligations. Your data stays local. Your compliance record does not." />
+      <title>{meta.landing.title}</title>
+      <meta name="description" content={meta.landing.description} />
       <link rel="canonical" href={`${DOMAIN}/`} />
       <meta property="og:url" content={`${DOMAIN}/`} />
-      <meta property="og:title" content="Move fast and get investigated. Or use Traced AI." />
-      <meta property="og:description" content="Tamper-evident audit infrastructure for the EU AI Act's high-risk obligations. Your data stays local. Your compliance record does not." />
+      <meta property="og:title" content={meta.landing.ogTitle} />
+      <meta property="og:description" content={meta.landing.ogDescription} />
       <NavBar />
       <main id="main-content">
         <Hero />

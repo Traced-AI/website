@@ -410,3 +410,57 @@ export const footer = {
     'Regulatory information on this site was last reviewed against Regulation (EU) 2024/1689 (EU AI Act) as amended by Regulation (EU) 2026/1744 (Digital Omnibus): 2 August 2026.',
   copyright: 'Traced AI. All rights reserved.',
 };
+
+export const ui = {
+  skipToContent: 'Skip to content',
+  brand: 'Traced AI',
+  joinWaitlist: 'Join waitlist',
+  joinWaitlistLong: 'Join the waitlist →',
+  openMenu: 'Open menu',
+  closeMenu: 'Close menu',
+  darkMode: 'Dark mode',
+  backToHome: 'Back to home',
+  ruleRegistryEntry: 'Rule Registry Entry',
+  eurLexLabel: 'eur-lex.europa.eu',
+  noteLabel: 'Pending confirmation',
+};
+
+export const notFound = {
+  code: '404',
+  headline: 'Page not found.',
+  body: 'This page doesn’t exist.',
+};
+
+export const meta = {
+  landing: {
+    title: 'Home · Traced AI',
+    description: 'Tamper-evident audit infrastructure for the EU AI Act’s high-risk obligations. Your data stays local. Your compliance record does not.',
+    ogTitle: 'Move fast and get investigated. Or use Traced AI.',
+    ogDescription: 'Tamper-evident audit infrastructure for the EU AI Act’s high-risk obligations. Your data stays local. Your compliance record does not.',
+  },
+  product: {
+    title: 'Product · Traced AI',
+    description: 'Local-first SDK, cryptographic ledger, and auditor-ready exports for EU AI Act compliance.',
+    ogTitle: 'Your data stays local. Your compliance record does not.',
+    ogDescription: 'Local-first SDK, cryptographic ledger, and auditor-ready exports for EU AI Act compliance.',
+  },
+  pricing: {
+    title: 'Pricing · Traced AI',
+    description: 'Free tier to enterprise. Start tracing AI decisions in minutes.',
+    ogTitle: 'Start for free. Pay when you’re ready.',
+    ogDescription: 'Free tier to enterprise. Start tracing AI decisions in minutes.',
+  },
+  about: {
+    title: 'About · Traced AI',
+    description: 'The vision, mission, and open invitation to co-build Traced AI.',
+    ogTitle: 'About Traced AI',
+    ogDescription: 'The vision, mission, and open invitation to co-build Traced AI.',
+  },
+  thankYou: {
+    title: 'Thank You · Traced AI',
+    description: 'We’ll respond personally within 48 hours.',
+    ogTitle: 'You’re on the list. We’ll respond personally.',
+    ogDescription: 'We’ll respond personally within 48 hours.',
+  },
+  notFound: { title: '404 · Traced AI' },
+};

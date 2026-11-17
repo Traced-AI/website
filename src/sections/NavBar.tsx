@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router'
 import { useWaitlistClick } from '../hooks/useWaitlistClick'
-import { mainNav } from '../copy'
+import { mainNav, ui } from '../copy'
 import { scrollBehavior } from '../scrollBehavior'
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   `navbar-link${isActive ? ' active' : ''}`
 
-function ThemeIcon({ theme }: { theme: string }) {
+type Theme = 'light' | 'dark'
+
+function ThemeIcon({ theme }: { theme: Theme }) {
   if (theme === 'dark') {
     return (
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -54,8 +56,8 @@ export default function NavBar() {
   const handleWaitlistClick = useWaitlistClick()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [theme, setTheme] = useState<string>(
-    () => document.documentElement.getAttribute('data-theme') || 'light'
+  const [theme, setTheme] = useState<Theme>(
+    () => (document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light')
   )
   const menuRef = useRef<HTMLDivElement>(null)
 
@@ -95,7 +97,11 @@ export default function NavBar() {
   function toggleTheme() {
     const next = theme === 'light' ? 'dark' : 'light'
     document.documentElement.setAttribute('data-theme', next)
-    localStorage.setItem('theme', next)
+    try {
+      localStorage.setItem('theme', next)
+    } catch {
+      // Storage blocked (private mode): the theme still applies for this visit.
+    }
     setTheme(next)
   }
 
@@ -121,22 +127,22 @@ export default function NavBar() {
           </nav>
           <button className="theme-toggle" onClick={toggleTheme} aria-pressed={theme === 'dark'}>
             <ThemeIcon theme={theme} />
-            {theme === 'dark' ? 'Light' : 'Dark'}
+            {ui.darkMode}
           </button>
           <Link to="/#waitlist" className="btn btn-primary" style={{ padding: '7px 16px', fontSize: '13px' }} onClick={handleWaitlistClick}>
-            Join waitlist
+            {ui.joinWaitlist}
           </Link>
         </div>
 
         {/* Mobile: theme toggle + hamburger always visible */}
         <div className="navbar-mobile">
-          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme" aria-pressed={theme === 'dark'}>
+          <button className="theme-toggle" onClick={toggleTheme} aria-label={ui.darkMode} aria-pressed={theme === 'dark'}>
             <ThemeIcon theme={theme} />
           </button>
           <button
             className="hamburger"
             onClick={() => setMenuOpen(o => !o)}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-label={menuOpen ? ui.closeMenu : ui.openMenu}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
           >
@@ -155,7 +161,7 @@ export default function NavBar() {
           className="btn btn-primary mobile-menu-cta"
           onClick={(e) => { setMenuOpen(false); handleWaitlistClick(e) }}
         >
-          Join waitlist
+          {ui.joinWaitlist}
         </Link>
       </nav>
     </header>

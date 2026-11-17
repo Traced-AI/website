@@ -1,5 +1,5 @@
 import Badge from '../components/Badge'
-import { ruleRegistry } from '../copy'
+import { ruleRegistry, ui } from '../copy'
 
 export default function RuleRegistry() {
   return (
@@ -7,11 +7,9 @@ export default function RuleRegistry() {
       <div className="page-section">
         <div className="section-label">{ruleRegistry.sectionLabel}</div>
 
-        <h2 className="section-heading" style={{ marginBottom: '8px' }}>
+        <h2 className="section-heading" style={{ marginBottom: '32px' }}>
           {ruleRegistry.headline1}
-        </h2>
-        <h2 className="section-heading" style={{ marginBottom: '32px', color: 'var(--ac-text)' }}>
-          {ruleRegistry.headline2}
+          <span style={{ display: 'block', marginTop: '8px', color: 'var(--ac-text)' }}>{ruleRegistry.headline2}</span>
         </h2>
 
         <p style={{ fontSize: '15px', color: 'var(--tx-1)', lineHeight: 1.75, maxWidth: '680px', marginBottom: '20px' }}>
@@ -22,7 +20,7 @@ export default function RuleRegistry() {
         </p>
 
         <div className="card" style={{ maxWidth: '680px' }}>
-          <div className="card-mono-label">Rule Registry Entry</div>
+          <div className="card-mono-label">{ui.ruleRegistryEntry}</div>
           <table className="registry-table">
             <tbody>
               {ruleRegistry.rows.map((row, i) => (

@@ -1,16 +1,18 @@
-import React from 'react'
+import type { ReactNode } from 'react'
+import { ui } from '../copy'
 
-export function LegalSection({
-  id,
-  title,
-  children,
-  prefix = '',
-}: {
+interface LegalSectionProps {
   id: string
   title: string
-  children: React.ReactNode
+  children: ReactNode
   prefix?: string
-}) {
+}
+
+interface NoteProps {
+  children: ReactNode
+}
+
+export function LegalSection({ id, title, children, prefix = '' }: LegalSectionProps) {
   return (
     <section style={{ marginBottom: '40px' }}>
       <h2 className="f-display" style={{
@@ -31,7 +33,7 @@ export function LegalSection({
   )
 }
 
-export function Note({ children }: { children: React.ReactNode }) {
+export function Note({ children }: NoteProps) {
   return (
     <div style={{
       background: 'var(--bg-2)',
@@ -44,7 +46,7 @@ export function Note({ children }: { children: React.ReactNode }) {
       lineHeight: 1.7,
       margin: '16px 0',
     }}>
-      <strong style={{ color: 'var(--tx-1)', display: 'block', marginBottom: '4px' }}>To do before publishing</strong>
+      <strong style={{ color: 'var(--tx-1)', display: 'block', marginBottom: '4px' }}>{ui.noteLabel}</strong>
       {children}
     </div>
   )

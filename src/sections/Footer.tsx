@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { Link } from 'react-router'
-import { footer } from '../copy'
+import { footer, ui } from '../copy'
 
 export default function Footer() {
   return (
@@ -15,7 +15,7 @@ export default function Footer() {
               color: 'var(--tx-0)',
               marginBottom: '8px',
             }}>
-              Traced AI
+              {ui.brand}
             </div>
             <p style={{ fontSize: '13px', color: 'var(--tx-2)', maxWidth: '360px', lineHeight: 1.65 }}>
               {footer.tagline}
