@@ -4,9 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Traced AI: Design System v0.3</title>
-<!-- Preview-only: the site itself self-hosts League Spartan, Montserrat and JetBrains Mono (public/fonts). Other families here are exploration options. -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,600&family=League+Spartan:wght@400;500;600;700;800&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- The site fonts load from public/fonts (no third-party requests). Options A and B (Cormorant, Playfair, DM Sans) are exploration only and fall back to system serif/sans unless installed locally. -->
+<style>
+@font-face{font-family:'League Spartan';font-weight:400 800;font-display:swap;src:url('../public/fonts/league-spartan.woff2') format('woff2')}
+@font-face{font-family:'Montserrat';font-weight:300 600;font-display:swap;src:url('../public/fonts/montserrat.woff2') format('woff2')}
+@font-face{font-family:'Montserrat';font-style:italic;font-weight:400;font-display:swap;src:url('../public/fonts/montserrat-italic.woff2') format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-weight:400 500;font-display:swap;src:url('../public/fonts/jetbrains-mono.woff2') format('woff2')}
+</style>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 

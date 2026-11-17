@@ -97,6 +97,7 @@ export default function NavBar() {
   function toggleTheme() {
     const next = theme === 'light' ? 'dark' : 'light'
     document.documentElement.setAttribute('data-theme', next)
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'dark' ? '#09090B' : '#F7F7F5')
     try {
       localStorage.setItem('theme', next)
     } catch {
@@ -111,7 +112,7 @@ export default function NavBar() {
         <Link to="/" className="navbar-logo" onClick={handleLogoClick}>
           <img
             src={theme === 'dark' ? '/logo-dark.png' : '/logo-light.png'}
-            alt="Traced AI"
+            alt={ui.logoAlt}
             className="navbar-logo-img"
             width={492}
             height={149}
@@ -120,7 +121,7 @@ export default function NavBar() {
 
         {/* Desktop layout */}
         <div className="navbar-actions navbar-desktop">
-          <nav className="navbar-links" aria-label="Primary">
+          <nav className="navbar-links" aria-label={ui.navPrimary}>
             {mainNav.map((item) => (
               <NavLink key={item.to} to={item.to} className={navLinkClass}>{item.label}</NavLink>
             ))}
@@ -152,7 +153,7 @@ export default function NavBar() {
       </div>
 
       {/* Mobile dropdown: always in the DOM so aria-controls resolves; hidden when closed */}
-      <nav id="mobile-menu" className="mobile-menu" aria-label="Mobile" hidden={!menuOpen}>
+      <nav id="mobile-menu" className="mobile-menu" aria-label={ui.navMobile} hidden={!menuOpen}>
         {mainNav.map((item) => (
           <NavLink key={item.to} to={item.to} className={navLinkClass} onClick={() => setMenuOpen(false)}>{item.label}</NavLink>
         ))}

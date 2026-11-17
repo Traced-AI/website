@@ -423,6 +423,9 @@ export const ui = {
   ruleRegistryEntry: 'Rule Registry Entry',
   eurLexLabel: 'eur-lex.europa.eu',
   noteLabel: 'Pending confirmation',
+  logoAlt: 'Traced AI',
+  navPrimary: 'Primary',
+  navMobile: 'Mobile',
 };
 
 export const notFound = {

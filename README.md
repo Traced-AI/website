@@ -23,7 +23,7 @@ bun run dev
 |---------|-------------|
 | `bun run dev` | Local dev server at `localhost:5173` |
 | `bun run build` | Production build to `/dist` |
-| `bun run typecheck` | TypeScript check (no emit) |
+| `bun run typecheck` | TypeScript check for `src/` and `tests/` (no emit) |
 | `bun run lint` | ESLint |
 | `bun run test` | Unit tests (`bun test`, in `tests/`) |
 | `bun run preview` | Preview the production build locally |

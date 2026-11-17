@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router'
+import NavBar from './sections/NavBar'
 import SkipLink from './components/SkipLink'
 import ScrollToTop from './components/ScrollToTop'
 import Landing from './pages/Landing'
@@ -18,7 +19,7 @@ export default function App() {
     <>
       <SkipLink />
       <ScrollToTop />
-      <Suspense fallback={null}>
+      <Suspense fallback={<NavBar />}>
       <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/product" element={<ProductPage />} />
