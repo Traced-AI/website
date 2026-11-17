@@ -461,9 +461,9 @@ export const meta = {
   },
   thankYou: {
     title: 'Thank You · Traced AI',
-    description: 'We’ll respond personally within 48 hours.',
-    ogTitle: 'You’re on the list. We’ll respond personally.',
-    ogDescription: 'We’ll respond personally within 48 hours.',
+    description: 'I’ll respond personally within 48 hours.',
+    ogTitle: 'You’re on the list. You’ll hear back from me personally.',
+    ogDescription: 'I’ll respond personally within 48 hours.',
   },
   notFound: { title: '404 · Traced AI' },
 };
