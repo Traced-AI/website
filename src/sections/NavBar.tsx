@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router'
 import { useWaitlistClick } from '../hooks/useWaitlistClick'
 import { mainNav } from '../copy'
 import { scrollBehavior } from '../scrollBehavior'

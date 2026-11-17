@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { footer } from '../copy'
 
 export default function Footer() {

@@ -38,7 +38,7 @@ Conventions to preserve:
 
 ## Routing Rules
 
-Internal links must use `<Link>` or `<NavLink>` from react-router-dom, never `<a href>`. Plain `<a>` is only for external URLs and `mailto:` links. Using `<a>` for internal routes causes full page reloads. This mistake recurred across Hero, PricingPage, NavBar, and Terms during the initial build, so treat it as a high-priority review target.
+Internal links must use `<Link>` or `<NavLink>` from react-router, never `<a href>`. Plain `<a>` is only for external URLs and `mailto:` links. Using `<a>` for internal routes causes full page reloads. This mistake recurred across Hero, PricingPage, NavBar, and Terms during the initial build, so treat it as a high-priority review target.
 
 | Target | Correct |
 |--------|---------|

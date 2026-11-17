@@ -3,7 +3,7 @@
 Rules ordered by user-impact priority. IDs are used in review findings and cross-reference `docs/dev-guide.md`.
 Skip anything `tsc` + `eslint` already catch (unused vars, missing keys, hook rules). Step 1 runs those first and they take priority.
 
-Stack reality this checklist assumes: Vite 8 + React 19 + react-router-dom 7 + Tailwind v4 + TypeScript 6, Bun, static Vercel. No shadcn, no Next.js, no `@/` alias, `clsx` not installed.
+Stack reality this checklist assumes: Vite 8 + React 19 + react-router 7 + Tailwind v4 + TypeScript 6, Bun, static Vercel. No shadcn, no Next.js, no `@/` alias, `clsx` not installed.
 
 ---
 
@@ -31,7 +31,7 @@ Stack reality this checklist assumes: Vite 8 + React 19 + react-router-dom 7 + T
 
 ## 2. Routing (RR)
 
-**RR1**: Internal navigation uses `<Link>` / `<NavLink>` from react-router-dom, never `<a href>`. Plain `<a>` causes a full page reload. This mistake recurred across Hero, PricingPage, NavBar, and Terms during the initial build. Treat it as a high-priority target.
+**RR1**: Internal navigation uses `<Link>` / `<NavLink>` from react-router, never `<a href>`. Plain `<a>` causes a full page reload. This mistake recurred across Hero, PricingPage, NavBar, and Terms during the initial build. Treat it as a high-priority target.
 
 **RR2**: External links use `<a href target="_blank" rel="noopener noreferrer">`. Both attributes are required; missing `rel` is a reverse-tabnabbing security issue.
 

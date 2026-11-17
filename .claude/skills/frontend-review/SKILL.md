@@ -1,6 +1,6 @@
 ---
 name: frontend-review
-description: Self-review of the Traced AI marketing site (Vite + React 19 + TypeScript + Tailwind v4 + react-router-dom 7) before merge. Covers accessibility (WCAG 2.2 AA), routing, TypeScript, theming/Tailwind, component structure, third-party embeds, performance, security, code quality, and the project's EU AI Act copy + legal-page + copy.ts/site-copy.md disciplines. Use before merging a branch, or pass `full` to audit the whole codebase.
+description: Self-review of the Traced AI marketing site (Vite + React 19 + TypeScript + Tailwind v4 + react-router 7) before merge. Covers accessibility (WCAG 2.2 AA), routing, TypeScript, theming/Tailwind, component structure, third-party embeds, performance, security, code quality, and the project's EU AI Act copy + legal-page + copy.ts/site-copy.md disciplines. Use before merging a branch, or pass `full` to audit the whole codebase.
 argument-hint: [full]
 allowed-tools: [Read, Glob, Grep, Bash]
 ---

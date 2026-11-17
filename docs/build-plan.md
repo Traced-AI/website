@@ -41,7 +41,7 @@ A waitlist landing page needs no SSR, no API routes, and no server runtime. Vite
 | Concern | Choice | Why |
 |---------|--------|-----|
 | Framework | Vite 6 + React 19 + TypeScript (static SPA) | No server cost, fastest dev loop, no SSR needed for a landing page |
-| Routing | react-router-dom 7 (declarative SPA mode) | Client-side routing for the handful of marketing + legal routes |
+| Routing | react-router 7 (declarative SPA mode) | Client-side routing for the handful of marketing + legal routes |
 | Package manager | Bun | Speed, already in workflow |
 | Styling | Tailwind CSS v4 (CSS-first `@theme inline` tokens in `src/index.css`) | Design tokens as CSS variables, no JS config, no shadcn dependency |
 | Fonts | League Spartan (display) + Montserrat (body) + JetBrains Mono (mono) | Locked pairing; loaded with `font-display: swap` |

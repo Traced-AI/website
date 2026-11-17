@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { DOMAIN } from '../config'
 import NavBar from '../sections/NavBar'
 import Pricing from '../sections/Pricing'

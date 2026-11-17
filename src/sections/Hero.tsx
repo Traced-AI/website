@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import DeadlineBadge from '../components/DeadlineBadge'
 import DangerHighlight from '../components/DangerHighlight'
 import { hero } from '../copy'

@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router'
 import SkipLink from './components/SkipLink'
 import ScrollToTop from './components/ScrollToTop'
 import Landing from './pages/Landing'

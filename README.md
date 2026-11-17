@@ -6,7 +6,7 @@ Marketing site for [Traced AI](https://traced-ai.com): tamper-evident audit infr
 
 - Vite 8 + React 19 + TypeScript 6
 - Tailwind CSS v4
-- react-router-dom 7
+- react-router 7
 - Bun (runtime + package manager)
 - Vercel (hosting + analytics)
 

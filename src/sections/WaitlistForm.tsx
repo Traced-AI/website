@@ -1,6 +1,6 @@
 import { useId, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import {
   CAL_BOOKING_URL,
   CONTACT_EMAIL,
