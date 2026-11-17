@@ -392,6 +392,20 @@ body {
 .danger-highlight:hover::after,
 .danger-highlight:focus-visible::after { opacity: 1; }
 
+/* Small screens: the nowrap tooltip centered on its anchor spilled past the viewport
+   (horizontal scroll even while hidden). Anchor it to the headline line instead and let it wrap. */
+@media (max-width: 767px) {
+  .hl-line2 { position: relative; }
+  .danger-highlight { position: static; }
+  .danger-highlight::after {
+    left: 0;
+    transform: none;
+    width: max-content;
+    max-width: 100%;
+    white-space: normal;
+  }
+}
+
 /* ─── HERO BODY ─── */
 .hero-sub {
   font-size: 1.25rem;
@@ -726,6 +740,10 @@ select.form-input { cursor: pointer; }
   font-size: 13px;
   color: var(--tx-1);
   margin-bottom: 16px;
+}
+/* Wide legal tables scroll inside themselves on phones instead of widening the page. */
+@media (max-width: 767px) {
+  .legal-body table { display: block; overflow-x: auto; }
 }
 .legal-body th {
   text-align: left;

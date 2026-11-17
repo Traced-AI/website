@@ -75,6 +75,8 @@ Theme default is `prefers-color-scheme` (system), applied before React mounts to
 
 Hover states: CSS classes with `:hover` pseudo-class and `transition` only, never `onMouseEnter`/`onMouseLeave` handlers. Inline style mutations on hover were introduced in the initial footer and required a dedicated cleanup commit (`f12b5dc`).
 
+No horizontal page scroll at 320 to 412px: absolutely positioned pseudo-elements (tooltips) and wide tables must be constrained or scroll inside their own container, since even hidden overflow widens the page.
+
 Mobile-first: default Tailwind classes target small screens; `md:` and `lg:` prefixes widen layouts for larger breakpoints.
 
 Never hardcode color values (`white`, `gray-700`, etc.) when a CSS token exists. Hardcoded values break dark mode.

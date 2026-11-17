@@ -196,3 +196,4 @@ Forward-looking: Tally (live in `WaitlistForm`), Cal.eu (live in `ThankYou`), an
 
 **H-cache**: `vercel.json` sets `Cache-Control: public, max-age=31536000, immutable` on hashed `/assets/*`. Verify when touching headers.
 **A-heading**: Two-line headlines are one heading with a `<span>`, not two headings. `NotFound` and `ThankYou` render NavBar and Footer.
+**RESP-overflow**: No horizontal scroll at 320 to 412px width. Check hidden `::after` tooltips and legal tables (they must not widen the page).
