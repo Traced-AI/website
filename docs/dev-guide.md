@@ -110,7 +110,8 @@ Baseline is WCAG 2.2 AA.
 - Every `<img>` needs `alt`. Use `alt=""` for decorative images.
 - Icon-only interactive elements (theme toggle, icon buttons) need `aria-label`. Toggles that open/close also need `aria-expanded` tracking state.
 - One `<h1>` per page. Heading levels must not skip (h1 → h2 → h3).
-- All interactive elements need a visible focus style. Never `outline: none` without a replacement. `src/index.css` has a global `:focus-visible { outline: 2px solid var(--ac); outline-offset: 2px }` rule that covers all focusable elements. The only exception is `.form-input`, which suppresses the outline and substitutes a custom box-shadow ring instead.
+- Custom focus rings (e.g. `.form-input`) must still reach 3:1: keep the global solid `outline` on `:focus-visible`; a faint box-shadow alone is not enough.
+- All interactive elements need a visible focus style. Never `outline: none` without a replacement. `src/index.css` has a global `:focus-visible { outline: 2px solid var(--ac); outline-offset: 2px }` rule that covers all focusable elements. `.form-input` adds a soft box-shadow glow on `:focus` and keeps the solid outline on `:focus-visible`.
 - CSS animations need a `@media (prefers-reduced-motion: reduce)` fallback in `src/index.css`. `src/index.css` has a global `prefers-reduced-motion` block that shortens animations and transitions and resets `scroll-behavior`. JS-driven smooth scrolling is not covered by it: use `scrollBehavior()` from `src/scrollBehavior.ts` instead of a literal `'smooth'`.
 - Semantic landmarks on every page: `<header>`, `<nav>`, `<main id="main-content">`, `<footer>`. `src/components/SkipLink.tsx` (mounted in `App.tsx`) targets that id, so every page's `<main>` must carry it.
 - Hover-revealed content (the hero tooltip) must also open on keyboard focus and be exposed via `aria-describedby`.
@@ -215,8 +216,8 @@ No `Note` blocks are currently active on legal pages. Both prior DPA placeholder
 The Content-Security-Policy header is declared in `vercel.json` on the `/(.*)`  source. Any new embed or script origin must be added to the matching directive before shipping. Key origins:
 
 - `script-src`: `'self'` covers the app bundle and `public/theme-init.js`. No Tally script is loaded (the form is our own markup).
-- `style-src`: `'unsafe-inline'` is required because React renders inline `style={{}}` throughout; `https://fonts.googleapis.com` for the Google Fonts stylesheet.
-- `font-src`: `https://fonts.gstatic.com` for the actual font files.
+- `style-src`: `'unsafe-inline'` is required because React renders inline `style={{}}` throughout. No third-party style origins.
+- `font-src`: `'self'` only. Fonts are self-hosted as latin-subset variable woff2 in `public/fonts/` (declared with `@font-face` in `src/index.css`, `font-display: swap`). Never reintroduce a third-party font CDN: it sends visitor IPs to a third party the privacy policy does not list.
 - `connect-src`: `https://api.tally.so` for the waitlist form POST. `vercel.live` is also allowed in `script-src`, `frame-src` and `connect-src` for the Vercel toolbar.
 - Vercel Analytics sends to `/_vercel/insights/*` (same-origin rewrite), covered by `'self'`.
 

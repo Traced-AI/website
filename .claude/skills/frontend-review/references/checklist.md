@@ -15,7 +15,7 @@ Stack reality this checklist assumes: Vite 8 + React 19 + react-router 7 + Tailw
 
 **A3**: Each page has exactly one `<h1>`. Heading levels are sequential, no skipped levels (h1 to h2 to h3). Screen-reader navigation depends on it.
 
-**A4**: Focus is visible on every interactive element. `src/index.css` has an `outline: none` (around L544) with a box-shadow replacement scoped to `.form-input` only. Verify every other interactive element (links, buttons, nav, theme toggle) still shows a visible focus style and none suppress the outline without a replacement.
+**A4**: Focus is visible on every interactive element. `src/index.css` has an `outline: none` (around L544) on `.form-input` with a soft box-shadow glow, plus a solid `:focus-visible` outline that must reach 3:1 in both themes. Verify every other interactive element (links, buttons, nav, theme toggle) still shows a visible focus style and none suppress the outline without a replacement.
 
 **A5**: Landmark regions present on every page: `<header>`, `<nav>`, `<main>`, `<footer>`. Flag any page that bypasses this structure or puts content outside the landmarks.
 
@@ -170,7 +170,7 @@ Forward-looking: Tally (live in `WaitlistForm`), Cal.eu (live in `ThankYou`), an
 
 **P3**: Images in `public/` use appropriate formats (SVG for icons, compressed PNG/WebP for raster). OG image and any raster asset stay size-bounded (under 200KB target).
 
-**P4**: Fonts load with `font-display: swap` to avoid invisible-text flashes. Keep INP low: avoid heavy synchronous work on interaction and layout thrash. Lighthouse targets (per GTM plan): 90+ performance, 95+ accessibility.
+**P4**: Fonts are self-hosted (`public/fonts/`, no Google Fonts or other font CDN: third-party font requests leak visitor IPs) and load with `font-display: swap` to avoid invisible-text flashes. Keep INP low: avoid heavy synchronous work on interaction and layout thrash. Lighthouse targets (per GTM plan): 90+ performance, 95+ accessibility.
 
 ---
 
