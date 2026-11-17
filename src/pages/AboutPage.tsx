@@ -1,7 +1,7 @@
 import NavBar from '../sections/NavBar'
 import Footer from '../sections/Footer'
 import { DOMAIN, CONTACT_EMAIL } from '../config'
-import { about } from '../copy'
+import { about, meta } from '../copy'
 
 interface TextSectionData {
   sectionLabel: string
@@ -76,12 +76,12 @@ function TheBetSection() {
 export default function AboutPage() {
   return (
     <>
-      <title>About · Traced AI</title>
-      <meta name="description" content="The vision, mission, and open invitation to co-build Traced AI." />
+      <title>{meta.about.title}</title>
+      <meta name="description" content={meta.about.description} />
       <link rel="canonical" href={`${DOMAIN}/about`} />
       <meta property="og:url" content={`${DOMAIN}/about`} />
-      <meta property="og:title" content="About Traced AI" />
-      <meta property="og:description" content="The vision, mission, and open invitation to co-build Traced AI." />
+      <meta property="og:title" content={meta.about.ogTitle} />
+      <meta property="og:description" content={meta.about.ogDescription} />
       <NavBar />
       <main id="main-content">
         <TextSection id="vision" bg="var(--bg-1)" data={about.vision} top />

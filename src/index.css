@@ -1,5 +1,39 @@
 @import "tailwindcss";
 
+/* ─── SELF-HOSTED FONTS (latin subset, variable) ─── */
+@font-face {
+  font-family: 'League Spartan';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('/fonts/league-spartan.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url('/fonts/montserrat.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/montserrat-italic.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* ─── LIGHT THEME ─── */
 :root {
   --color-on-accent: #ffffff;
@@ -358,6 +392,20 @@ body {
 .danger-highlight:hover::after,
 .danger-highlight:focus-visible::after { opacity: 1; }
 
+/* Small screens: the nowrap tooltip centered on its anchor spilled past the viewport
+   (horizontal scroll even while hidden). Anchor it to the headline line instead and let it wrap. */
+@media (max-width: 767px) {
+  .hl-line2 { position: relative; }
+  .danger-highlight { position: static; }
+  .danger-highlight::after {
+    left: 0;
+    transform: none;
+    width: max-content;
+    max-width: 100%;
+    white-space: normal;
+  }
+}
+
 /* ─── HERO BODY ─── */
 .hero-sub {
   font-size: 1.25rem;
@@ -605,6 +653,7 @@ body {
   transition: border-color 0.15s, background 0.2s, box-shadow 0.15s;
 }
 .form-input:focus { border-color: var(--ac-border); box-shadow: 0 0 0 3px var(--ac-dim); }
+.form-input:focus-visible { outline: 2px solid var(--ac); outline-offset: 2px; }
 .form-input::placeholder { color: var(--tx-2); }
 .form-textarea { min-height: 88px; resize: vertical; line-height: 1.6; }
 
@@ -691,6 +740,10 @@ select.form-input { cursor: pointer; }
   font-size: 13px;
   color: var(--tx-1);
   margin-bottom: 16px;
+}
+/* Wide legal tables scroll inside themselves on phones instead of widening the page. */
+@media (max-width: 767px) {
+  .legal-body table { display: block; overflow-x: auto; }
 }
 .legal-body th {
   text-align: left;

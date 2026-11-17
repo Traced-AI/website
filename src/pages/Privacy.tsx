@@ -85,7 +85,7 @@ export default function Privacy() {
           <LegalSection id="5" title="Cookies and analytics">
             <p><strong>Vercel Web Analytics</strong> is cookieless. It sets no cookies, collects no personally identifiable information, and identifies sessions by a request hash that is discarded after 24 hours. No consent banner is required for it.</p>
             <p>The <strong>Tally</strong> waitlist form is not an embed: the form is served by this site and your answers are sent directly to Tally when you submit it. Nothing is loaded from Tally while you browse, and no Tally cookie or tracking script runs on this site. Tally processes the submission under its own privacy notice: <a href="https://tally.so/privacy" target="_blank" rel="noopener noreferrer">Tally privacy policy</a>.</p>
-            <p>The <strong>Cal.eu</strong> booking widget is a third-party embed. It operates under its own privacy notice and may set cookies within its embed context: <a href="https://cal.com/privacy" target="_blank" rel="noopener noreferrer">Cal.eu privacy policy</a>.</p>
+            <p>The <strong>Cal.eu</strong> booking page is an outbound link that opens in a new tab. This site loads no Cal.eu code and sets no Cal.eu cookies. Once you follow the link, Cal.eu handles your data under its own privacy notice: <a href="https://cal.com/privacy" target="_blank" rel="noopener noreferrer">Cal.eu privacy policy</a>.</p>
             <p>When user authentication is added to the product, any session cookies introduced will be listed here with their purpose and lifespan.</p>
           </LegalSection>
 
@@ -135,7 +135,7 @@ export default function Privacy() {
             <ul>
               <li><strong>Tally</strong> is incorporated in Belgium and processes form data in the EU. No transfer outside the EEA.</li>
               <li><strong>Cal.com (Cal.eu)</strong> processes booking data in the EU. Cal.com Inc is US-headquartered. This transfer is covered by EU Standard Contractual Clauses.</li>
-              <li><strong>Vercel</strong> runs edge functions in EU regions (fra1) for this site. Vercel Inc is US-headquartered. This transfer is covered by EU Standard Contractual Clauses and the EU-US Data Privacy Framework.</li>
+              <li><strong>Vercel</strong> serves this static site from its EU edge network (fra1). Vercel Inc is US-headquartered. This transfer is covered by EU Standard Contractual Clauses and the EU-US Data Privacy Framework.</li>
             </ul>
             <p>Raw customer decision data stays inside the customer's own perimeter and is not a transfer we make.</p>
             <p>When the product backend launches, the following transfers will apply:</p>

@@ -41,7 +41,7 @@ A waitlist landing page needs no SSR, no API routes, and no server runtime. Vite
 | Concern | Choice | Why |
 |---------|--------|-----|
 | Framework | Vite 6 + React 19 + TypeScript (static SPA) | No server cost, fastest dev loop, no SSR needed for a landing page |
-| Routing | react-router-dom 7 (declarative SPA mode) | Client-side routing for the handful of marketing + legal routes |
+| Routing | react-router 7 (declarative SPA mode) | Client-side routing for the handful of marketing + legal routes |
 | Package manager | Bun | Speed, already in workflow |
 | Styling | Tailwind CSS v4 (CSS-first `@theme inline` tokens in `src/index.css`) | Design tokens as CSS variables, no JS config, no shadcn dependency |
 | Fonts | League Spartan (display) + Montserrat (body) + JetBrains Mono (mono) | Locked pairing; loaded with `font-display: swap` |
@@ -441,3 +441,7 @@ Apply with a lawyer who specializes in EU tech grants. Do not DIY it.
 | 5 | First paying customer | First Stripe invoice paid |
 | 6 | Audit exports usable | External auditor uses a Traced AI pack in a real review |
 | 7 | EU grant application | Submitted |
+
+## Hardening pass (Nov 2026)
+
+Done: dependency bumps, pinned Bun, Dependabot, self-hosted fonts, form focus ring, asset cache headers, COOP, lazy legal routes, nav/footer on 404 and thank-you, `bun test` in CI. Held: TypeScript 7 (typescript-eslint peer range).

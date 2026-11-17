@@ -13,8 +13,9 @@ Stack: Vite + React + TypeScript, Tailwind CSS v4, Bun, deployed static to Verce
 ```bash
 bun run dev          # local dev server
 bun run build        # production build to /dist
-bun run typecheck    # tsc --noEmit
+bun run typecheck    # tsc --noEmit (src and tests)
 bun run lint         # eslint
+bun run test         # bun test (tests/)
 ```
 
 Use `rtk err bun run build` and `rtk err bun run typecheck` to surface only errors.

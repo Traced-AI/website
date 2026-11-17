@@ -35,12 +35,10 @@ export default function HowItWorks() {
       <div className="page-section">
         <div className="section-label">{howItWorks.sectionLabel}</div>
 
-        <h1 className="section-heading" style={{ marginBottom: '8px' }}>
+        <h1 className="section-heading" style={{ marginBottom: '32px' }}>
           {howItWorks.headline1}
+          <span style={{ display: 'block', marginTop: '8px', color: 'var(--ac-text)' }}>{howItWorks.headline2}</span>
         </h1>
-        <h2 className="section-heading" style={{ marginBottom: '32px', color: 'var(--ac-text)' }}>
-          {howItWorks.headline2}
-        </h2>
 
         <p style={{ fontSize: '15px', color: 'var(--tx-1)', lineHeight: 1.75, maxWidth: '640px', marginBottom: '48px' }}>
           {howItWorks.intro}

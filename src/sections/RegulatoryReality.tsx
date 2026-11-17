@@ -1,5 +1,5 @@
 import StatCard from '../components/StatCard'
-import { stats, regulatoryReality } from '../copy'
+import { stats, regulatoryReality, ui } from '../copy'
 
 function Callout({ heading, body }: { heading: string; body: string }) {
   return (
@@ -47,7 +47,7 @@ export default function RegulatoryReality() {
           {regulatoryReality.sourceAttr}{' '}
           <a href={regulatoryReality.sourceUrl} target="_blank" rel="noopener noreferrer"
             style={{ color: 'var(--ac-text)', textDecoration: 'underline', textUnderlineOffset: '2px' }}>
-            eur-lex.europa.eu
+            {ui.eurLexLabel}
           </a>
         </p>
       </div>

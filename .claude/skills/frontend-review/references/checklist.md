@@ -3,7 +3,7 @@
 Rules ordered by user-impact priority. IDs are used in review findings and cross-reference `docs/dev-guide.md`.
 Skip anything `tsc` + `eslint` already catch (unused vars, missing keys, hook rules). Step 1 runs those first and they take priority.
 
-Stack reality this checklist assumes: Vite 8 + React 19 + react-router-dom 7 + Tailwind v4 + TypeScript 6, Bun, static Vercel. No shadcn, no Next.js, no `@/` alias, `clsx` not installed.
+Stack reality this checklist assumes: Vite 8 + React 19 + react-router 7 + Tailwind v4 + TypeScript 6, Bun, static Vercel. No shadcn, no Next.js, no `@/` alias, `clsx` not installed.
 
 ---
 
@@ -15,7 +15,7 @@ Stack reality this checklist assumes: Vite 8 + React 19 + react-router-dom 7 + T
 
 **A3**: Each page has exactly one `<h1>`. Heading levels are sequential, no skipped levels (h1 to h2 to h3). Screen-reader navigation depends on it.
 
-**A4**: Focus is visible on every interactive element. `src/index.css` has an `outline: none` (around L544) with a box-shadow replacement scoped to `.form-input` only. Verify every other interactive element (links, buttons, nav, theme toggle) still shows a visible focus style and none suppress the outline without a replacement.
+**A4**: Focus is visible on every interactive element. `src/index.css` has an `outline: none` (around L544) on `.form-input` with a soft box-shadow glow, plus a solid `:focus-visible` outline that must reach 3:1 in both themes. Verify every other interactive element (links, buttons, nav, theme toggle) still shows a visible focus style and none suppress the outline without a replacement.
 
 **A5**: Landmark regions present on every page: `<header>`, `<nav>`, `<main>`, `<footer>`. Flag any page that bypasses this structure or puts content outside the landmarks.
 
@@ -31,7 +31,7 @@ Stack reality this checklist assumes: Vite 8 + React 19 + react-router-dom 7 + T
 
 ## 2. Routing (RR)
 
-**RR1**: Internal navigation uses `<Link>` / `<NavLink>` from react-router-dom, never `<a href>`. Plain `<a>` causes a full page reload. This mistake recurred across Hero, PricingPage, NavBar, and Terms during the initial build. Treat it as a high-priority target.
+**RR1**: Internal navigation uses `<Link>` / `<NavLink>` from react-router, never `<a href>`. Plain `<a>` causes a full page reload. This mistake recurred across Hero, PricingPage, NavBar, and Terms during the initial build. Treat it as a high-priority target.
 
 **RR2**: External links use `<a href target="_blank" rel="noopener noreferrer">`. Both attributes are required; missing `rel` is a reverse-tabnabbing security issue.
 
@@ -170,7 +170,7 @@ Forward-looking: Tally (live in `WaitlistForm`), Cal.eu (live in `ThankYou`), an
 
 **P3**: Images in `public/` use appropriate formats (SVG for icons, compressed PNG/WebP for raster). OG image and any raster asset stay size-bounded (under 200KB target).
 
-**P4**: Fonts load with `font-display: swap` to avoid invisible-text flashes. Keep INP low: avoid heavy synchronous work on interaction and layout thrash. Lighthouse targets (per GTM plan): 90+ performance, 95+ accessibility.
+**P4**: Fonts are self-hosted (`public/fonts/`, no Google Fonts or other font CDN: third-party font requests leak visitor IPs) and load with `font-display: swap` to avoid invisible-text flashes. Keep INP low: avoid heavy synchronous work on interaction and layout thrash. Lighthouse targets (per GTM plan): 90+ performance, 95+ accessibility.
 
 ---
 
@@ -193,3 +193,7 @@ Forward-looking: Tally (live in `WaitlistForm`), Cal.eu (live in `ThankYou`), an
 **Q2**: No `console.*` debug output in production paths (see P2).
 
 **Q3**: Imports ordered external-then-internal, no unused imports. `bun` is the only package manager; no `package-lock.json` or `yarn.lock` committed.
+
+**H-cache**: `vercel.json` sets `Cache-Control: public, max-age=31536000, immutable` on hashed `/assets/*`. Verify when touching headers.
+**A-heading**: Two-line headlines are one heading with a `<span>`, not two headings. `NotFound` and `ThankYou` render NavBar and Footer.
+**RESP-overflow**: No horizontal scroll at 320 to 412px width. Check hidden `::after` tooltips and legal tables (they must not widen the page).

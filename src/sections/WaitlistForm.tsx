@@ -1,6 +1,6 @@
 import { useId, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import {
   CAL_BOOKING_URL,
   CONTACT_EMAIL,
@@ -9,27 +9,13 @@ import {
   TALLY_SUBMIT_URL,
 } from '../config'
 import { waitlist } from '../copy'
+import { validate } from '../waitlistValidation'
+import type { Errors, FieldName, Values } from '../waitlistValidation'
 
 const f = waitlist.form
 
-type FieldName = 'email' | 'company' | 'role' | 'useCase'
-type Values = Record<FieldName, string>
-type Errors = Partial<Record<FieldName | 'submit', string>>
-
 const EMPTY: Values = { email: '', company: '', role: '', useCase: '' }
 const ORDER: FieldName[] = ['email', 'company', 'role', 'useCase']
-
-/** Deliberately loose: this catches typos, Tally still does the real validation. */
-const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
-function validate(v: Values): Errors {
-  const e: Errors = {}
-  if (!EMAIL.test(v.email.trim())) e.email = f.errors.email
-  if (!v.company.trim()) e.company = f.errors.company
-  if (!v.role) e.role = f.errors.role
-  if (!v.useCase.trim()) e.useCase = f.errors.useCase
-  return e
-}
 
 const inputClass = (invalid?: string) => `form-input${invalid ? ' form-input-invalid' : ''}`
 

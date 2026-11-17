@@ -6,8 +6,8 @@ Marketing site for [Traced AI](https://traced-ai.com): tamper-evident audit infr
 
 - Vite 8 + React 19 + TypeScript 6
 - Tailwind CSS v4
-- react-router-dom 7
-- Bun (runtime + package manager)
+- react-router 7
+- Bun 1.4 (runtime + package manager, pinned via `packageManager` in `package.json`; CI reads the same pin)
 - Vercel (hosting + analytics)
 
 ## Setup
@@ -23,8 +23,9 @@ bun run dev
 |---------|-------------|
 | `bun run dev` | Local dev server at `localhost:5173` |
 | `bun run build` | Production build to `/dist` |
-| `bun run typecheck` | TypeScript check (no emit) |
+| `bun run typecheck` | TypeScript check for `src/` and `tests/` (no emit) |
 | `bun run lint` | ESLint |
+| `bun run test` | Unit tests (`bun test`, in `tests/`) |
 | `bun run preview` | Preview the production build locally |
 
 ### Docker (optional)
@@ -41,7 +42,9 @@ docker compose exec web bun run typecheck
 
 ## CI
 
-Every PR and push to `main` runs typecheck, lint, and build via GitHub Actions (`.github/workflows/ci.yml`). The check must pass before merging.
+Every PR and push to `main` runs typecheck, lint, tests, and build via GitHub Actions (`.github/workflows/ci.yml`). The check must pass before merging.
+
+Dependabot (`.github/dependabot.yml`) opens weekly grouped PRs for npm and GitHub Actions. TypeScript major bumps are ignored until typescript-eslint's peer range allows them.
 
 ## Deployments
 

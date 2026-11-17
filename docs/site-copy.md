@@ -20,6 +20,8 @@ Title convention: `Page Name · Traced AI` (short, symmetric). The `og:title` is
 | `/about` | About · Traced AI | About Traced AI | The vision, mission, and open invitation to co-build Traced AI. |
 | `*` (NotFound) | 404 · Traced AI | (noindex, no OG needed) | (noindex, no description needed) |
 
+- **Source:** per-route title/description/OG strings for the non-legal pages live in `meta.*` in `src/copy.ts` (legal pages keep theirs inline, per the legal-page convention). `/thank-you` carries `noindex` and no canonical.
+- **UI strings:** shared chrome literals (skip link, nav CTA, menu labels, theme toggle label "Dark mode", brand, "Back to home") live in `ui.*`; the 404 page copy lives in `notFound.*`.
 - **OG Image:** `og-image.png` (1200x630, ~50 KB). `og:image:alt`: "Traced AI: EU AI Act audit trail for high-risk AI decisions"
 
 ---
